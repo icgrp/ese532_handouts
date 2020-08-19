@@ -1,0 +1,8 @@
+# Book settings
+title: ESE532 System-on-a-Chip Architecture
+author: Implementation of Computation Group
+logo: 'images/logo.png'
+
+latex:
+  latex_documents:
+    targetname: book.tex
