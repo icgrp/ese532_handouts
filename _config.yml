@@ -1,7 +1,13 @@
 # Book settings
-title: ESE532 System-on-a-Chip Architecture
+title: ESE532 Assignments
 author: Implementation of Computation Group
 logo: 'images/logo.png'
+repository:
+  url: https://github.com/icgrp/ese532-hw
+html:
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
 
 latex:
   latex_documents:

@@ -1,5 +1,31 @@
-file: markdown
-sections:
-- file: content
-- file: intro
-- file: notebooks
+- file: index
+  numbered: true
+
+- part: Homework 1
+  chapters:
+    - file: assignments/hw1/overview
+- part: Homework 2
+  chapters:
+    - file: assignments/hw2/overview
+- part: Homework 3
+  chapters:
+    - file: assignments/hw3/overview
+- part: Homework 4
+  chapters:
+    - file: assignments/hw4/overview
+- part: Homework 5
+  chapters:
+    - file: assignments/hw5/overview
+- part: Homework 6
+  chapters:
+    - file: assignments/hw6/overview
+- part: Homework 7
+  chapters:
+    - file: assignments/hw7/overview
+- part: Project
+  chapters:
+    - file: assignments/project/p1/overview
+    - file: assignments/project/p2/overview
+    - file: assignments/project/p3/overview
+    - file: assignments/project/p4/overview
+    - file: assignments/project/p5/overview
