@@ -1,5 +1,4 @@
 - file: index
-  numbered: true
 
 - part:
   sections:
@@ -7,30 +6,37 @@
       url: https://www.seas.upenn.edu/~ese532/fall2020/fall2020.html
 
 # - part: Homework 1
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw1/overview
+#     - file: hw1/index
 # - part: Homework 2
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw2/overview
+#     - file: hw2/index
 # - part: Homework 3
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw3/overview
+#     - file: hw3/index
 # - part: Homework 4
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw4/overview
+#     - file: hw4/index
 # - part: Homework 5
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw5/overview
+#     - file: hw5/index
 # - part: Homework 6
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw6/overview
+#     - file: hw6/index
 # - part: Homework 7
+#   numbered: true
 #   chapters:
-#     - file: assignments/hw7/overview
+#     - file: hw7/index
 # - part: Project
 #   chapters:
-#     - file: assignments/project/p1/overview
-#     - file: assignments/project/p2/overview
-#     - file: assignments/project/p3/overview
-#     - file: assignments/project/p4/overview
-#     - file: assignments/project/p5/overview
+#     - file: project/index
+#     - file: project/p1/index
+#     - file: project/p2/index
+#     - file: project/p3/index
+#     - file: project/p4/index

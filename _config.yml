@@ -1,23 +1,24 @@
 # Book settings
 title: ESE532 Assignments Fall 2020
 author: Department of Electrical and Systems Engineering, UPenn
-logo: 'images/logo.png'
+logo: logo.png
 repository:
   url: https://github.com/icgrp/ese532-hw
 html:
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
+  home_page_in_navbar: true
 exclude_patterns:
   - README.md
-  - assignments/hw1/*
-  - assignments/hw2/*
-  - assignments/hw3/*
-  - assignments/hw4/*
-  - assignments/hw5/*
-  - assignments/hw6/*
-  - assignments/hw7/*
-  - assignments/project/*
+  - hw1/*
+  - hw2/*
+  - hw3/*
+  - hw4/*
+  - hw5/*
+  - hw6/*
+  - hw7/*
+  - project/*
 
 latex:
   latex_documents:
