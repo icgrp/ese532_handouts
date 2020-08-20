@@ -1,6 +1,6 @@
 # Book settings
-title: ESE532 Assignments
-author: Implementation of Computation Group
+title: ESE532 Assignments Fall 2020
+author: Department of Electrical and Systems Engineering, UPenn
 logo: 'images/logo.png'
 repository:
   url: https://github.com/icgrp/ese532-hw
@@ -8,6 +8,16 @@ html:
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
+exclude_patterns:
+  - README.md
+  - assignments/hw1/*
+  - assignments/hw2/*
+  - assignments/hw3/*
+  - assignments/hw4/*
+  - assignments/hw5/*
+  - assignments/hw6/*
+  - assignments/hw7/*
+  - assignments/project/*
 
 latex:
   latex_documents:
