@@ -5,10 +5,11 @@
     - title: Syllabus
       url: https://www.seas.upenn.edu/~ese532/fall2020/fall2020.html
 
-# - part: Homework 1
-#   numbered: true
-#   chapters:
-#     - file: hw1/index
+- part: Homework 1
+  numbered: true
+  chapters:
+    - file: hw1/index
+    - file: hw1/aws_tutorial
 # - part: Homework 2
 #   numbered: true
 #   chapters:
