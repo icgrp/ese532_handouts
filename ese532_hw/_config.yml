@@ -10,7 +10,6 @@ html:
   use_edit_page_button: true
   home_page_in_navbar: true
 exclude_patterns:
-  - README.md
   - common/*
   - hw2/*
   - hw3/*
