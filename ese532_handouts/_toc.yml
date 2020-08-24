@@ -3,6 +3,8 @@
 - title: Syllabus
   url: https://www.seas.upenn.edu/~ese532/fall2020/fall2020.html
 
+- file: writeup_guidelines
+
 - file: hw1/index
   numbered: true
   sections:

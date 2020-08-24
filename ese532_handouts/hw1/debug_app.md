@@ -52,3 +52,6 @@ of the debugger.  Learn how to set breakpoints, step through code, and inspect v
 % AMD: thinking should prioritize additional C warmup stuff (Below).
 %%   Maybe gdb should be on P1?
 
+```{include} ../common/aws_caution.md
+```
+

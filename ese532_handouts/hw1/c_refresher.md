@@ -255,3 +255,6 @@ the executable when you are debugging? (3 lines max.)
     - run `objdump` on an executable you compiled.  Run `objdump -help` to see what options it offers. Experiment with the options to see what information
     you can get it to display.
     - <http://lampwww.epfl.ch/~fsalvi/docs/gcc/www.network-theory.co.uk/docs/gccintro/gccintro_74.html>
+
+```{include} ../common/aws_caution.md
+```

@@ -1,4 +1,6 @@
 # Makefile Tutorial
+```{include} ../common/aws_caution.md
+```
 
 In this course, we are advocating that you use a command-line
 workflow when you can. Of course, you can use your favorite
@@ -11,6 +13,7 @@ C programs. If you know how to write a `Makefile` you can skip this section.
 
 ---
 Download the {download}`source files <code/hw1_code.tar.gz>` and extract it.
+On your A1 instance, you can use `wget` to download the file.
 
 ````{admonition} Quick linux commands for tar files
 :class: dropdown, tip
@@ -103,3 +106,6 @@ try those by yourselves. Following are some resources that are helpful:
 - <https://makefiletutorial.com/>
 - <https://www.tutorialspoint.com/makefile/index.htm>
 - <https://www.gnu.org/software/make/manual/>
+
+```{include} ../common/aws_caution.md
+```

@@ -1,8 +1,6 @@
 # Homework Submission
 
-Your writeup should follow
-<http://www.seas.upenn.edu/~ese532/fall2019/handouts/writeup_guidelines.pdf>
-Your writeup should include the following:
+Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your writeup should include the following:
 
 <style type="text/css">
     ol { list-style-type: decimal; }
