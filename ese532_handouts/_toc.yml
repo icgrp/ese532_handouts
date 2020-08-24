@@ -6,8 +6,9 @@
 - file: hw1/index
   numbered: true
   sections:
-    - file: hw1/collaboration.md
+    - file: hw1/collaboration
     - file: hw1/aws_tutorial
+    - file: hw1/makefile_tutorial
     - file: hw1/c_refresher
     - file: hw1/debug_app
     - file: hw1/homework_submission
