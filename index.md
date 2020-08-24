@@ -5,8 +5,7 @@ We will do homework 1-4 on Amazon EC2 A1 instances. Homework
 use Ultra96 embedded FPGAs, which we will ship to you before we
 get there.
 
-```{warning} Make sure to stop your Amazon instances! We only have
-$150 of credits and we need it to last till Homework 7.
+```{include} common/aws_caution.md
 ```
 
 ```{tip}

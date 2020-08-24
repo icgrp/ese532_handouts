@@ -11,6 +11,7 @@ html:
   home_page_in_navbar: true
 exclude_patterns:
   - README.md
+  - common/*
   - hw2/*
   - hw3/*
   - hw4/*

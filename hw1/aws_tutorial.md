@@ -1,15 +1,24 @@
 # Getting Started on Amazon EC2
-```{warning} Make sure to stop your Amazon instances! We only have
-$150 of credits and we need it to last till Homework 7.
+```{include} ../common/aws_caution.md
 ```
+% include basic model
 ## Create an AWS account
-by going to: <https://aws.amazon.com/>
+Go to: <https://aws.amazon.com/>
+% elaborate this more
 
-## Email us your Account ID
+## Note down your Account ID
 We will need this to get you access to F1 instances, while you work
-with A1 instances. Go to the following page and find your Account ID
+with A1 instances. Go to the following page, find your Account ID and
+put in [report](homework_submission).
 ```{image} images/aws_account_id.png
 ```
+
+## Redeem Coupon
+Go to this link: <https://aws.amazon.com/awscredits/> and click on
+***Redeem Credit***. In the follow-up screen, add your coupon code
+that we gave you, type the captcha and click on ***Redeem***
+
+## Usage and Costs
 
 ## Create and Launch an A1 instance
 From the management console, click on ***Launch a virtual machine***:
@@ -67,12 +76,17 @@ sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
 ```
 ---
+Do something
+
+---
+Stopping Instance
+```{image} images/launch_a1_7.png
+
+```
+---
+Check balance/Budget
+
 You are now ready to do homeworks 1-4!
 
-```{warning}
-Make sure to stop your Amazon instances! We only have
-$150 of credits and we need it to last till Homework 7.
-
-```{image} ../common/stop_warning.png
-
+```{include} ../common/aws_caution.md
 ```
