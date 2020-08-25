@@ -28,7 +28,7 @@ a coupon).
 ## Note down your Account ID
 We will need this to get you access to F1 instances, while you work
 with A1 instances. Go to the following page, find your Account ID and
-put in [report](homework_submission).
+put it in your [report](homework_submission).
 ```{image} images/aws_account_id.png
 ```
 
@@ -100,24 +100,57 @@ Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-41-240 ~]$
 ```
 ---
+Open the file `/etc/yum.repos.d/amzn2-core.repo` as follows and
+enable debug info:
+```Text
+sudo vim /etc/yum.repos.d/amzn2-core.repo
+# press 'i' to edit
+
+# change the "enabled" from 0 to 1
+[amzn2-core-debuginfo]
+name=Amazon Linux 2 core repository - debuginfo packages
+mirrorlist=http://amazonlinux.$awsregion.$awsdomain/$releasever/$product/$target/debuginfo/$basearch/mirror.list
+priority=10
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-amazon-linux-2
+enabled=1
+metadata_expire=300
+mirrorlist_expire=300
+report_instanceid=yes
+
+# write file and quit by pressing ':wq'
+```
 Execute the following commands. This will get the compiler necessary for
 running homeworks 1-4.
 ```
 sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
+sudo debuginfo-install glibc-2.26-35.amzn2.aarch64
 ```
+
+---
+Note down the system information and gcc version using the following
+commands and put it in your [report](homework_submission).
+```Text
+lscpu
+uname -a
+gcc --version
+```
+
 ---
 Try the [Makefile Tutorial](makefile_tutorial) in this running instance!
 
 ---
-When you are done, stop the instance as follows:
+When you are done, stop the instance by right-clicking on the instance as follows:
 ```{image} images/launch_a1_7.png
 ```
 
 ---
-You can re-start the instance as follows (FYI, the ip address changes when you restart
-an instance):
+You can re-start the instance by right-clicking on the instance as follows:
 ```{image} images/launch_a1_8.png
+```
+```{note}
+The ip address changes when you restart an instance.
 ```
 
 ---
@@ -126,7 +159,9 @@ Check how much of credit you have used up as follows:
 ```
 ```{image} images/launch_a1_10.png
 ```
+Take a screenshot of your credit usage and put it in your [report](homework_submission).
 
+---
 You are now ready to do homeworks 1-4!
 
 ```{include} ../common/aws_caution.md
