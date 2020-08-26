@@ -126,6 +126,7 @@ running homeworks 1-4.
 sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
 sudo debuginfo-install glibc-2.26-35.amzn2.aarch64
+sudo yum install tmux -y
 ```
 
 ---
@@ -139,6 +140,11 @@ gcc --version
 
 ---
 Try the [Makefile Tutorial](makefile_tutorial) in this running instance!
+```{tip}
+When working in the terminal, use `tmux`. Sometimes your ssh connection
+to AWS may drop. When you work inside `tmux`, you can continue
+back from your previous terminal session. Learn more from [here](https://linuxize.com/post/getting-started-with-tmux/).
+```
 
 ---
 When you are done, stop the instance by right-clicking on the instance as follows:

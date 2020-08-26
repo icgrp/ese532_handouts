@@ -1,4 +1,10 @@
 # C Refresher
+<style type="text/css">
+    ol { list-style-type: decimal; }
+    ol ol { list-style-type: lower-alpha; }
+    ol ol ol { list-style-type: lower-roman; }
+</style>
+
 ```{include} ../common/aws_caution.md
 ```
 For some of these questions you will need to compile and run C code.
@@ -11,12 +17,37 @@ Cloud machines, you can compile a simple, single C file application in `program.
 gcc -o program program.c
 ```
 
-1. How do you declare a pointer that can be used to iterate through
-the following two-dimensional array variable? (1 line)
-    ```C
-    int a[2][3];
+1. Write the C code to reproduce the contents of the stack and heap
+as shown in {numref}`pointer-question-1`. You can use any variable and pointer names with int type. For e.g. `0x5C` is filled with `int x = 20;`.
+    ```{figure} images/memory_map_1.png
+    ---
+    height: 300px
+    name: pointer-question-1
+    ---
+    Memory space with stack and heap
     ```
-2. Considering the following code, give an expression to obtain
+
+2. The stack grows downward and the heap grows upwards
+(with GCC compiler and Armv8-a architecture we are using).
+What happens when stack and heap memory space collide?
+
+3. {numref}`pointer-question-2` shows the content of an 8 element int array on the stack.
+    1. Write the C code to allocate this array on the stack as shown in {numref}`Fig. {number}(a) <pointer-question-2>`, as a 2D array.
+    2. Building from (a), declare an array of pointers as shown in {numref}`Fig. {number}(b) <pointer-question-2>`, and use it to print out the contents of the 2D array.
+    3. Building from (b), declare a double pointer as shown in {numref}`Fig. {number}(c) <pointer-question-2>`, and use it to print out the contents of the 2D array.
+      ```{hint}
+      A 2D array is not equivalent to a double pointer! Review
+      [these slides](https://cs.brynmawr.edu/Courses/cs246/spring2014/Slides/16_2DArray_Pointers.pdf).
+      ```
+    ```{figure} images/memory_map_2.png
+    ---
+    height: 450px
+    name: pointer-question-2
+    ---
+    8 element array on the stack
+    ```
+
+4. Considering the following code, give an expression to obtain
 the address of `b` that can be accessed via the third
 element of `x`. (1 line)
     ```C
@@ -33,7 +64,7 @@ element of `x`. (1 line)
     struct s1 x[5];
     ```
 
-3. The following array will be stored as a sequence of bits in
+5. The following array will be stored as a sequence of bits in
 memory.  We could also consider these bits as a sequence
 of bytes (`unsigned char`).  Show code that prints those
 bytes.   Avoid needless copying or losing information.
@@ -48,7 +79,7 @@ your solution is reporting.
     double a[] = {3.14, 2.71};
     ```
 
-4. Put together code to print the address associated with each of the
+6. Put together code to print the address associated with each of the
 arrays, `a`, `b`, `c`, and `d`.
 Include the code and the results of running it and reporting the addresses.
     ```C
@@ -65,7 +96,7 @@ Include the code and the results of running it and reporting the addresses.
       return;
     }
     ```
-5. What might happen with the following code?
+7. What might happen with the following code?
     ```C
     int a[3];
     int b[4];
@@ -79,7 +110,7 @@ Include the code and the results of running it and reporting the addresses.
     identified case, what happens and why (2 lines max for each case).
 
 
-6. Compile and run the following code.
+8. Compile and run the following code.
     ```C
     #include "stdio.h"
     #include "stdlib.h"
@@ -121,7 +152,7 @@ Include the code and the results of running it and reporting the addresses.
     that it does for each of the `char` and `unsigned char` sums? (1-3
     lines each)
 
-7. Below is a simple example of a linked list and a test program.
+9. Below is a simple example of a linked list and a test program.
 Your job is to complete `insert_in_order` function. This function
 should add the new element into the linked list in ascending order.
 For example, when given the values 20, 5, 10 our list
@@ -214,12 +245,12 @@ In this case the `head` of the list is 5 and the "tail" is 20.
       return 0;
     }    
     ```
-8. What is the purpose of the preprocessor, compiler, and
+10. What is the purpose of the preprocessor, compiler, and
 linker? (each 3 lines max.)
 
     Potentially useful:
 
-    - <http://lampwww.epfl.ch/~fsalvi/docs/gcc/www.network-theory.co.uk/docs/gccintro/gccintro_68.html>
+    - {download}`gccintro <pdfs/gccintro.pdf>`
     - <https://www.tenouk.com/ModuleW.html>
 
     [We point you at the gcc documentation because it is easily
@@ -227,9 +258,9 @@ linker? (each 3 lines max.)
     across other C compilers.  In some cases, Xilinx tools will use gcc
     internally.  For some of your development (including, perhaps, for
     this section of this assignment) you may find it useful to get
-    your C working on a workstation, laptop, or AWS cloud computer using gcc.]
+    your C working on a workstation, laptop, or AWS A1 instance using gcc.]
 
-9. If the preprocessor cannot find a file that is included
+11. If the preprocessor cannot find a file that is included
 with `#include`, give at least three different ways you could resolve
 the problem so that the preprocessor can find the file? (1--2 lines each)
 
@@ -238,7 +269,7 @@ the problem so that the preprocessor can find the file? (1--2 lines each)
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <http://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html>
 
-10. If the linker gives you an error like `undefined reference to ...`,
+12. If the linker gives you an error like `undefined reference to ...`,
 identify three reasons this could occur and at least one way to resolve each.
 (1--2 lines each)
 
@@ -247,14 +278,14 @@ identify three reasons this could occur and at least one way to resolve each.
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html>
 
-11. How does Eclipse (or gdb) know where functions and data are located in
+13. How does GDB know where functions and data are located in
 the executable when you are debugging? (3 lines max.)
 
     Possibly useful:
 
     - run `objdump` on an executable you compiled.  Run `objdump -help` to see what options it offers. Experiment with the options to see what information
     you can get it to display.
-    - <http://lampwww.epfl.ch/~fsalvi/docs/gcc/www.network-theory.co.uk/docs/gccintro/gccintro_74.html>
+    - {download}`gccintro <pdfs/gccintro.pdf>`
 
 ```{include} ../common/aws_caution.md
 ```
