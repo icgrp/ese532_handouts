@@ -46,8 +46,8 @@ It costs `$1.65/hr`.
 
 Students from the past offerings of this class reported that they took about
 9-16 hours on average to complete an assignment. Given that, we expect a total
-usage of $0.051\times16\times4+1.65\times16\times3$ $\approx$ $83 per student for doing all the assignments
-on Amazon AWS. We are giving you $150 in credit---so there is some leeway.
+usage of $0.051\times16\times4+1.65\times16\times3$ $\approx$ \$83 per student for doing all the assignments
+on Amazon AWS. We are giving you \$150 in credit---so there is some leeway.
 For the project, you will have the option to use SEAS Biglab or use up the rest of
 the AWS credits or build locally (if you manage to have a local installation of
 Xilinx Vitis/Vivado tools).
@@ -166,6 +166,14 @@ Check how much of credit you have used up as follows:
 ```{image} images/launch_a1_10.png
 ```
 Take a screenshot of your credit usage and put it in your [report](homework_submission).
+
+---
+# Data
+
+Should there be a section on what gets saved on the amazon VM?
+What you should do to copy data off of the amazon VM?
+Best practices for dealing with data (personal repo that you grab data from
+on VM?)
 
 ---
 You are now ready to do homeworks 1-4!

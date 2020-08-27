@@ -22,3 +22,4 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     2. Provide code for the corrected function.
     3. Include a description of how you used the tools to identify the bug. (Or confirm a hypothesis you formed about the location of the bug) (5 lines max.)
 3. **C** -- answer the questions about C pointers, compilers, and executables from the [C Refresher](c_refresher) section.
+4. **Make** -- TODO some Makefile, perferably one they assemble.

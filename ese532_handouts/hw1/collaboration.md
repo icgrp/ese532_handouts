@@ -20,6 +20,13 @@ how to use AWS and is setup with their own accounts.
 %    search for teammates.  In the event that you are unable to find a partner, contact
 %    the instructor or TA.
 
+In general, we are allowing you to work in pairs because it is useful to
+discuss the material, tools, and designs with someone.  We allow arbitrary
+collaboration in the course (see course policies
+<http://www.seas.upenn.edu/~ese532>), so this gives you a path for
+allowed collaboration.  Pair programming is generally a useful technique,
+which this will allow you to use.
+
 ***Each student should submit a complete report.***  You are free to share information
 about how to perform certain activities using the Xilinx software with other
 students.  In fact, we encourage you to share any difficulties that you have with

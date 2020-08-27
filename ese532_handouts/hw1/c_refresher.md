@@ -31,6 +31,18 @@ as shown in {numref}`pointer-question-1`. You can use any variable and pointer n
 (with GCC compiler and Armv8-a architecture we are using).
 What happens when stack and heap memory space collide?
 
+TODO: the answer here is going to vary based on the system.
+On linux, the answer is probably that the machine will detect the case and
+not allow overwrites (malloc will return null, at least...but then most
+people don't check the output of malloc to see if it is non-null).
+Bare metal, unfortunately, will not check the bounds, so will happily write
+over the section it collides with.  How do we get them to think about that,
+too?
+If there were no checks, what would happen...?
+
+TODO: Also, would this make more sense after 7 where we get them to think about
+an out-of-bound write?
+
 3. {numref}`pointer-question-2` shows the content of an 8 element int array on the stack.
     1. Write the C code to allocate this array on the stack as shown in {numref}`Fig. {number}(a) <pointer-question-2>`, as a 2D array.
     2. Building from (a), declare an array of pointers as shown in {numref}`Fig. {number}(b) <pointer-question-2>`, and use it to print out the contents of the 2D array.
@@ -151,6 +163,8 @@ Include the code and the results of running it and reporting the addresses.
     from the integer sums?  (2-3 lines each) Why does the computer produce the specific values
     that it does for each of the `char` and `unsigned char` sums? (1-3
     lines each)
+
+TODO: 9 here should probably go into gdb section.
 
 9. Below is a simple example of a linked list and a test program.
 Your job is to complete `insert_in_order` function. This function
@@ -277,6 +291,8 @@ identify three reasons this could occur and at least one way to resolve each.
 
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html>
+
+TODO: 13 here should probably also move into GDB section.
 
 13. How does GDB know where functions and data are located in
 the executable when you are debugging? (3 lines max.)

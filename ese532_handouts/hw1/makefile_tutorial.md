@@ -6,7 +6,12 @@ In this course, we are advocating that you use a command-line
 workflow when you can. Of course, you can use your favorite
 IDE to compile your programs, (in fact, we will be using Xilinx's IDE
 later in the course). Nonetheless, learning how to work from the command
-line is a great skill to have and can boost your productivity at times.
+line is a great skill to have and can boost your productivity at times.  It
+is great to be able to automate rebuilds so that you do not need to
+manually click a large number of buttons in a GUI or type a large number of
+commands to rebuild an output.  It also serves to document how to rebuild
+the output so you aren't in danger of forgetting and needing to figure it
+out again later.
 
 With that, following is a short tutorial on using `make` to compile your
 C programs. If you know how to write a `Makefile` you can skip this section.
@@ -14,6 +19,9 @@ C programs. If you know how to write a `Makefile` you can skip this section.
 ---
 Download the {download}`source files <code/hw1_code.tar.gz>` and extract it.
 On your A1 instance, you can use `wget` to download the file.
+
+TODO: as a first example, show this wget command to download the source files.
+
 
 ````{admonition} Quick linux commands for tar files
 :class: dropdown, tip
