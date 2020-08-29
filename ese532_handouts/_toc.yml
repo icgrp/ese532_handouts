@@ -11,37 +11,15 @@
     - file: hw1/collaboration
     - file: hw1/aws_tutorial
     - file: hw1/makefile_tutorial
+    - file: hw1/gdb_tutorial
     - file: hw1/c_refresher
     - file: hw1/debug_app
     - file: hw1/homework_submission
-# - part: Homework 2
+
+# - file: hw2/index
 #   numbered: true
-#   chapters:
-#     - file: hw2/index
-# - part: Homework 3
-#   numbered: true
-#   chapters:
-#     - file: hw3/index
-# - part: Homework 4
-#   numbered: true
-#   chapters:
-#     - file: hw4/index
-# - part: Homework 5
-#   numbered: true
-#   chapters:
-#     - file: hw5/index
-# - part: Homework 6
-#   numbered: true
-#   chapters:
-#     - file: hw6/index
-# - part: Homework 7
-#   numbered: true
-#   chapters:
-#     - file: hw7/index
-# - part: Project
-#   chapters:
-#     - file: project/index
-#     - file: project/p1/index
-#     - file: project/p2/index
-#     - file: project/p3/index
-#     - file: project/p4/index
+#   sections:
+#     - file: hw2/importing
+#     - file: hw2/collaboration
+#     - file: hw2/homework_submission
+#     - file: hw2/profiling_tutorial

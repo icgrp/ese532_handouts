@@ -18,17 +18,16 @@ C programs. If you know how to write a `Makefile` you can skip this section.
 
 ---
 Download the {download}`source files <code/hw1_code.tar.gz>` and extract it.
-On your A1 instance, you can use `wget` to download the file.
-
-TODO: as a first example, show this wget command to download the source files.
-
+On your A1 instance, you can use `wget <source files link>` to download the file.
+You can get the link by right-clicking on {download}`source files <code/hw1_code.tar.gz>`
+and "Copy Link Address".
 
 ````{admonition} Quick linux commands for tar files
 :class: dropdown, tip
 ```
 # Compress
 tar -cvzf <file_name.tar.gz> directory_to_compress/
-# Decompress
+# Extract to the current folder
 tar -xvzf <file_name.tar.gz>
 ```
 ````

@@ -33,7 +33,7 @@ students.  In fact, we encourage you to share any difficulties that you have wit
 the software and general solutions or workarounds for them on Piazza.  However, ***you are
 not allowed to share the results*** (e.g. output files, numbers, graphs) that you obtain
 using the software outside of the pair working together on the assignment.  Moreover,
-***final results should be analyzed and conclusions should be drawn individually****.
+***final results should be analyzed and conclusions should be drawn individually***.
 
 ```{warning}
 All students must follow the [Code of Academic Integrity](https://catalog.upenn.edu/pennbook/code-of-academic-integrity/).

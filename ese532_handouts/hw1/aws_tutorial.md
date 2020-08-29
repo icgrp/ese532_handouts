@@ -46,8 +46,8 @@ It costs `$1.65/hr`.
 
 Students from the past offerings of this class reported that they took about
 9-16 hours on average to complete an assignment. Given that, we expect a total
-usage of $0.051\times16\times4+1.65\times16\times3$ $\approx$ \$83 per student for doing all the assignments
-on Amazon AWS. We are giving you \$150 in credit---so there is some leeway.
+usage of $\$$$0.051$ $\times$ $16$ $\times$ $4$ $+$ $\$$$1.65$ $\times$ $16$ $\times$ $3$ $\approx$ $\$$$83$ per student for doing all the assignments
+on Amazon AWS. We are giving you $\$$$150$ in credit---so there is some leeway.
 For the project, you will have the option to use SEAS Biglab or use up the rest of
 the AWS credits or build locally (if you manage to have a local installation of
 Xilinx Vitis/Vivado tools).
@@ -85,7 +85,13 @@ bottom right.
 Open a terminal and ssh into your machine using your key pair and ip
 address (alternatively, [use VS Code to ssh in](https://medium.com/@christyjacob4/using-vscode-remotely-on-an-ec2-instance-7822c4032cff))
  ```
- ssh -i /path/to/key_pair.pem ec2-user@<ip address of your machine>
+ ssh -L 8000:localhost:8000 -i /path/to/key_pair.pem ec2-user@<ip address of your machine>
+ ```
+ ```{note}
+ We are tunnelling the remote port 8000 to our local port 8000
+ using `-L 8000:localhost:8000`. We will use this port occasionally
+ to serve a file for download/viewing. You can enable port 8000 globally
+ in the security group of AWS if you want.
  ```
 You should see a screen similar to the following:
 ```
@@ -127,6 +133,7 @@ sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
 sudo debuginfo-install glibc-2.26-35.amzn2.aarch64
 sudo yum install tmux -y
+sudo yum install perf -y
 ```
 
 ---
@@ -168,12 +175,37 @@ Check how much of credit you have used up as follows:
 Take a screenshot of your credit usage and put it in your [report](homework_submission).
 
 ---
-# Data
+## Transferring files between AWS and local machine
 
-Should there be a section on what gets saved on the amazon VM?
-What you should do to copy data off of the amazon VM?
-Best practices for dealing with data (personal repo that you grab data from
-on VM?)
+We highly encourage you to work in git repositories when you are editing
+source code. You can create a private repository in github with
+the starter code we provide you, and then you can git clone your repository
+in your AWS instance. Make sure to build a habit of frequently committing
+your work.
+
+You can upload/download your work to/from AWS instance in several ways:
+- You could just commit your updated code and outputs/logs into your
+github repository and then access the github repository from anywhere.
+- You could use `scp` as follows to transfer a single file or a folder
+  between AWS and your local machine:
+    ```
+    # execute from your local machine
+    # to upload a file
+    scp -i /path/to/key_pair.pem FILENAME ec2-user@<ip address of your machine>:/home/ec2-user/FILENAME
+    
+    # to upload a folder
+    scp -r -i /path/to/key_pair.pem FOLDER ec2-user@<ip address of your machine>:/home/ec2-user/
+    
+    # to download a file
+    scp -i /path/to/key_pair.pem ec2-user@<ip address of your machine>:/home/ec2-user/FILENAME FILENAME
+    
+    # to download a folder
+    scp -r -i /path/to/key_pair.pem ec2-user@<ip address of your machine>:/home/ec2-user/FOLDER ./
+    ```
+- Alternatively you can use `sshfs` to mount your AWS instance directory to a local folder: <https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh>
+- Lastly, you can execute `python -m SimpleHTTPServer 8000` in your AWS instance,
+and then go to <http://localhost:8000/> in your web browser to view/download your
+file. Remember, you need to have the AWS port open/tunnelled for it to work (tunnelling with ssh: `ssh -L 8000:localhost:8000` or opening the port from AWS console).
 
 ---
 You are now ready to do homeworks 1-4!
