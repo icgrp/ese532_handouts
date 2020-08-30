@@ -2,7 +2,7 @@
 
 ```{include} ../common/aws_caution.md
 ```
-GDB is like a swiss knife to a C/C++ developer. You can step through
+GDB is like a swiss-army knife to a C/C++ developer. You can step through
 your code line-by-line, view call stacks, view assembly, and most importantly---
 find the source of a bug! If you haven't used a debugger before, take
 the time now, during this easy assignment, to learn the basic tricks

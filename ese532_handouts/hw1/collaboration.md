@@ -21,7 +21,8 @@ how to use AWS and is setup with their own accounts.
 %    the instructor or TA.
 
 In general, we are allowing you to work in pairs because it is useful to
-discuss the material, tools, and designs with someone.  We allow arbitrary
+discuss the material, tools, and designs with someone.  We
+***do not allow*** arbitrary
 collaboration in the course (see course policies
 <http://www.seas.upenn.edu/~ese532>), so this gives you a path for
 allowed collaboration.  Pair programming is generally a useful technique,

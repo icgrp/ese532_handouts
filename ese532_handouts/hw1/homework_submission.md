@@ -19,10 +19,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         4. Step through program execution without a breakpoint.
 2. **Debug**
     1. Provide the correct output from the terminal.
-    2. Provide code for the corrected function.
+    2. Provide code for the corrected function including the Makefile.
     3. Include a description of how you used the tools to identify the bug. (Or confirm a hypothesis you formed about the location of the bug) (5 lines max.)
     4. Answer the question about GDB. (3 lines max.)
-    5. Provide code for the `insert_in_order` function.
+    5. Provide code for the `insert_in_order` function, including Makefile.
 3. **C** -- answer the questions about C pointers, compilers, and executables from the [C Refresher](c_refresher) section.
 
 ## Deliverables
