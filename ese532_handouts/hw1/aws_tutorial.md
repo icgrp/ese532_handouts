@@ -39,14 +39,14 @@ that we gave you, type the captcha and click on ***Redeem***
 
 ## Usage and Costs
 We will be using two types of instances:
-- For homework 1-4 we will use an `a1.large` with ARM cores.
-It costs `$0.051/hr`.
+- For homework 1-4 we will use an `a1.xlarge` with ARM cores.
+It costs `$0.102/hr`.
 - For homework 5-7 we will use an `f1.2xlarge` with Xilinx FPGAs.
 It costs `$1.65/hr`.
 
 Students from the past offerings of this class reported that they took about
 9-16 hours on average to complete an assignment. Given that, we expect a total
-usage of $\$$$0.051$ $\times$ $16$ $\times$ $4$ $+$ $\$$$1.65$ $\times$ $16$ $\times$ $3$ $\approx$ $\$$$83$ per student for doing all the assignments
+usage of $\$$$0.102$ $\times$ $16$ $\times$ $4$ $+$ $\$$$1.65$ $\times$ $16$ $\times$ $3$ $\approx$ $\$$$86$ per student for doing all the assignments
 on Amazon AWS. We are giving you $\$$$150$ in credit---so there is some leeway.
 For the project, you will have the option to use SEAS Biglab or use up the rest of
 the AWS credits or build locally (if you manage to have a local installation of
@@ -62,7 +62,7 @@ is checked.
 ```{image} images/launch_a1_2.png
 ```
 ---
-Select ***a1.large*** instance type and click on ***Review and Launch***
+Select ***a1.xlarge*** instance type and click on ***Review and Launch***
 ```{image} images/launch_a1_3.png
 ```
 ---
