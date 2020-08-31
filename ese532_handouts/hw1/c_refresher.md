@@ -36,7 +36,7 @@ program under an OS vs when you are running in a bare-metal system.
     Think of what guarantees you get in an OS vs guarantees you don't get in a
     bare-metal system.
 
-     A bare-metal system will not have virtual guarads on memory regions
+     A bare-metal system will not have virtual guards on memory regions
      and typically omits checks for bounds on stacks and heaps.
     
     Later in the course when we'll use the Ultra96, we may need to
