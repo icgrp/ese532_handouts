@@ -5,7 +5,7 @@ Make sure you have python3. If you don't, we recommend [Miniconda3](https://docs
 
 Build by:
 ```
-# source ~/.bashrc # activate your conda environment if not already
+# conda activate # activate your conda environment if not already
 git clone https://github.com/icgrp/ese532_handouts.git
 cd ese532_handouts/
 pip install -r requirements.txt
@@ -20,4 +20,4 @@ jupyter-book clean ese532_handouts/ --all
 ```
 
 **For course admins**:
-Copy `ese532_handouts/_build/html/*` to the `handouts` folder of the course website
+Use `bash publish.sh` to upload the handouts on course website
