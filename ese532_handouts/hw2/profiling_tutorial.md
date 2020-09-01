@@ -37,26 +37,27 @@ without modifying your source code.
 
 (profiling/instrumentation)=
 ### Instrumentation-based Profiling with Timers
-In linux, you can use `gettimeofday()` from `<sys/time.h>`.
+In C++, you can use `std::chrono::high_resolution_clock::now()` from `<chrono>`.
 For example:
-```C
-struct timeval start_time, end_time;
-gettimeofday(&start_time, 0);
+```CPP
+std::chrono::time_point<std::chrono::high_resolution_clock> start_time, end_time;
+start_time = std::chrono::high_resolution_clock::now();
 // code to measure
-gettimeofday(&end_time, 0);
-long long elapsed = (end_time.tv_sec - start_time.tv_sec) * 1000000LL + end_time.tv_usec - start_time.tv_usec;   
-printf("elapsed time: %lld us\n", elapsed);
+end_time = std::chrono::high_resolution_clock::now();
+auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time-start_time).count();   
+std::cout << "elapsed time: " << elapsed << " ns." << std::endl;
 ```
-Combining with a little bit of C++ syntax, we can create a class called
+Note that we need nanoseconds resolution. Combining with a little bit of C++ syntax, we can create a class called
 `stopwatch` as follows:
 ```CPP
-#include <sys/time.h>
+#include <cstdint>
+#include <chrono>
 
 class stopwatch
 {
   public:
-    uint64_t total_time, calls;
-    struct timeval start_time, end_time;
+    double total_time, calls;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start_time, end_time;
     stopwatch() : total_time(0), calls(0) {};
 
     inline void reset() {
@@ -65,19 +66,24 @@ class stopwatch
     }
 
     inline void start() {
-      gettimeofday(&start_time, 0);
+      start_time = std::chrono::high_resolution_clock::now();
       calls++;
     };
 
     inline void stop() {
-      gettimeofday(&end_time, 0);
-      long long elapsed = (end_time.tv_sec - start_time.tv_sec) * 1000000LL + end_time.tv_usec - start_time.tv_usec;
-      total_time += elapsed;
+      end_time = std::chrono::high_resolution_clock::now();
+      auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time-start_time).count();
+      total_time += static_cast<double>(elapsed);
     };
 
-    // return latency in us
+    // return latency in ns
+    inline double latency() {
+      return total_time;
+    };
+
+    // return latency in ns
     inline double avg_latency() {
-      return ((double)total_time / (double)calls);
+      return (total_time / calls);
     };
 };
 ```
@@ -121,22 +127,24 @@ TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
   total_time.stop();
 }
 
-std::cout << "Average latency of projection is: " << time_projection.avg_latency() << "us." << std::endl;
-std::cout << "Average latency of rasterization1 is: " << time_rasterization1.avg_latency() << "us." << std::endl;
-std::cout << "Average latency of rasterization2 is: " << time_rasterization2.avg_latency() << "us." << std::endl;
-std::cout << "Average latency of zculling is: " << time_zculling.avg_latency() << "us." << std::endl;
-std::cout << "Average latency of coloringFB is: " << time_coloringFB.avg_latency() << "us." << std::endl;
-std::cout << "Average latency of the loop is: " << total_time.avg_latency() << "us." << std::endl;
+std::cout << "Average latency of projection is: " << time_projection.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of rasterization1 is: " << time_rasterization1.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of rasterization2 is: " << time_rasterization2.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of zculling is: " << time_zculling.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of coloringFB is: " << time_coloringFB.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of the loop is: " << total_time.avg_latency() << " ns." << std::endl;
+std::cout << "Total time taken by the loop is: " << total_time.latency() << " ns." << std::endl;
 ```
-Recompile the program `make all` and run. You should see results similar to the following:
+Recompile the program using `make all` and run. You should see results similar to the following:
 ```
 3D Rendering Application
-Average latency of projection is: 0.0485589us.
-Average latency of rasterization1 is: 0.0488722us.
-Average latency of rasterization2 is: 0.544486us.
-Average latency of zculling is: 0.115288us.
-Average latency of coloringFB is: 0.0802005us.
-Average latency of the loop is: 1.10589us.
+Average latency of projection is: 69.0341 ns.
+Average latency of rasterization1 is: 111.061 ns.
+Average latency of rasterization2 is: 1672.96 ns.
+Average latency of zculling is: 499.894 ns.
+Average latency of coloringFB is: 313.31 ns.
+Average latency of the loop is: 3153.64 ns.
+Total time taken by the loop is: 1.00664e+07 ns.
 Writing output...
 Check output.txt for a bunny!
 ```

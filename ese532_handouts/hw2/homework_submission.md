@@ -13,7 +13,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         function and why you might want to perform the operation (3
         lines for each of Scale, Filter, Differentiate, Compress).
 2. **Measure**
-    1. Report the latency of the application in microseconds.  For this, you will
+    1. Report the latency of the application in nanoseconds.  For this, you will
         need to instrument the code (refer to {ref}`profiling/instrumentation`
         in the profiling tutorial). (1 line)
         
@@ -30,7 +30,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         target called `perf_report` in your Makefile. If you don't see a percentage for a function, try re-running `perf`.
 
     3. Using the data from Parts 2a and 2b estimate the latency of
-       `Filter_horizontal`. (1 line)
+       `Filter_horizontal` in nanoseconds and also in cycles. (1 line)
+       Assume that each operation takes one clock cycle at 2.3 GHz.
         
         While you can get the latencies by only instrumenting the code
         or by only using perf, we are mixing the two approaches so that you can get some
@@ -48,7 +49,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     3. Determine the critical path length of the same unrolled loop (Part 3b)
         in terms of ***compute*** operations. (4 lines)
     4. Estimate the ***total number of cycles*** taken by `Filter_horizontal` using 3c,
-        and then combine with the clock frequency to estimate the latency of `Filter_horizontal` in microseconds.
+        and then use the clock frequency to estimate the latency of `Filter_horizontal` in nanoseconds.
         
         Assume that each operation takes one clock cycle at 2.3 GHz and none
         execute in the same cycle (so critical path from previous
@@ -79,14 +80,55 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     As you hopefully noticed, our model did not estimate `Filter_horizontal` very accurately
     in Part 3d.  Let's see whether we can improve it.
 
-    1. Report all the instructions in the loop body (not the instructions
+    First, we'll build a table similar to the following, which records the total number of cycles
+    for each instruction:
+    ```{list-table} Example Table
+    :header-rows: 1
+    :name: example-table
+
+    * - Assembly Instructions
+      - Annotation
+      - Number of calls ($N$)
+      - Number of cycles per call ($T$)
+      - Total number of cycles ($N$ $\times$ $T$)
+    * - `add	x0, x0, #0xc68`
+      - addition(s) for array indexing
+      - 7
+      - 1
+      - 7
+    * - ...
+      - ...
+      - ...
+      - ...
+      - ...
+    ```
+    We will then group these instructions into three bins---*fast loads*, *slow loads* and *non-memory*,
+    and develop the following model for the runtime of this filter computation:
+    ```{math}
+    :label: perf-model
+    \begin{eqnarray}
+    T_{filter} = N_{non-memory} \times T_{cycle-non-memory}
+                + N_{fast-loads} \times  T_{cycle-fast-loads} \\
+                + N_{slow-loads} \times T_{cycle-slow-load} \\
+    \end{eqnarray}
+    ```
+    
+    The real model is still more complicated than this, but this is a
+    first-order model that can start helping us reason about the performance of
+    the computation including memory access.
+
+    1. Make a table like {numref}`example-table` and add all the instructions
+    in the loop body (not the instructions
     that setup the loop, but the instruction that are executed on each trip
     through the loop) of the innermost loop. (Do not assume that it is unrolled this time.)
-    You can see the instructions by running with `gcc -S`.
-    2. Estimate the latency of the function based on the number of instructions
-        in the loop body, assuming one instruction completes per
-        cycle. (1 line)
-    3. Relate instructions in the assembly code (Q 4a) to operations in the C code.
+    You can see the instructions by:
+        - Running your code with: `gdb ./App`.
+        - Setting a breakpoint at the `Filter_horizontal` function: `(gdb) b Filter_horizontal`.
+        - Stepping over using `n` until you reach the innermost loop: `(gdb) n`
+        - Using `disassemble` command to view the assembly: `(gdb) disassemble`.
+    2. Annotate each instruction with one of the descriptions below as appropriate, and
+        add to the table from 4a.  You will not able to annotate some instructions.
+        Don't worry, that is part of what the question is setting up.
         1. multiplication for array indexing
         2. addition(s) for array indexing
         3. multiplication of coefficient with input
@@ -95,42 +137,71 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         6. increment of loop variable
         7. comparison of loop variable to loop limit
         8. branch to top of loop
+
+        You can use your C code to infer the annotations for the instructions. If you would like
+        to understand the assembly, refer to the
+        {download}`quick reference guide <pdfs/QRC0001_UAL.pdf>`.
         
-        Make a table of all instructions and annotate each instruction with one of
-        the above as appropriate.  Not all instructions will be classified.  That
-        is part of what the question is setting up.
-    4. After identifying the called out instructions above, there
+    3. After identifying the called out instructions above, there
         are additional assembly instructions.  What type of instructions are
-        these?  What do these assembly instructions do? (1 line per type of instruction -- add to table)
-    5. Assuming the non-memory instructions identified in the previous
-        questions (Part 4c and 4d) complete in one cycle,
-        estimate the average latency in cycles of the original load and store
-        operations identified in  together? (3 lines)
-    6. How many of these loads and stores are to
+        these?  What do these assembly instructions do? Provide a 1 line (or less) description for each type of instruction identified, and use them to annotate the additional instructions in your table.
+    4. Fill in the rest of the table by determining the number of calls
+        for each instruction and assuming that one instruction completes per
+        cycle. Using your table and a clock frequency of 2.3 GHz, estimate the latency ($T_{filter}$) of the function
+        in nanoseconds. (1 line)
+        ```{note}
+        The model here is:
+        \begin{equation}
+        T_{filter} = N_{instr} \times T_{cycle}
+        \end{equation}
+        ```
+    5. Now assume that only the non-memory instructions identified in the previous
+        questions (Part 4b and 4c) complete in one cycle,
+        estimate the average latency ($T_{cycle-memory}$) in cycles of the memory operations. (3 lines)
+        ```{hint}
+        - Think about the "speedup" you achieved in your calculation due to assuming
+        all instructions complete in one cycle, compared to the latency found in 2c.
+        - What would be the latency of the filter in 4d if you didn't have this assumption?
+        ```
+        ```{note}
+        Refining from 4d, the model here is:
+        \begin{equation}
+        N_{instr} = N_{non-memory} + N_{memory}
+        \end{equation}
+        \begin{equation}
+        T_{filter} = N_{non-memory} \times T_{cycle-non-memory} + N_{memory} \times T_{cycle-memory}
+        \end{equation}
+        ```
+    6. How many of these loads and store cycles are to
         memory locations ***not*** loaded  during this invocation
         of `Filter_horizontal`)?
+
+        ```{hint}
+        You are finding out $N_{slow-load}$ of {eq}`perf-model`
+        ```
         
         Add a column to your instruction table and identify the fraction of time
         the specified instruction is to a new memory location not previously
         encountered during a call to the function.
     7. Assuming memory locations that have already been loaded
         during a call to this function  (Part 4f)
-        also take  a single cycle, what is the average number of
-        cycles for the remaining loads?
+        also take a single cycle, what is the average number of
+        cycles ($T_{slow-load}$) for the remaining loads?
         
         This will require you to use the fraction you added to the table in the
         previous question. (3 lines)
 
-
-    This gives us a model for the runtime of this filter computation:
-    \begin{equation}
-    T_{filter} = N_{instr} \times T_{cycle} + N_{fast-loads} \times  T_{cycle} + N_{slow-loads} \times T_{slow-load}
-    \end{equation}
-    $N_{slow-load}$ is what you estimated in 4f and combining the cycle time
-    with the cycle estimates from 4g, you can estimate $T_{slow-load}$.
-    The real model is still more complicated than this, but this is a
-    first-order model that can start helping us reason about the performance of
-    the computation including memory access.
+        ```{note}
+        Refining from 4e, this gives us the model for the runtime of this filter computation:
+        \begin{equation}
+        N_{memory} = N_{fast-loads} + N_{slow-loads}
+        \end{equation}
+        $\begin{eqnarray}
+        T_{filter} = N_{non-memory} \times T_{cycle-non-memory}
+                    + N_{fast-loads} \times  T_{cycle-fast-loads} \\
+                    + N_{slow-loads} \times T_{cycle-slow-load} \\
+        \end{eqnarray}$
+        ```
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
