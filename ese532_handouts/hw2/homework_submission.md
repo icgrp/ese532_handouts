@@ -52,8 +52,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         and then use the clock frequency to estimate the latency of `Filter_horizontal` in nanoseconds.
         
         Assume that each operation takes one clock cycle at 2.3 GHz and none
-        execute in the same cycle (so critical path from previous
-        question not relevant to this one). (4 lines)
+        execute in the same cycle (i.e. operations execute sequentially
+        even though you saw from the critical path length that some could
+        be executed in the same cycle). (4 lines)
 
         ```{hint}
         This should be a simple calculation, and it won't necessarily match
@@ -141,6 +142,11 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         You can use your C code to infer the annotations for the instructions. If you would like
         to understand the assembly, refer to the
         {download}`quick reference guide <pdfs/QRC0001_UAL.pdf>`.
+        Alternatively, you can use `sudo perf report` and keep pressing enter
+        until you get to the assembly of `Filter_horizontal` and see annotated C
+        code on assembly:
+        ```{image} images/perf_assembly_annotate.png
+        ```
         
     3. After identifying the called out instructions above, there
         are additional assembly instructions.  What type of instructions are
