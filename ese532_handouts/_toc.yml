@@ -16,10 +16,10 @@
     - file: hw1/debug_app
     - file: hw1/homework_submission
 
-# - file: hw2/index
-#   numbered: true
-#   sections:
-#     - file: hw2/importing
-#     - file: hw2/collaboration
-#     - file: hw2/homework_submission
-#     - file: hw2/profiling_tutorial
+- file: hw2/index
+  numbered: true
+  sections:
+    - file: hw2/importing
+    - file: hw2/collaboration
+    - file: hw2/homework_submission
+    - file: hw2/profiling_tutorial

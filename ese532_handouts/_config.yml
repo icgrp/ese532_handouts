@@ -11,7 +11,6 @@ html:
   home_page_in_navbar: true
 exclude_patterns:
   - common/*
-  - hw2/*
   - hw3/*
   - hw4/*
   - hw5/*
