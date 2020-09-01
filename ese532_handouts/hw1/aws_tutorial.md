@@ -131,7 +131,7 @@ running homeworks 1-4.
 ```
 sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
-sudo debuginfo-install glibc-2.26-35.amzn2.aarch64
+sudo debuginfo-install glibc-2.26-35.amzn2.aarch64 libgcc-7.3.1-9.amzn2.aarch64 libstdc++-7.3.1-9.amzn2.aarch64 -y
 sudo yum install tmux -y
 sudo yum install perf -y
 ```
