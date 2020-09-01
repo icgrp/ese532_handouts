@@ -174,6 +174,34 @@ Check how much of credit you have used up as follows:
 ```
 Take a screenshot of your credit usage and put it in your [report](homework_submission).
 
+## Creating a budget
+We put a warning message at the beginning of every
+assignment to remind you to stop your instance. We understand that even with the
+message, you may accidentally forget to stop your instance. 
+Let's do one more thing to remind ourselves to stop our
+instance.
+
+In AWS, you can set a budget and get an alert if you cross
+a threshold of that budget. We will complete about
+3 homework assignments every month, and estimating we
+will use a maximum of 16 hours per homework, our monthly usage
+should be about 48 hours. 
+
+From the billings page, click on the ***Budgets*** tab:
+```{image} images/budget_1.png
+```
+Fill up the following screens as follows to set up an alert:
+```{image} images/budget_2.png
+```
+```{image} images/budget_3.png
+```
+```{image} images/budget_4.png
+```
+```{image} images/budget_5.png
+```
+```{image} images/budget_6.png
+```
+
 ---
 ## Transferring files between AWS and local machine
 
