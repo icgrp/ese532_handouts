@@ -21,3 +21,6 @@ exclude_patterns:
 latex:
   latex_documents:
     targetname: book.tex
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
