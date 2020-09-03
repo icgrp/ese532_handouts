@@ -1,6 +1,7 @@
 # Book settings
 title: ESE532 Handouts Fall 2020
-author: Department of Electrical and Systems Engineering, UPenn
+author: Department of Electrical and Systems Engineering
+copyright: "2020 Department of Electrical and Systems Engineering at the University of Pennsylvania"
 logo: common/logo.png
 repository:
   url: https://github.com/icgrp/ese532_handouts
