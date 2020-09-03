@@ -5,6 +5,7 @@ copyright: "2020 Department of Electrical and Systems Engineering at the Univers
 logo: common/logo.png
 repository:
   url: https://github.com/icgrp/ese532_handouts
+  path_to_book: "ese532_handouts"
 html:
   use_repository_button: true
   use_issues_button: true
