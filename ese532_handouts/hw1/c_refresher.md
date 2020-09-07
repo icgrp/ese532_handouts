@@ -16,6 +16,10 @@ Cloud machines, you can compile a simple, single C file application in `program.
 ```
 gcc -o program program.c
 ```
+Following are some recommended resources for learning C:
+- Pointers on C by Kenneth Reek
+- {download}`gccintro <pdfs/gccintro.pdf>`
+- {download}`deep C <pdfs/deep-c-cpp.pdf>`
 
 1. Write the C code to reproduce the contents of the stack and heap
 as shown in {numref}`pointer-question-1`. You can use any variable and pointer names with int type. For e.g. `0x5C` is filled with `int x = 20;`.

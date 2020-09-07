@@ -53,6 +53,10 @@ the AWS credits or build locally (if you manage to have a local installation of
 Xilinx Vitis/Vivado tools).
 
 ## Create and Launch an A1 instance
+First make sure you the region you have selected is `N. Virginia us-east-1` from the top right corner of the screen:
+```{image} images/launch_a1_0.png
+```
+---
 From the management console, click on ***Launch a virtual machine***:
 ```{image} images/launch_a1_1.png
 ```

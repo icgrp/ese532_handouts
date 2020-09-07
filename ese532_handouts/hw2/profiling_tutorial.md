@@ -21,7 +21,7 @@ and "Copy Link Address".
 2. `cd` into the extracted directory. Build and run using:
     ```
     make all
-    ./rendering_sw
+    ./rendering
     ```
 
 ## Measuring Latency
@@ -30,10 +30,8 @@ using system timer vs using hardware timer etc. (review these
 [slides](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf) and learn about clock sources [here](http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/)). However, the
 end goal is the same; which is to answer where is the bottleneck?
 
-We will show you how you can use the system timer to
-measure latency in seconds. We'll then demonstrate how you
-can use sampling-based profiling tools to measure latency
-without modifying your source code.
+In this tutorial, we will show you how you can use the system timer to
+measure latency in seconds for parts of your program. We'll then demonstrate how you can use linux `perf` tool to get ***performance counter*** statistics of your program.
 
 (profiling/instrumentation)=
 ### Instrumentation-based Profiling with Timers
@@ -99,6 +97,7 @@ stopwatch time_zculling;
 stopwatch time_coloringFB;
 stopwatch total_time;
 
+// processing NUM_3D_TRI 3D triangles
 TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
 {
   total_time.start();
@@ -126,25 +125,38 @@ TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
 
   total_time.stop();
 }
-
-std::cout << "Average latency of projection is: " << time_projection.avg_latency() << " ns." << std::endl;
-std::cout << "Average latency of rasterization1 is: " << time_rasterization1.avg_latency() << " ns." << std::endl;
-std::cout << "Average latency of rasterization2 is: " << time_rasterization2.avg_latency() << " ns." << std::endl;
-std::cout << "Average latency of zculling is: " << time_zculling.avg_latency() << " ns." << std::endl;
-std::cout << "Average latency of coloringFB is: " << time_coloringFB.avg_latency() << " ns." << std::endl;
-std::cout << "Average latency of the loop is: " << total_time.avg_latency() << " ns." << std::endl;
+std::cout << "Total latency of projection is: " << time_projection.latency() << " ns." << std::endl;
+std::cout << "Total latency of rasterization1 is: " << time_rasterization1.latency() << " ns." << std::endl;
+std::cout << "Total latency of rasterization2 is: " << time_rasterization2.latency() << " ns." << std::endl;
+std::cout << "Total latency of zculling is: " << time_zculling.latency() << " ns." << std::endl;
+std::cout << "Total latency of coloringFB is: " << time_coloringFB.latency() << " ns." << std::endl;
 std::cout << "Total time taken by the loop is: " << total_time.latency() << " ns." << std::endl;
+std::cout << "---------------------------------------------------------------" << std::endl;
+std::cout << "Average latency of projection per loop iteration is: " << time_projection.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of rasterization1 per loop iteration is: " << time_rasterization1.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of rasterization2 per loop iteration is: " << time_rasterization2.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of zculling per loop iteration is: " << time_zculling.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of coloringFB per loop iteration is: " << time_coloringFB.avg_latency() << " ns." << std::endl;
+std::cout << "Average latency of each loop iteration is: " << total_time.avg_latency() << " ns." << std::endl;
+
 ```
-Recompile the program using `make all` and run. You should see results similar to the following:
+Recompile the program using `make all` and run `./rendering`. You should see results similar to the following:
 ```
+[ec2-user@ip-172-31-40-51 hw2_profiling_tutorial]$ ./rendering
 3D Rendering Application
-Average latency of projection is: 69.0341 ns.
-Average latency of rasterization1 is: 111.061 ns.
-Average latency of rasterization2 is: 1672.96 ns.
-Average latency of zculling is: 499.894 ns.
-Average latency of coloringFB is: 313.31 ns.
-Average latency of the loop is: 3153.64 ns.
-Total time taken by the loop is: 1.00664e+07 ns.
+Total latency of projection is: 154140 ns.
+Total latency of rasterization1 is: 191497 ns.
+Total latency of rasterization2 is: 1.5305e+06 ns.
+Total latency of zculling is: 364093 ns.
+Total latency of coloringFB is: 263400 ns.
+Total time taken by the loop is: 3.36578e+06 ns.
+---------------------------------------------------------------
+Average latency of projection per loop iteration is: 48.2895 ns.
+Average latency of rasterization1 per loop iteration is: 59.9928 ns.
+Average latency of rasterization2 per loop iteration is: 479.48 ns.
+Average latency of zculling per loop iteration is: 114.064 ns.
+Average latency of coloringFB per loop iteration is: 82.5188 ns.
+Average latency of each loop iteration is: 1054.44 ns.
 Writing output...
 Check output.txt for a bunny!
 ```
@@ -157,46 +169,106 @@ here should suffice. If you would like to try out
 something fancier, check out <https://github.com/google/benchmark>!
 
 (profiling/perf)=
-### Sampling-based Profiling with Perf
-We can use sampling-based profiling using `perf` and figure out bottlenecks
-in our program. `perf` samples events in a program at a given frequency
-and then reports the percentage of time a section takes (read these [slides](https://s3.amazonaws.com/connect.linaro.org/yvr18/presentations/yvr18-416.pdf) to learn the basics of perf).
+### Performance Counter Statistics using Perf
+ARM has a dedicated Performance Monitor Unit (PMU) that can give you the number of cycles
+your program takes to run (read more about PMU [here](https://easyperf.net/blog/2018/06/01/PMU-counters-and-profiling-basics)).
+We can use `perf` to get the performance counter statistics of your program (read these [slides](https://s3.amazonaws.com/connect.linaro.org/yvr18/presentations/yvr18-416.pdf) to learn more about of perf).
 
-To run perf on your program, compile your program with the `-g` and `-pg`
-flags (`make profile` in the supplied `Makefile`).
-Then, run perf as follows (`make perf` in the supplied `Makefile`):
+Run perf as follows (`make perf` in the supplied `Makefile`):
 ```
-sudo perf record -g -F 10099 -o perf.data ./rendering_sw
+sudo perf stat ./rendering
 ```
-You can then view the report using `sudo perf report` (`make perf_report` in the supplied `Makefile`) as shown below and press enter on
-a hierarchy to view the percentages (you can go as deep as assembly code and
-view percentages for assembly as well!).
-```{image} images/perf.png
+You should see the following output:
 ```
+[ec2-user@ip-172-31-40-51 hw2_profiling_tutorial]$ make perf
+g++ -Wall -g -O3 -I/src/sw/ -I/src/host/ -o rendering ./src/host/3d_rendering_host.cpp ./src/host/utils.cpp ./src/host/check_result.cpp ./src/sw/rendering_sw.cpp
+./src/sw/rendering_sw.cpp: In function ‘int rasterization2(bool, bit8*, int*, Triangle_2D, CandidatePixel*)’:
+./src/sw/rendering_sw.cpp:216:3: warning: label ‘RAST2’ defined but not used [-Wunused-label]
+   RAST2: for ( int k = 0; k < max_index[0]; k ++ )
+   ^~~~~
+./src/sw/rendering_sw.cpp: In function ‘int zculling(int, CandidatePixel*, int, Pixel*)’:
+./src/sw/rendering_sw.cpp:242:5: warning: label ‘ZCULLING_INIT_ROW’ defined but not used [-Wunused-label]
+     ZCULLING_INIT_ROW: for ( int i = 0; i < MAX_X; i ++ )
+     ^~~~~~~~~~~~~~~~~
+./src/sw/rendering_sw.cpp:244:7: warning: label ‘ZCULLING_INIT_COL’ defined but not used [-Wunused-label]
+       ZCULLING_INIT_COL: for ( int j = 0; j < MAX_Y; j ++ )
+       ^~~~~~~~~~~~~~~~~
+./src/sw/rendering_sw.cpp:255:3: warning: label ‘ZCULLING’ defined but not used [-Wunused-label]
+   ZCULLING: for ( int n = 0; n < size; n ++ )
+   ^~~~~~~~
+./src/sw/rendering_sw.cpp: In function ‘void coloringFB(int, int, Pixel*, bit8 (*)[256])’:
+./src/sw/rendering_sw.cpp:277:5: warning: label ‘COLORING_FB_INIT_ROW’ defined but not used [-Wunused-label]
+     COLORING_FB_INIT_ROW: for ( int i = 0; i < MAX_X; i ++ )
+     ^~~~~~~~~~~~~~~~~~~~
+./src/sw/rendering_sw.cpp:279:7: warning: label ‘COLORING_FB_INIT_COL’ defined but not used [-Wunused-label]
+       COLORING_FB_INIT_COL: for ( int j = 0; j < MAX_Y; j ++ )
+       ^~~~~~~~~~~~~~~~~~~~
+./src/sw/rendering_sw.cpp:285:3: warning: label ‘COLORING_FB’ defined but not used [-Wunused-label]
+   COLORING_FB: for ( int i = 0; i < size_pixels; i ++ )
+   ^~~~~~~~~~~
+./src/sw/rendering_sw.cpp: In function ‘void rendering_sw(Triangle_3D*, bit8 (*)[256])’:
+./src/sw/rendering_sw.cpp:319:3: warning: label ‘TRIANGLES’ defined but not used [-Wunused-label]
+   TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
+   ^~~~~~~~~
+Executable rendering compiled!
+Running perf stat...
+3D Rendering Application
+Total latency of projection is: 158544 ns.
+Total latency of rasterization1 is: 197736 ns.
+Total latency of rasterization2 is: 1.52008e+06 ns.
+Total latency of zculling is: 368150 ns.
+Total latency of coloringFB is: 269160 ns.
+Total time taken by the loop is: 3.38372e+06 ns.
+---------------------------------------------------------------
+Average latency of projection per loop iteration is: 49.6692 ns.
+Average latency of rasterization1 per loop iteration is: 61.9474 ns.
+Average latency of rasterization2 per loop iteration is: 476.216 ns.
+Average latency of zculling per loop iteration is: 115.335 ns.
+Average latency of coloringFB per loop iteration is: 84.3233 ns.
+Average latency of each loop iteration is: 1060.06 ns.
+Writing output...
+Check output.txt for a bunny!
 
-From the report, we can see that it is consistent with our 
-results from {ref}`profiling/instrumentation`.
+ Performance counter stats for './rendering':
 
-```{caution}
-When profiling your applications with perf,
-compile **without** optimizations. With optimizations, the original call
-graph of application is modified and hence doesn't show up
-in the perf samples.
-```
-```{tip}
-You can measure latency as number of cycles.
-Instead of `-e task-clock` in `perf`, use `-e 'cycles'`.
-This uses the Performance Monitor Unit (PMU) cycle
-counter of the ARM. However, on Amazon it only
-works on `a1.metal`/`a1.4xlarge` instances (because of
-the way cpus are virtualized).
-```
+          9.345612      task-clock (msec)         #    0.950 CPUs utilized
+                 0      context-switches          #    0.000 K/sec
+                 0      cpu-migrations            #    0.000 K/sec
+               137      page-faults               #    0.015 M/sec
+        21,298,909      cycles                    #    2.279 GHz
+        28,153,358      instructions              #    1.32  insn per cycle
+   <not supported>      branches
+            66,468      branch-misses
 
+       0.009834370 seconds time elapsed
+```
+From the above output, we can see that our program took $21,298,909$ cycles at $2.279$ GHz. We can use these numbers to find the 
+run time of our program, which is $21298909/2.279$
+$\approx$ $9.345$ milli seconds which agrees with the $9.345$ msec
+reported by perf too. Note that perf used the "task-clock" (system timer)
+to report the latency in seconds, and used the PMU counter to report
+the latency in cycles. The PMU counter runs at the same frequency as
+the cpu, which is $2.279$ GHz, whereas the system timer runs at a
+much lower frequency (in the MHz range).
+ 
 ---
-Now that we have shown you two approaches for measuring latency,
-a natural question is when is one better than the other?
-`perf` is good for finding the function that has the highest latency.
-However, since it is sampling based, it may not show you a function that took
-very little time. With instrumentation, you are able to get
-latencies for all the functions.
+Now that we have shown you two approaches for measuring latency, a natural question is when do you use either of these methods?
+- Use {ref}`profiling/instrumentation` when you want to find individual
+latencies of your functions.
+- Use {ref}`profiling/perf` when you just want to know the total latency (either
+in seconds or cycles) of your program.
 
+However, the above answer is too simple. The application we showed you
+is slow enough for `std::chrono` to measure accurately. When the resolution of your system timer is not fine-grained
+enough, or your function is too fast, you should measure the function for a longer period of time (see the spin loop section from [here](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf)). Alternatively,
+that's where the PMU offers more accuracy. Since the PMU runs at the same
+frequency as the CPU, it can measure any function. However, you will
+have to isolate your functions and create separate programs to use
+the PMU through `perf`. There is not "stopwatch" like user API for the PMU
+counter.
+
+For our application above, we saw that the total runtime reported by task-clock and PMU counter doesn't differ. Hence, it doesn't matter which approach you use in this case. If you want to get the latencies
+of individual function in ***cycles*** instead, you can just use your
+measured time with the clock frequency to figure out the cycles.
+Alternatively you could get the fraction of time spent by your function
+and use the total number of cycles from `perf stat`.
