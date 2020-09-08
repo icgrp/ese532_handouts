@@ -148,6 +148,14 @@ Average latency of each loop iteration is: 1054.44 ns.
 Writing output...
 Check output.txt for a bunny!
 ```
+
+        ```{Tip}
+        Note that the print statements are carefully placed outside of the
+        timing region.  Print statements are generally very slow, and we do
+        not want their time to contaminate our measurement.
+        ```
+
+
 From the results, we can see `rasterization2` has the
 highest latency and is a good candidate for
 optimization.

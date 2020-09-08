@@ -9,7 +9,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 </style>
 
 1. **Identify**
-    1. Describe the operation performed on the input data by each
+    1. For the application you downloaded in hw2/assignment, describe the
+        operation performed on the input data by each 
         function and why you might want to perform the operation (3
         lines for each of Scale, Filter, Differentiate, Compress).
 2. **Measure**
@@ -81,13 +82,13 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     5. Use Amdahl's Law to determine the highest overall application
         speedup that one could achieve assuming you accelerate the one stage that
         you identified above.  You don't have to restrict yourself to this platform. (1 line)
-    6. Determine the critical path length (i.e. assume instructions can
-        execute in the same cycle) of the same unrolled loop (Part 3b)
-        in terms of compute operations.
-    7. Assuming a platform that has unlimited resources and you are free 
+    6. Assuming a platform that has unlimited resources and you are free 
         to exploit associativity for
-        mathematical operations, draw the DFG with the lowest critical path delay for the same loop
-        body (Part 3b) as before.
+        mathematical operations, draw the DFG with the lowest critical path
+        delay for the same unrolled loop body (Part 3b) as before.
+    7. Determine the critical path length (i.e. assume instructions can
+        execute in the same cycle) of the same unrolled loop (Part 3b,f)
+        in terms of compute operations.
     8. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
         bound for the same loop body (Part 3b) as before. (4 lines)
 4. **Refine**
@@ -145,7 +146,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     
         Which of these instructions are the compute operations you identified in 3c?
     2. Annotate each instruction with one of the descriptions below as appropriate, and
-        add to {numref}`example-table-2`.  You will not able to annotate some instructions.
+        add to {numref}`example-table-2`.  You will not be able to annotate some instructions.
         Don't worry, that is part of what the question is setting up.
         1. multiplication for array indexing
         2. addition(s) for array indexing
@@ -194,7 +195,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         ```
         where $T_{cycle} = 1$.
         ````
-    6. How many of these loads and store cycles are to
+    6. For the identified memory operations, how many of these loads and store cycles are to
         memory locations ***not*** loaded  during this invocation
         of `Filter_horizontal`)?
 
