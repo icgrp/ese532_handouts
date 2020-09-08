@@ -230,4 +230,13 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 In summary, upload the following in their respective links in canvas:
   - a tarball containing your instrumented code and Makefile with targets for
     compilation and running `perf`.
+    ````{admonition} Quick linux commands for tar files
+    :class: dropdown, tip
+    ```
+    # Compress
+    tar -cvzf <file_name.tgz> directory_to_compress/
+    # Decompress
+    tar -xvzf <file_name.tgz>
+    ```
+    ````
   - writeup in pdf.

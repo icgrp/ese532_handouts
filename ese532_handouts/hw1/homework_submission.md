@@ -28,4 +28,13 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
   - two tarballs from the [Debug](debug_app) section.
+    ````{admonition} Quick linux commands for tar files
+    :class: dropdown, tip
+    ```
+    # Compress
+    tar -cvzf <file_name.tgz> directory_to_compress/
+    # Decompress
+    tar -xvzf <file_name.tgz>
+    ```
+    ````
   - writeup in pdf.

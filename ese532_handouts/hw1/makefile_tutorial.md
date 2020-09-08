@@ -17,20 +17,20 @@ With that, following is a short tutorial on using `make` to compile your
 C programs. If you know how to write a `Makefile` you can skip this section.
 
 ---
-Download the {download}`source files <code/hw1_code.tar.gz>` and extract it.
-On your A1 instance, you can use `wget <source files link>` to download the file.
-You can get the link by right-clicking on {download}`source files <code/hw1_code.tar.gz>`
-and "Copy Link Address".
-
-````{admonition} Quick linux commands for tar files
-:class: dropdown, tip
+Clone the `ese532_code`
+repository using the following command:
 ```
-# Compress
-tar -cvzf <file_name.tar.gz> directory_to_compress/
-# Extract to the current folder
-tar -xvzf <file_name.tar.gz>
+git clone https://github.com/icgrp/ese532_code.git
 ```
-````
+If you already have it cloned, pull in the latest changes
+using:
+```
+cd ese532_code/
+git pull origin master
+```
+You will find the hw1 code in the `hw1` directory.
+The code for this tutorial is under
+is under `hw1/tutorial`.
 
 The program has the following characteristics:
 - `main` function in `App.c`,

@@ -4,22 +4,10 @@ In this tutorial, we will learn how to measure latency and
 find the bottleneck in your program.
 
 ## Get the Source Code
-1. Login to your A1 instance and download the {download}`source files <code/hw2_profiling_tutorial.tar.gz>` and extract it.
-On your A1 instance, you can use `wget <source files link>` to download the file.
-You can get the link by right-clicking on {download}`source files <code/hw2_profiling_tutorial.tar.gz>`
-and "Copy Link Address".
-
-    ````{admonition} Quick linux commands for tar files
-    :class: dropdown, tip
+1. Clone the `ese532_code` repository as shown in {doc}`importing`.
+2. Build and run using:
     ```
-    # Compress
-    tar -cvzf <file_name.tar.gz> directory_to_compress/
-    # Decompress
-    tar -xvzf <file_name.tar.gz>
-    ```
-    ````
-2. `cd` into the extracted directory. Build and run using:
-    ```
+    cd ese532_code/hw2/tutorial
     make all
     ./rendering
     ```
