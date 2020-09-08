@@ -57,7 +57,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     3. Report the latencies of 2a and 2b in cycles. Assume that each operation takes one clock cycle at 2.3 GHz.
 
 3. **Analyze**
-    1. Which function has the highest latency? (1 line)
+    1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
     2. Assuming that the innermost loop of the first `for` statement
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
         of the body of the loop over `X`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`).

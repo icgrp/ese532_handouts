@@ -149,11 +149,11 @@ Writing output...
 Check output.txt for a bunny!
 ```
 
-        ```{Tip}
-        Note that the print statements are carefully placed outside of the
-        timing region.  Print statements are generally very slow, and we do
-        not want their time to contaminate our measurement.
-        ```
+```{tip}
+Note that the print statements are carefully placed outside of the
+timing region.  Print statements are generally very slow, and we do
+not want their time to contaminate our measurement.
+```
 
 
 From the results, we can see `rasterization2` has the
@@ -260,7 +260,7 @@ enough, or your function is too fast, you should measure the function for a long
 that's where the PMU offers more accuracy. Since the PMU runs at the same
 frequency as the CPU, it can measure any function. However, you will
 have to isolate your functions and create separate programs to use
-the PMU through `perf`. There is not "stopwatch" like user API for the PMU
+the PMU through `perf`. There is no stopwatch-like user API for the PMU
 counter.
 
 For our application above, we saw that the total runtime reported by task-clock and PMU counter doesn't differ. Hence, it doesn't matter which approach you use in this case. If you want to get the latencies
