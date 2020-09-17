@@ -1,7 +1,18 @@
 # Setup and Walk-through
-
+```{include} ../common/aws_caution.md
+```
 ## Linux vs Bare-Metal
+```{figure} images/a1-metal.png
+---
+height: 450px
+name: a1-metal
+---
+Amazon a1.metal instance
+```
 We will divide the work into threads that run on different processors.
+{numref}`a1-metal` shows the machine we will be running on, where we
+will be utilizing four cores out of the 16 cores
+available.
 We will be running these threads on the Linux OS and hence, all the
 heavy lifting of sharing main memory global address is taken care of
 by the OS. 
@@ -107,7 +118,7 @@ of that and your credit usage.
 - There are four parts to the homework. You can build all of them by executing `make all`
     in the `hw3` directory. You can build separately by:
     - `make base` and run `./base` to run the baseline project.
-    - `make coarse` and run `./coarse` to run the coarse grain project.
+    - `make coarse` and run `./coarse` to run the coarse-grain project.
     - `make pipeline2` and run `./pipeline2` to run the pipeline project on 2 cores.
     - `make pipeline4` and run `./pipeline4` to run the pipeline project on 4 cores.
 - The `data` folder contains the input data, `Input.bin`, which has 100 frames of
@@ -388,5 +399,117 @@ complete this homework. You can run the full workthrough by
 `make walkthrough` and `./walkthrough`.
 
 ### Coarse-grain
+The coarse-grain part of the homework shows you how you can process
+a data parallel function with threads. We show how you change the
+`Scale` function to process it with two threads:
+```CPP
+void Scale_coarse(const unsigned char *Input, unsigned char *Output, int Y_Start_Idx, int Y_End_Idx)
+{
+  for (int Y = Y_Start_Idx; Y < Y_End_Idx; Y += 2)
+  {
+    for (int X = 0; X < INPUT_WIDTH_SCALE; X += 2)
+    {
+      Output[(Y / 2) * INPUT_WIDTH_SCALE / 2 + (X / 2)] = Input[Y * INPUT_WIDTH_SCALE + X];
+    }
+  }
+}
+```
+From the code, you can see that we added two additional arguments at the function
+signature, which is then used in the for loop. This helps us realize
+the data parallel behavior of the function and let multiple
+threads work on it:
+```CPP
+...
+for (int Frame = 0; Frame < FRAMES; Frame++)
+  {
+    std::vector<std::thread> ths;
+    ths.push_back(std::thread(&Scale_coarse, Input_data + Frame * FRAME_SIZE, Temp_data[0], 0, INPUT_HEIGHT_SCALE / 2));
+    ths.push_back(std::thread(&Scale_coarse, Input_data + Frame * FRAME_SIZE, Temp_data[0], INPUT_HEIGHT_SCALE / 2, INPUT_HEIGHT_SCALE));
+
+    pin_thread_to_cpu(ths[0], 0);
+    pin_thread_to_cpu(ths[1], 1);
+
+    for (auto &th : ths)
+    {
+      th.join();
+    }
+    ...
+```
+As we can see from the code above, two threads are launched in parallel. One
+processes indices `[0, 270)` and the other processes `[270, 540)`.
+If you wanted to use three threads, you can split the indices as `[0,180)`,
+`[180, 360)` and `[360, 540)` and invoke another thread and pin it to cpu 3.
 
 ### Pipeline
+The pipeline part of the homework shows you how you can orchestrate
+the launching of threads and achieve pipeline parallelism. Start reading
+from the main function, where we launch a process on cpu 0:
+```CPP
+for (int Frame = 0; Frame < FRAMES + 2; Frame++)
+  {
+    core_0_process(std::ref(Size), Frame, Input_data, Temp_data, Output_data);
+  }
+```
+Following a top-down approach, look into `core_0_process` function:
+```CPP
+void core_0_process(int &Size,
+                    int Frame,
+                    unsigned char *Input_data,
+                    unsigned char **Temp_data,
+                    unsigned char *Output_data)
+{
+  static unsigned char temp_core_0[FRAME_SIZE];
+  static unsigned char *Input_data_core_0 = temp_core_0;
+  std::thread core_1_thread;
+  if (Frame < FRAMES + 1)
+  {
+    // current core (core 0) spins up process on core 1
+    core_1_thread = std::thread(&core_1_process,
+                                Frame,
+                                Input_data,
+                                Temp_data);
+    pin_thread_to_cpu(core_1_thread, 1);
+  }
+
+  // core 0 does its job
+  if (Frame > 1)
+  {
+    Filter_vertical(Input_data_core_0, Temp_data[2]);
+    Differentiate(Temp_data[2], Temp_data[3]);
+    Size = Compress(Temp_data[3], Output_data);
+  }
+  // waits for core 1 to finish
+  if (Frame < FRAMES + 1)
+  {
+    core_1_thread.join();
+  }
+
+  unsigned char *Temp = Temp_data[1];
+  Temp_data[1] = Input_data_core_0;
+  Input_data_core_0 = Temp;
+}
+```
+Pay special attention the guards `if (Frame < FRAMES + 1)` or
+`if (Frame > 1)` and figure out if a code executes or not or
+is waiting on another core to finish. Keep following the code
+like this and you will realize how we mapped the functions
+for the pipelining on 2 cores and pipelining on 4 cores part of the
+homework. In summary:
+- for pipelining on 2 cores, we map `Scale` and parts of
+    `Filter` on core 1 and then the rest of `Filter`, `Differentiate`
+    and `Compress` on core 2.
+- for pipeline on 4 cores, we map `Scale` on core 2, `Filter_horizontal`
+    on core 1, and `Filter_vertical`, `Differentiate` and `Compress`
+    on core 0. We left an empty prototype function that you can
+    use to change the mapping and utilize core 3.
+
+You will also realize how the data flows and how the pipeline
+fills and drains. Lastly, pay special attention to the `static` in
+`static unsigned char ` of the processes in the pipeline code.
+Remember that `static` keyword in a block scope changes the
+***storage class*** of a variable, i.e. the lifetime of the variable
+is until the program stops executing. This is especially important
+since being able to use old data while new data is being produced
+is key to achieving the pipeline parallelism.
+```{include} ../common/aws_caution.md
+```
