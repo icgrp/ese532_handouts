@@ -1,7 +1,7 @@
 # HW2: Profiling
 
 ```{admonition} Due
-Friday, September 18, 5:00 PM
+Sunday, September 20, 10:00 PM
 ```
 In this assignment, we will profile an application on an
 ARM core on AWS (same architecture as we will eventually use on the Zynq

@@ -49,7 +49,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         need to instrument the code (refer to {ref}`profiling/instrumentation`
         in the profiling tutorial).
         
-        Write a Makefile (refer to the profiling tutorial) and use `-O3`
+        Write a Makefile (refer to the profiling tutorial) and use `-O2`
         optimization (we will explore optimization levels more in HW4).
 
     2. Report the total latency of your program in nanoseconds using `perf stat` (refer to {ref}`profiling/perf` section in the profiling tutorial) (1 line). Report the percentage of time each function (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`) takes in your program.
@@ -87,7 +87,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         mathematical operations, draw the DFG with the lowest critical path
         delay for the same unrolled loop body (Part 3b) as before.
     7. Determine the critical path length (i.e. assume instructions can
-        execute in the same cycle) of the same unrolled loop (Part 3b,f)
+        execute in the same cycle) of the same unrolled loop (Part 3f)
         in terms of compute operations.
     8. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
         bound for the same loop body (Part 3b) as before. (4 lines)
@@ -107,13 +107,16 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       - Annotation
       - Number of function calls ($N$)
       - Number of cycles per call ($T$)
-      - Total number of cycles ($N$ $\times$ $T$)
+      - Number of instructions issued ($N_{issue}$)
+      - Total number of cycles ($\frac{N}{N_{issue}}$ $\times$ $T$)
     * - `add	x0, x0, #0xc68`
       - addition(s) for array indexing
       - 7
       - 1
+      - 3
       - 7
     * - ...
+      - ...
       - ...
       - ...
       - ...
@@ -124,8 +127,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     ```{math}
     :label: perf-model
     \begin{eqnarray}
-    T_{filter\_measured\_avg} = N_{non\_memory} \times T_{cycle\_non\_memory}
-                + N_{fast\_loads} \times  T_{cycle\_fast\_loads} \\
+    T_{filter\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle\_non\_memory}
+                + \frac{N_{fast\_loads}}{N_{issue}} \times  T_{cycle\_fast\_loads} \\
                 + N_{slow\_loads} \times T_{cycle\_slow\_loads} \\
     \end{eqnarray}
     ```
@@ -165,20 +168,20 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         these?  What do these assembly instructions do? Provide a 1 line (or less) description for each type of instruction identified, and use them to annotate the additional instructions in your table.
     4. Fill in the rest of the table by determining the number of function
         calls
-        for each instruction and assuming that one instruction completes per
-        cycle. Using your table, estimate the latency ($T_{filter\_analytical}$) of the function
+        for each instruction. Assume that one instruction completes per
+        cycle. Also assume that 3 instructions are issued at the same time. Using your table, estimate the latency ($T_{filter\_analytical}$) of the function
         in cycles. (1 line)
         ````{note}
         The model here is:
         
         ```{math}
-        T_{filter\_analytical} = N_{instr} \times T_{cycle}
+        T_{filter\_analytical} = \frac{N_{instr}}{N_{issue}} \times T_{cycle}
         ```
 
-        where $T_{cycle} = 1$.
+        where $T_{cycle} = 1$ and $N_{issue} = 3$.
         ````
     5. Now assume that only the non-memory instructions identified in 
-        {numref}`example-table-2` complete in one cycle,
+        {numref}`example-table-2` complete in one cycle, and also assume that the multiple issue of instructions ($N_{issue} = 3$) only applies to non-memory instructions,
         estimate the average latency ($T_{cycle\_memory}$) in cycles of the memory operations. (3 lines)
         ```{hint}
         Use the measured latency of `Filter_horizontal` from
@@ -191,9 +194,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{instr} = N_{non\_memory} + N_{memory}
         ```
         ```{math}
-        T_{filter\_measured\_avg} = N_{non\_memory} \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
+        T_{filter\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
         ```
-        where $T_{cycle} = 1$.
+        where $T_{cycle} = 1$ and $N_{issue} = 3$.
         ````
     6. For the identified memory operations, how many of these loads and store cycles are to
         memory locations ***not*** loaded  during this invocation
@@ -208,7 +211,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         encountered during a call to the function.
     7. Assuming memory locations that have already been loaded
         during a call to this function  (Part 4f)
-        also take a single cycle, what is the average number of
+        also take a single cycle and multiple issue of instructions ($N_{issue} = 3$) also applies to them, what is the average number of
         cycles ($T_{cycle\_slow\_loads}$) for the remaining loads?
         
         This will require you to use the fraction you added to the table in the
@@ -220,11 +223,11 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{memory} = N_{fast\_loads} + N_{slow\_loads}
         ```
         ```{math}
-        T_{filter\_measured\_avg} = N_{non\_memory} \times T_{cycle}
-                    + N_{fast\_loads} \times  T_{cycle} \\
+        T_{filter\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle}
+                    + \frac{N_{fast\_loads}}{N_{issue}} \times  T_{cycle} \\
                     + N_{slow\_loads} \times T_{cycle\_slow\_loads} \\
         ```
-        where $T_{cycle} = 1$.
+        where $T_{cycle} = 1$ and $N_{issue} = 3$.
         ````
 
 ## Deliverables
