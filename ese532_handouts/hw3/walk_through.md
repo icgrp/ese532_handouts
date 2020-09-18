@@ -9,7 +9,7 @@ name: a1-metal
 ---
 Amazon a1.metal instance
 ```
-We will divide the work into threads that run on different processors.
+We will divide the computation into threads that run on different processors.
 {numref}`a1-metal` shows the machine we will be running on, where we
 will be utilizing four cores out of the 16 cores
 available.
