@@ -1,6 +1,6 @@
 # Homework Submission
 
-Your writeup should follow <http://www.seas.upenn.edu/~ese532/writeup_guidelines.pdf>.
+Your writeup should follow [the writeup guidelines](../writeup_guidelines).
 Your writeup should include your answers to the following questions:
 
 <style type="text/css">

@@ -317,7 +317,7 @@ int main() {
 The `pin_thread_to_cpu` APIs we have given you, only
 works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
-machine, keep it mind.
+machine, keep it in mind.
 ```
 
 ---
@@ -489,8 +489,8 @@ void core_0_process(int &Size,
   Input_data_core_0 = Temp;
 }
 ```
-Pay special attention the guards `if (Frame < FRAMES + 1)` or
-`if (Frame > 1)` and figure out if a code executes or not or
+Pay special attention to the guards---`if (Frame < FRAMES + 1)` and
+`if (Frame > 1)`, and figure out if a code executes or not or
 is waiting on another core to finish. Keep following the code
 like this and you will realize how we mapped the functions
 for the pipelining on 2 cores and pipelining on 4 cores part of the
