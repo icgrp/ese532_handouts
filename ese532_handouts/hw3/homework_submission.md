@@ -57,11 +57,16 @@ Your writeup should include your answers to the following questions:
     The provided stream has only $100$ frames, but
     assume in your performance computations that you are dealing with a
     stream of infinite length.
-    1. Report the throughput of the pipelined implementation in
+    1. Report the throughput of the initial pipelined 
+        implementation on 2 cores in
         pictures per second. (1 lines)
     2. What is the best performance that one could theoretically
-        achieve with a pipelined mapping of the streaming application?
+        achieve with a pipelined mapping of the streaming application on 2 cores over the single ARM core solution?
         (1 line)
+        ```{hint}
+        Where is the bottleneck? How does pipelining help in
+        hiding the bottleneck?
+        ```
     3. Describe the mapping that achieves the best performance. (3 lines)
     4. Reviewing the provided code, explain how it is able to
         deal with filling and draining the pipeline of operators?
@@ -105,11 +110,24 @@ Your writeup should include your answers to the following questions:
     create a revised implementation that uses four 64b ARM cores to achieve
     additional speedup. The initial
     implementation can be found in `hw3/assignment/pipeline_4_cores`, where
-    we currently utilize 3 cores. Try to achieve a $4$$\times$ speedup over the single ARM core solution.  
-    1. Describe your solution strategy  (1 paragraph)
-    2. Include your code  in your report.
-    3. Report speedup obtained and relate it to your solution. (3--5 lines)
-    4. Validate your design and report on any discrepancies.
+    we currently utilize 3 cores.  The provided stream has only $100$ frames, but
+    assume in your performance computations that you are dealing with a
+    stream of infinite length.
+    1. Report the throughput of the initial pipelined
+        implementation on 3 cores in
+        pictures per second. (1 lines)
+    2. What is the best performance that one could theoretically
+        achieve with a pipelined mapping of the streaming application on 4 cores over the single ARM core solution?
+        (1 line)
+        ```{hint}
+        Where is the bottleneck? Can you hide the bottleneck
+        anymore like you did in 3b? Does the bottleneck limit the best performance you can achieve?
+        ```
+    3. Describe the mapping that achieves the best performance.
+        Try to achieve the best speedup over the single ARM core solution.
+    4. Implement your design and include your code  in your report.
+    5. Report speedup obtained and relate it to your solution. (3--5 lines)
+    6. Validate your design and report on any discrepancies.
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
