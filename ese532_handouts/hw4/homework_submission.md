@@ -52,13 +52,16 @@ Your writeup should include your answers to the following questions:
       -  
       -  
     ```
-    1. Measure the latency and size of the `baseline` project at the
+    1. Measure the latency and size of the `baseline` target at the
         different optimization levels. Put your measurements in a table like
         {numref}`optimization-table`. You can change
         the optimization level by editing the `CXXFLAGS` in the hw4 Makefile.
     2. Include the assembly code of the innermost loop of `Filter_horizontal`
-        at optimization level `-O0` in your report. You can get the assembly
-        easily by using: `g++ -S -O0 Filter.cpp -o Filter_O1.s`
+        at optimization level `-O0` in your report. Use the command:
+        ```
+        g++ -S -O0 -mcpu=native -fno-tree-vectorize Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
+        ```
+        to get the assembly and then look for `Filter_horizontal` in `Filter_O1.s`.
     3. Include the assembly code of inner loop of `Filter_horizontal` at optimization level 
         `-O2` in your report.
     4. Based on the machine code of questions 2b and 2c, explain the most important 
@@ -73,7 +76,7 @@ Your writeup should include your answers to the following questions:
             recalculating `Y*INPUT_WIDTH+X` inside the loop
             body? 
         - what else is the `-O2` loop able to avoid reading from
-            memory? recaculating?
+            memory or recaculating?
         - how is the `-O2` loop able to perform fewer operations?
         ```
     5. Why would you want to use optimization level `-O0`? (3 lines)
@@ -94,11 +97,11 @@ Your writeup should include your answers to the following questions:
     The easiest way to take advantage of vector instructions is by using
     the automatic vectorization feature of the GCC compiler, which
     automatically generates NEON instructions from loops.
-	We will tell you how to change the compilation flag to enable the vectorization in this part.
     Automatic vectorization in GCC is sparsely documented in the [GCC documentation](https://gcc.gnu.org/projects/tree-ssa/vectorization.html).
     Although we are not using the ARM compiler, the
     [ARM compiler user guide](http://infocenter.arm.com/help/topic/com.arm.doc.dui0472m/chr1359124204202.html)
-    may give some more insight.
+    http://hpac.cs.umu.se/teaching/sem-accg-16/slides/08.Schmitz-GGC_Autovec.pdf
+    may give some more insight on how to style your code for auto vectorization.
     1. Report the latency of each stage of the baseline application at
         `-O3`. (Start a table that includes each stage and an
         overall application latency; we will continue to expand this
@@ -129,8 +132,9 @@ Your writeup should include your answers to the following questions:
         may have multiple resources and may need to consider them each
         to identify the one that is most constraining.
         - You will need to review the NEON architecture (which we
-        discussed in class) and reason  about what resources it has
-        available to be used on each cycle.
+        discussed in class and in {doc}`walk_through`) and reason  about what resources it has
+        available to be used on each cycle. Think about how vectorizing triggers the
+        number of computations a NEON unit can do in parallel. 
         ```
     6. What speedup do you expect your application can achieve if the compiler is able to 
         achieve the resource bound identified in 3e? (5 lines)
@@ -140,7 +144,10 @@ Your writeup should include your answers to the following questions:
         ```
         (Add another column to the table you started in 3a showing expected performance after
         ideal vectorization; separately show Amdahl's Law calculation for overall speedup.)
-    7. We will enable the vectorization in gcc.  \fixme{[add instructions/flags]}
+    7. We will now enable the vectorization in g++. You can enable it by removing
+        the `-fno-tree-vectorize` flag from the `CXXFLAGS` in the hw4 Makefile.
+        `-O3` optimization automatically turns on the flag `-ftree-vectorize`, which vectorizes
+        your code.
     8. Report the speedup of the vectorized code with respect to the baseline. (Add two more  
         columns to the table you started in
         3a showing per stage and overall
@@ -149,15 +156,25 @@ Your writeup should include your answers to the following questions:
     9. Explain the discrepancy between your measured and ideal
         performance based on the optimization of `Filter_horizontal`.
         (3 lines)
-        ```{hint}
+        ````{hint}
         - Look at the size of the multiplications in the assembly code.
         - To read this code, you probably need to understand the
           relation between Q and V registers.  Perhaps useful:
           - <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dht0002a/ch01s03s02.html>
           - <https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/scalar-register-sizes>
           - <https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/vector-register-sizes>
-        ```
-    10. Show how you can resolve the issue that you identified in
+        - Use the flag `-fopt-info-loop-optimized` as follows to find out which
+            loops got vectorized:
+            ```
+            g++ -S -O3 -mcpu=native -fopt-info-loop-optimized Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
+            ```
+        - Use the flag `-fopt-info-vec-missed` as follows to find out what the compiler
+            wasn't able to vectorize:
+            ```
+            g++ -S -O3 -mcpu=native -fopt-info-vec-missed Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
+            ```
+        ````
+    10. Show how you can resolve the issue(s) (if you can) that you identified in
         the previous problem. (1 line)
     11. Report the speedup with respect to the baseline after resolving
         the issue in both `Filter_horizontal` and `Filter_vertical`.
@@ -166,14 +183,13 @@ Your writeup should include your answers to the following questions:
 
 4. **NEON Intrinsics Example**
 
-    An intrinsic behaves syntactically like a function, but the compiler translates it to a specific instruction that is inlined in the code. The Neon intrinsics are listed in the
-    [ARM documentation](http://infocenter.arm.com/help/topic/com.arm.doc.dui0472m/chr1359125038862.html).
-    1. Review the code in the `Neon` directory.  Note how the
+    Review the {doc}`walk_through` to learn about NEON intrinsics.
+    1. Review the code in the `hw4/assignment/neon_example` directory.  Note how the
         Neon version instantiates Neon vector intrinsics to perform
         the operation.  Convince yourself the C version and Neon
         version perform the same computation. (no turn in)
-    2. Import and build the code in the `Neon` subdirectory. (no turn in)
-    3. Note and report the speedup for the Neon version compared
+    2. Build and run the code by doing `make example` and `./example`.
+    3. Report the speedup for the Neon version compared
         to the C version. (1 line)
     4. Review the assembly code produced for both the C and Neon
         versions.  Based on the assembly code, explain how the Neon
@@ -185,16 +201,50 @@ Your writeup should include your answers to the following questions:
 5. **Using NEON Intrinsics**
     
     We will accelerate the `Filter_vertical` function using intrinsics.
-    1. How can we deal with a number of data elements that is not divisible
+    1. The {doc}`walk_through` talked about how you get lanes by packing
+        data into vectors. Flowing data through the lanes is key to getting full
+        throughput out of the NEON units. As we saw, our `Filter_vertical`
+        function works on seven 8-bit data elements at a time.
+        How can we deal with a number of data elements that is not divisible
         by the number of vector lanes without losing significant
         performance? (3 lines)
+        ````{hint}
+        - Is there anything about the structure of the filter 
+        (coefficients array) that will help you?
+        - Following are two animations. What can you figure out from it?
+            ```{figure} images/baseline-filter.gif
+            ---
+            height: 250px
+            name: baseline-filter
+            ---
+            Filter without vectorization
+            ```
+            ```{figure} images/vectorized-filter.gif
+            ---
+            height: 250px
+            name: vectorized-filter
+            ---
+            Filter with vectorization
+            ```
+        ````
     2. Explain at which granularity and in which order you should
         process the input data with vector instructions to achieve a good
-        performance.  Motivate your answer.  Hint: Minimize the number of
-        loads. (7 lines)
+        performance.  Motivate your answer. (7 lines)
+        ```{hint}
+        - Minimize the number of loads.
+        - Look at the animation above again and see if it tells you
+            something.
+        ```
     3. Using NEON intrinsics, accelerate the `Filter_vertical`
-        function.  Include the accelerated function in your report.  Make
+        function. Add the vectorized code under the empty prototype function
+        in `Filter.cpp`. Build and run using `make vectorized` and `vectorized`.
+        Include the accelerated function in your report.  Make
         sure that you verify your optimized code functions properly.
+        ```{hint}
+        Our solution uses the intrinsics mentioned in {ref}`coding-neon`,
+        however you could use other intrinsics as you see fit. Note that
+        some intrinsics might not be available, e.g. `vld1q_u8_x4`.
+        ```
     4. Report the latency of `Filter_vertical` and the application
         as a whole. (2 lines)
     5. Compare your performance with the lower bounds. (1 lines)
@@ -204,8 +254,8 @@ Your writeup should include your answers to the following questions:
 
     Reflect on the cooperation in your team.
     1. Compare your actual time on tasks with your original
-        estimates. (table with 1-2 line explanation of major disrepancies)
-    2. Reflect on your task decomposition (Q~\ref{task_distribution}).
+        estimates. (table with 1-2 line explanation of major discrepancies)
+    2. Reflect on your task decomposition (1a).
         Were you able to complete the task as you originally planned?
         What aspects of your original task distribution worked well and why?
         Did you refine the plan during the assignment? How and why?  In

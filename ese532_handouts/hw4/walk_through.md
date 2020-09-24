@@ -104,16 +104,19 @@ but using auto vectorization with the compiler and also hand-crafted NEON intrin
                 Differentiate.cpp
                 Filter.cpp
                 Scale.cpp
+            neon_example/
+                Example.cpp
         data/
             Input.bin (symlinks to hw3)
             Golden.bin (symlinks to hw3)
     ```
-- There are 2 targets. You can build all of them by executing `make all`
+- There are 3 targets. You can build all of them by executing `make all`
     in the `hw4/assignment` directory. You can build separately by:
-    - `make baseline` and run `./baseline` to run the project with no vectorization of 
+    - `make baseline` and `./baseline` to run the project with no vectorization of 
       `Filter_vertical` function.
-    - `make vectorized` and run `./vectorized` to run the project with `Filter_vertical` vectorized
+    - `make vectorized` and `./vectorized` to run the project with `Filter_vertical` vectorized
       (you will write the vectorized code).
+    - `make example` and `./example` to run the neon example.
 - The `data` folder contains the input data, `Input.bin`, which has 100 frames of
     size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
     expected output. Each program uses this file to see if there is a mismatch between
@@ -205,6 +208,7 @@ When the input and output vectors are 64-bit vectors, don't use intrinsics with 
 When the input and output vectors are 128-bit vectors, do use intrinsics with 'q' suffix.
 ```
 
+(coding-neon)=
 ### Coding with NEON Intrinsics
 Read chapter four from the NEON Programmer's Guide and answer the following questions.
 Use the [Neon Intrinsics Reference](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics) website to find and understand any instruction.
