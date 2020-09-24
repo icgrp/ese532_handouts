@@ -90,9 +90,9 @@ of that and your credit usage.
     is in the `hw3` directory. The directory structure looks like this:
     ```
     hw3/
-        Makefile
-        Walkthrough.cpp
         assignment/
+            Makefile
+            Walkthrough.cpp
             common/
                 App.h
                 Constants.h
@@ -116,7 +116,7 @@ of that and your credit usage.
             Golden.bin
     ```
 - There are four parts to the homework. You can build all of them by executing `make all`
-    in the `hw3` directory. You can build separately by:
+    in the `hw3/assignment` directory. You can build separately by:
     - `make base` and run `./base` to run the baseline project.
     - `make coarse` and run `./coarse` to run the coarse-grain project.
     - `make pipeline2` and run `./pipeline2` to run the pipeline project on 2 cores.
