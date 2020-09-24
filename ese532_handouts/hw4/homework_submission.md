@@ -100,8 +100,11 @@ Your writeup should include your answers to the following questions:
     Automatic vectorization in GCC is sparsely documented in the [GCC documentation](https://gcc.gnu.org/projects/tree-ssa/vectorization.html).
     Although we are not using the ARM compiler, the
     [ARM compiler user guide](http://infocenter.arm.com/help/topic/com.arm.doc.dui0472m/chr1359124204202.html)
-    http://hpac.cs.umu.se/teaching/sem-accg-16/slides/08.Schmitz-GGC_Autovec.pdf
-    may give some more insight on how to style your code for auto vectorization.
+    may give some more insight on how to style your code for auto
+    vectorization.  This
+    [talk on GCC vectorization](http://hpac.cs.umu.se/teaching/sem-accg-16/slides/08.Schmitz-GGC_Autovec.pdf)
+    may also be useful.
+    
     1. Report the latency of each stage of the baseline application at
         `-O3`. (Start a table that includes each stage and an
         overall application latency; we will continue to expand this
@@ -133,8 +136,8 @@ Your writeup should include your answers to the following questions:
         to identify the one that is most constraining.
         - You will need to review the NEON architecture (which we
         discussed in class and in {doc}`walk_through`) and reason  about what resources it has
-        available to be used on each cycle. Think about how vectorizing triggers the
-        number of computations a NEON unit can do in parallel. 
+        available to be used on each cycle. Think about how vectorization
+        could exploit the set of computations a NEON unit can do in parallel. 
         ```
     6. What speedup do you expect your application can achieve if the compiler is able to 
         achieve the resource bound identified in 3e? (5 lines)

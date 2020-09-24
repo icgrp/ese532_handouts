@@ -72,8 +72,9 @@ reading the NEON Programmer's guide and learning to use these APIs.
 In the previous homework, we dealt with a streaming application that
 compressed a video stream, and explored how to implement coarse-grain data-level parallelism
 and pipeline parallelism using `std::threads` to speedup the application. For this homework,
-we will use the same application and implement coarse-grain data-level parallelism,
-but using auto vectorization with the compiler and also hand-crafted NEON intrinsics.
+we will use the same application and implement fine-grain, data-level
+parallelism on a vector architecture;  we will explore both auto
+vectorization with the compiler and hand-crafted NEON vector intrinsics. 
 
 - Login to your `a1.xlarge` instance and clone the `ese532_code`
     repository using the following command:
