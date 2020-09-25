@@ -115,7 +115,7 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
     in the `hw4/assignment` directory. You can build separately by:
     - `make baseline` and `./baseline` to run the project with no vectorization of 
       `Filter_vertical` function.
-    - `make vectorized` and `./vectorized` to run the project with `Filter_vertical` vectorized
+    - `make neon_filter` and `./neon_filter` to run the project with `Filter_vertical` vectorized
       (you will write the vectorized code).
     - `make example` and `./example` to run the neon example.
 - The `data` folder contains the input data, `Input.bin`, which has 100 frames of
@@ -267,6 +267,7 @@ This will help you in coding for your homework.
 
 ### Optimization:
 - Read section 2.1.10, 2.8, and chapter 5 from the NEON Programmer's Guide.
+- Watch the talk: [Taming ARMv8 NEON: from theory to benchmark results](https://youtu.be/ixuDntaSnHI)
 - Read (supplemental) [Optimizing C Code with Neon Intrinsics](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/optimizing-c-code-with-neon-intrinsics/single-page)
 - Read (supplemental) [Coding for NEON](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/coding-for-neon/single-page)
 - Read (supplemental) [Neon Intrinsics Chromium Case Study](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/neon-intrinsics-chromium-case-study/single-page)

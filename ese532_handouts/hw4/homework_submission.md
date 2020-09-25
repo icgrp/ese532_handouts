@@ -7,6 +7,9 @@ Your writeup should include your answers to the following questions:
     ol { list-style-type: decimal; }
     ol ol { list-style-type: lower-alpha; }
     ol ol ol { list-style-type: lower-roman; }
+    table { width: 100%; }
+    td {height:50px;text-align: center;}
+    tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 
 1. **Teamwork**
@@ -57,12 +60,16 @@ Your writeup should include your answers to the following questions:
         {numref}`optimization-table`. You can change
         the optimization level by editing the `CXXFLAGS` in the hw4 Makefile.
     2. Include the assembly code of the innermost loop of `Filter_horizontal`
-        at optimization level `-O0` in your report. Use the command:
+        at optimization level `-O0` in your report. Use the following command to get the assembly and then look for `Filter_horizontal` in `Filter_O1.s`:
         ```
         g++ -S -O0 -mcpu=native -fno-tree-vectorize Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
         ```
-        to get the assembly and then look for `Filter_horizontal` in `Filter_O1.s`.
-    3. Include the assembly code of inner loop of `Filter_horizontal` at optimization level 
+
+        ```{note}
+        `-fno-tree-vectorize` disables automatic vectorization. We will
+        look at automatic vectorization in the next section.
+        ```
+    3. Include the assembly code of the innermost loop of `Filter_horizontal` at optimization level 
         `-O2` in your report.
     4. Based on the machine code of questions 2b and 2c, explain the most important 
         difference between the `-O0` and `-O2` versions. (2 lines)
@@ -104,16 +111,87 @@ Your writeup should include your answers to the following questions:
     vectorization.  This
     [talk on GCC vectorization](http://hpac.cs.umu.se/teaching/sem-accg-16/slides/08.Schmitz-GGC_Autovec.pdf)
     may also be useful.
+    ````{admonition} Vectorization Speedup Summary
+    :class: full-width
+
+    ```{list-table} Vectorization Speedup Summary
+    :header-rows: 2
+    :name: vectorization-table
+
+    * -  
+      - Baseline
+      -  
+      -  
+      - Baseline with SIMD 
+      -  
+      - Baseline with SIMD Modified
+      -  
+    * -  
+      - Latency (ns) 
+      - Suitability (Y/N)
+      - Ideal Vectorization Speedup 
+      - Latency (ns)
+      - Speedup
+      - Latency (ns)
+      - Speedup
+    * - `Scale`
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+    * - `Filter_horizontal`
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+    * - `Filter_vertical`
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+    * - `Differentiate`
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+    * - `Compress`
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+      -  
+    * - Overall
+      -  
+      - N/A
+      - 
+      -  
+      -  
+      -  
+      -  
+    ```
+    ````
     
     1. Report the latency of each stage of the baseline application at
-        `-O3`. (Start a table that includes each stage and an
-        overall application latency; we will continue to expand this
+        `-O3`. (Start a table like {numref}`vectorization-table`; we will continue to fill in this
         table throughout this problem.)
     2. Based on your understanding of the C code, which loops in
         the streaming stages of the application have 
         sufficient data parallelism for vectorization?  Motivate your answer.
-        (Add a column to the table you started in
-        3a for marking suitability; add explanation in 2--5 lines after table.)
+        (Mark suitability by filling in Yes or No in the suitability column of {numref}`vectorization-table`; add explanation in 2--5 lines after table.)
     3. Identify the critical path lower bound for `Filter_vertical` in
         terms of compute operations.  Focus on the data path.  Ignore
         control flow and offset computations. You may assume
@@ -145,17 +223,12 @@ Your writeup should include your answers to the following questions:
         Remember Amdahl's Law; think about critical path lower
         bounds and resource capacity lower bounds.
         ```
-        (Add another column to the table you started in 3a showing expected performance after
-        ideal vectorization; separately show Amdahl's Law calculation for overall speedup.)
+        (Fill in the ideal vectorization speedup column in {numref}`vectorization-table`; separately show Amdahl's Law calculation for overall speedup.)
     7. We will now enable the vectorization in g++. You can enable it by removing
         the `-fno-tree-vectorize` flag from the `CXXFLAGS` in the hw4 Makefile.
         `-O3` optimization automatically turns on the flag `-ftree-vectorize`, which vectorizes
         your code.
-    8. Report the speedup of the vectorized code with respect to the baseline. (Add two more  
-        columns to the table you started in
-        3a showing per stage and overall
-        latency (first column) and speedup relative to non-vectorized
-        baseline (second column)).
+    8. Report the speedup of the vectorized code with respect to the baseline. (Fill in the "Baseline with SIMD" columns in {numref}`vectorization-table`.)
     9. Explain the discrepancy between your measured and ideal
         performance based on the optimization of `Filter_horizontal`.
         (3 lines)
@@ -166,23 +239,13 @@ Your writeup should include your answers to the following questions:
           - <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dht0002a/ch01s03s02.html>
           - <https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/scalar-register-sizes>
           - <https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/vector-register-sizes>
-        - Use the flag `-fopt-info-loop-optimized` as follows to find out which
-            loops got vectorized:
-            ```
-            g++ -S -O3 -mcpu=native -fopt-info-loop-optimized Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
-            ```
-        - Use the flag `-fopt-info-vec-missed` as follows to find out what the compiler
-            wasn't able to vectorize:
-            ```
-            g++ -S -O3 -mcpu=native -fopt-info-vec-missed Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
-            ```
         ````
-    10. Show how you can resolve the issue(s) (if you can) that you identified in
-        the previous problem. (1 line)
+    10. Show how you can resolve the issue that you identified 
+        in the previous problem. (1 line) Include the assembly code of
+        `Filter_vertical` after you have resolved the issue.
     11. Report the speedup with respect to the baseline after resolving
         the issue in both `Filter_horizontal` and `Filter_vertical`.
-        (Add two more columns to the table you started in
-        3a showing per stage and overall speedup after resolving.)
+        (Fill in the "Baseline with SIMD Modified" columns in {numref}`vectorization-table`.)
 
 4. **NEON Intrinsics Example**
 
@@ -203,55 +266,83 @@ Your writeup should include your answers to the following questions:
 
 5. **Using NEON Intrinsics**
     
-    We will accelerate the `Filter_vertical` function using intrinsics.
-    1. The {doc}`walk_through` talked about how you get lanes by packing
-        data into vectors. Flowing data through the lanes is key to getting full
-        throughput out of the NEON units. As we saw, our `Filter_vertical`
+    We will now accelerate the `Filter_vertical` function using intrinsics.
+    We have provided you with a neon intrinsics implementation of `Filter_vertical`
+    in `Filter.cpp` right after the `#ifdef VECTORIZED`.
+    This implementation doesn't achieve full performance like the
+    auto vectorization did. We will find out why and fix it.
+    1. Use `-O3` optimization and build the
+        target by doing `make neon_filter`. Run it with `./neon_filter` and
+        report the latency of `Filter_vertical`. Report the speedup with respect to the baseline in 3. Include the assembly code of the neon intrinsic implementation of
+        `Filter_vertical`.  
+    2. The {doc}`walk_through` talked about how you get lanes by packing
+        data into vectors. Moreover, in 3j you saw how data type matters in
+        generating performant assembly code that utilizes full lanes of the NEON
+        units. Flowing data through the lanes is key to getting full
+        throughput out of the NEON units.
+        
+        As we saw, `Filter_vertical`
         function works on seven 8-bit data elements at a time.
-        How can we deal with a number of data elements that is not divisible
+        Describe how our neon intrinsic implementation deal with a number of data elements that is not divisible
         by the number of vector lanes without losing significant
         performance? (3 lines)
         ````{hint}
         - Is there anything about the structure of the filter 
-        (coefficients array) that will help you?
+        (coefficients array) that helps us?
         - Following are two animations. What can you figure out from it?
             ```{figure} images/baseline-filter.gif
             ---
             height: 250px
             name: baseline-filter
             ---
-            Filter without vectorization
+            `Filter_vertical` without vectorization
             ```
             ```{figure} images/vectorized-filter.gif
             ---
             height: 250px
             name: vectorized-filter
             ---
-            Filter with vectorization
+            `Filter_vertical` with vectorization
             ```
         ````
-    2. Explain at which granularity and in which order you should
-        process the input data with vector instructions to achieve a good
-        performance.  Motivate your answer. (7 lines)
-        ```{hint}
-        - Minimize the number of loads.
-        - Look at the animation above again and see if it tells you
-            something.
-        ```
-    3. Using NEON intrinsics, accelerate the `Filter_vertical`
-        function. Add the vectorized code under the empty prototype function
-        in `Filter.cpp`. Build and run using `make vectorized` and `vectorized`.
+    3. Explain at which granularity and in which order our implementation processes
+        the input data with vector instructions. (7 lines)
+    4. Compare the assembly code from 3j and 5a. What differences do you notice between
+        the instructions generated?
+    5. Using NEON intrinsics, modify `Filter_vertical` 
+        and try to achieve a speedup with respect to our implementation.
         Include the accelerated function in your report.  Make
-        sure that you verify your optimized code functions properly.
+        sure that you verify your optimized code functions properly (i.e. you should see `Application completed successfully.`).
         ```{hint}
-        Our solution uses the intrinsics mentioned in {ref}`coding-neon`,
-        however you could use other intrinsics as you see fit. Note that
-        some intrinsics might not be available, e.g. `vld1q_u8_x4`.
+        - Can you find an intrinsic that can be used to reduce the number
+            of intrinsics we currently use?
+        - You can also lookup the assembly instruction from 3j at [NEON Intrinsics Reference](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics)
+        and find a corresponding intrinsic to use in your modification!
         ```
-    4. Report the latency of `Filter_vertical` and the application
+    6. Does your modified `Filter_vertical` achieve the speedup you got in 3k? If not,
+        can you figure out why?
+        ```{hint}
+        - Use the flag `-fopt-info-loop-optimized` as follows to find out which
+            loops got vectorized:
+            ```
+            g++ -S -O3 -mcpu=native -fopt-info-loop-optimized Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
+            ```
+        - Use the flag `-fopt-info-vec-missed` as follows to find out what the compiler
+            wasn't able to vectorize:
+            ```
+            g++ -S -O3 -mcpu=native -fopt-info-vec-missed Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
+            ```
+        - When comparing the assembly code from 3j and the above, how many `bne` instructions
+            do you see? What does it tell you about auto vectorization on code that uses
+            neon intrinsics? What is a common loop optimization technique to reduce the impact of
+            branch instructions?
+        ```
+    7. Try to acheive the same speedup as 3k for your `Filter_vertical` with neon intrinsics. 
+        Report the latency of your modified `Filter_vertical` and the application
         as a whole. (2 lines)
-    5. Compare your performance with the lower bounds. (1 lines)
-    6. Compare the performance of manual and automatic vectorization. (1 lines)
+    8. Compare your performance with the lower bounds. (1 lines)
+    9. Compare your performance with the performance of manual and automatic vectorization.
+        (1 lines)
 
 6. **Reflection**
 
@@ -268,4 +359,16 @@ Your writeup should include your answers to the following questions:
     4. What do you believe was the most useful thing that you were
         able to  contribute to your team? (1--3 lines)
 
-
+## Deliverables
+In summary, upload the following in their respective links in canvas:
+  - a tarball containing the hw4 source code with your modified neon intrinsics code.
+    ````{admonition} Quick linux commands for tar files
+    :class: dropdown, tip
+    ```
+    # Compress
+    tar -cvzf <file_name.tgz> directory_to_compress/
+    # Decompress
+    tar -xvzf <file_name.tgz>
+    ```
+    ````
+  - writeup in pdf.
