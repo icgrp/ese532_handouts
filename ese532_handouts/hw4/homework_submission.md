@@ -337,11 +337,12 @@ Your writeup should include your answers to the following questions:
             neon intrinsics? What is a common loop optimization technique to reduce the impact of
             branch instructions?
         ```
-    7. Try to acheive the same speedup as 3k for your `Filter_vertical` with neon intrinsics. 
+    7. Try to achieve the same speedup as 3k for your `Filter_vertical` after identifying the
+        problem in 5f. 
         Report the latency of your modified `Filter_vertical` and the application
         as a whole. (2 lines)
     8. Compare your performance with the lower bounds. (1 lines)
-    9. Compare your performance with the performance of manual and automatic vectorization.
+    9. Compare the performance of manual and automatic vectorization.
         (1 lines)
 
 6. **Reflection**
@@ -358,6 +359,8 @@ Your writeup should include your answers to the following questions:
         your teammate? (2--4 lines)
     4. What do you believe was the most useful thing that you were
         able to  contribute to your team? (1--3 lines)
+    5. Include a screenshot showing your credit usage in
+        Amazon AWS.
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:

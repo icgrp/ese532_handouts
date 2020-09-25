@@ -116,7 +116,7 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
     - `make baseline` and `./baseline` to run the project with no vectorization of 
       `Filter_vertical` function.
     - `make neon_filter` and `./neon_filter` to run the project with `Filter_vertical` vectorized
-      (you will write the vectorized code).
+      (you will modify the vectorized code later).
     - `make example` and `./example` to run the neon example.
 - The `data` folder contains the input data, `Input.bin`, which has 100 frames of
     size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
