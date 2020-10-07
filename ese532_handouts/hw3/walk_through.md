@@ -395,7 +395,7 @@ From the above, we learned:
 
 ---
 This concludes everything you need to know about `std::threads` to
-complete this homework. You can run the full workthrough by
+complete this homework. You can run the full walk-through by
 `make walkthrough` and `./walkthrough`.
 
 ### Coarse-grain
