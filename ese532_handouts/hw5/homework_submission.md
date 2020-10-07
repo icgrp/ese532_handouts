@@ -147,8 +147,7 @@ Your writeup should include your answers to the following questions:
         export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
         ```
         Recompile the design we compiled in {doc}`walk_through` by doing `make afi EMAIL=<your email>` (note how the Makefile now skips the "XO" rule since we already
-        provided a .xo). Wait for the email saying your new AFI is available. This build will take about 2 hours. Run your new AFI on the F1 instance as instructed in {ref}`resume_build`. Report the latency
-        of the Multiply_HW function. Report the speedup with respect to our baseline.
+        provided a .xo). Wait for the email saying your new AFI is available. This build will take about 2 hours. Run your new AFI on the F1 instance as instructed in {ref}`resume_build`.
         ```{caution}
         Make sure to shut down your F1 instance! It costs 1.65$/hr
         ```
@@ -160,8 +159,14 @@ Your writeup should include your answers to the following questions:
     1. Open a remote desktop session on your `z1d.2xlarge` instance.
     1. Assuming you ran the application as instructed in {ref}`resume_build`, open a terminal and `git pull` the files you got from the `f1.2xlarge` instance. 
     1. Run `vitis_analyzer ./Multiply_HW.xclbin.run_summary` to open Vitis Analyzer.
-    1. Include a screenshot of the application timeline in your report.
-    1. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot.
+    1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, here is an example screenshot:
+    ```{figure} images/vitis_analyzer.png
+    ---
+    height: 300px
+    ---
+    Example screenshot
+    ```
+    
 
 (reflection)=
 5. **Reflection**
