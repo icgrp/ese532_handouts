@@ -180,10 +180,11 @@ command:
     aws configure
     ```
 1. Enter your access key, add us-east-1 as region and output to be json.
-### Compile a hardware function
-#### Obtaining and Running the Code
-In this homework we will offload a matrix multiplication
-function to the FPGA. 
+
+(software_code)=
+### Obtaining and Running the Code
+In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
+function on the FPGA. 
 
 Login to your `z1d.2xlarge` instance and initialize your environment as follows:
 ```
@@ -213,23 +214,23 @@ is in the `hw5` directory. The directory structure looks like this:
 hw5/
     Makefile
     design.cfg
+    xrt.ini
     common/
         Constants.h
-        Stopwatch.h
+        EventTimer.h
+        EventTimer.cpp
         Utilities.cpp
         Utilities.h
-    cpu/
+    hls/
         MatrixMultiplication.cpp
-    fpga/
-        hls/
-            MatrixMultiplication.cpp
-            Testbench.cpp
-        Host.cpp
+        Testbench.cpp
+    Host.cpp
 ```
-- There are 6 targets in the Makefile. Use `make help` to learn about them.
+- There are 5 targets in the Makefile. Use `make help` to learn about them.
+- `design.cfg` defines several options for the v++ compiler. Learn more about it [here](https://developer.xilinx.com/en/articles/using-configuration-files-to-control-vitis-compilation.html).
+- `xrt.ini` defines the options necessary for Vitis Analyzer.
 - The `common` folder has header files and helper functions.
-- The `cpu` folder has the baseline code for matrix multiplication that runs on the cpu.
-- You will mostly be working with the code in the `fpga` folder. The 
+- You will mostly be working with the code in the `hls` folder. The 
     `hls/MatrixMultiplication.cpp` file has the function that gets compiled
     to a hardware function (known as a kernel in Vitis). The `Host.cpp` file has
     the "driver" code that transfers the data to the fpga, runs the kernel,
@@ -237,62 +238,28 @@ hw5/
 - Read [this](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
 - Read [this](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
 utilized in `Host.cpp`
-
----
-- Issue `make baseline` and `./baseline` and note down the latency.
-- Start building the hardware function by doing `make afi EMAIL=<your email>`,
-    substituting your email. This build will take about 1 hour 20 minutes and in the end
-    it will wait for you to confirm a subscription from your email account; open your email and confirm
-    the subscription and wait to receive an email that your Amazon FPGA Image (AFI) is available (takes about 30 minutes to an hour). While we wait, we are going to start
-    working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize our hardware function using Vitis HLS IDE first and then
-    re-compile it and run it on the FPGA in the end. Scroll to {ref}`vitis_hls` to learn about how to
-    use Vitis HLS. After you get the email that your AFI
-    is available, pause your homework and resume
-    from {ref}`resume_build`. Once you have successfully
-    run on the FPGA, continue with your homework.
-    We will do one more build at the end of the homework.
-    In summary, we have two big
-    compilation (including this walkthrough) in this homework, each taking about 2 hours. So make sure to that you start this homework early! 
-
----
-(resume_build)=
-### Run on the FPGA
-#### Set up a runtime instance
-- Follow the steps from {ref}`launch_instance`, but instead of choosing
-    a `z1d.2xlarge` instance, choose `f1.2xlarge`.
-- Attach you DCV license (don't need to create a new one, attach the existing one)
-    to your F1 instance and install DCV server by following the steps from {ref}`dcv_setup`.
-
-#### Copy binaries to the runtime instance
-- Create a github repository and clone it in your `z1d.2xlarge` instance.
-- Add the `host`, `Multiply_HW.awsxclbin` and `xrt.ini` files to the repository; commit and push.
-- Git clone the updated repository in your `f1.2xlarge` instance.
-
-#### Run the application on the FPGA
-- Execute the following commands in your `f1.2xlarge` instance to run your application:
+- Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution.
+- Read [this](https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html) to learn about aligned memory allocation with OpenCL.
+- Run the matrix multiplication on the cpu by doing:
     ```
-    git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
     source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
-    # Wait till the MPD service has initialized. Check systemctl status mpd
-    ./host ./Multiply_HW.awsxclbin 
+    export XCL_EMULATION_MODE=sw_emu
+    ./host mmult.xclbin
     ```
-- You should see the following files generated when you ran:
-    ```
-    profile_summary.csv
-    timeline_trace.csv
-    Multiply_HW.xclbin.run_summary
-    ```
-    Add, commit and push these files in the repository you created and then shutdown your F1 instance.
-    ```{caution}
-    Make sure to shut down your F1 instance! It costs 1.65$/hr
-    ```
+- We will now use Vitis Analyzer to view the trace of our matrix multiplication on cpu
+    and find out how long each API call took.
+    1. Read about how to use Vitis Analyzer from [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part5.md).
+    1. Open a remote desktop session on your `z1d.2xlarge` instance.
+    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer and try to associate the api calls with the code in `Host.cpp`.
+    1. Hover over an API call to find out long it took.
+    
+We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. Scroll to {ref}`vitis_hls` to learn about how to
+use Vitis HLS.
 
 ---
-This concludes a top-down walk-through of the steps involved
-in running a hardware function on the AWS FPGA.
 
 (vitis_hls)=
-## Using Vitis HLS
+### Using Vitis HLS
 
 Creating a new project in Vitis HLS is explained [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project).
 Make sure you enter the top-level function during the creation of the
@@ -339,6 +306,48 @@ by including pragmas, e.g. `#pragma HLS inline`, in your code.
 The different pragmas that you can use in your functions are listed in [Vitis HLS User Guide](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hlspragmas.html#okr1504034364623).
 
 When you have obtained a satisfying hardware description in Vitis HLS, you will [Export Vitis Kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel), i.e. a Xilinx object file (.xo). We will then [use this object file/kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/using_the_kernel.md) and link it together in our existing Vitis application.
+
+(resume_build)=
+### Run on the FPGA
+Once you have 3h completed from the {doc}`homework_submission`,
+continue with the following.
+#### Compile a hardware function
+- Start building the hardware function by doing `make afi EMAIL=<your email>`,
+    substituting your email. This build will take about 1 hour 20 minutes and in the end
+    it will wait for you to confirm a subscription from your email account; open your email and confirm
+    the subscription and wait to receive an email that your Amazon FPGA Image (AFI) is available (takes about 30 minutes to an hour).
+
+#### Set up a runtime instance
+- Follow the steps from {ref}`launch_instance`, but instead of choosing
+    a `z1d.2xlarge` instance, choose `f1.2xlarge`.
+
+#### Copy binaries to the runtime instance
+- Create a github repository and clone it in your `z1d.2xlarge` instance.
+- Add the `host`, `mmult.awsxclbin` and `xrt.ini` files to the repository; commit and push.
+- Git clone the updated repository in your `f1.2xlarge` instance.
+
+#### Run the application on the FPGA
+- Execute the following commands in your `f1.2xlarge` instance to run your application:
+    ```
+    git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
+    source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
+    # Wait till the MPD service has initialized. Check systemctl status mpd
+    ./host ./mmult.awsxclbin 
+    ```
+- You should see the following files generated when you ran:
+    ```
+    profile_summary.csv
+    timeline_trace.csv
+    xclbin.run_summary
+    ```
+    Add, commit and push these files in the repository you created and then shutdown your F1 instance.
+    ```{caution}
+    Make sure to shut down your F1 instance! It costs 1.65$/hr
+    ```
+
+---
+This concludes a top-down walk-through of the steps involved
+in running a hardware function on the AWS FPGA.
 
 ## Reference
 - <https://github.com/Xilinx/Vitis-AWS-F1-Developer-Labs/blob/master/setup/instructions.md>

@@ -14,9 +14,7 @@ Your writeup should include your answers to the following questions:
 </style>
 
 1. **Initial CPU implementation and HLS Kernel**
-    1. Report the latency of the matrix multiplier in
-        `Multiply_SW` on the Xeon core without hardware acceleration (`make baseline && ./baseline`) in ns. This is our baseline. Make sure the optimization level of the g++ compiler is set to `-O3`
-        in the Makefile.
+    1. Find the latency of the matrix multiplier (mmult kernel) on the Xeon core using Vitis Analyzer (refer to the {ref}`software_code`) and report it in ms. This is our baseline. Include a screenshot of the Application Timeline (zoom in to the relevant parts).
         (1 line)
     1. We will now simulate the matrix multiplier in
         Vitis HLS.
@@ -32,7 +30,7 @@ Your writeup should include your answers to the following questions:
         - From the Applications, select System Tools > Terminal.
         - Start Vitis HLS by `vitis_hls &` in the terminal. You should now see the IDE.
         - Create a new project and add `hw5/fpga/hls/MatrixMultiplication.cpp` and `hw5/fpga/hls/MatrixMultiplication.h` as source files.
-        - Specify `Multiply_HW` as top function.
+        - Specify `mmult` as top function.
         - Add `hw5/fpga/hls/Testbench.cpp` as TestBench files.
         - Select the `xcvu9p-flgb2104-2-i` in the device
             selection. Use a 8ns
@@ -54,7 +52,7 @@ Your writeup should include your answers to the following questions:
             testbenches.  Our testbenches can serve as an example and
             template for you.)
     1. Synthesize the matrix multiplier in Vitis HLS. Analyze the ***Synthesis Report*** by expanding the ***solution1*** tab in the ***Explorer*** view, browsing to ***syn/report*** and opening the `.rpt` file.
-        What is the expected latency of the hardware accelerator in ns? (1 line)
+        What is the expected latency of the hardware accelerator in ms? (1 line)
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does the implementation consume? (4 lines)
     1. Analyze how the computations are scheduled in time.  You can
@@ -101,7 +99,7 @@ Your writeup should include your answers to the following questions:
         ```
         
     1. Change the clock period to 20ns, and
-        synthesize it again. What is the expected latency of the new accelerator? (1 line)
+        synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
     1. You may have noticed that all floating-point additions are
@@ -133,7 +131,7 @@ Your writeup should include your answers to the following questions:
             these arrays are accessed by one iteration of the pipelined loop.
     1. Partition the buffers according to your description in the
             previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=231) 
-            for examples of array partitioning pragma). Synthesize the design and report the expected latency. Provide the modified `Multiply_HW` code in your report.
+            for examples of array partitioning pragma). Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
     1. Pipeline the `Init_loop_j` loop also with an II of
@@ -146,19 +144,19 @@ Your writeup should include your answers to the following questions:
         source $AWS_FPGA_REPO_DIR/vitis_setup.sh
         export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
         ```
-        Recompile the design we compiled in {doc}`walk_through` by doing `make afi EMAIL=<your email>` (note how the Makefile now skips the "XO" rule since we already
-        provided a .xo). Wait for the email saying your new AFI is available. This build will take about 2 hours. Run your new AFI on the F1 instance as instructed in {ref}`resume_build`.
+        Run by following the instruction in {ref}`resume_build` section.
+        Commit the Vitis Analyzer files in your repo. We will use it in the next section.
         ```{caution}
         Make sure to shut down your F1 instance! It costs 1.65$/hr
         ```
 
 4. **Vitis Analyzer**
     
-    We will now use Vitis Analyzer to analyze the trace of our application.
-    1. Read about how to use Vitis Analyzer from [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part5.md).
+    We will now use Vitis Analyzer to analyze the trace of our matrix multiplication on the FPGA.
     1. Open a remote desktop session on your `z1d.2xlarge` instance.
     1. Assuming you ran the application as instructed in {ref}`resume_build`, open a terminal and `git pull` the files you got from the `f1.2xlarge` instance. 
-    1. Run `vitis_analyzer ./Multiply_HW.xclbin.run_summary` to open Vitis Analyzer.
+    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer.
+    1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline. What is the speedup that the accelerated design achieves with respect to the baseline?  (2 lines)
     1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, here is an example screenshot:
     ```{figure} images/vitis_analyzer.png
     ---
@@ -166,7 +164,7 @@ Your writeup should include your answers to the following questions:
     ---
     Example screenshot
     ```
-    
+    1. What differences do you see between the ***Application Timeline*** of the CPU and the FPGA?
 
 (reflection)=
 5. **Reflection**
@@ -177,7 +175,7 @@ Your writeup should include your answers to the following questions:
     1. Make an area-time plot for the three designs with
         a curve for DSPs and BlockRAMs.
         ```{hint}
-        Expected latency on X-axis, DSPs and BlockRAMs as separate curves on the Y-axis.
+        Expected latency (ms) on X-axis, DSPs and BlockRAMs as separate curves on the Y-axis.
         ```
     1. Go to your AWS Billing page and report the total
         amount of credit used so far (make sure to add up credit used from September).
