@@ -176,6 +176,8 @@ Your writeup should include your answers to the following questions:
 
     TODO: note above is coming out as a, not f.
 
+    TODO: not sure what you are asking them to compare here
+
 (breakeven)=
 5. **Breakeven and Net Acceleration**
     We can model an accelerator with setup and transfer time as:
