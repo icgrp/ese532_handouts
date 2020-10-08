@@ -109,6 +109,14 @@ Your writeup should include your answers to the following questions:
             can fill the FPGA with copies of one of the accelerators from question
             1d or 2d.  Which
             accelerator would you choose for the highest throughput?
+
+       ```{hint}
+          We are just asking for a Resource Bound analysis here.
+         How many copies of the each of design fit in the resources  available on user shell available on the F1?
+         What throughput does each design achieve?
+        ```
+			
+			
 3. **HLS Kernel Optimization: Pipelining**
     1. Remove the unroll pragma, and pipeline the `Main_loop_j`
             loop with the minimal initiation
@@ -166,8 +174,47 @@ Your writeup should include your answers to the following questions:
     ```
     1. What differences do you see between the ***Application Timeline*** of the CPU and the FPGA?
 
+    TODO: note above is coming out as a, not f.
+
+(breakeven)=
+5. **Breakeven and Net Acceleration**
+    We can model an accelerator with setup and transfer time as:
+    ```{math}
+    :label: accelerator-model
+    T_{accel} = T_{setup}+T_{transfer}+\frac{T_{seq}}{S}
+    ```
+Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the x86 host
+and $T_{fpga}$ be the time for the operation the FPGA.  Let
+$S_{fpga}=\frac{T_{seq}}{T_{fpga}}$.  $T_{setup}$ is the time to setup the
+    operation and $T_{transfer}$ is the time to move the data for the
+    operation to the FPGA and back.
+      1. What is $S_{fpga}$ for the matrix-multiply operation above?
+      2. Identify $T_{setup}$.
+      3. Identify $T_{transfer}$
+	  4. Using $S_{fpga}$, $T_{setup}$, and $T_{transfer} from above, how
+    large would $T_{seq}$ be to get an actual speedup?
+    ($T_{accel}<T_{seq}$)?
+	  5. How does $T_{seq}$ scale with the matrix dimension $N$? (write an
+    equation for $T_{seq}$ as a function of $N$.
+	  6. How does $T_{fpga}$ scale with the matrix dimension $N$? (write an
+    equation for $T_{fpga}$ as a function of $N$ for your fully unrolled
+    loop strategy from Problem 3 (`Main_loop_j` pipelined, `Main_loop_k` unrolled).
+	  7. How does $T_{transfer}$ scale with the matrix dimension $N$? (write an
+      equation for $T_{transfer}$ as a function of $N$.
+	  8. Based on the above, for what value of $N$ would $T_{accel}=T_{seq}$?
+	  9. Based on the above, for what value of $N$ would   $T_{accel}=\frac{T_{seq}}{10}$?
+If you perform a large number of accelerator invocations, you do not need
+to perform the setup operations again.
+    ```{math}
+    :label: accelerator-model-k-invoke
+    T_{accel} = T_{setup}+k \cdot (T_{transfer}+\frac{T_{seq}}{S})
+    ```
+    10. Assuming the number of invocations, $k$, is large (say 1 million), how does
+       this change the value of N for 10x speedup (
+      $T_{accel}=\frac{T_{seq}}{10}$) ?
+
 (reflection)=
-5. **Reflection**
+6. **Reflection**  TODO: note coming out as 1 not 5.
     1. Problems 1--3 in this assignment took you through
         a specific optimization sequence for this task.
         Describe the optimization sequence in terms

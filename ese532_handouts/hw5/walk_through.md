@@ -186,6 +186,8 @@ command:
 In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
 function on the FPGA. 
 
+TODO: where does `AWS_FPGA_REPO_DIR` get defined?  Did we give them instructions?
+
 Login to your `z1d.2xlarge` instance and initialize your environment as follows:
 ```
 tmux
