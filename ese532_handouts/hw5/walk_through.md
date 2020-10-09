@@ -184,9 +184,7 @@ command:
 (software_code)=
 ### Obtaining and Running the Code
 In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
-function on the FPGA. 
-
-TODO: where does `AWS_FPGA_REPO_DIR` get defined?  Did we give them instructions?
+function on the FPGA.
 
 Login to your `z1d.2xlarge` instance and initialize your environment as follows:
 ```
@@ -331,7 +329,6 @@ continue with the following.
 #### Run the application on the FPGA
 - Execute the following commands in your `f1.2xlarge` instance to run your application:
     ```
-    git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
     source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
     # Wait till the MPD service has initialized. Check systemctl status mpd
     ./host ./mmult.awsxclbin 

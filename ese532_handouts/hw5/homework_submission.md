@@ -14,7 +14,7 @@ Your writeup should include your answers to the following questions:
 </style>
 
 1. **Initial CPU implementation and HLS Kernel**
-    1. Find the latency of the matrix multiplier (mmult kernel) on the Xeon core using Vitis Analyzer (refer to the {ref}`software_code`) and report it in ms. This is our baseline. Include a screenshot of the Application Timeline (zoom in to the relevant parts).
+    1. Find the latency of the matrix multiplier (mmult kernel) on the Xeon core using Vitis Analyzer (refer to the {ref}`software_code`) and report it in ms. This is our baseline.
         (1 line)
     1. We will now simulate the matrix multiplier in
         Vitis HLS.
@@ -110,10 +110,12 @@ Your writeup should include your answers to the following questions:
             1d or 2d.  Which
             accelerator would you choose for the highest throughput?
 
-       ```{hint}
-          We are just asking for a Resource Bound analysis here.
-         How many copies of the each of design fit in the resources  available on user shell available on the F1?
-         What throughput does each design achieve?
+        ```{hint}
+         We are just asking for a Resource Bound analysis here.
+         
+         In the F1 instance, our HLS logic gets implemented inside a "shell". The shell consumes about 20% of the FPGA resources, and that includes the PCIe Gen3 X16, DMA engine, DRAM controller interface, ChipScope (Virtual JTAG) and other health monitoring and image loading logic. The rest 80% of the resources is available for the HLS code you write.
+         
+         How many copies of the each design can you fit in the resources available in F1 shell? What throughput does each design achieve?
         ```
 			
 			
@@ -164,59 +166,60 @@ Your writeup should include your answers to the following questions:
     1. Open a remote desktop session on your `z1d.2xlarge` instance.
     1. Assuming you ran the application as instructed in {ref}`resume_build`, open a terminal and `git pull` the files you got from the `f1.2xlarge` instance. 
     1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer.
-    1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline. What is the speedup that the accelerated design achieves with respect to the baseline?  (2 lines)
-    1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, here is an example screenshot:
-    ```{figure} images/vitis_analyzer.png
-    ---
-    height: 300px
-    ---
-    Example screenshot
-    ```
-    1. What differences do you see between the ***Application Timeline*** of the CPU and the FPGA?
+    1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.
+    1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
+        Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.
+        ```{figure} images/vitis_analyzer.png
+        ---
+        height: 300px
+        ---
+        Example screenshot
+        ```
 
-    TODO: note above is coming out as a, not f.
-
-    TODO: not sure what you are asking them to compare here
-
-(breakeven)=
 5. **Breakeven and Net Acceleration**
+
     We can model an accelerator with setup and transfer time as:
     ```{math}
     :label: accelerator-model
     T_{accel} = T_{setup}+T_{transfer}+\frac{T_{seq}}{S}
     ```
-Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the x86 host
-and $T_{fpga}$ be the time for the operation the FPGA.  Let
-$S_{fpga}=\frac{T_{seq}}{T_{fpga}}$.  $T_{setup}$ is the time to setup the
-    operation and $T_{transfer}$ is the time to move the data for the
-    operation to the FPGA and back.
-      1. What is $S_{fpga}$ for the matrix-multiply operation above?
-      2. Identify $T_{setup}$.
-      3. Identify $T_{transfer}$
-	  4. Using $S_{fpga}$, $T_{setup}$, and $T_{transfer} from above, how
-    large would $T_{seq}$ be to get an actual speedup?
-    ($T_{accel}<T_{seq}$)?
-	  5. How does $T_{seq}$ scale with the matrix dimension $N$? (write an
+    Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the x86 host that your found in 1a
+    and $T_{fpga}$ be the time for the operation on the FPGA that you found in 4d.
+    
+    Let $S_{fpga}=\frac{T_{seq}}{T_{fpga}}$.
+    
+    $T_{setup}$ is the time to setup the operation and $T_{transfer}$ is the time to move the data for the operation to the FPGA and back.
+
+    1. What is $S_{fpga}$ for the matrix-multiply operation above?
+    2. Find $T_{setup}$ using the trace in 4f.
+    3. Find $T_{transfer}$ using the trace in 4f.
+    4. Using $S_{fpga}$, $T_{setup}$, and $T_{transfer}$ from the above, how
+    large would $T_{seq}$ need to be to get an actual overall speedup?
+        ````{hint}
+        Solve for $T_{seq}$ in:
+        ```{math}
+        \frac{T_{seq}}{T_{accel}} > 1
+        ```
+        ````
+    5. How does $T_{seq}$ scale with the matrix dimension $N$? (write an
     equation for $T_{seq}$ as a function of $N$.
-	  6. How does $T_{fpga}$ scale with the matrix dimension $N$? (write an
+    6. How does $T_{fpga}$ scale with the matrix dimension $N$? (write an
     equation for $T_{fpga}$ as a function of $N$ for your fully unrolled
     loop strategy from Problem 3 (`Main_loop_j` pipelined, `Main_loop_k` unrolled).
-	  7. How does $T_{transfer}$ scale with the matrix dimension $N$? (write an
-      equation for $T_{transfer}$ as a function of $N$.
-	  8. Based on the above, for what value of $N$ would $T_{accel}=T_{seq}$?
-	  9. Based on the above, for what value of $N$ would   $T_{accel}=\frac{T_{seq}}{10}$?
-If you perform a large number of accelerator invocations, you do not need
-to perform the setup operations again.
-    ```{math}
-    :label: accelerator-model-k-invoke
-    T_{accel} = T_{setup}+k \cdot (T_{transfer}+\frac{T_{seq}}{S})
-    ```
-    10. Assuming the number of invocations, $k$, is large (say 1 million), how does
-       this change the value of N for 10x speedup (
-      $T_{accel}=\frac{T_{seq}}{10}$) ?
+    7. How does $T_{transfer}$ scale with the matrix dimension $N$? (write an
+    equation for $T_{transfer}$ as a function of $N$.
+    8. Based on the above, for what value of $N$ would $T_{accel}$ be equal to the value of $T_{seq}$ found in 5d?
+    9. Based on the above, for what value of $N$ would $T_{accel}=\frac{T_{seq}}{10}$, i.e. what value of $N$ would show a 10x speedup?
+    10. If you perform a large number of accelerator invocations, you only need to perform the setup operations once.
+        ```{math}
+        :label: accelerator-model-k-invoke
+        T_{accel} = T_{setup}+k \cdot (T_{transfer}+\frac{T_{seq}}{S})
+        ```
+        Assuming the number of invocations, $k$, is large (say 1 million), how does
+        this change the value of N for 10x speedup (
+        $T_{accel}=\frac{T_{seq}}{10}$) ?
 
-(reflection)=
-6. **Reflection**  TODO: note coming out as 1 not 5.
+6. **Reflection**
     1. Problems 1--3 in this assignment took you through
         a specific optimization sequence for this task.
         Describe the optimization sequence in terms
