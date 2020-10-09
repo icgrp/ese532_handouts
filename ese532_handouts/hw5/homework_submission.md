@@ -18,6 +18,17 @@ Your writeup should include your answers to the following questions:
         (1 line)
     1. We will now simulate the matrix multiplier in
         Vitis HLS.
+        ````{note}
+        If your remote desktop connection is lagging,
+        you can compile HLS from the command line using the script, `export_hls_kernel.sh`, in the `hw5/hls` directory.
+        The script will compile the HLS code to mmult.xo (which gets exported to `ese532_code/hw5/mmult.xo`). You can view the Vitis HLS reports from the command line after you ran the script and find the resource estimates:
+        ```
+        cat ese532_code/hw5/hls/proj_mmult/solution1/syn/report/mmult_csynth.rpt
+        ```
+        Note that the only way to view the HLS schedule is using the GUI.
+        So collaborate with your partner if you are not able to use the GUI
+        or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
+        ````
         - On a different terminal, ssh into your `z1d.2xlarge` instance.
         - Start the DCV server using the following:
             ```
@@ -163,6 +174,11 @@ Your writeup should include your answers to the following questions:
 4. **Vitis Analyzer**
     
     We will now use Vitis Analyzer to analyze the trace of our matrix multiplication on the FPGA.
+    ```{note}
+    Note that the only way to view the Vitis Analyzer is using the GUI.
+    So collaborate with your partner if you are not able to use the GUI
+    or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
+    ```
     1. Open a remote desktop session on your `z1d.2xlarge` instance.
     1. Assuming you ran the application as instructed in {ref}`resume_build`, open a terminal and `git pull` the files you got from the `f1.2xlarge` instance. 
     1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer.
@@ -181,12 +197,12 @@ Your writeup should include your answers to the following questions:
     We can model an accelerator with setup and transfer time as:
     ```{math}
     :label: accelerator-model
-    T_{accel} = T_{setup}+T_{transfer}+\frac{T_{seq}}{S}
+    T_{accel} = T_{setup}+T_{transfer}+T_{fpga}
     ```
     Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the x86 host that your found in 1a
     and $T_{fpga}$ be the time for the operation on the FPGA that you found in 4d.
     
-    Let $S_{fpga}=\frac{T_{seq}}{T_{fpga}}$.
+    Let $S_{fpga}=\frac{T_{seq}}{T_{fpga}}$ or $T_{fpga}=\frac{T_{seq}}{S_{fpga}}$.
     
     $T_{setup}$ is the time to setup the operation and $T_{transfer}$ is the time to move the data for the operation to the FPGA and back.
 
@@ -208,12 +224,13 @@ Your writeup should include your answers to the following questions:
     loop strategy from Problem 3 (`Main_loop_j` pipelined, `Main_loop_k` unrolled).
     7. How does $T_{transfer}$ scale with the matrix dimension $N$? (write an
     equation for $T_{transfer}$ as a function of $N$).
-    8. Based on the above, for what value of $N$ would $T_{accel}$ be equal to the value of $T_{seq}$ found in 5d?
+    8. Based on 5e, 5f, 5g, for what value of $N$ would $T_{accel}$ be equal to the value of $T_{seq}$?
     9. Based on the above, for what value of $N$ would $T_{accel}=\frac{T_{seq}}{10}$, i.e. what value of $N$ would show a 10x speedup?
-    10. If you perform a large number of accelerator invocations, you only need to perform the setup operations once.
+    10. For the value of $N$ found in 5i, what is the value of $S_{fpga}$?
+    11. If you perform a large number of accelerator invocations, you only need to perform the setup operations once.
         ```{math}
         :label: accelerator-model-k-invoke
-        T_{accel} = T_{setup}+k \cdot (T_{transfer}+\frac{T_{seq}}{S})
+        T_{accel} = T_{setup}+k \cdot (T_{transfer}+T_{fpga})
         ```
         Assuming the number of invocations, $k$, is large (say 1 million), how does
         this change the value of N for 10x speedup (

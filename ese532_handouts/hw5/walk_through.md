@@ -222,6 +222,9 @@ hw5/
         Utilities.cpp
         Utilities.h
     hls/
+        export_hls_kernel.sh
+        run_hls.tcl
+        MatrixMultiplication.h
         MatrixMultiplication.cpp
         Testbench.cpp
     Host.cpp
@@ -306,6 +309,26 @@ by including pragmas, e.g. `#pragma HLS inline`, in your code.
 The different pragmas that you can use in your functions are listed in [Vitis HLS User Guide](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hlspragmas.html#okr1504034364623).
 
 When you have obtained a satisfying hardware description in Vitis HLS, you will [Export Vitis Kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel), i.e. a Xilinx object file (.xo). We will then [use this object file/kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/using_the_kernel.md) and link it together in our existing Vitis application.
+
+```{note}
+We are using the GUI mode of Vitis HLS so that we can see the HLS schedule.
+In this class, our preferred method of compiling is using the command line
+and we'll only use GUI when it's required.
+
+If your remote desktop connection is lagging, you can run Vitis HLS
+from the command line using the script, `export_hls_kernel.sh`, 
+in the `hw5/hls` directory. This script runs the TCL script, `run_hls.tcl`, 
+with Vitis HLS. Vitis HLS GUI actually calls the commands in this TCL script.
+If you look inside the TCL script, you can relate it to the GUI steps
+we mentioned above. Additionally, you can learn more about the TCL commands
+from:
+- <https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/tre1585063528538.html>
+- <https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/nfj1539734250759.html>
+
+Note that the only way to see the HLS schedule is through the GUI.
+So collaborate with your partner if you are unable to use the GUI in AWS or try
+to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
+```
 
 (resume_build)=
 ### Run on the FPGA
