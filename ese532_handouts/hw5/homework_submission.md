@@ -113,7 +113,7 @@ Your writeup should include your answers to the following questions:
         ```{hint}
          We are just asking for a Resource Bound analysis here.
          
-         In the F1 instance, our HLS logic gets implemented inside a "shell". The shell consumes about 20% of the FPGA resources, and that includes the PCIe Gen3 X16, DMA engine, DRAM controller interface, ChipScope (Virtual JTAG) and other health monitoring and image loading logic. The rest 80% of the resources is available for the HLS code you write.
+         In the F1 instance, our HLS logic gets implemented inside a "shell". The shell consumes about 20% of the FPGA resources, and that includes the PCIe Gen3 X16, DMA engine, DRAM controller interface, ChipScope (Virtual JTAG) and other health monitoring and image loading logic. The remaining 80% of the resources is available for the HLS code you write.
          
          How many copies of the each design can you fit in the resources available in F1 shell? What throughput does each design achieve?
         ```
@@ -202,12 +202,12 @@ Your writeup should include your answers to the following questions:
         ```
         ````
     5. How does $T_{seq}$ scale with the matrix dimension $N$? (write an
-    equation for $T_{seq}$ as a function of $N$.
+    equation for $T_{seq}$ as a function of $N$).
     6. How does $T_{fpga}$ scale with the matrix dimension $N$? (write an
-    equation for $T_{fpga}$ as a function of $N$ for your fully unrolled
+    equation for $T_{fpga}$ as a function of $N$) for your fully unrolled
     loop strategy from Problem 3 (`Main_loop_j` pipelined, `Main_loop_k` unrolled).
     7. How does $T_{transfer}$ scale with the matrix dimension $N$? (write an
-    equation for $T_{transfer}$ as a function of $N$.
+    equation for $T_{transfer}$ as a function of $N$).
     8. Based on the above, for what value of $N$ would $T_{accel}$ be equal to the value of $T_{seq}$ found in 5d?
     9. Based on the above, for what value of $N$ would $T_{accel}=\frac{T_{seq}}{10}$, i.e. what value of $N$ would show a 10x speedup?
     10. If you perform a large number of accelerator invocations, you only need to perform the setup operations once.
