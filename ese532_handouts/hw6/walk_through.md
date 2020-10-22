@@ -64,7 +64,7 @@ Development Environment
 
 ### Setting up the Build Machine
 There are 3 ways you can run Vitis 2020.1.
-Any of theme will work and have pros and cons.
+Any of them will work and have pros and cons.
 You can use a mix of them.  
 
 #### Installing Vitis 2020.1 on your Personal Computer
