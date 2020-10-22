@@ -245,6 +245,12 @@ utilized in `Host.cpp`
 - Read [this](https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html) to learn about aligned memory allocation with OpenCL.
 - Run the matrix multiplication on the cpu by doing:
     ```
+    # compile
+    source $AWS_FPGA_REPO_DIR/vitis_setup.sh
+    export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
+    make all TARGET=sw_emu
+
+    # run
     source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
     export XCL_EMULATION_MODE=sw_emu
     ./host mmult.xclbin

@@ -44,3 +44,9 @@
     - file: hw5/collaboration
     - file: hw5/walk_through
     - file: hw5/homework_submission
+
+- file: hw6/index
+  numbered: true
+  sections:
+    - file: hw6/collaboration
+    - file: hw6/walk_through
