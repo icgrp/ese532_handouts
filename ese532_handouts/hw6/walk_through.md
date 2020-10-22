@@ -62,11 +62,12 @@ name: ultra96-setup
 Development Environment
 ```
 
+### Setting up the Build Machine
 There are 3 ways you can run Vitis 2020.1.
 Any of theme will work and have pros and cons.
 You can use a mix of them.  
 
-### Installing Vitis 2020.1 on your Personal Computer
+#### Installing Vitis 2020.1 on your Personal Computer
 
 Running Vitis on your local computer will likely be the best interactive
 experience with the GUI.  However, it will take more time and effort (and
@@ -121,33 +122,30 @@ computer or in your linux virtual machine:
     sudo apt install libtinfo-dev
     sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5
     ```
-## Using Vitis on AWS
+#### Using Vitis on AWS
 
-
-     This is what you are already familiar using.  The plus side is it that
+This is what you are already familiar using.  The plus side is it that
 the tools are all setup and ready to go, and you already know how to
 use AWS.  It's also possible that the AWS servers run the compiles faster
 than your laptop or biglab.
 The minus is the high remote latency that makes the GUI harder to
 use and your limited amount of credit on AWS.  One best-of-both-world
 option might be to only use AWS for slow compiles and use your local
-machine for cases where you need to use the GUI. 
+machine for cases where you need to use the GUI.
 
+Follow the instructions from the previous homeworks to create an AWS instance with [Amazon FPGA Developer AMI](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ?qid=1585105385966&sr=0-1&ref_=srh_res_product_title). You can use the `t2.xlarge` instance, which costs about $0.186$/hr.
 
-    Follow the instructions from the previous homeworks to create an AWS instance with [Amazon FPGA Developer AMI](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ?qid=1585105385966&sr=0-1&ref_=srh_res_product_title). You can use the `t2.xlarge` instance, which costs about $0.186$/hr.
+#### Using Vitis on Biglab
 
-### Using Vitis on  Biglab
-
-Biglab also allows you use a setup that is known to work.
+Biglab also allows you to use a setup that is known to work.
 It has the plus that its free, so this will work after your Amazon credits
 run out.  It will require you learn a bit to get yourself logged in and
 setup to use biglab.   For those far from Penn, it may have the same high
 latency problems on the GUI as AWS.
 
-
-    You can use UPenn's BigLab as instructed [here](https://cets.seas.upenn.edu/answers/biglab.html). Vitis is installed in the `/mnt/pollux/software/xilinx/2020.1/` directory. We provide you with a shell script (`compile_on_biglab.sh`) that sets up the environment
-    on BigLab and calls the make commands. Note that biglab can
-    be busy. You can find out which machine is free by going to <https://www.seas.upenn.edu/checklab/?lab=biglab>
+You can use UPenn's BigLab as instructed [here](https://cets.seas.upenn.edu/answers/biglab.html). Vitis is installed in the `/mnt/pollux/software/xilinx/2020.1/` directory. We provide you with a shell script (`compile_on_biglab.sh`) that sets up the environment
+on BigLab and calls the make commands. Note that biglab can
+be busy. You can find out which machine is free by going to <https://www.seas.upenn.edu/checklab/?lab=biglab>
 
    
 ## First Vitis Application on Ultra96
@@ -211,8 +209,10 @@ the previous step.
         Change it if you want to run a different make command.
         Also note that you ***need*** to run with a shell script on
         BigLab.
-- Use `make fpga` to start the full build. This will take about 20-30 minutes and generate the necessary files that will
-go into your SD card.
+- Use `make fpga -j4` to start the full build. This will take about 20-30 minutes and generate the necessary files that will
+go into your SD card. Note that we used `-j4` to build with 4
+cpus. If you have more cpus, you can increase this number.
+`-j16` is usually the maximum parallel jobs Vitis can handle.
 - Use `make clean` to clean all the generated files.
     ```{warning}
     If you do `make clean`, you will lose all the files and the compilation will start from the beginning. You can incrementally build and clean.
@@ -278,7 +278,7 @@ you will see that your program throws an error.
 - We will use two terminals on our host computer:
     - the first terminal will be used to copy binaries into the Ultra96
     - the second terminal will be used to access the serial console of the Ultra96
-- We will now open the serial console of the Ultra96. We can use
+- We will now open the serial console of the Ultra96. You can use
 any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. We are using `minicom` and following is the command we use for connecting to the serial port:
     ```
     sudo minicom -D /dev/ttyUSB1
@@ -433,7 +433,7 @@ the `/mnt/sd-mmcblk0p1` directory
     export XILINX_XRT=/usr
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
     ```
-    You can put these commands in your `~/.bashrc` of the Ultra96 (use `vim` to edit these file in Ultra96), so that
+    You can put these commands in your `~/.bashrc` of the Ultra96 (use `vim` to edit this file in Ultra96), so that
     you don't have to type it all the time.
 - When you only modify your host code, you don't have to copy any of the files mentioned above and only neeed to copy the
 OpenCL host binary, which is `vadd` in this example. You also don't need to reboot the device in that case.
