@@ -17,5 +17,23 @@ In this assignment, we will accelerate an application by implementing
   other builds are running.  The builds in Question~\ref{Interface} do not
   depend on each other, so they can be run concurrently. -->
 
+
+We are delayed in pulling together this assignment and will be releasing it
+in segments so that you can go ahead and get started on the platform
+transition (F1 to Ultra96) and first parts of the assignment while we
+continue to debug and refine the later parts of the assignment.
+
+Watch piazza and check back here for updates.
+
+
+<!-- maybe re-add following when there is an entire assignment to read through. -->
+
+<!--
 You probably want to read through the entire assignment (including the
-[Homework Submission](homework_submission) section) before you start to work on the assignment. 
+[Homework Submission](homework_submission) section) before you start to
+work on the assignment.
+-->
+
+
+
+

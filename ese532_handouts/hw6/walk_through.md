@@ -13,6 +13,14 @@
 ### Setting up Ultra96 and Host Computer
 We have provided you with:
 - An Ultra96 board with a power cable and a JTAG USB cable
+- 2 USB-ethernet adapters
+- 1 ethernet cable
+- 1 SD card and an SD card reader
+- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
+
+<!-- notes broke up that list too much... I think they can tolerate after -->
+<!-- the list -->
+
 ````{note}
 Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:
 ```{figure} images/sd_card_mode.jpg
@@ -33,10 +41,6 @@ JTAG module
 ```{caution}
 > Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <http://www.zedboard.org/product/ultra96-usb-jtaguart-pod>
 ```
-- 2 USB-ethernet adapters
-- 1 ethernet cable
-- 1 SD card and an SD card reader
-- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
 
 We expect you have a personal computer. If you intend to install
 Vitis locally, we expect that your computer has at least:
@@ -57,7 +61,20 @@ name: ultra96-setup
 ---
 Development Environment
 ```
+
+There are 3 ways you can run Vitis 2020.1.
+Any of theme will work and have pros and cons.
+You can use a mix of them.  
+
 ### Installing Vitis 2020.1 on your Personal Computer
+
+Running Vitis on your local computer will likely be the best interactive
+experience with the GUI.  However, it will take more time and effort (and
+disk space) to get it setup.  Ultimately, we recommend you set it up, but
+the other two options means that getting it setup on your local computer
+does not need to be in your critical path to starting to use the Ultra96.
+
+
 Note that Vitis only supports Windows and Linux. Although
 you can use Windows, we strongly suggest you install linux,
 since we developed our homework code on Linux (Ubuntu 20.04). We won't be able to
@@ -104,11 +121,29 @@ computer or in your linux virtual machine:
     sudo apt install libtinfo-dev
     sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5
     ```
-### Using Vitis on AWS or Biglab (if you don't want to have a local installation)
-- ***AWS***:
+## Using Vitis on AWS
+
+
+     This is what you are already familiar using.  The plus side is it that
+the tools are all setup and ready to go, and you already know how to
+use AWS.  It's also possible that the AWS servers run the compiles faster
+than your laptop or biglab.
+The minus is the high remote latency that makes the GUI harder to
+use and your limited amount of credit on AWS.  One best-of-both-world
+option might be to only use AWS for slow compiles and use your local
+machine for cases where you need to use the GUI. 
+
 
     Follow the instructions from the previous homeworks to create an AWS instance with [Amazon FPGA Developer AMI](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ?qid=1585105385966&sr=0-1&ref_=srh_res_product_title). You can use the `t2.xlarge` instance, which costs about $0.186$/hr.
-- ***UPenn BigLab***:
+
+### Using Vitis on  Biglab
+
+Biglab also allows you use a setup that is known to work.
+It has the plus that its free, so this will work after your Amazon credits
+run out.  It will require you learn a bit to get yourself logged in and
+setup to use biglab.   For those far from Penn, it may have the same high
+latency problems on the GUI as AWS.
+
 
     You can use UPenn's BigLab as instructed [here](https://cets.seas.upenn.edu/answers/biglab.html). Vitis is installed in the `/mnt/pollux/software/xilinx/2020.1/` directory. We provide you with a shell script (`compile_on_biglab.sh`) that sets up the environment
     on BigLab and calls the make commands. Note that biglab can
