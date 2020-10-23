@@ -273,6 +273,10 @@ reconfigures the ***Programmable Logic*** of the Ultra96. Hence,
 we need a reboot. If you copy the files, but don't do a reboot,
 you will see that your program throws an error.
 ````
+```{caution}
+Make sure you don't hot plug/unplug the SD card. This can potentially corrupt the SD card/damage the board. Always shut down the device first and then insert/take out the SD card. You can shut down the device by typing "poweroff" in the serial console of the device.
+```
+
 #### Boot the Ultra96
 - Make sure you have the board connected as shown in {numref}`ultra96-setup`.
 - We will use two terminals on our host computer:
@@ -392,7 +396,7 @@ by pressing the boot switch as shown in {numref}`boot`.
     ```
     sudo ifconfig enx000ec6c4b500 10.10.7.2 netmask 255.0.0.0
     ```
-- We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connect to our host computer.
+- We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
 You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
 computer.
 - Let's copy a file. Copy the `xrt.ini` file from your computer to the `/mnt/sd-mmcblk0p1` directory of the Ultra96 as follows:
