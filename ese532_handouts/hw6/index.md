@@ -1,4 +1,4 @@
-# HW6: Accelerator Interface
+# Accelerator Interface
 
 ```{admonition} Due
 Friday, October 30, 5:00 PM

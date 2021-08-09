@@ -1,4 +1,4 @@
-# HW2: Profiling
+# Profiling
 
 ```{admonition} Due
 Sunday, September 20, 10:00 PM

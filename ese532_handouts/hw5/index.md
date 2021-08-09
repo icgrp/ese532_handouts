@@ -1,4 +1,4 @@
-# HW5: Accelerator
+# Accelerator
 
 ```{admonition} Due
 Friday, October 16, 5:00 PM

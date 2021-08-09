@@ -1,4 +1,4 @@
-# HW1: Hello AWS, Remember C
+# Hello AWS, Remember C
 
 ```{admonition} Due
 Friday, September 11, 5:00 PM EDT
