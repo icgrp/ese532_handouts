@@ -1,3 +1,4 @@
 jupyter-book
 matplotlib
 numpy
+sphinx-thebe==0.0.8
