@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.5. C Refresher &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.6. Debug an Application" href="debug_app.html" />
+    <link rel="prev" title="1.4. GDB Tutorial" href="gdb_tutorial.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   1. Remember C
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw1/c_refresher.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw1/c_refresher.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw1/c_refresher.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="c-refresher">
+<h1><span class="section-number">1.5. </span>C Refresher<a class="headerlink" href="#c-refresher" title="Permalink to this headline">¶</a></h1>
+<style type="text/css">
+    ol { list-style-type: decimal; }
+    ol ol { list-style-type: lower-alpha; }
+    ol ol ol { list-style-type: lower-roman; }
+</style>
+<p>For some of these questions you will need to compile and run C code.
+(For others, you may find it useful to experiment with C code.)
+For this section, you may use any editor and C compiler.
+If you don’t have a favorite C compiler on your personal laptop or PC, you
+can use the Biglab. On the Linux machines, you can compile a simple, single C file application in <code class="docutils literal notranslate"><span class="pre">program.c</span></code> using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="o">-</span><span class="n">o</span> <span class="n">program</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>Following are some recommended resources for learning C:</p>
+<ul class="simple">
+<li><p>Pointers on C by Kenneth Reek</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/788d972ffe62083c2f1e3f86b7c03f5d/gccintro.pdf"><code class="xref download docutils literal notranslate"><span class="pre">gccintro</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/02925c63b6312c7477527eae6e0197f7/deep-c-cpp.pdf"><code class="xref download docutils literal notranslate"><span class="pre">deep</span> <span class="pre">C</span></code></a></p></li>
+</ul>
+<ol>
+<li><p>Write the C code to reproduce the contents of the stack and heap
+as shown in <a class="reference internal" href="#pointer-question-1"><span class="std std-numref">Fig. 1.1</span></a>. You can use any variable and pointer names with int type. For e.g. <code class="docutils literal notranslate"><span class="pre">0x5C</span></code> is filled with <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">20;</span></code>.</p>
+<div class="figure align-default" id="pointer-question-1">
+<a class="reference internal image-reference" href="../_images/memory_map_1.png"><img alt="../_images/memory_map_1.png" src="../_images/memory_map_1.png" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Memory space with stack and heap</span><a class="headerlink" href="#pointer-question-1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>The stack grows downward and the heap grows upwards
+(with GCC compiler and Armv8-a architecture we are using).
+What happens when stack and heap memory space collide? (4-5 lines)
+Your answer should include what happens when you are running your
+program under an OS vs when you are running in a bare-metal system.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Think of what guarantees you get in an OS vs guarantees you don’t get in a
+bare-metal system.</p>
+<p>A bare-metal system will not have virtual guards on memory regions
+and typically omits checks for bounds on stacks and heaps.</p>
+<p>Later in the course when we’ll use the Ultra96, we may need to
+increase our stack/heap size in the linker script
+to get the correct output in our program!</p>
+</div>
+</li>
+<li><p><a class="reference internal" href="#pointer-question-2"><span class="std std-numref">Fig. 1.2</span></a> shows the content of an 8 element int array on the stack.</p>
+<ol class="simple">
+<li><p>Write the C code to allocate this array on the stack as shown in <a class="reference internal" href="#pointer-question-2"><span class="std std-numref">Fig. 1.2(a)</span></a>, as a 2D array.</p></li>
+<li><p>Building from (a), declare an array of pointers as shown in <a class="reference internal" href="#pointer-question-2"><span class="std std-numref">Fig. 1.2(b)</span></a>, and use it to print out the contents of the 2D array.</p></li>
+<li><p>Building from (b), declare a double pointer as shown in <a class="reference internal" href="#pointer-question-2"><span class="std std-numref">Fig. 1.2(c)</span></a>, and use it to print out the contents of the 2D array.</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A 2D array is not equivalent to a double pointer! Review
+<a class="reference external" href="https://cs.brynmawr.edu/Courses/cs246/spring2014/Slides/16_2DArray_Pointers.pdf">these slides</a>.</p>
+</div>
+<div class="figure align-default" id="pointer-question-2">
+<a class="reference internal image-reference" href="../_images/memory_map_2.png"><img alt="../_images/memory_map_2.png" src="../_images/memory_map_2.png" style="height: 450px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">8 element array on the stack</span><a class="headerlink" href="#pointer-question-2" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Considering the following code, give an expression to obtain
+the address of <code class="docutils literal notranslate"><span class="pre">b</span></code> that can be accessed via the third
+element of <code class="docutils literal notranslate"><span class="pre">x</span></code>. (1 line)</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">s2</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">struct</span> <span class="nc">s1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span> <span class="nc">s2</span><span class="w"> </span><span class="o">**</span><span class="n">d</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">struct</span> <span class="nc">s1</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>The following array will be stored as a sequence of bits in
+memory.  We could also consider these bits as a sequence
+of bytes (<code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>).  Show code that prints those
+bytes.   Avoid needless copying or losing information.
+Note that an IEEE Double-precision floating-point value is
+stored in 64 bits.  You can see
+<a class="reference external" href="https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/">https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/</a>
+for more information on IEEE Double-precision
+floating-point format, but understanding this is not
+necessary to your solution, only to understanding what it is
+your solution is reporting.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">3.14</span><span class="p">,</span><span class="w"> </span><span class="mf">2.71</span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Put together code to print the address associated with each of the
+arrays, <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, and <code class="docutils literal notranslate"><span class="pre">d</span></code>.
+Include the code and the results of running it and reporting the addresses.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">temp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">d</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// print addresses for arrays here....</span>
+
+<span class="w">  </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>What might happen with the following code?</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+
+<span class="c1">// intervening code omitted</span>
+
+<span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="mi">13</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Many different things could happen.  Give multiple answers.  For each
+identified case, what happens and why (2 lines max for each case).</p>
+</li>
+<li><p>Compile and run the following code.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdio.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdlib.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mi">73</span><span class="p">};</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">intsum</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">signed</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">127</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="p">};</span><span class="w"></span>
+<span class="w">  </span><span class="kt">signed</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">ssum</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">signed</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sintsum</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unsigned:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="n">intsum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in decimal: %d+%d=%d (intsum=%d)</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">intsum</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in hexadecimal: %x+%x=%x (intsum=%x)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">intsum</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Signed:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ssum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="n">sintsum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in decimal: %d+%d=%d (intsum=%d)</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">ssum</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">sintsum</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in hexadecimal: %x+%x=%x (intsum=%x)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">sa</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"></span>
+<span class="w">              </span><span class="n">ssum</span><span class="p">,</span><span class="w"> </span><span class="n">sintsum</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Explain the results you get.  Why do the <code class="docutils literal notranslate"><span class="pre">char</span></code> and <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code> sums differ
+from the integer sums?  (2-3 lines each) Why does the computer produce the specific values
+that it does for each of the <code class="docutils literal notranslate"><span class="pre">char</span></code> and <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code> sums? (1-3
+lines each)</p>
+</li>
+<li><p>What is the purpose of the preprocessor, compiler, and
+linker? (each 3 lines max.)</p>
+<p>Potentially useful:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/788d972ffe62083c2f1e3f86b7c03f5d/gccintro.pdf"><code class="xref download docutils literal notranslate"><span class="pre">gccintro</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.tenouk.com/ModuleW.html">https://www.tenouk.com/ModuleW.html</a></p></li>
+</ul>
+<p>[We point you at the gcc documentation because it is easily
+available online.  Many of the options and concepts are the same
+across other C compilers.  In some cases, Xilinx tools will use gcc
+internally.  For some of your development (including, perhaps, for
+this section of this assignment) you may find it useful to get
+your C working on a workstation, laptop, or AWS A1 instance using gcc.]</p>
+</li>
+<li><p>If the preprocessor cannot find a file that is included
+with <code class="docutils literal notranslate"><span class="pre">#include</span></code>, give at least three different ways you could resolve
+the problem so that the preprocessor can find the file? (1–2 lines each)</p>
+<p>Possibly useful:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options">https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options</a></p></li>
+<li><p><a class="reference external" href="http://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html">http://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html</a></p></li>
+</ul>
+</li>
+<li><p>If the linker gives you an error like <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">...</span></code>,
+identify three reasons this could occur and at least one way to resolve each.
+(1–2 lines each)</p>
+<p>Possibly useful:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options">https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options</a></p></li>
+<li><p><a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html">https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html</a></p></li>
+</ul>
+</li>
+</ol>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="gdb_tutorial.html" title="previous page"><span class="section-number">1.4. </span>GDB Tutorial</a>
+    <a class='right-next' id="next-link" href="debug_app.html" title="next page"><span class="section-number">1.6. </span>Debug an Application</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
