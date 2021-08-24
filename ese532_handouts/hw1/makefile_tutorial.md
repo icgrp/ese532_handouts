@@ -1,6 +1,4 @@
 # Makefile Tutorial
-```{include} ../common/aws_caution.md
-```
 
 In this course, we are advocating that you use a command-line
 workflow when you can. Of course, you can use your favorite
@@ -113,6 +111,3 @@ try those by yourselves. Following are some resources that are helpful:
 - <https://makefiletutorial.com/>
 - <https://www.tutorialspoint.com/makefile/index.htm>
 - <https://www.gnu.org/software/make/manual/>
-
-```{include} ../common/aws_caution.md
-```

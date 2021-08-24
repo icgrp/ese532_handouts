@@ -1,6 +1,4 @@
 # Debug an Application
-```{include} ../common/aws_caution.md
-```
 
 1. Create a new source C file and paste the following code in it.
 The code should print another message, but due to a bug, it doesn't.
@@ -152,6 +150,3 @@ and upload it to canvas.
       return 0;
     }    
     ```
-
-```{include} ../common/aws_caution.md
-```

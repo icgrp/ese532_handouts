@@ -1,12 +1,5 @@
 # Overview
 There are 7 homework assignments and 1 project in this course.
-We will do homework 1-4 on Amazon EC2 A1 instances. Homework
-5-7 will be on Amazon EC2 F1 instances. For the project, we will 
-use Ultra96 embedded FPGAs, which we will ship to you before we
-get there.
-
-```{include} common/aws_caution.md
-```
 
 ```{tip}
 As mentioned in the course homepage, we will award bonus points

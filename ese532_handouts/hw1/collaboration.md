@@ -4,7 +4,7 @@ the assignment on Canvas in the *Partners* map under the
 *Files* section.  In the event that
 the partner assignment does not work out (e.g., your assigned partner
 has already dropped the course), contact the instructor or TA as soon
-as possible.
+as possible.\ 
 
 You can certainly do this assignment alone.
 Everyone should be learning how to use all the tools, so don't take this as
@@ -14,7 +14,7 @@ together on how to get the tools to work.
 % (and because we don't have enough Ultra96-v2 boards to go around).
 For future assignments, you will have a different
 partner that we will assign---all the more reason to make sure everyone knows
-how to use AWS and is setup with their own accounts.
+how to use Biglab/Detkin/Ketterer machines and is setup with their own accounts.
 % If you cannot find a partner, we encourage you to look on Piazza
 %    for other students without partners.  Piazza has functionality that allows you to
 %    search for teammates.  In the event that you are unable to find a partner, contact

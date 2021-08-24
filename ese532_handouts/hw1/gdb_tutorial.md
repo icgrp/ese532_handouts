@@ -1,7 +1,5 @@
 # GDB Tutorial
 
-```{include} ../common/aws_caution.md
-```
 GDB is like a swiss-army knife to a C/C++ developer. You can step through
 your code line-by-line, view call stacks, view assembly, and most importantly---
 find the source of a bug! If you haven't used a debugger before, take
@@ -30,7 +28,7 @@ int main()
     my_broken_function();
 }
 ```
-Compile and run the code with the following in your AWS A1 instance:
+Compile and run the code with the following:
 ```
 gcc -Wall -g -o program program.c
 ./program
@@ -104,7 +102,7 @@ using `file ./program`
     15	    printf("Brace for impact! We are about to crash!\n");
     Value returned is $1 = 46
     ```
-- Looks like we are at the next `printf`. We'd like <u>**step over it**</u>. Use `next`:
+- Looks like we are at the next `printf`. We'd like to <u>**step over it**</u>. Use `next`:
     ```
     (gdb) next
     Brace for impact! We are about to crash!
@@ -227,6 +225,3 @@ Following are some resources that you may find helpful:
 - <http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html>
 - [GDB documentation](https://sourceware.org/gdb/current/onlinedocs/gdb/)
 - {download}`gccintro <pdfs/gccintro.pdf>`
-
-```{include} ../common/aws_caution.md
-```

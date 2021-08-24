@@ -5,14 +5,11 @@
     ol ol ol { list-style-type: lower-roman; }
 </style>
 
-```{include} ../common/aws_caution.md
-```
 For some of these questions you will need to compile and run C code.
 (For others, you may find it useful to experiment with C code.)
 For this section, you may use any editor and C compiler.
 If you don't have a favorite C compiler on your personal laptop or PC, you
-can use the A1 instance on the Amazon Cloud. On the Linux machines, including AWS
-Cloud machines, you can compile a simple, single C file application in `program.c` using:
+can use the Biglab. On the Linux machines, you can compile a simple, single C file application in `program.c` using:
 ```
 gcc -o program program.c
 ```
@@ -201,6 +198,3 @@ identify three reasons this could occur and at least one way to resolve each.
 
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html>
-
-```{include} ../common/aws_caution.md
-```
