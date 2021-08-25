@@ -9,10 +9,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 </style>
 
 1. **Tools**
-    1. Provide your AWS Account Id.
-    2. Provide AWS A1 instance system information and gcc version. 
-    3. Provide a screenshot of your current AWS credit usage.
-    4. Describe how you do the following in gdb (each 3 lines max.):
+    1. Describe how you do the following in gdb (each 3 lines max.):
         1. Add a breakpoint.
         2. Remove a breakpoint.
         3. Inspect a variable value.

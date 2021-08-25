@@ -1,6 +1,6 @@
 # Getting Started
 
-## Basic Model
+## Development Environment
 **Hardware**: For this course, as a minimum, we need you to have a machine
 that you can use for software development. A typical configuration
 is Intel Core i5 + 256GB SSD + 8GB RAM. The compute resources available to you are Biglab nodes and Linux/Windows machines in Detkin/Ketterer, where
@@ -10,7 +10,8 @@ each of you with a Ultra96 board, which will be used in the subsequent assignmen
 **OS**: You can use any OS---Mac/Linux/Windows, however, keep in mind that Xilinx only supports Linux and Windows (you can use [this video tutorial](https://www.youtube.com/watch?v=HaOWfmCAyCE) to run Linux on a virtualization software).
 Our instructions are written for Linux and assumes you have basic proficiency in
 Linux. Following are some resources if you need to brush up on Linux command line:
-<!-- - [Linux Command Line Most Wanted]() -->
+- [Introduction to the GNU/Linux and UNIX command line](https://bootlin.com/blog/command-line/)
+- [Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 
 **Terminal**: For HW 1-4, we will use a command-line workflow. We will introduce some Xilinx
 specific GUI workflow in HW 5-7. You will need to be comfortable with using
@@ -23,9 +24,14 @@ Or you can ssh from an editor in your local machine to edit files remotely.
 For instance:
 - [Remotely edit files using SSH from VS Code in Mac/Linux/Windows](https://medium.com/@christyjacob4/using-vscode-remotely-on-an-ec2-instance-7822c4032cff) 
 
+**Version Control**: We will be supplying starter code at [ese532_code](https://github.com/icgrp/ese532_code) git repository. Hence, you'll need
+to know basic git commands. Refer to the following resource to brush up on
+your git commands:
+- [Pro Git](https://git-scm.com/book/en/v2)
+
 ## Logging into Biglab
 
-You can use UPenn's Biglab as instructed [here](https://cets.seas.upenn.edu/answers/biglab.html). Note that biglab can
+Use UPenn's Biglab as instructed [here](https://cets.seas.upenn.edu/answers/biglab.html). Note that biglab can
 be busy. You can find out which machine is free by going to <https://www.seas.upenn.edu/checklab/?lab=biglab>
 
 ---
