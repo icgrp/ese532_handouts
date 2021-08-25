@@ -18,7 +18,7 @@ C programs. If you know how to write a `Makefile` you can skip this section.
 Clone the `ese532_code`
 repository using the following command:
 ```
-git clone https://github.com/icgrp/ese532_code.git
+git clone git@github.com:icgrp/ese532_code.git
 ```
 If you already have it cloned, pull in the latest changes
 using:

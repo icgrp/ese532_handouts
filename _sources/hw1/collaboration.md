@@ -4,7 +4,7 @@ the assignment on Canvas in the *Partners* map under the
 *Files* section.  In the event that
 the partner assignment does not work out (e.g., your assigned partner
 has already dropped the course), contact the instructor or TA as soon
-as possible.\ 
+as possible.
 
 You can certainly do this assignment alone.
 Everyone should be learning how to use all the tools, so don't take this as

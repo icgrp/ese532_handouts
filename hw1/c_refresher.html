@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -80,7 +80,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -265,14 +265,24 @@ can use the Biglab. On the Linux machines, you can compile a simple, single C fi
 </ul>
 <ol>
 <li><p>Write the C code to reproduce the contents of the stack and heap
-as shown in <a class="reference internal" href="#pointer-question-1"><span class="std std-numref">Fig. 1.1</span></a>. You can use any variable and pointer names with int type. For e.g. <code class="docutils literal notranslate"><span class="pre">0x5C</span></code> is filled with <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">20;</span></code>.</p>
+as shown in <a class="reference internal" href="#pointer-question-1"><span class="std std-numref">Fig. 1.1</span></a>. You can use any variable and pointer names with int type. For e.g. address <code class="docutils literal notranslate"><span class="pre">0x5C</span></code> is filled with <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">20;</span></code>. Note that the hex values shown below are not absolute and is
+just there as a guide. We expect location of heap and stack to be different.</p>
 <div class="figure align-default" id="pointer-question-1">
 <a class="reference internal image-reference" href="../_images/memory_map_1.png"><img alt="../_images/memory_map_1.png" src="../_images/memory_map_1.png" style="height: 300px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Memory space with stack and heap</span><a class="headerlink" href="#pointer-question-1" title="Permalink to this image">¶</a></p>
 </div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>Find out what causes things to go into stack vs heap in C. Find out how the stack and heap grow.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">printf</span></code> to print out the value and addresses and verify whether something went into the stack or heap. You can also use <code class="docutils literal notranslate"><span class="pre">printf</span></code> to figure out which direction the stack and heap are growing.</p></li>
+<li><p>Use the address values as a guide. For instance, for the addresses <code class="docutils literal notranslate"><span class="pre">0x34</span></code>, <code class="docutils literal notranslate"><span class="pre">0x38</span></code>, <code class="docutils literal notranslate"><span class="pre">0x3C</span></code>, why are the differences between the addresses 4 bytes? Compared to addresses, <code class="docutils literal notranslate"><span class="pre">0x40</span></code>, <code class="docutils literal notranslate"><span class="pre">0x48</span></code>, <code class="docutils literal notranslate"><span class="pre">0x50</span></code>, the differences there are 8 bytes—why is that? Do the contents in those addresses tell you something about it? Why are there arrows for some boxes and not for others (the arrows are also there just to guide you)?</p></li>
+<li><p>What data structure do the contents at <code class="docutils literal notranslate"><span class="pre">0x34</span></code>, <code class="docutils literal notranslate"><span class="pre">0x38</span></code>, and <code class="docutils literal notranslate"><span class="pre">0x3C</span></code> remind you of?</p></li>
+</ul>
+</div>
 </li>
 <li><p>The stack grows downward and the heap grows upwards
-(with GCC compiler and Armv8-a architecture we are using).
+(with GCC compiler and x86 architecture we are using in Biglab).
 What happens when stack and heap memory space collide? (4-5 lines)
 Your answer should include what happens when you are running your
 program under an OS vs when you are running in a bare-metal system.</p>
@@ -420,7 +430,7 @@ available online.  Many of the options and concepts are the same
 across other C compilers.  In some cases, Xilinx tools will use gcc
 internally.  For some of your development (including, perhaps, for
 this section of this assignment) you may find it useful to get
-your C working on a workstation, laptop, or AWS A1 instance using gcc.]</p>
+your C working on a workstation, laptop, or on Biglab using gcc.]</p>
 </li>
 <li><p>If the preprocessor cannot find a file that is included
 with <code class="docutils literal notranslate"><span class="pre">#include</span></code>, give at least three different ways you could resolve
@@ -466,12 +476,32 @@ identify three reasons this could occur and at least one way to resolve each.
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="gdb_tutorial.html" title="previous page"><span class="section-number">1.4. </span>GDB Tutorial</a>
-    <a class='right-next' id="next-link" href="debug_app.html" title="next page"><span class="section-number">1.6. </span>Debug an Application</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="gdb_tutorial.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">1.4. </span>GDB Tutorial</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="debug_app.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">1.6. </span>Debug an Application</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

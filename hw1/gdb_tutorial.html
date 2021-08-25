@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -80,7 +80,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -252,8 +252,12 @@ of the debugger.  Learn how to set breakpoints, step through code, and
 inspect variables. If you know how to debug using <code class="docutils literal notranslate"><span class="pre">gdb</span></code> you can skip this section.</p>
 <hr class="docutils" />
 <p>Consider the following code:</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="c1"> </span><span class="cp"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">log_msg</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="n">string</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">my_broken_function</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -263,10 +267,10 @@ inspect variables. If you know how to debug using <code class="docutils literal 
 <span class="w">    </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Brace for impact! We are about to crash!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">log_msg</span><span class="p">(</span><span class="s">&quot;Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">log_msg</span><span class="p">(</span><span class="s">&quot;Brace for impact! We are about to crash!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">my_broken_function</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -280,7 +284,7 @@ inspect variables. If you know how to debug using <code class="docutils literal 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Welcome to the wonderful world of segfaults!
 Brace for impact! We are about to crash!
 Value of a is 10
-Segmentation fault
+Segmentation fault (core dumped)
 </pre></div>
 </div>
 <ul>
@@ -291,83 +295,89 @@ Segmentation fault
 </li>
 <li><p><u><strong>Run the program</strong></u> using <code class="docutils literal notranslate"><span class="pre">run</span></code> command in gdb:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) run
-Starting program: /home/ec2-user/program
-Welcome to the wonderful world of SEG Faults!
+Starting program: /mnt/castor/seas_home/s/stahmed/ese532_code/hw1/tutorial/program 
+Missing separate debuginfos, use: zypper install glibc-debuginfo-2.31-7.30.x86_64
+Welcome to the wonderful world of segfaults!
 Brace for impact! We are about to crash!
 Value of a is 10
 
 Program received signal SIGSEGV, Segmentation fault.
-0x0000000000400610 in my_broken_function () at program.c:9
-9	    *p = 1;
+0x0000000000400556 in my_broken_function () at program.c:13
+13	    *p = 1;
 </pre></div>
 </div>
 </li>
 <li><p>The program has exited with a segfault. While in gdb <u><strong>restart the program</strong></u>
 using <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">./program</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) file ./program
+A program is being debugged already.
+Are you sure you want to change the file? (y or n) y
 Load new symbol table from &quot;./program&quot;? (y or n) y
-Reading symbols from ./program...done.
+Reading symbols from ./program...
 </pre></div>
 </div>
 </li>
 <li><p><u><strong>Stop at the beginning</strong></u> using <code class="docutils literal notranslate"><span class="pre">start</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">start</span>
-<span class="n">Temporary</span> <span class="n">breakpoint</span> <span class="mi">1</span> <span class="n">at</span> <span class="mh">0x400628</span><span class="p">:</span> <span class="n">file</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">14.</span>
-<span class="n">Starting</span> <span class="n">program</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ec2</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">program</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) start
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Temporary breakpoint 1 at 0x400563: file program.c, line 18.
+Starting program: /mnt/castor/seas_home/s/stahmed/ese532_code/hw1/tutorial/program 
+Missing separate debuginfos, use: zypper install glibc-debuginfo-2.31-7.30.x86_64
 
-<span class="n">Temporary</span> <span class="n">breakpoint</span> <span class="mi">1</span><span class="p">,</span> <span class="n">main</span> <span class="p">()</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">14</span>
-<span class="mi">14</span>	    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Welcome to the wonderful world of SEG Faults!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+Temporary breakpoint 1, main () at program.c:18
+18	    log_msg(&quot;Welcome to the wonderful world of segfaults!\n&quot;);
 </pre></div>
 </div>
 </li>
 <li><p><u><strong>Step to the next line</strong></u> using <code class="docutils literal notranslate"><span class="pre">step</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">step</span>
-<span class="n">_IO_puts</span> <span class="p">(</span><span class="nb">str</span><span class="o">=</span><span class="mh">0x400730</span> <span class="s2">&quot;Welcome to the wonderful world of SEG Faults!&quot;</span><span class="p">)</span> <span class="n">at</span> <span class="n">ioputs</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">36</span>
-<span class="mi">36</span>	  <span class="n">_IO_acquire_lock</span> <span class="p">(</span><span class="n">_IO_stdout</span><span class="p">);</span>
+<span class="n">log_msg</span> <span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="mh">0x400630</span> <span class="s2">&quot;Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">5</span>
+<span class="mi">5</span>	   <span class="n">printf</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
-<li><p>That looks like code we didn’t write. <u><strong>Find out where you are</strong></u> by using <code class="docutils literal notranslate"><span class="pre">list</span></code>:</p>
+<li><p><u><strong>Find out where you are</strong></u> by using <code class="docutils literal notranslate"><span class="pre">list</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="nb">list</span>
-<span class="mi">31</span>	<span class="nb">int</span>
-<span class="mi">32</span>	<span class="n">_IO_puts</span> <span class="p">(</span><span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="nb">str</span><span class="p">)</span>
-<span class="mi">33</span>	<span class="p">{</span>
-<span class="mi">34</span>	  <span class="nb">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">EOF</span><span class="p">;</span>
-<span class="mi">35</span>	  <span class="n">_IO_size_t</span> <span class="nb">len</span> <span class="o">=</span> <span class="n">strlen</span> <span class="p">(</span><span class="nb">str</span><span class="p">);</span>
-<span class="mi">36</span>	  <span class="n">_IO_acquire_lock</span> <span class="p">(</span><span class="n">_IO_stdout</span><span class="p">);</span>
-<span class="mi">37</span>
-<span class="mi">38</span>	  <span class="k">if</span> <span class="p">((</span><span class="n">_IO_vtable_offset</span> <span class="p">(</span><span class="n">_IO_stdout</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
-<span class="mi">39</span>	       <span class="o">||</span> <span class="n">_IO_fwide</span> <span class="p">(</span><span class="n">_IO_stdout</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="mi">40</span>	      <span class="o">&amp;&amp;</span> <span class="n">_IO_sputn</span> <span class="p">(</span><span class="n">_IO_stdout</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span>
+<span class="mi">1</span>	<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="mi">2</span>	<span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="mi">3</span>	
+<span class="mi">4</span>	<span class="n">void</span> <span class="n">log_msg</span><span class="p">(</span><span class="n">char</span><span class="o">*</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">5</span>	   <span class="n">printf</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+<span class="mi">6</span>	<span class="p">}</span>
+<span class="mi">7</span>	
+<span class="mi">8</span>	<span class="n">void</span> <span class="n">my_broken_function</span><span class="p">()</span>
+<span class="mi">9</span>	<span class="p">{</span>
+<span class="mi">10</span>	    <span class="nb">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Looks like we are inside the <code class="docutils literal notranslate"><span class="pre">printf</span></code> function. <u><strong>Step out of the function</strong></u> using <code class="docutils literal notranslate"><span class="pre">finish</span></code>:</p>
+<li><p>Looks like we are inside the <code class="docutils literal notranslate"><span class="pre">log_msg</span></code> function. <u><strong>Step out of the function</strong></u> using <code class="docutils literal notranslate"><span class="pre">finish</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) finish
-Run till exit from #0  _IO_puts (str=0x400730 &quot;Welcome to the wonderful world of SEG Faults!&quot;) at ioputs.c:36
-Welcome to the wonderful world of SEG Faults!
-main () at program.c:15
-15	    printf(&quot;Brace for impact! We are about to crash!\n&quot;);
-Value returned is $1 = 46
+Run till exit from #0  log_msg (string=0x400630 &quot;Welcome to the wonderful world of segfaults!\n&quot;)
+    at program.c:5
+Welcome to the wonderful world of segfaults!
+main () at program.c:19
+19	    log_msg(&quot;Brace for impact! We are about to crash!\n&quot;);
 </pre></div>
 </div>
 </li>
-<li><p>Looks like we are at the next <code class="docutils literal notranslate"><span class="pre">printf</span></code>. We’d like to <u><strong>step over it</strong></u>. Use <code class="docutils literal notranslate"><span class="pre">next</span></code>:</p>
+<li><p>Looks like we are at the next <code class="docutils literal notranslate"><span class="pre">log_msg</span></code>. We’d like to <u><strong>step over it</strong></u>. Use <code class="docutils literal notranslate"><span class="pre">next</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) next
 Brace for impact! We are about to crash!
-16	    my_broken_function();
+20	    my_broken_function();
 </pre></div>
 </div>
 </li>
 <li><p>That function looks suspicious. We can step into it, but let’s <u><strong>set a breakpoint</strong></u> inside
-that function using <code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">program.c:8</span></code> and <u><strong>continue to the breakpoint</strong></u> using <code class="docutils literal notranslate"><span class="pre">continue</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">break</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">8</span>
-<span class="n">Breakpoint</span> <span class="mi">3</span> <span class="n">at</span> <span class="mh">0x4005f8</span><span class="p">:</span> <span class="n">file</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">8.</span>
+that function using <code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">program.c:12</span></code> and <u><strong>continue to the breakpoint</strong></u> using <code class="docutils literal notranslate"><span class="pre">continue</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">break</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">12</span>
+<span class="n">Breakpoint</span> <span class="mi">2</span> <span class="n">at</span> <span class="mh">0x40053e</span><span class="p">:</span> <span class="n">file</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">12.</span>
 <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">continue</span>
 <span class="n">Continuing</span><span class="o">.</span>
 
-<span class="n">Breakpoint</span> <span class="mi">3</span><span class="p">,</span> <span class="n">my_broken_function</span> <span class="p">()</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">8</span>
-<span class="mi">8</span>	    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Value of a is </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="n">Breakpoint</span> <span class="mi">2</span><span class="p">,</span> <span class="n">my_broken_function</span> <span class="p">()</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">12</span>
+<span class="mi">12</span>	    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Value of a is </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
@@ -375,14 +385,14 @@ that function using <code class="docutils literal notranslate"><span class="pre"
 <ul>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">frame</span></code> to see information on the current stack frame:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">info</span> <span class="n">frame</span>
-<span class="n">Stack</span> <span class="n">level</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame</span> <span class="n">at</span> <span class="mh">0xfffffffff370</span><span class="p">:</span>
- <span class="n">pc</span> <span class="o">=</span> <span class="mh">0x4005f8</span> <span class="ow">in</span> <span class="n">my_broken_function</span> <span class="p">(</span><span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">8</span><span class="p">);</span> <span class="n">saved</span> <span class="n">pc</span> <span class="o">=</span> <span class="mh">0x400644</span>
- <span class="n">called</span> <span class="n">by</span> <span class="n">frame</span> <span class="n">at</span> <span class="mh">0xfffffffff380</span>
- <span class="n">source</span> <span class="n">language</span> <span class="n">c</span><span class="o">.</span>
- <span class="n">Arglist</span> <span class="n">at</span> <span class="mh">0xfffffffff350</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span>
- <span class="n">Locals</span> <span class="n">at</span> <span class="mh">0xfffffffff350</span><span class="p">,</span> <span class="n">Previous</span> <span class="n">frame</span><span class="s1">&#39;s sp is 0xfffffffff370</span>
- <span class="n">Saved</span> <span class="n">registers</span><span class="p">:</span>
-  <span class="n">x29</span> <span class="n">at</span> <span class="mh">0xfffffffff350</span><span class="p">,</span> <span class="n">x30</span> <span class="n">at</span> <span class="mh">0xfffffffff358</span>
+<span class="n">Stack</span> <span class="n">level</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame</span> <span class="n">at</span> <span class="mh">0x7fffffffdd90</span><span class="p">:</span>
+<span class="n">rip</span> <span class="o">=</span> <span class="mh">0x40053e</span> <span class="ow">in</span> <span class="n">my_broken_function</span> <span class="p">(</span><span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">12</span><span class="p">);</span> <span class="n">saved</span> <span class="n">rip</span> <span class="o">=</span> <span class="mh">0x400581</span>
+<span class="n">called</span> <span class="n">by</span> <span class="n">frame</span> <span class="n">at</span> <span class="mh">0x7fffffffdda0</span>
+<span class="n">source</span> <span class="n">language</span> <span class="n">c</span><span class="o">.</span>
+<span class="n">Arglist</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> 
+<span class="n">Locals</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">Previous</span> <span class="n">frame</span><span class="s1">&#39;s sp is 0x7fffffffdd90</span>
+<span class="n">Saved</span> <span class="n">registers</span><span class="p">:</span>
+<span class="n">rbp</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">rip</span> <span class="n">at</span> <span class="mh">0x7fffffffdd88</span>
 </pre></div>
 </div>
 </li>
@@ -403,7 +413,7 @@ that function using <code class="docutils literal notranslate"><span class="pre"
 </li>
 <li><p>You can also <u><strong>print values</strong></u> using <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) print a
-$2 = 10
+$1 = 10
 </pre></div>
 </div>
 </li>
@@ -413,18 +423,18 @@ $2 = 10
 <span class="n">Value</span> <span class="n">of</span> <span class="n">a</span> <span class="ow">is</span> <span class="mi">10</span>
 
 <span class="n">Program</span> <span class="n">received</span> <span class="n">signal</span> <span class="n">SIGSEGV</span><span class="p">,</span> <span class="n">Segmentation</span> <span class="n">fault</span><span class="o">.</span>
-<span class="mh">0x0000000000400610</span> <span class="ow">in</span> <span class="n">my_broken_function</span> <span class="p">()</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">9</span>
-<span class="mi">9</span>	    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mh">0x0000000000400556</span> <span class="ow">in</span> <span class="n">my_broken_function</span> <span class="p">()</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">13</span>
+<span class="mi">13</span>	    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 </li>
-<li><p>We can see from there gdb output, the segfault happens at line 9.
+<li><p>We can see from there gdb output, the segfault happens at line 13.
 However, if you are working on a large codebase, location of the
 segfault might not be trivial. Use <code class="docutils literal notranslate"><span class="pre">backtrace</span></code> to <u><strong>find out how
 you got to the segfault</strong></u>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">backtrace</span>
-<span class="c1">#0  0x0000000000400610 in my_broken_function () at program.c:9</span>
-<span class="c1">#1  0x0000000000400644 in main () at program.c:16</span>
+<span class="c1">#0  0x0000000000400556 in my_broken_function () at program.c:13</span>
+<span class="c1">#1  0x0000000000400581 in main () at program.c:20</span>
 </pre></div>
 </div>
 </li>
@@ -433,17 +443,11 @@ friend for help. The friend compiled the program in their own machine
 and surprisingly ran the program without the segfault! May be if the
 friend ran with the exact replica of the process you were running,
 the segfault would show up. You can do that by supplying your friend
-with a <u><strong>core dump</strong></u>. A core dump is a copy of process memory. Your machine
-may be not configured to produce core dumps. Find out the size of a
-core dump your machine allows using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ulimit</span> <span class="o">-</span><span class="n">c</span>
-</pre></div>
-</div>
-<p>It returns 0, which means you need to increase the size. Let’s increase
-the size to a 100 MB using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ulimit</span> <span class="o">-</span><span class="n">c</span> <span class="mi">100000000000</span>
-</pre></div>
-</div>
+with a <u><strong>core dump</strong></u>. A core dump is a copy of process memory.
+You will not be able to do the following in Biglab since core dumps
+are disabled there, however the steps are listed here for your reference.
+Your machine
+may be not configured to produce core dumps. Refer to this <a class="reference external" href="https://jvns.ca/blog/2018/04/28/debugging-a-segfault-on-linux/">blog</a> post on how to setup your personal machine for core dumps.</p>
 <p>Now run your program. It now segfaults by saying <code class="docutils literal notranslate"><span class="pre">core</span> <span class="pre">dumped</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Welcome to the wonderful world of SEG Faults!
 Brace for impact! We are about to crash!
@@ -514,12 +518,32 @@ Following are some resources that you may find helpful:</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="makefile_tutorial.html" title="previous page"><span class="section-number">1.3. </span>Makefile Tutorial</a>
-    <a class='right-next' id="next-link" href="c_refresher.html" title="next page"><span class="section-number">1.5. </span>C Refresher</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="makefile_tutorial.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">1.3. </span>Makefile Tutorial</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="c_refresher.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">1.5. </span>C Refresher</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

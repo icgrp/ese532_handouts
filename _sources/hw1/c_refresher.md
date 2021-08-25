@@ -19,7 +19,8 @@ Following are some recommended resources for learning C:
 - {download}`deep C <pdfs/deep-c-cpp.pdf>`
 
 1. Write the C code to reproduce the contents of the stack and heap
-as shown in {numref}`pointer-question-1`. You can use any variable and pointer names with int type. For e.g. `0x5C` is filled with `int x = 20;`.
+as shown in {numref}`pointer-question-1`. You can use any variable and pointer names with int type. For e.g. address `0x5C` is filled with `int x = 20;`. Note that the hex values shown below are not absolute and is
+just there as a guide. We expect location of heap and stack to be different.
     ```{figure} images/memory_map_1.png
     ---
     height: 300px
@@ -27,9 +28,15 @@ as shown in {numref}`pointer-question-1`. You can use any variable and pointer n
     ---
     Memory space with stack and heap
     ```
+    ```{hint}
+     - Find out what causes things to go into stack vs heap in C. Find out how the stack and heap grow.
+     - Use `printf` to print out the value and addresses and verify whether something went into the stack or heap. You can also use `printf` to figure out which direction the stack and heap are growing.
+     - Use the address values as a guide. For instance, for the addresses `0x34`, `0x38`, `0x3C`, why are the differences between the addresses 4 bytes? Compared to addresses, `0x40`, `0x48`, `0x50`, the differences there are 8 bytes---why is that? Do the contents in those addresses tell you something about it? Why are there arrows for some boxes and not for others (the arrows are also there just to guide you)?
+     - What data structure do the contents at `0x34`, `0x38`, and `0x3C` remind you of?
+    ```
 
 2. The stack grows downward and the heap grows upwards
-(with GCC compiler and Armv8-a architecture we are using).
+(with GCC compiler and x86 architecture we are using in Biglab).
 What happens when stack and heap memory space collide? (4-5 lines)
 Your answer should include what happens when you are running your
 program under an OS vs when you are running in a bare-metal system.
@@ -179,7 +186,7 @@ linker? (each 3 lines max.)
     across other C compilers.  In some cases, Xilinx tools will use gcc
     internally.  For some of your development (including, perhaps, for
     this section of this assignment) you may find it useful to get
-    your C working on a workstation, laptop, or AWS A1 instance using gcc.]
+    your C working on a workstation, laptop, or on Biglab using gcc.]
 
 10. If the preprocessor cannot find a file that is included
 with `#include`, give at least three different ways you could resolve
