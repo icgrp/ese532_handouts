@@ -38,7 +38,7 @@ be busy. You can find out which machine is free by going to <https://www.seas.up
 Try the [Makefile Tutorial](makefile_tutorial) in Biglab.
 ```{tip}
 When working in the terminal, use `tmux`. Sometimes your ssh connection
-to AWS may drop. When you work inside `tmux`, you can continue
+to Biglab may drop. When you work inside `tmux`, you can continue
 back from your previous terminal session. Learn more from [here](https://linuxize.com/post/getting-started-with-tmux/).
 ```
 
