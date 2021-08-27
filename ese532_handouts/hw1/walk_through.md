@@ -7,7 +7,11 @@ is Intel Core i5 + 256GB SSD + 8GB RAM. The compute resources available to you a
 you can compile your code. After the add/drop period, we will provide
 each of you with a Ultra96 board, which will be used in the subsequent assignments.
 
-**OS**: You can use any OS---Mac/Linux/Windows, however, keep in mind that Xilinx only supports Linux and Windows (you can use [this video tutorial](https://www.youtube.com/watch?v=HaOWfmCAyCE) to run Linux on a virtualization software).
+**OS**: You can use any OS---Mac/Linux/Windows, however, keep in mind that
+Xilinx only supports Linux and Windows (you can use
+[this video tutorial](https://www.youtube.com/watch?v=HaOWfmCAyCE) to run
+Linux on a virtualization software; n.b.; video was made using a previous
+of Xilinx Software; you should install Vitis 2020.2).
 Our instructions are written for Linux and assumes you have basic proficiency in
 Linux. Following are some resources if you need to brush up on Linux command line:
 - [Introduction to the GNU/Linux and UNIX command line](https://bootlin.com/blog/command-line/)
@@ -59,16 +63,21 @@ github repository and then access the github repository from anywhere.
     ```
     # execute from your local machine
     # to upload a file
-    scp FILENAME <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FILENAME
+    ## AMD -- not work scp FILENAME <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FILENAME
+    ## AMD should be scp FILENAME <penn-username>@biglab.seas.upenn.edu:/home1/<first-letter-of-penn-username>/<penn-username>/FILENAME
+    scp FILENAME <penn-username>@biglab.seas.upenn.edu:FILENAME
     
     # to upload a folder
-    scp -r FOLDER <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/
+    ## scp -r FOLDER <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/
+    scp -r FOLDER <penn-username>@biglab.seas.upenn.edu:
     
     # to download a file
-    scp <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FILENAME FILENAME
+    ##scp <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FILENAME FILENAME
+    scp <penn-username>@biglab.seas.upenn.edu:FILENAME FILENAME
     
     # to download a folder
-    scp -r <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FOLDER ./
+    ##scp -r <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FOLDER ./
+    scp -r <penn-username>@biglab.seas.upenn.edu:FOLDER ./
     ```
 - Alternatively you can use `sshfs` to mount your Biglab directory to a local folder: <https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh>
 
