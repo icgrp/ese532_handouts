@@ -153,6 +153,8 @@ that function using `break program.c:12` and <u>**continue to the breakpoint**</
         (gdb) info args
         No arguments.
         ```
+	- If you did not already know where the bug was,  this  frame information should help you decipher why the program crashed.
+	
 - You can also <u>**print values**</u> using `print`:
     ```
     (gdb) print a
