@@ -278,7 +278,7 @@ each of you with a Ultra96 board, which will be used in the subsequent assignmen
 Xilinx only supports Linux and Windows (you can use
 <a class="reference external" href="https://www.youtube.com/watch?v=HaOWfmCAyCE">this video tutorial</a> to run
 Linux on a virtualization software; n.b.; video was made using a previous
-of Xilinx Software; you should install Vitis 2020.2).
+version of the Xilinx Software; you should install Vitis 2020.2).
 Our instructions are written for Linux and assumes you have basic proficiency in
 Linux. Following are some resources if you need to brush up on Linux command line:</p>
 <ul class="simple">
@@ -305,6 +305,11 @@ your git commands:</p>
 </div>
 <div class="section" id="logging-into-biglab">
 <h2><span class="section-number">1.2.2. </span>Logging into Biglab<a class="headerlink" href="#logging-into-biglab" title="Permalink to this headline">¶</a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>You must install the University VPN and have the VPN enabled when connecting to (ssh) or copying to (scp) Biglab (or any other penn computer) when off campus.
+Follow the instructions <a class="reference external" href="https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide">here</a>.</p>
+</div>
 <p>Use UPenn’s Biglab as instructed <a class="reference external" href="https://cets.seas.upenn.edu/answers/biglab.html">here</a>. Note that biglab can
 be busy. You can find out which machine is free by going to <a class="reference external" href="https://www.seas.upenn.edu/checklab/?lab=biglab">https://www.seas.upenn.edu/checklab/?lab=biglab</a></p>
 <hr class="docutils" />
@@ -319,6 +324,11 @@ back from your previous terminal session. Learn more from <a class="reference ex
 <hr class="docutils" />
 <div class="section" id="transferring-files-between-biglab-and-local-machine">
 <h2><span class="section-number">1.2.3. </span>Transferring files between Biglab and local machine<a class="headerlink" href="#transferring-files-between-biglab-and-local-machine" title="Permalink to this headline">¶</a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>You must install the University VPN and have the VPN enabled when connecting to (ssh) or copying to (scp) Biglab (or any other penn computer) when off campus.
+Follow the instructions <a class="reference external" href="https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide">here</a>.</p>
+</div>
 <p>We highly encourage you to work in git repositories when you are editing
 source code. You can create a private repository in github with
 the starter code we provide you, and then you can git clone your repository
@@ -332,20 +342,15 @@ github repository and then access the github repository from anywhere.</p></li>
 between Biglab and your local machine:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># execute from your local machine</span>
 <span class="c1"># to upload a file</span>
-<span class="c1">## AMD -- not work scp FILENAME &lt;penn-username&gt;@biglab.seas.upenn.edu:/home/&lt;penn-username&gt;/FILENAME</span>
-<span class="c1">## AMD should be scp FILENAME &lt;penn-username&gt;@biglab.seas.upenn.edu:/home1/&lt;first-letter-of-penn-username&gt;/&lt;penn-username&gt;/FILENAME</span>
 <span class="n">scp</span> <span class="n">FILENAME</span> <span class="o">&lt;</span><span class="n">penn</span><span class="o">-</span><span class="n">username</span><span class="o">&gt;</span><span class="nd">@biglab</span><span class="o">.</span><span class="n">seas</span><span class="o">.</span><span class="n">upenn</span><span class="o">.</span><span class="n">edu</span><span class="p">:</span><span class="n">FILENAME</span>
 
 <span class="c1"># to upload a folder</span>
-<span class="c1">## scp -r FOLDER &lt;penn-username&gt;@biglab.seas.upenn.edu:/home/&lt;penn-username&gt;/</span>
 <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">FOLDER</span> <span class="o">&lt;</span><span class="n">penn</span><span class="o">-</span><span class="n">username</span><span class="o">&gt;</span><span class="nd">@biglab</span><span class="o">.</span><span class="n">seas</span><span class="o">.</span><span class="n">upenn</span><span class="o">.</span><span class="n">edu</span><span class="p">:</span>
 
 <span class="c1"># to download a file</span>
-<span class="c1">##scp &lt;penn-username&gt;@biglab.seas.upenn.edu:/home/&lt;penn-username&gt;/FILENAME FILENAME</span>
 <span class="n">scp</span> <span class="o">&lt;</span><span class="n">penn</span><span class="o">-</span><span class="n">username</span><span class="o">&gt;</span><span class="nd">@biglab</span><span class="o">.</span><span class="n">seas</span><span class="o">.</span><span class="n">upenn</span><span class="o">.</span><span class="n">edu</span><span class="p">:</span><span class="n">FILENAME</span> <span class="n">FILENAME</span>
 
 <span class="c1"># to download a folder</span>
-<span class="c1">##scp -r &lt;penn-username&gt;@biglab.seas.upenn.edu:/home/&lt;penn-username&gt;/FOLDER ./</span>
 <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="o">&lt;</span><span class="n">penn</span><span class="o">-</span><span class="n">username</span><span class="o">&gt;</span><span class="nd">@biglab</span><span class="o">.</span><span class="n">seas</span><span class="o">.</span><span class="n">upenn</span><span class="o">.</span><span class="n">edu</span><span class="p">:</span><span class="n">FOLDER</span> <span class="o">./</span>
 </pre></div>
 </div>
