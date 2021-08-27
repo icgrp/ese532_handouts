@@ -11,7 +11,7 @@ each of you with a Ultra96 board, which will be used in the subsequent assignmen
 Xilinx only supports Linux and Windows (you can use
 [this video tutorial](https://www.youtube.com/watch?v=HaOWfmCAyCE) to run
 Linux on a virtualization software; n.b.; video was made using a previous
-of Xilinx Software; you should install Vitis 2020.2).
+version of the Xilinx Software; you should install Vitis 2020.2).
 Our instructions are written for Linux and assumes you have basic proficiency in
 Linux. Following are some resources if you need to brush up on Linux command line:
 - [Introduction to the GNU/Linux and UNIX command line](https://bootlin.com/blog/command-line/)
@@ -34,7 +34,10 @@ your git commands:
 - [Pro Git](https://git-scm.com/book/en/v2)
 
 ## Logging into Biglab
-
+```{attention}
+You must install the University VPN and have the VPN enabled when connecting to (ssh) or copying to (scp) Biglab (or any other penn computer) when off campus.
+Follow the instructions [here](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide).
+```
 Use UPenn's Biglab as instructed [here](https://cets.seas.upenn.edu/answers/biglab.html). Note that biglab can
 be busy. You can find out which machine is free by going to <https://www.seas.upenn.edu/checklab/?lab=biglab>
 
@@ -48,7 +51,10 @@ back from your previous terminal session. Learn more from [here](https://linuxiz
 
 ---
 ## Transferring files between Biglab and local machine
-
+```{attention}
+You must install the University VPN and have the VPN enabled when connecting to (ssh) or copying to (scp) Biglab (or any other penn computer) when off campus.
+Follow the instructions [here](https://www.isc.upenn.edu/how-to/university-vpn-getting-started-guide).
+```
 We highly encourage you to work in git repositories when you are editing
 source code. You can create a private repository in github with
 the starter code we provide you, and then you can git clone your repository
@@ -63,20 +69,15 @@ github repository and then access the github repository from anywhere.
     ```
     # execute from your local machine
     # to upload a file
-    ## AMD -- not work scp FILENAME <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FILENAME
-    ## AMD should be scp FILENAME <penn-username>@biglab.seas.upenn.edu:/home1/<first-letter-of-penn-username>/<penn-username>/FILENAME
     scp FILENAME <penn-username>@biglab.seas.upenn.edu:FILENAME
     
     # to upload a folder
-    ## scp -r FOLDER <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/
     scp -r FOLDER <penn-username>@biglab.seas.upenn.edu:
     
     # to download a file
-    ##scp <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FILENAME FILENAME
     scp <penn-username>@biglab.seas.upenn.edu:FILENAME FILENAME
     
     # to download a folder
-    ##scp -r <penn-username>@biglab.seas.upenn.edu:/home/<penn-username>/FOLDER ./
     scp -r <penn-username>@biglab.seas.upenn.edu:FOLDER ./
     ```
 - Alternatively you can use `sshfs` to mount your Biglab directory to a local folder: <https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh>
