@@ -62,6 +62,9 @@ in Biglab. Make sure to build a habit of frequently committing
 your work.
 
 You can upload/download your work to/from Biglab in several ways:
+
+For **Linux** users,
+
 - You could just commit your updated code and outputs/logs into your
 github repository and then access the github repository from anywhere.
 - You could use `scp` as follows to transfer a single file or a folder
@@ -81,6 +84,8 @@ github repository and then access the github repository from anywhere.
     scp -r <penn-username>@biglab.seas.upenn.edu:FOLDER ./
     ```
 - Alternatively you can use `sshfs` to mount your Biglab directory to a local folder: <https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh>
+
+For **Windows** users, you could use WS_FTP. More information is in [here](https://cets.seas.upenn.edu/answers/filetransfer.html).
 
 ---
 You are now ready to do homeworks 1-4!
