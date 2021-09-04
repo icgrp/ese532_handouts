@@ -1,7 +1,7 @@
 # Accelerator
 
 ```{admonition} Due
-Friday, October 13, 5:00 PM
+Wednesday, October 13, 5:00 PM
 ```
 In this assignment, we will accelerate an application by implementing functions on the FPGA.
 <!-- on the Amazon F1 Instance. -->
