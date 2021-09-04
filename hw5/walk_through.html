@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.3. Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="2.1. Collaboration" href="collaboration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   2. Accelerator
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw5/walk_through.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw5/walk_through.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw5/walk_through.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hardware-acceleration">
+   2.2.1. Hardware Acceleration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
+     2.2.1.1. Obtaining and Running the Code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-vitis-hls">
+     2.2.1.2. Using Vitis HLS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-on-the-fpga">
+     2.2.1.3. Run on the FPGA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   2.2.2. Reference
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="setup-and-walk-through">
+<h1><span class="section-number">2.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
+<!-- ```{include} ../common/aws_caution.md
+``` -->
+<style type="text/css">
+    table { width: 100%; }
+    th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
+    td {height:50px;text-align: center;}
+    tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<div class="section" id="hardware-acceleration">
+<h2><span class="section-number">2.2.1. </span>Hardware Acceleration<a class="headerlink" href="#hardware-acceleration" title="Permalink to this headline">¶</a></h2>
+<p>To implement a hardware function, it will ultimately be necessary
+to perform low-level placement and routing of the hardware onto the
+FPGA substrate.  That is, the tools must decide which particular instance of
+each primitive is used (placement) or which wires to use for connections
+(routing).  These tasks are typically much slower (at least 20 minutes, can take
+hours) than the compilation time for software (a few minutes).  This means you
+will need to plan your time carefully for this lab and for subsequent labs.
+One way to optimize our development time is to be careful about when we
+invoke low-level placement and routing and when we can avoid it.   This lab
+and next will show you a few techniques that allow you to reduce the number of
+times you need to invoke low-level placement and routing and introduce
+simulation and emulation you can use validate your design before
+invoking low-level placement and routing.</p>
+<!-- ## Getting Started with Vitis on Amazon F1 Instance
+### Pre-requisites
+Make sure you complete the following pre-requisites before continuing
+with this homework:
+1. You have an AWS account and know how to create AWS 
+    instances. Check {doc}`../hw1/aws_tutorial` for a refresher.
+2. You have access to F1 instances. You can find out if you have
+    access by going to the ***Limits*** tab in your AWS console
+    homepage and then checking for the F1 vCPUs limit as
+    follows. You should see at least 8 vCPUs limit for F1 instance. If you see 0, contact the course staff as
+    soon as possible.
+    ```{image} images/f1_vcpu_limit.png
+    ```
+3. Read about Vitis from [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part1.md).
+
+In this homework, we will use two instances:
+- `z1d.2xlarge` referred to as the ***build*** instance where
+    we will compile and build our fpga binary. It costs
+    $0.744$/hr. You can create this instance in any AWS region.
+- `f1.2xlarge` referred to as the ***runtime*** instance where
+    we will run our fpga binary. It costs $1.65$/hr. We can
+    only use `us-east-1` (N. Virginia) for this instance.
+
+(launch_instance)=
+### Launch the build instance
+1. Navigate to the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ?qid=1585105385966&sr=0-1&ref_=srh_res_product_title)
+1. Click on **Continue to Subscribe**
+1. Accept the EULA and click **Continue to Configuration**
+1. Select version v1.9.0 and US East (N.Virginia)
+1. Click on **Continue to Launch**
+1. Select **Launch through EC2** in the **Choose Action** drop-down and click **Launch**
+1. Select **z1d.2xlarge** Instance type
+1. At the top of the console, click on **6. Configure Security Groups** 
+1. Click **Add Rule** ( Note : Add a new rule dont modify existing rule )
+    1. Select **Custom TCP Rule** from the **Type** pull-down menu
+    1. Type `8443` in the **Port Range** field
+    1. Select **Anywhere** from the **Source** pull-down
+1. Click **Review and Launch**. This brings up the review page.
+1. Click **Launch** to launch your instance.
+1. Select a valid key pair and **check** the acknowledge box at the bottom of the dialog
+1. Select **Launch Instances**. This brings up the launch status page
+1. When ready, select **View Instances** at the bottom of the page
+1. Login to your build instance by doing:
+    ```
+    ssh -i <AWS key pairs.pem> centos@<IPv4 Public IP of EC2 instance>
+    ```
+    ```{note}
+    The default user is centos.
+    ```
+(dcv_setup)=
+### Setup remote desktop
+We will use NICE DCV as our remote desktop server on Amazon. We will use
+the remote desktop to work with several Vitis GUI utilities.
+1. Attach NICE DCV license to your `z1d.2xlarge` instance by
+    doing the following:
+    1. Sign in to the AWS Management Console and open the IAM console at <https://console.aws.amazon.com/iam/>.
+    1. In the navigation pane of the IAM console, choose ***Roles***, and then choose ***Create role***.
+    1. For ***Select type of trusted entity***, choose ***AWS service***.
+    1. For ***Choose a use case***, select ***EC2*** and then
+    click ***Next: Permissions***.
+    1. Click on ***Next: Tags*** to move forward.
+    1. Click on ***Next: Review*** to move forward.
+    1. Enter a name, e.g. "DCVLicenseAccessRole" and click
+        ***Create role***.
+    1. Click on Policies in the left menu.
+    1. Click on ***Create policy***.
+    1. Click on the ***JSON*** tab and paste the following:
+        ```
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "s3:GetObject",
+                    "Resource": "arn:aws:s3:::dcv-license.us-east-1/*"
+                }
+            ]
+        }
+        ```
+        ```{note}
+        Change `us-east-1` to the region you are using (if different).
+        ```
+    1. Enter a name, e.g. "DCVLicensePolicy" and click
+        ***Create policy***.
+    1. Search for your new policy and click on it to open it.
+    1. Click on ***Policy usage*** and then on ***Attach***.
+    1. Enter your DCV role name, select the role and click on ***Attach policy***.
+    1. Go to your console home page and click on ***Instances***.
+    1. Right-click on your `z1d.2xlarge instance and click on
+    ***Instance settings*** and then ***Modify IAM role***.
+    1. From the drop-down menu, select your DCV role name and
+    click save. Your instance will now be able to use the server.
+
+1. Login to your `z1d.2xlarge` instance and install NICE DCV pre-requisites
+
+   ```
+   sudo yum -y install kernel-devel
+   sudo yum -y groupinstall "GNOME Desktop"
+   sudo yum -y install glx-utils
+   ```
+
+1. Install NICE DCV Server
+
+   ```
+   sudo rpm --import https://s3-eu-west-1.amazonaws.com/nice-dcv-publish/NICE-GPG-KEY
+   wget https://d1uj6qtbmh3dt5.cloudfront.net/2019.0/Servers/nice-dcv-2019.0-7318-el7.tgz
+   tar xvf nice-dcv-2019.0-7318-el7.tgz
+   cd nice-dcv-2019.0-7318-el7
+   sudo yum -y install nice-dcv-server-2019.0.7318-1.el7.x86_64.rpm
+   sudo yum -y install nice-xdcv-2019.0.224-1.el7.x86_64.rpm
+   cd ~
+
+   sudo systemctl enable dcvserver
+   sudo systemctl start dcvserver
+   ```
+
+1. Setup a password
+
+   ```
+   sudo passwd centos
+   ```
+
+1. Change firewall settings
+      
+   * Disable firewalld to allow all connections
+   ```
+   sudo systemctl stop firewalld
+   sudo systemctl disable firewalld
+   ```
+
+1. Create a virtual session to connect to    
+   ```{note}
+   You will have to create a new session if you restart your instance. Put this in your
+   `~/.bashrc` so that you automatically
+   create a session on login.
+   ```
+   ```
+   dcv create-session --type virtual --user centos centos
+   ```
+
+1. Connect to the DCV Remote Desktop session
+    1. * Download and install the [DCV Client](https://download.nice-dcv.com/) in your computer.
+       
+       * Use the Public IP address to connect
+
+1. Logging in should show you your new GUI Desktop
+### Setup AWS CLI
+1. Go to <https://console.aws.amazon.com> and then from the top right,
+select your account name, and then ***My Security Credentials***.
+1. Click on ***Access Keys*** and ***Create New Access Key***.
+1. Note down your ***Access Key ID*** and ***Secret Access Key***.
+1. Login to your `z1d.2xlarge` instance and issue the following
+command:
+    ```
+    aws configure
+    ```
+1. Enter your access key, add us-east-1 as region and output to be json.
+ -->
+<div class="section" id="obtaining-and-running-the-code">
+<span id="software-code"></span><h3><span class="section-number">2.2.1.1. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h3>
+<p>In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
+function on the FPGA.</p>
+<!-- Login to your `z1d.2xlarge` instance and initialize your environment as follows:
+```
+tmux
+git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
+source $AWS_FPGA_REPO_DIR/vitis_setup.sh
+export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
+```
+```{caution}
+Make sure to run under tmux! It will save you hours.
+```
+ -->
+<!-- ---
+Clone the `ese532_code` repository using the following command:
+```
+git clone https://github.com/icgrp/ese532_code.git
+```
+If you already have it cloned, pull in the latest changes
+using:
+```
+cd ese532_code/
+git pull origin master
+``` -->
+<p>Pull in the latest changes using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>The code you will use for <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a>
+is in the <code class="docutils literal notranslate"><span class="pre">hw5</span></code> directory. The directory structure looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hw5</span><span class="o">/</span>
+    <span class="n">Makefile</span>
+    <span class="n">design</span><span class="o">.</span><span class="n">cfg</span>
+    <span class="n">xrt</span><span class="o">.</span><span class="n">ini</span>
+    <span class="n">common</span><span class="o">/</span>
+        <span class="n">Constants</span><span class="o">.</span><span class="n">h</span>
+        <span class="n">EventTimer</span><span class="o">.</span><span class="n">h</span>
+        <span class="n">EventTimer</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">Utilities</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">Utilities</span><span class="o">.</span><span class="n">h</span>
+    <span class="n">hls</span><span class="o">/</span>
+        <span class="n">export_hls_kernel</span><span class="o">.</span><span class="n">sh</span>
+        <span class="n">run_hls</span><span class="o">.</span><span class="n">tcl</span>
+        <span class="n">MatrixMultiplication</span><span class="o">.</span><span class="n">h</span>
+        <span class="n">MatrixMultiplication</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">Testbench</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Host</span><span class="o">.</span><span class="n">cpp</span>
+</pre></div>
+</div>
+<ul>
+<li><p>There are 5 targets in the Makefile. Use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span></code> to learn about them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">design.cfg</span></code> defines several options for the v++ compiler. Learn more about it <a class="reference external" href="https://developer.xilinx.com/en/articles/using-configuration-files-to-control-vitis-compilation.html">here</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> defines the options necessary for Vitis Analyzer.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">common</span></code> folder has header files and helper functions.</p></li>
+<li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">hls</span></code> folder. The
+<code class="docutils literal notranslate"><span class="pre">hls/MatrixMultiplication.cpp</span></code> file has the function that gets compiled
+to a hardware function (known as a kernel in Vitis). The <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> file has
+the “driver” code that transfers the data to the fpga, runs the kernel,
+fetches back the result from the kernel and then verifies it for correctness.</p></li>
+<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel">this</a> to learn about the syntax of the code in <code class="docutils literal notranslate"><span class="pre">hls/MatrixMultiplication.cpp</span></code>.</p></li>
+<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program">this</a> to learn about how the hardware function is
+utilized in <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code></p></li>
+<li><p>Read <a class="reference external" href="https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html">this</a> to learn about simple memory allocation and OpenCL execution.</p></li>
+<li><p>Read <a class="reference external" href="https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html">this</a> to learn about aligned memory allocation with OpenCL.
+TODO: run this in detkin/ketterer environment</p></li>
+<li><p>Run the matrix multiplication on the cpu by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># compile
+source $AWS_FPGA_REPO_DIR/vitis_setup.sh
+export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
+make all TARGET=sw_emu
+
+# run
+source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
+export XCL_EMULATION_MODE=sw_emu
+./host mmult.xclbin
+</pre></div>
+</div>
+</li>
+<li><p>We will now use Vitis Analyzer to view the trace of our matrix multiplication on cpu
+and find out how long each API call took.</p>
+<ol class="simple">
+<li><p>Read about how to use Vitis Analyzer from <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/master/Getting_Started/Vitis/Part5.md">here</a>.</p></li>
+</ol>
+</li>
+</ul>
+<!--     1. Open a remote desktop session on your `z1d.2xlarge` instance. -->
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer and try to associate the api calls with the code in `Host.cpp`.
+1. Hover over an API call to find out long it took.
+</pre></div>
+</div>
+<p>We are now going to start working on the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a> where we will follow a bottom-up approach and optimize our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. Scroll to <a class="reference internal" href="#vitis-hls"><span class="std std-ref">Using Vitis HLS</span></a> to learn about how to
+use Vitis HLS.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="using-vitis-hls">
+<span id="vitis-hls"></span><h3><span class="section-number">2.2.1.2. </span>Using Vitis HLS<a class="headerlink" href="#using-vitis-hls" title="Permalink to this headline">¶</a></h3>
+<p>Creating a new project in Vitis HLS is explained <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project">here</a>.
+Make sure you enter the top-level function during the creation of the
+project (although you can also change it later).  The top-level function is
+the function that will be called by the part of your application that runs
+in software.  Vitis HLS needs it for synthesis.  You can also indicate
+which files you want to create.  It is wise to add a testbench file too,
+while you are creating the project.</p>
+<p>We have provided a testbench in Vitis HLS to debug the hardware.
+The requirements for testbenches are not any different from other
+software applications written in C.  Similar to them, testbenches
+have a <code class="docutils literal notranslate"><span class="pre">main</span></code> function that is invoked.  To the main function you can
+add any functionality needed to test your function.  That includes calling
+the top function that you would like to test.  When the testbench is
+satisfied that the function is correct, it should return 0.  Otherwise, it
+should return another value.</p>
+<p>You can run the testbench by selecting <em><strong>Project</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Run C Simulation</strong></em> from the menu.  A window should pop up.  The default settings of the dialog
+should be fine.  You can dismiss the dialog by pressing <em><strong>OK</strong></em>.  You
+can see in the <em><strong>Console</strong></em> whether your test has passed.  If your test
+fails, you can run the test in debug mode.  This can be done by repeating
+the same procedure, except that you should check the box in front of
+<em><strong>Launch Debugger</strong></em> this time before you dismiss the dialog.  This
+will take you to the <em><strong>Debug</strong></em> perspective, where you can set breakpoints and use the step into/step over buttons to debug.  You can go back to the original perspective by pressing the <em><strong>Synthesis</strong></em> button in the top, right corner.</p>
+<p>To rebuild the code, you should go back to Synthesis mode, and click <em><strong>Run C Simulation</strong></em> again to rebuild the code.</p>
+<p>Once you are satisfied with your code, you can run <em><strong>Solution</strong></em>
+<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Run C Synthesis</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Active Solution</strong></em> from the menu
+to synthesize your design.  You can also verify the synthesized version of
+your accelerator in your testbench.  If you choose to do so, Vitis HLS
+will run your accelerator in a simulator, so this method is called C/RTL
+Cosimulation.  The employed cycle-level simulation is much slower than
+realtime execution, so this method may not be
+practical for every testbench.  It avoids needing to run low
+level-placement and routing and will give you more visibility into the
+behavior of your design.  Anyway, you can start it by choosing
+<em><strong>Solution</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Run C/RTL Cosimulation</strong></em> from the menu.</p>
+<p>The hardware implementation that Vitis HLS selects can be controlled
+by including pragmas, e.g. <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">HLS</span> <span class="pre">inline</span></code>, in your code.
+The different pragmas that you can use in your functions are listed in <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/hls_pragmas.html#okr1504034364623">Vitis HLS User Guide</a>.</p>
+<p>When you have obtained a satisfying hardware description in Vitis HLS, you will <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel">Export Vitis Kernel</a>, i.e. a Xilinx object file (.xo).</p>
+<!-- We will then [use this object file/kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/using_the_kernel.md) and link it together in our existing Vitis application. -->
+<!-- ```{note}
+We are using the GUI mode of Vitis HLS so that we can see the HLS schedule.
+In this class, our preferred method of compiling is using the command line
+and we'll only use GUI when it's required.
+
+If your remote desktop connection is lagging, you can run Vitis HLS
+from the command line using the script, `export_hls_kernel.sh`, 
+in the `hw5/hls` directory. This script runs the TCL script, `run_hls.tcl`, 
+with Vitis HLS. Vitis HLS GUI actually calls the commands in this TCL script.
+If you look inside the TCL script, you can relate it to the GUI steps
+we mentioned above. Additionally, you can learn more about the TCL commands
+from:
+- <https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/tre1585063528538.html>
+- <https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/nfj1539734250759.html>
+
+Note that the only way to see the HLS schedule is through the GUI.
+So collaborate with your partner if you are unable to use the GUI in AWS or try
+to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
+``` -->
+</div>
+<div class="section" id="run-on-the-fpga">
+<span id="resume-build"></span><h3><span class="section-number">2.2.1.3. </span>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">¶</a></h3>
+<p>Once you have 3h completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>,
+continue with the following.</p>
+<!-- #### Compile a hardware function
+- Start building the hardware function by doing `make afi EMAIL=<your email>`,
+    substituting your email. This build will take about 1 hour 20 minutes and in the end
+    it will wait for you to confirm a subscription from your email account; open your email and confirm
+    the subscription and wait to receive an email that your Amazon FPGA Image (AFI) is available (takes about 30 minutes to an hour).
+
+#### Set up a runtime instance
+- Follow the steps from {ref}`launch_instance`, but instead of choosing
+    a `z1d.2xlarge` instance, choose `f1.2xlarge`.
+
+#### Copy binaries to the runtime instance
+- Create a github repository and clone it in your `z1d.2xlarge` instance.
+- Add the `host`, `mmult.awsxclbin` and `xrt.ini` files to the repository; commit and push.
+- Git clone the updated repository in your `f1.2xlarge` instance.
+
+#### Run the application on the FPGA
+- Execute the following commands in your `f1.2xlarge` instance to run your application:
+    ```
+    source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
+    # Wait till the MPD service has initialized. Check systemctl status mpd
+    ./host ./mmult.awsxclbin 
+    ```
+- You should see the following files generated when you ran:
+    ```
+    profile_summary.csv
+    timeline_trace.csv
+    xclbin.run_summary
+    ```
+    Add, commit and push these files in the repository you created and then shutdown your F1 instance.
+    ```{caution}
+    Make sure to shut down your F1 instance! It costs 1.65$/hr
+    ```
+
+---
+This concludes a top-down walk-through of the steps involved
+in running a hardware function on the AWS FPGA.
+ -->
+<p>TODO: run this in detkin/ketterer environment</p>
+</div>
+</div>
+<div class="section" id="reference">
+<h2><span class="section-number">2.2.2. </span>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<!-- - <https://github.com/Xilinx/Vitis-AWS-F1-Developer-Labs/blob/master/setup/instructions.md>
+- <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html>
+- <https://www.ni-sp.com/setting-up-access-to-the-nice-dcv-license-in-ec2/>
+- <https://github.com/aws/aws-fpga/blob/master/Vitis/docs/Setup_AWS_CLI_and_S3_Bucket.md>
+ -->
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/master/Getting_Started">https://github.com/Xilinx/Vitis-Tutorials/tree/master/Getting_Started</a></p></li>
+</ul>
+<!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
+ --><!-- - <https://github.com/aws/aws-fpga/blob/master/Vitis/README.md>
+<p>–&gt;</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="collaboration.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">2.1. </span>Collaboration</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="homework_submission.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">2.3. </span>Homework Submission</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
