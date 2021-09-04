@@ -33,11 +33,11 @@ parts:
     #     - file: hw4/collaboration
     #     - file: hw4/walk_through
     #     - file: hw4/homework_submission
-    # - file: hw5/index
-    #   sections:
-    #     - file: hw5/collaboration
-    #     - file: hw5/walk_through
-    #     - file: hw5/homework_submission
+    - file: hw5/index
+      sections:
+        - file: hw5/collaboration
+        - file: hw5/walk_through
+        - file: hw5/homework_submission
     # - file: hw6/index
     #   sections:
     #     - file: hw6/collaboration

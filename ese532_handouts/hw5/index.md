@@ -1,9 +1,10 @@
 # Accelerator
 
 ```{admonition} Due
-Friday, October 16, 5:00 PM
+Friday, October 13, 5:00 PM
 ```
-In this assignment, we will accelerate an application by implementing functions on the FPGA on the Amazon F1 Instance.
+In this assignment, we will accelerate an application by implementing functions on the FPGA.
+<!-- on the Amazon F1 Instance. -->
 
 This assignment involves CAD tool tasks that take a long time.   We strongly recommend that you *start early*
 on this assignment.

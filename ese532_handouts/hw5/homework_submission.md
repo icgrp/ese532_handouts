@@ -1,6 +1,6 @@
 # Homework Submission
-```{include} ../common/aws_caution.md
-```
+<!-- ```{include} ../common/aws_caution.md
+``` -->
 Your writeup should follow [the writeup guidelines](../writeup_guidelines).
 Your writeup should include your answers to the following questions:
 
@@ -167,9 +167,6 @@ Your writeup should include your answers to the following questions:
         ```
         Run by following the instruction in {ref}`resume_build` section.
         Commit the Vitis Analyzer files in your repo. We will use it in the next section.
-        ```{caution}
-        Make sure to shut down your F1 instance! It costs 1.65$/hr
-        ```
 
 4. **Vitis Analyzer**
     
@@ -246,12 +243,12 @@ Your writeup should include your answers to the following questions:
         ```{hint}
         Expected latency (ms) on X-axis, DSPs and BlockRAMs as separate curves on the Y-axis.
         ```
-    1. Go to your AWS Billing page and report the total
-        amount of credit used so far (make sure to add up credit used from September).
+<!--     1. Go to your AWS Billing page and report the total
+        amount of credit used so far (make sure to add up credit used from September). -->
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
   - writeup in pdf.
 
-```{include} ../common/aws_caution.md
-```
+<!-- ```{include} ../common/aws_caution.md
+``` -->

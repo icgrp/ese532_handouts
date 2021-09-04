@@ -1,6 +1,6 @@
 # Setup and Walk-through
-```{include} ../common/aws_caution.md
-```
+<!-- ```{include} ../common/aws_caution.md
+``` -->
 <style type="text/css">
     table { width: 100%; }
     th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
@@ -23,7 +23,7 @@ times you need to invoke low-level placement and routing and introduce
  simulation and emulation you can use validate your design before
  invoking low-level placement and routing.
 
-## Getting Started with Vitis on Amazon F1 Instance
+<!-- ## Getting Started with Vitis on Amazon F1 Instance
 ### Pre-requisites
 Make sure you complete the following pre-requisites before continuing
 with this homework:
@@ -180,13 +180,13 @@ command:
     aws configure
     ```
 1. Enter your access key, add us-east-1 as region and output to be json.
-
+ -->
 (software_code)=
 ### Obtaining and Running the Code
 In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
 function on the FPGA.
 
-Login to your `z1d.2xlarge` instance and initialize your environment as follows:
+<!-- Login to your `z1d.2xlarge` instance and initialize your environment as follows:
 ```
 tmux
 git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
@@ -196,8 +196,8 @@ export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
 ```{caution}
 Make sure to run under tmux! It will save you hours.
 ```
-
----
+ -->
+<!-- ---
 Clone the `ese532_code` repository using the following command:
 ```
 git clone https://github.com/icgrp/ese532_code.git
@@ -207,7 +207,14 @@ using:
 ```
 cd ese532_code/
 git pull origin master
+``` -->
+
+Pull in the latest changes using:
 ```
+cd ese532_code/
+git pull origin master
+```
+
 The code you will use for [homework submission](homework_submission)
 is in the `hw5` directory. The directory structure looks like this:
 ```
@@ -238,11 +245,12 @@ hw5/
     to a hardware function (known as a kernel in Vitis). The `Host.cpp` file has
     the "driver" code that transfers the data to the fpga, runs the kernel,
     fetches back the result from the kernel and then verifies it for correctness.
-- Read [this](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
-- Read [this](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
+- Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
+- Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
 utilized in `Host.cpp`
 - Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution.
 - Read [this](https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html) to learn about aligned memory allocation with OpenCL.
+TODO: run this in detkin/ketterer environment
 - Run the matrix multiplication on the cpu by doing:
     ```
     # compile
@@ -257,8 +265,8 @@ utilized in `Host.cpp`
     ```
 - We will now use Vitis Analyzer to view the trace of our matrix multiplication on cpu
     and find out how long each API call took.
-    1. Read about how to use Vitis Analyzer from [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part5.md).
-    1. Open a remote desktop session on your `z1d.2xlarge` instance.
+    1. Read about how to use Vitis Analyzer from [here](https://github.com/Xilinx/Vitis-Tutorials/blob/master/Getting_Started/Vitis/Part5.md).
+<!--     1. Open a remote desktop session on your `z1d.2xlarge` instance. -->
     1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer and try to associate the api calls with the code in `Host.cpp`.
     1. Hover over an API call to find out long it took.
     
@@ -270,7 +278,7 @@ use Vitis HLS.
 (vitis_hls)=
 ### Using Vitis HLS
 
-Creating a new project in Vitis HLS is explained [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project).
+Creating a new project in Vitis HLS is explained [here](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project).
 Make sure you enter the top-level function during the creation of the
 project (although you can also change it later).  The top-level function is
 the function that will be called by the part of your application that runs
@@ -312,11 +320,12 @@ behavior of your design.  Anyway, you can start it by choosing
 
 The hardware implementation that Vitis HLS selects can be controlled
 by including pragmas, e.g. `#pragma HLS inline`, in your code.
-The different pragmas that you can use in your functions are listed in [Vitis HLS User Guide](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hlspragmas.html#okr1504034364623).
+The different pragmas that you can use in your functions are listed in [Vitis HLS User Guide](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/hls_pragmas.html#okr1504034364623).
 
-When you have obtained a satisfying hardware description in Vitis HLS, you will [Export Vitis Kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel), i.e. a Xilinx object file (.xo). We will then [use this object file/kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/using_the_kernel.md) and link it together in our existing Vitis application.
+When you have obtained a satisfying hardware description in Vitis HLS, you will [Export Vitis Kernel](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel), i.e. a Xilinx object file (.xo).
+<!-- We will then [use this object file/kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/using_the_kernel.md) and link it together in our existing Vitis application. -->
 
-```{note}
+<!-- ```{note}
 We are using the GUI mode of Vitis HLS so that we can see the HLS schedule.
 In this class, our preferred method of compiling is using the command line
 and we'll only use GUI when it's required.
@@ -334,13 +343,13 @@ from:
 Note that the only way to see the HLS schedule is through the GUI.
 So collaborate with your partner if you are unable to use the GUI in AWS or try
 to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
-```
+``` -->
 
 (resume_build)=
 ### Run on the FPGA
 Once you have 3h completed from the {doc}`homework_submission`,
 continue with the following.
-#### Compile a hardware function
+<!-- #### Compile a hardware function
 - Start building the hardware function by doing `make afi EMAIL=<your email>`,
     substituting your email. This build will take about 1 hour 20 minutes and in the end
     it will wait for you to confirm a subscription from your email account; open your email and confirm
@@ -376,13 +385,17 @@ continue with the following.
 ---
 This concludes a top-down walk-through of the steps involved
 in running a hardware function on the AWS FPGA.
+ -->
+ TODO: run this in detkin/ketterer environment
+
 
 ## Reference
-- <https://github.com/Xilinx/Vitis-AWS-F1-Developer-Labs/blob/master/setup/instructions.md>
+<!-- - <https://github.com/Xilinx/Vitis-AWS-F1-Developer-Labs/blob/master/setup/instructions.md>
 - <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html>
 - <https://www.ni-sp.com/setting-up-access-to-the-nice-dcv-license-in-ec2/>
 - <https://github.com/aws/aws-fpga/blob/master/Vitis/docs/Setup_AWS_CLI_and_S3_Bucket.md>
-- <https://github.com/Xilinx/Vitis-In-Depth-Tutorial/tree/master/Getting_Started>
-- <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
-- <https://github.com/aws/aws-fpga/blob/master/Vitis/README.md>
-
+ -->
+- <https://github.com/Xilinx/Vitis-Tutorials/tree/master/Getting_Started>
+<!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
+ --><!-- - <https://github.com/aws/aws-fpga/blob/master/Vitis/README.md>
+ -->
