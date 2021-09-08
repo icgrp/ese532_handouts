@@ -52,20 +52,22 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         Write a Makefile (refer to the profiling tutorial) and use `-O2`
         optimization (we will explore optimization levels more in HW4).
 
-    2. Report the total latency of your program in nanoseconds using `perf stat` (refer to {ref}`profiling/perf` section in the profiling tutorial) (1 line). Report the percentage of time each function (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`) takes in your program.
+    2. Report the percentage of time each function (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`) takes in your program. For this, you will
+        need to use `gprof` (refer to {ref}`profiling/gprof`
+        in the profiling tutorial).
 
-    3. Report the latencies of 2a and 2b in cycles. Assume that each operation takes one clock cycle at 2.3 GHz.
+    3. Report the latencies of 2a and 2b in cycles. Assume that each operation takes one clock cycle at 4.7 GHz.
 
 3. **Analyze**
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
-    2. Assuming that the innermost loop of the first `for` statement
+    2. Assuming that `LOOP2`
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
         of the body of the loop over `X`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`).
         
         Index computations are operations used to calculate the index
         to be used with a pointer to get an element. For e.g. `4*i` in `x[4*i]` is an index computation.
     3. Assuming that the operations in the DFG execute sequentially,
-        count the total number of compute operations. Using this number, estimate the average latency in cycles of `Filter_horizontal`. Assume that each operation takes one clock cycle at 2.3 GHz.
+        count the total number of compute operations. Using this number, estimate the average latency in cycles of `Filter_horizontal`. Assume that each operation takes one clock cycle at 4.7 GHz.
 
         ```{hint}
         This should be a simple calculation, and it won't necessarily match what you found in {numref}`example-table-1`; we'll be working on that
@@ -109,12 +111,12 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       - Number of cycles per call ($T$)
       - Number of instructions issued ($N_{issue}$)
       - Total number of cycles ($\frac{N}{N_{issue}}$ $\times$ $T$)
-    * - `add	x0, x0, #0xc68`
+    * - `add w0, w0, 1`
       - addition(s) for array indexing
       - 7
       - 1
-      - 3
-      - 7
+      - 4
+      - 2
     * - ...
       - ...
       - ...
@@ -122,14 +124,14 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       - ...
       - ...
     ```
-    We will then group these instructions into three bins---*fast loads*, *slow loads* and *non-memory*,
+    We will then group these instructions into three bins---*fast mem*, *slow mem* and *non-memory*,
     and develop the following model for the runtime of this filter computation:
     ```{math}
     :label: perf-model
     \begin{eqnarray}
-    T_{filter\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle\_non\_memory}
-                + \frac{N_{fast\_loads}}{N_{issue}} \times  T_{cycle\_fast\_loads} \\
-                + N_{slow\_loads} \times T_{cycle\_slow\_loads} \\
+    T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle\_non\_memory}
+                + \frac{N_{fast\_mem}}{N_{issue}} \times  T_{cycle\_fast\_mem} \\
+                + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
     \end{eqnarray}
     ```
     
@@ -142,10 +144,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     that setup the loop, but the instruction that are executed on each trip
     through the loop) of the innermost loop. (Do not assume that it is unrolled this time.)
     You can see the instructions by:
-        - Running your code with: `gdb ./App`.
-        - Setting a breakpoint at the `Filter_horizontal` function: `(gdb) b Filter_horizontal`.
-        - Stepping over using `n` until you reach the innermost loop: `(gdb) n`
-        - Using `disassemble` command to view the assembly: `(gdb) disassemble`.
+        - Compiling your code with: `g++ -Wall -S -g -O2 -c Filter.c -o Filter.o`, and
+        - Opening the generated `Filter.s` assembly file.
     
         Which of these instructions are the compute operations you identified in 3c?
     2. Annotate each instruction with one of the descriptions below as appropriate, and
@@ -160,28 +160,26 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         7. comparison of loop variable to loop limit
         8. branch to top of loop
 
-        You can use your C code to infer the annotations for the instructions. If you would like
-        to understand the assembly, refer to the
-        {download}`quick reference guide <pdfs/QRC0001_UAL.pdf>`.
+        You can use your C code to infer the annotations for the instructions.
     3. After identifying the called-out instructions above, there
         are additional assembly instructions.  What type of instructions are
         these?  What do these assembly instructions do? Provide a 1 line (or less) description for each type of instruction identified, and use them to annotate the additional instructions in your table.
     4. Fill in the rest of the table by determining the number of function
         calls
         for each instruction. Assume that one instruction completes per
-        cycle. Also assume that 3 instructions are issued at the same time. Using your table, estimate the latency ($T_{filter\_analytical}$) of the function
+        cycle. Also assume that 20 instructions are issued at the same time. Using your table, estimate the latency ($T_{filter\_h\_analytical}$) of the function
         in cycles. (1 line)
         ````{note}
         The model here is:
         
         ```{math}
-        T_{filter\_analytical} = \frac{N_{instr}}{N_{issue}} \times T_{cycle}
+        T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{issue}} \times T_{cycle}
         ```
 
-        where $T_{cycle} = 1$ and $N_{issue} = 3$.
+        where $T_{cycle} = 1$ and $N_{issue} = 20$.
         ````
     5. Now assume that only the non-memory instructions identified in 
-        {numref}`example-table-2` complete in one cycle, and also assume that the multiple issue of instructions ($N_{issue} = 3$) only applies to non-memory instructions,
+        {numref}`example-table-2` complete in one cycle, and also assume that the multiple issue of instructions ($N_{issue} = 20$) only applies to non-memory instructions,
         estimate the average latency ($T_{cycle\_memory}$) in cycles of the memory operations. (3 lines)
         ```{hint}
         Use the measured latency of `Filter_horizontal` from
@@ -194,16 +192,16 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{instr} = N_{non\_memory} + N_{memory}
         ```
         ```{math}
-        T_{filter\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
+        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
         ```
-        where $T_{cycle} = 1$ and $N_{issue} = 3$.
+        where $T_{cycle} = 1$ and $N_{issue} = 20$.
         ````
     6. For the identified memory operations, how many of these loads and store cycles are to
         memory locations ***not*** loaded  during this invocation
         of `Filter_horizontal`)?
 
         ```{hint}
-        You are finding out $N_{slow\_loads}$ of equation {eq}`perf-model`
+        You are finding out $N_{slow\_mem}$ of equation {eq}`perf-model`
         ```
         
         Add a column to your instruction table and identify the fraction of time
@@ -211,8 +209,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         encountered during a call to the function.
     7. Assuming memory locations that have already been loaded
         during a call to this function  (Part 4f)
-        also take a single cycle and multiple issue of instructions ($N_{issue} = 3$) also applies to them, what is the average number of
-        cycles ($T_{cycle\_slow\_loads}$) for the remaining loads?
+        also take a single cycle and multiple issue of instructions ($N_{issue} = 20$) also applies to them, what is the average number of
+        cycles ($T_{cycle\_slow\_mem}$) for the remaining loads?
         
         This will require you to use the fraction you added to the table in the
         previous question. (3 lines)
@@ -220,20 +218,63 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         ````{note}
         Refining from 4e, this gives us the model for the runtime of this filter computation:
         ```{math}
-        N_{memory} = N_{fast\_loads} + N_{slow\_loads}
+        N_{memory} = N_{fast\_mem} + N_{slow\_mem}
         ```
         ```{math}
-        T_{filter\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle}
-                    + \frac{N_{fast\_loads}}{N_{issue}} \times  T_{cycle} \\
-                    + N_{slow\_loads} \times T_{cycle\_slow\_loads} \\
+        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle}
+                    + \frac{N_{fast\_mem}}{N_{issue}} \times  T_{cycle} \\
+                    + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
         ```
-        where $T_{cycle} = 1$ and $N_{issue} = 3$.
+        where $T_{cycle} = 1$ and $N_{issue} = 20$.
         ````
+4. **Coding**
+
+    In this section, you'll write some code from the scratch.
+    Read the following resources and write the C code for Content-Defined Chunking (Rabin Fingerprint)
+      - https://moinakg.wordpress.com/tag/rabin-fingerprint/
+      - https://en.wikipedia.org/wiki/Rabin_fingerprint
+
+    We have given you some starter code at `hw2/cdc`. The code reads a file
+    called `prince.txt` and puts it into a buffer. Your task is to pass
+    this buffer to a function called `cdc`. You are free to use C/C++ standard library data structures
+    as you see fit. Your implementation doesn't need to be the
+    most efficient and can be very simple. We are only looking for functional code. You are free to
+    choose a maximum and minimum chunk size. Following is an example output
+    we expect your program to produce:
+    ```
+    bytes_read 14247
+    Using max chunksize of 128
+    Using min chunksize of 32
+    chunks found 113
+    average chunk size 126
+    Listing the chunks as follows: 
+    -----New Chunk------
+    The Little Prince Chapter I
+    Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature
+
+    -----New Chunk------
+    , about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the dra
+
+    -----New Chunk------
+    wing.
+    Boa
+    In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to m
+
+    -----New Chunk------
+    ove, and they sleep through the six months that they need for digestion."
+    I pondered deeply, then, over the adventures of the ju
+    ...
+    ...
+    ```
+    Make sure to write a Makefile and include the output in your report.
+    ```{tip}
+    Work together with your partner!
+    ```
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
   - a tarball containing your instrumented code and Makefile with targets for
-    compilation and running `perf`.
+    compilation and running `gprof`.
     ````{admonition} Quick linux commands for tar files
     :class: dropdown, tip
     ```
@@ -243,4 +284,5 @@ In summary, upload the following in their respective links in canvas:
     tar -xvzf <file_name.tgz>
     ```
     ````
+  - a tarball containing your `cdc` code and Makefile to compile it.
   - writeup in pdf.
