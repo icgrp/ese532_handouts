@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2.1. Collaboration &#8212; ESE532 Handouts Fall 2021</title>
+    <title>2. Profiling &#8212; ESE532 Handouts Fall 2021</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2. Setup and Walk-through" href="walk_through.html" />
-    <link rel="prev" title="2. Accelerator" href="index.html" />
+    <link rel="next" title="2.1. Collaboration" href="collaboration.html" />
+    <link rel="prev" title="1.7. Homework Submission" href="../hw1/homework_submission.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -155,17 +155,17 @@
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   2. Accelerator
+  <a class="current reference internal" href="#">
+   2. Profiling
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
      2.1. Collaboration
     </a>
    </li>
@@ -218,7 +218,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/hw5/collaboration.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/hw2/index.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -238,10 +238,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw5/collaboration.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw2/index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw5/collaboration.md"><button
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw2/index.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -269,22 +269,17 @@
         
               <div>
                 
-  <div class="section" id="collaboration">
-<h1><span class="section-number">2.1. </span>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this headline">¶</a></h1>
-<p>In this assignment, you work with partners that we assigned. You can find the partner assignment on Canvas in the <em><strong>Partners</strong></em> map under the <em><strong>Files</strong></em> section.  In the event that the partner assignment does not work out, contact the instructor or TA as soon
-as possible.  Partners may share code and results and discuss analysis, but
-each writeup should be prepared independently.  Outside the assigned groups,
-only sharing of tool knowledge is allowed.  See the course policies on the course
-web page <a class="reference external" href="http://www.seas.upenn.edu/~ese532">http://www.seas.upenn.edu/~ese532</a> for full details of
-our policies for this course.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>All students must follow the <a class="reference external" href="https://catalog.upenn.edu/pennbook/code-of-academic-integrity/">Code of Academic Integrity</a>.
-Infringement of the code can have <em><strong>severe consequences</strong></em> for you and your partner, such as <em><strong>failing the course
-or cancellation of your student visa</strong></em> if you are an international student, so please
-familiarize yourself with them.  See the course policies on the course
-web page <a class="reference external" href="http://www.seas.upenn.edu/~ese532">http://www.seas.upenn.edu/~ese532</a> for full details of
-our policies for this course.</p>
+  <div class="section" id="profiling">
+<h1><span class="section-number">2. </span>Profiling<a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-due admonition">
+<p class="admonition-title">Due</p>
+<p>Friday, September 17, 5:00 PM EDT</p>
+</div>
+<p>In this assignment, we will profile an application on a
+x86 core in Biglab.</p>
+<p>You probably want to read through the entire assignment (including the
+<a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">Homework Submission</span></a> section) before you start to work on the assignment.</p>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -301,7 +296,7 @@ our policies for this course.</p>
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./hw5"
+            path: "./hw2"
         },
         predefinedOutput: true
     }
@@ -318,19 +313,19 @@ our policies for this course.</p>
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="index.html" title="previous page">
+        <a class="left-prev" href="../hw1/homework_submission.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">2. </span>Accelerator</p>
+                <p class="prevnext-title"><span class="section-number">1.7. </span>Homework Submission</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="walk_through.html" title="next page">
+        <a class="right-next" href="collaboration.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">2.2. </span>Setup and Walk-through</p>
+                <p class="prevnext-title"><span class="section-number">2.1. </span>Collaboration</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

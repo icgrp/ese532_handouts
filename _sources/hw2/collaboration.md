@@ -1,11 +1,13 @@
 # Collaboration
 
-In this assignment, you work with partners that we assigned. You can find the partner assignment on Canvas in the ***Partners*** map under the ***Files*** section.  In the event that the partner assignment does not work out, contact the instructor or TA as soon
+In this assignment, you work with partners that we assigned.  You can find
+the assignment on Canvas in the *Partners* map under the
+*Files* section.  In the event that
+the partner assignment does not work out (e.g., your assigned partner
+has already dropped the course), contact the instructor or TA as soon
 as possible.  Partners may share code and results and discuss analysis, but
 each writeup should be prepared independently.  Outside the assigned groups,
-only sharing of tool knowledge is allowed.  See the course policies on the course
-web page <http://www.seas.upenn.edu/~ese532> for full details of
-our policies for this course.
+only sharing of tool knowledge is allowed.
 
 
 ```{warning}

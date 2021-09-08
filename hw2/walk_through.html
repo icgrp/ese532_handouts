@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.3. Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="2.1. Collaboration" href="collaboration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   2. Profiling
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw2/walk_through.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw2/walk_through.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw2/walk_through.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#profiling-tutorial">
+   2.2.1. Profiling Tutorial
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
+   2.2.2. Obtaining and Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-latency">
+   2.2.3. Measuring Latency
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instrumentation-based-profiling-with-timers">
+     2.2.3.1. Instrumentation-based Profiling with Timers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#profiling-using-gnu-gprof">
+     2.2.3.2. Profiling using GNU gprof
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-counter-statistics-using-perf">
+     2.2.3.3. Performance Counter Statistics using Perf
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="setup-and-walk-through">
+<h1><span class="section-number">2.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="profiling-tutorial">
+<h2><span class="section-number">2.2.1. </span>Profiling Tutorial<a class="headerlink" href="#profiling-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>Profiling is the first step in making your programs faster.
+In this tutorial, we will learn how to measure latency and
+find the bottleneck in your program.</p>
+</div>
+<div class="section" id="obtaining-and-running-the-code">
+<h2><span class="section-number">2.2.2. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
+<p>Login to Biglab and clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
+repository using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">icgrp</span><span class="o">/</span><span class="n">ese532_code</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>If you already have it cloned, pull in the latest changes
+using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>You will find the hw2 code in the <code class="docutils literal notranslate"><span class="pre">hw2</span></code> directory.
+The code for this tutorial is under <code class="docutils literal notranslate"><span class="pre">hw2/tutorial</span></code>.
+The code you will use for
+<a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a> is under
+<code class="docutils literal notranslate"><span class="pre">hw2/assignment</span></code>.</p>
+<p>Build and run the tutorial using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span><span class="n">hw2</span><span class="o">/</span><span class="n">tutorial</span>
+<span class="n">make</span>
+<span class="o">./</span><span class="n">rendering</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="measuring-latency">
+<h2><span class="section-number">2.2.3. </span>Measuring Latency<a class="headerlink" href="#measuring-latency" title="Permalink to this headline">¶</a></h2>
+<p>You can measure latency in many different ways—instrumenting the code vs sampling-based profiling,
+using system timer vs using hardware timer etc. (review these
+<a class="reference external" href="https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf">slides</a> and learn about clock sources <a class="reference external" href="http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/">here</a>). However, the
+end goal is the same; which is to answer where is the bottleneck?</p>
+<p>In this tutorial, we will show you how you can use the system timer to
+measure latency in seconds for parts of your program. We’ll then demonstrate how you can use linux <code class="docutils literal notranslate"><span class="pre">gprof</span></code> to automatically instrument
+your code and get profiling information. Lastly, we’ll show how you can use linux <code class="docutils literal notranslate"><span class="pre">perf</span></code> tool to get <em><strong>performance counter</strong></em> statistics of your program.</p>
+<div class="section" id="instrumentation-based-profiling-with-timers">
+<span id="profiling-instrumentation"></span><h3><span class="section-number">2.2.3.1. </span>Instrumentation-based Profiling with Timers<a class="headerlink" href="#instrumentation-based-profiling-with-timers" title="Permalink to this headline">¶</a></h3>
+<p>In C++, you can use <code class="docutils literal notranslate"><span class="pre">std::chrono::high_resolution_clock::now()</span></code> from <code class="docutils literal notranslate"><span class="pre">&lt;chrono&gt;</span></code>.
+For example:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">start_time</span><span class="p">,</span><span class="w"> </span><span class="n">end_time</span><span class="p">;</span><span class="w"></span>
+<span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// code to measure</span>
+<span class="n">end_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span><span class="p">).</span><span class="n">count</span><span class="p">();</span><span class="w">   </span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;elapsed time: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that we need nanoseconds resolution. Combining with a little bit of C++ syntax, we can create a class called
+<code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> as follows:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">stopwatch</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">total_time</span><span class="p">,</span><span class="w"> </span><span class="n">calls</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">start_time</span><span class="p">,</span><span class="w"> </span><span class="n">end_time</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">stopwatch</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">total_time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">calls</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">total_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">start</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="n">calls</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">stop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">end_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span><span class="p">).</span><span class="n">count</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="n">total_time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">elapsed</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// return latency in ns</span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">latency</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">total_time</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// return latency in ns</span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">total_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">calls</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can then use this class in <code class="docutils literal notranslate"><span class="pre">src/sw/rendering_sw.cpp</span></code> as follows:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="c1">// processing NUM_3D_TRI 3D triangles</span>
+<span class="n">stopwatch</span><span class="w"> </span><span class="n">time_projection</span><span class="p">;</span><span class="w"></span>
+<span class="n">stopwatch</span><span class="w"> </span><span class="n">time_rasterization1</span><span class="p">;</span><span class="w"></span>
+<span class="n">stopwatch</span><span class="w"> </span><span class="n">time_rasterization2</span><span class="p">;</span><span class="w"></span>
+<span class="n">stopwatch</span><span class="w"> </span><span class="n">time_zculling</span><span class="p">;</span><span class="w"></span>
+<span class="n">stopwatch</span><span class="w"> </span><span class="n">time_coloringFB</span><span class="p">;</span><span class="w"></span>
+<span class="n">stopwatch</span><span class="w"> </span><span class="n">total_time</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// processing NUM_3D_TRI 3D triangles</span>
+<span class="nl">TRIANGLES</span><span class="p">:</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_3D_TRI</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">total_time</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// five stages for processing each 3D triangle</span>
+<span class="w">  </span><span class="n">time_projection</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">projection</span><span class="p">(</span><span class="w"> </span><span class="n">triangle_3ds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">triangle_2ds</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">time_projection</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">time_rasterization1</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rasterization1</span><span class="p">(</span><span class="n">triangle_2ds</span><span class="p">,</span><span class="w"> </span><span class="n">max_min</span><span class="p">,</span><span class="w"> </span><span class="n">max_index</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">time_rasterization1</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">time_rasterization2</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">size_fragment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rasterization2</span><span class="p">(</span><span class="w"> </span><span class="n">flag</span><span class="p">,</span><span class="w"> </span><span class="n">max_min</span><span class="p">,</span><span class="w"> </span><span class="n">max_index</span><span class="p">,</span><span class="w"> </span><span class="n">triangle_2ds</span><span class="p">,</span><span class="w"> </span><span class="n">fragment</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">time_rasterization2</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">time_zculling</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">size_pixels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zculling</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">fragment</span><span class="p">,</span><span class="w"> </span><span class="n">size_fragment</span><span class="p">,</span><span class="w"> </span><span class="n">pixels</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">time_zculling</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">time_coloringFB</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">coloringFB</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">size_pixels</span><span class="p">,</span><span class="w"> </span><span class="n">pixels</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">time_coloringFB</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">total_time</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total latency of projection is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_projection</span><span class="p">.</span><span class="n">latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total latency of rasterization1 is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_rasterization1</span><span class="p">.</span><span class="n">latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total latency of rasterization2 is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_rasterization2</span><span class="p">.</span><span class="n">latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total latency of zculling is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_zculling</span><span class="p">.</span><span class="n">latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total latency of coloringFB is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_coloringFB</span><span class="p">.</span><span class="n">latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total time taken by the loop is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">total_time</span><span class="p">.</span><span class="n">latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;---------------------------------------------------------------&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average latency of projection per loop iteration is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_projection</span><span class="p">.</span><span class="n">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average latency of rasterization1 per loop iteration is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_rasterization1</span><span class="p">.</span><span class="n">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average latency of rasterization2 per loop iteration is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_rasterization2</span><span class="p">.</span><span class="n">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average latency of zculling per loop iteration is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_zculling</span><span class="p">.</span><span class="n">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average latency of coloringFB per loop iteration is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time_coloringFB</span><span class="p">.</span><span class="n">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average latency of each loop iteration is: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">total_time</span><span class="p">.</span><span class="n">avg_latency</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Recompile the program using <code class="docutils literal notranslate"><span class="pre">make</span></code> and run <code class="docutils literal notranslate"><span class="pre">./rendering</span></code>. You should see results similar to the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[ec2-user@ip-172-31-40-51 hw2_profiling_tutorial]$ ./rendering
+3D Rendering Application
+Total latency of projection is: 154140 ns.
+Total latency of rasterization1 is: 191497 ns.
+Total latency of rasterization2 is: 1.5305e+06 ns.
+Total latency of zculling is: 364093 ns.
+Total latency of coloringFB is: 263400 ns.
+Total time taken by the loop is: 3.36578e+06 ns.
+---------------------------------------------------------------
+Average latency of projection per loop iteration is: 48.2895 ns.
+Average latency of rasterization1 per loop iteration is: 59.9928 ns.
+Average latency of rasterization2 per loop iteration is: 479.48 ns.
+Average latency of zculling per loop iteration is: 114.064 ns.
+Average latency of coloringFB per loop iteration is: 82.5188 ns.
+Average latency of each loop iteration is: 1054.44 ns.
+Writing output...
+Check output.txt for a bunny!
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that the print statements are carefully placed outside of the
+timing region.  Print statements are generally very slow, and we do
+not want their time to contaminate our measurement.</p>
+</div>
+<p>From the results, we can see <code class="docutils literal notranslate"><span class="pre">rasterization2</span></code> has the
+highest latency and is a good candidate for
+optimization.</p>
+<p>For our assignments, the <code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> class we built
+here should suffice. If you would like to try out
+something fancier, check out <a class="reference external" href="https://github.com/google/benchmark">https://github.com/google/benchmark</a>!</p>
+</div>
+<div class="section" id="profiling-using-gnu-gprof">
+<span id="profiling-gprof"></span><h3><span class="section-number">2.2.3.2. </span>Profiling using GNU gprof<a class="headerlink" href="#profiling-using-gnu-gprof" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gprof</span></code> is a tool in the GNU toolchain that can automatically instrument
+every function in your code and give you the timing breakdown
+of your program.</p>
+<p>To enable it, you’ll have to compile your program first with the <code class="docutils literal notranslate"><span class="pre">-pg</span></code> flag.
+This instruments the functions in your code. Next, you’ll run the program,
+which will output a file called <code class="docutils literal notranslate"><span class="pre">gmon.out</span></code>, which <code class="docutils literal notranslate"><span class="pre">gprof</span></code> uses to prepare
+the statistics. Finally, you would use <code class="docutils literal notranslate"><span class="pre">gprof</span> <span class="pre">-p</span> <span class="pre">executable-name</span></code> to see the
+statistics (<code class="docutils literal notranslate"><span class="pre">-p</span></code> option is for limiting the verbose output of <code class="docutils literal notranslate"><span class="pre">gprof</span></code>).</p>
+<p>Run it on our program as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">gprof</span>
+</pre></div>
+</div>
+<p>You’ll see the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>g++ -pg -Wall -g -O2 -Wno-unused-label -I/src/sw/ -I/src/host/ -o rendering_instrumented ./src/host/3d_rendering_host.cpp ./src/host/utils.cpp ./src/host/check_result.cpp ./src/sw/rendering_sw.cpp  
+Executable rendering_instrumented compiled!
+Running ./rendering_instrumented to get gmon.out for gprof...
+3D Rendering Application
+Writing output...
+Check output.txt for a bunny!
+Running gprof ./rendering_instrumented...
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 43.93      0.25     0.25 80438400     0.00     0.00  pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)
+ 26.36      0.40     0.15   319200     0.47     1.26  rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)
+ 22.84      0.53     0.13   319200     0.41     0.41  coloringFB(int, int, Pixel*, unsigned char (*) [256])
+  7.03      0.57     0.04   319200     0.13     0.13  zculling(int, CandidatePixel*, int, Pixel*)
+  0.00      0.57     0.00   319200     0.00     0.00  projection(Triangle_3D, Triangle_2D*, int)
+  0.00      0.57     0.00   319200     0.00     0.00  rasterization1(Triangle_2D, unsigned char*, int*)
+  0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z13check_resultsPA256_h
+  0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z15check_clockwise11Triangle_2D
+...
+</pre></div>
+</div>
+<p>You can see that <code class="docutils literal notranslate"><span class="pre">gprof</span></code>’s result agrees with our results from the manual instrumentation with timers (note that <code class="docutils literal notranslate"><span class="pre">pixel_in_triangle</span></code> is used by
+<code class="docutils literal notranslate"><span class="pre">rasterization2</span></code>).
+You will notice that the code that <code class="docutils literal notranslate"><span class="pre">gprof</span></code> profiled looks like as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TRIANGLES</span><span class="p">:</span> <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_3D_TRI</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="o">//</span> <span class="n">five</span> <span class="n">stages</span> <span class="k">for</span> <span class="n">processing</span> <span class="n">each</span> <span class="mi">3</span><span class="n">D</span> <span class="n">triangle</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">projection</span><span class="p">(</span> <span class="n">triangle_3ds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">angle</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">flag</span> <span class="o">=</span> <span class="n">rasterization1</span><span class="p">(</span><span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">max_min</span><span class="p">,</span> <span class="n">max_index</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">size_fragment</span> <span class="o">=</span> <span class="n">rasterization2</span><span class="p">(</span> <span class="n">flag</span><span class="p">,</span> <span class="n">max_min</span><span class="p">,</span> <span class="n">max_index</span><span class="p">,</span> <span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">fragment</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">size_pixels</span> <span class="o">=</span> <span class="n">zculling</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment</span><span class="p">,</span> <span class="n">size_fragment</span><span class="p">,</span> <span class="n">pixels</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">coloringFB</span> <span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">size_pixels</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>We ran each function 100 times because <code class="docutils literal notranslate"><span class="pre">gprof</span></code> samples a timing value
+every 0.01 seconds. Hence, if your function runs faster than this
+sampling period, <code class="docutils literal notranslate"><span class="pre">gprof</span></code>’s results will be inaccurate. You can find out
+more about this from <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/Sampling-Error.html">here</a>. Also, refer to the <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/">manual</a> to find out about more command line options.</p>
+</div>
+<div class="section" id="performance-counter-statistics-using-perf">
+<span id="profiling-perf"></span><h3><span class="section-number">2.2.3.3. </span>Performance Counter Statistics using Perf<a class="headerlink" href="#performance-counter-statistics-using-perf" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Biglab doesn’t have perf. The following is for your reference
+and you can try it in your own machine, or when we provide
+you with an Ultra96 board.</p>
+</div>
+<p>ARM has a dedicated Performance Monitor Unit (PMU) that can give you the number of cycles
+your program takes to run (read more about PMU <a class="reference external" href="https://easyperf.net/blog/2018/06/01/PMU-counters-and-profiling-basics">here</a>).
+We can use <code class="docutils literal notranslate"><span class="pre">perf</span></code> to get the performance counter statistics of your program (read these <a class="reference external" href="https://static.linaro.org/connect/yvr18/presentations/yvr18-416.pdf">slides</a> to learn more about perf).</p>
+<p>Run perf as follows (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">perf</span></code> in the supplied <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">perf</span> <span class="n">stat</span> <span class="o">./</span><span class="n">rendering</span>
+</pre></div>
+</div>
+<p>You should see the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[stahmed@macarena hw2_profiling_tutorial]$ make perf
+g++ -DWITH_TIMER -Wall -g -O2 -Wno-unused-label -I/src/sw/ -I/src/host/ -o rendering ./src/host/3d_rendering_host.cpp ./src/host/utils.cpp ./src/host/check_result.cpp ./src/sw/rendering_sw.cpp  
+Executable rendering compiled!
+Running perf stat...
+3D Rendering Application
+Total latency of projection is: 125316 ns.
+Total latency of rasterization1 is: 136611 ns.
+Total latency of rasterization2 is: 2.29206e+06 ns.
+Total latency of zculling is: 244155 ns.
+Total latency of coloringFB is: 146167 ns.
+Total time taken by the loop is: 3.48606e+06 ns.
+---------------------------------------------------------------
+Average latency of projection per loop iteration is: 39.2594 ns.
+Average latency of rasterization1 per loop iteration is: 42.7979 ns.
+Average latency of rasterization2 per loop iteration is: 718.065 ns.
+Average latency of zculling per loop iteration is: 76.4897 ns.
+Average latency of coloringFB per loop iteration is: 45.7917 ns.
+Average latency of each loop iteration is: 1092.12 ns.
+Writing output...
+Check output.txt for a bunny!
+
+ Performance counter stats for &#39;./rendering&#39;:
+
+              6.36 msec task-clock                #    0.953 CPUs utilized          
+                 0      context-switches          #    0.000 K/sec                  
+                 0      cpu-migrations            #    0.000 K/sec                  
+               163      page-faults               #    0.026 M/sec                  
+        17,322,039      cycles                    #    2.722 GHz                    
+        39,090,159      instructions              #    2.26  insn per cycle         
+         5,358,366      branches                  #  842.109 M/sec                  
+            56,019      branch-misses             #    1.05% of all branches        
+
+       0.006679970 seconds time elapsed
+
+       0.006685000 seconds user
+       0.000000000 seconds sys
+</pre></div>
+</div>
+<p>From the above output, we can see that our program took <span class="math notranslate nohighlight">\(17,322,039\)</span> cycles at <span class="math notranslate nohighlight">\(2.722\)</span> GHz. We can use these numbers to find the
+run time of our program, which is <span class="math notranslate nohighlight">\(17322039/2.722\)</span>
+<span class="math notranslate nohighlight">\(\approx\)</span> <span class="math notranslate nohighlight">\(6.36\)</span> milli seconds which agrees with the <span class="math notranslate nohighlight">\(6.36\)</span> msec
+reported by perf too. Note that perf used the “task-clock” (system timer)
+to report the latency in seconds, and used the PMU counter to report
+the latency in cycles. The PMU counter runs at the same frequency as
+the cpu, which is <span class="math notranslate nohighlight">\(2.722\)</span> GHz, whereas the system timer runs at a
+much lower frequency (in the MHz range).</p>
+<hr class="docutils" />
+<p>Now that we have shown you three approaches for measuring latency, a natural question is when do you use either of these methods?</p>
+<ul class="simple">
+<li><p>Use <a class="reference internal" href="#profiling-instrumentation"><span class="std std-ref">Instrumentation-based Profiling with Timers</span></a> or <a class="reference internal" href="#profiling-gprof"><span class="std std-ref">Profiling using GNU gprof</span></a> when you want to find individual
+latencies of your functions.</p></li>
+<li><p>Use <a class="reference internal" href="#profiling-perf"><span class="std std-ref">Performance Counter Statistics using Perf</span></a> when you just want to know the total latency (either
+in seconds or cycles) of your program. When you don’t have <code class="docutils literal notranslate"><span class="pre">perf</span></code> available in your system,
+you can also run <code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">executable-name</span></code> to get the total time
+your program takes to run.</p></li>
+</ul>
+<p>However, the above answer is too simple. The application we showed you
+is slow enough for <code class="docutils literal notranslate"><span class="pre">std::chrono</span></code> to measure accurately. When the resolution of your system timer is not fine-grained
+enough, or your function is too fast, you should measure the function for a longer period of time (see the spin loop section from <a class="reference external" href="https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf">here</a>). Alternatively,
+that’s where the PMU offers more accuracy. Since the PMU runs at the same
+frequency as the CPU, it can measure any function. However, you will
+have to isolate your functions and create separate programs to use
+the PMU through <code class="docutils literal notranslate"><span class="pre">perf</span></code>. There is no stopwatch-like user API for the PMU
+counter.</p>
+<p>For our application above, we saw that the total runtime reported by task-clock and PMU counter doesn’t differ. Hence, it doesn’t matter which approach you use in this case. If you want to get the latencies
+of individual function in <em><strong>cycles</strong></em> instead, you can just use your
+measured time with the clock frequency to figure out the cycles.
+Alternatively you could get the fraction of time spent by your function
+and use the total number of cycles from <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">stat</span></code>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="collaboration.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">2.1. </span>Collaboration</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="homework_submission.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">2.3. </span>Homework Submission</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
