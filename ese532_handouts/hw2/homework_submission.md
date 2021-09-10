@@ -113,10 +113,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       - Total number of cycles ($\frac{N}{N_{par}}$ $\times$ $T$)
     * - `add w0, w0, 1`
       - addition(s) for array indexing
-      - 7
+      - 100
       - 1
-      - 4
-      - 2
+      - 13
+      - 8
     * - ...
       - ...
       - ...
