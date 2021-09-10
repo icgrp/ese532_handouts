@@ -417,8 +417,8 @@ for each instruction:</p>
 <th class="head"><p>Annotation</p></th>
 <th class="head"><p>Number of function calls (<span class="math notranslate nohighlight">\(N\)</span>)</p></th>
 <th class="head"><p>Number of cycles per call (<span class="math notranslate nohighlight">\(T\)</span>)</p></th>
-<th class="head"><p>Number of instructions issued (<span class="math notranslate nohighlight">\(N_{issue}\)</span>)</p></th>
-<th class="head"><p>Total number of cycles (<span class="math notranslate nohighlight">\(\frac{N}{N_{issue}}\)</span> <span class="math notranslate nohighlight">\(\times\)</span> <span class="math notranslate nohighlight">\(T\)</span>)</p></th>
+<th class="head"><p>Number of instructions executed in parallel (<span class="math notranslate nohighlight">\(N_{par}\)</span>)</p></th>
+<th class="head"><p>Total number of cycles (<span class="math notranslate nohighlight">\(\frac{N}{N_{par}}\)</span> <span class="math notranslate nohighlight">\(\times\)</span> <span class="math notranslate nohighlight">\(T\)</span>)</p></th>
 </tr>
 </thead>
 <tbody>
@@ -442,8 +442,8 @@ for each instruction:</p>
 and develop the following model for the runtime of this filter computation:</p>
 <div class="math notranslate nohighlight" id="equation-perf-model">
 <span class="eqno">(2.1)<a class="headerlink" href="#equation-perf-model" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{eqnarray}
-T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle\_non\_memory}
-            + \frac{N_{fast\_mem}}{N_{issue}} \times  T_{cycle\_fast\_mem} \\
+T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory}
+            + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
             + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
 \end{eqnarray}\end{split}\]</div>
 <p>The real model is still more complicated than this, but this is a
@@ -482,18 +482,18 @@ these?  What do these assembly instructions do? Provide a 1 line (or less) descr
 <li><p>Fill in the rest of the table by determining the number of function
 calls
 for each instruction. Assume that one instruction completes per
-cycle. Also assume that 20 instructions are issued at the same time. Using your table, estimate the latency (<span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span>) of the function
+cycle. Also assume that 13 instructions are executed at the same time. Using your table, estimate the latency (<span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span>) of the function
 in cycles. (1 line)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The model here is:</p>
 <div class="math notranslate nohighlight">
-\[T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{issue}} \times T_{cycle}\]</div>
-<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{issue} = 20\)</span>.</p>
+\[T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{par}} \times T_{cycle}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 13\)</span>.</p>
 </div>
 </li>
 <li><p>Now assume that only the non-memory instructions identified in
-<a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 2.2</span></a> complete in one cycle, and also assume that the multiple issue of instructions (<span class="math notranslate nohighlight">\(N_{issue} = 20\)</span>) only applies to non-memory instructions,
+<a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 2.2</span></a> complete in one cycle, and also assume that the multiple execution of instructions (<span class="math notranslate nohighlight">\(N_{par} = 13\)</span>) only applies to non-memory instructions,
 estimate the average latency (<span class="math notranslate nohighlight">\(T_{cycle\_memory}\)</span>) in cycles of the memory operations. (3 lines)</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -506,8 +506,8 @@ estimate the average latency (<span class="math notranslate nohighlight">\(T_{cy
 <div class="math notranslate nohighlight">
 \[N_{instr} = N_{non\_memory} + N_{memory}\]</div>
 <div class="math notranslate nohighlight">
-\[T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}\]</div>
-<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{issue} = 20\)</span>.</p>
+\[T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 13\)</span>.</p>
 </div>
 </li>
 <li><p>For the identified memory operations, how many of these loads and store cycles are to
@@ -523,7 +523,7 @@ encountered during a call to the function.</p>
 </li>
 <li><p>Assuming memory locations that have already been loaded
 during a call to this function  (Part 4f)
-also take a single cycle and multiple issue of instructions (<span class="math notranslate nohighlight">\(N_{issue} = 20\)</span>) also applies to them, what is the average number of
+also take a single cycle and multiple execution of instructions (<span class="math notranslate nohighlight">\(N_{par} = 13\)</span>) also applies to them, what is the average number of
 cycles (<span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span>) for the remaining loads?</p>
 <p>This will require you to use the fraction you added to the table in the
 previous question. (3 lines)</p>
@@ -533,58 +533,143 @@ previous question. (3 lines)</p>
 <div class="math notranslate nohighlight">
 \[N_{memory} = N_{fast\_mem} + N_{slow\_mem}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle}
-            + \frac{N_{fast\_mem}}{N_{issue}} \times  T_{cycle} \\
+\[\begin{split}T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle}
+            + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
             + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{issue} = 20\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 13\)</span>.</p>
 </div>
 </li>
 </ol>
 </li>
 <li><p><strong>Coding</strong></p>
-<p>In this section, you’ll write some code from the scratch.
-Read the following resources and write the C code for Content-Defined Chunking (Rabin Fingerprint)</p>
+<ol>
+<li><p>Implement the <code class="docutils literal notranslate"><span class="pre">hash_func</span></code> and <code class="docutils literal notranslate"><span class="pre">cdc</span></code> functions from the following Python code in C/C++. You can find the starter code at <code class="docutils literal notranslate"><span class="pre">hw2/cdc/cdc.cpp</span></code>. You are free to use C/C++ standard library data structures
+as you see fit.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">win_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">prime</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">modulus</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">target</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="nb">hash</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">win_size</span><span class="p">):</span>
+        <span class="nb">hash</span> <span class="o">+=</span> <span class="nb">ord</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">hash</span>
+
+
+<span class="k">def</span> <span class="nf">cdc</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="n">buff_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">win_size</span><span class="p">,</span> <span class="n">buff_size</span><span class="o">-</span><span class="n">win_size</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">hash_func</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="n">modulus</span><span class="p">))</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_cdc</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">buff</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">cdc</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">buff</span><span class="p">))</span>
+
+
+<span class="n">test_cdc</span><span class="p">(</span><span class="s2">&quot;prince.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Verify that your program outputs the following:</p>
+<div class="admonition-output admonition">
+<p class="admonition-title">Output</p>
+<p>299
+366
+367
+838
+1001
+1263
+2141
+2283
+2660
+2708
+2748
+2820
+3143
+3210
+3211
+3682
+3845
+4107
+4985
+5127
+5504
+5552
+5592
+5664
+5987
+6054
+6055
+6526
+6689
+6951
+7829
+7971
+8348
+8396
+8436
+8508
+8831
+8898
+8899
+9370
+9533
+9795
+10673
+10815
+11192
+11240
+11280
+11352
+11675
+11742
+11743
+12214
+12377
+12639
+13517
+13659
+14036
+14084
+14124
+14196</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <ul class="simple">
+<li><p>To verify, you can first create a text file with the output, e.g. <code class="docutils literal notranslate"><span class="pre">golden.txt</span></code></p></li>
+<li><p>You can then write the output of your program to another text file buy
+redirecting the output in the command line, e.g. <code class="docutils literal notranslate"><span class="pre">./cdc</span> <span class="pre">&gt;</span> <span class="pre">out.txt</span></code></p></li>
+<li><p>You can then use <code class="docutils literal notranslate"><span class="pre">diff</span></code> which will show differences in values if any, e.g. <code class="docutils literal notranslate"><span class="pre">diff</span> <span class="pre">out.txt</span> <span class="pre">golden.txt</span></code></p></li>
+</ul>
+</div>
+</li>
+<li><p>It is more efficient to not recompute the whole hash at every window.
+Convince yourself that the next hash computation can be expressed as:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="p">)</span> <span class="o">+</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span>
+</pre></div>
+</div>
+<p>Develop a second, revised <code class="docutils literal notranslate"><span class="pre">cdc</span></code> function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.</p>
+</li>
+<li><p>Time the two <code class="docutils literal notranslate"><span class="pre">cdc</span></code> implementations and compare.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Work together with your partner!</p></li>
+<li><p>Read the following resources to gain more context about the code:
+<br> Content-Defined Chunking (Rabin Fingerprint)</p>
+<ul>
 <li><p><a class="reference external" href="https://moinakg.wordpress.com/tag/rabin-fingerprint/">https://moinakg.wordpress.com/tag/rabin-fingerprint/</a></p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Rabin_fingerprint">https://en.wikipedia.org/wiki/Rabin_fingerprint</a></p></li>
 </ul>
-<p>We have given you some starter code at <code class="docutils literal notranslate"><span class="pre">hw2/cdc</span></code>. The code reads a file
-called <code class="docutils literal notranslate"><span class="pre">prince.txt</span></code> and puts it into a buffer. Your task is to pass
-this buffer to a function called <code class="docutils literal notranslate"><span class="pre">cdc</span></code>. You are free to use C/C++ standard library data structures
-as you see fit. Your implementation doesn’t need to be the
-most efficient and can be very simple. We are only looking for functional code. You are free to
-choose a maximum and minimum chunk size. Following is an example output
-we expect your program to produce:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bytes_read</span> <span class="mi">14247</span>
-<span class="n">Using</span> <span class="nb">max</span> <span class="n">chunksize</span> <span class="n">of</span> <span class="mi">128</span>
-<span class="n">Using</span> <span class="nb">min</span> <span class="n">chunksize</span> <span class="n">of</span> <span class="mi">32</span>
-<span class="n">chunks</span> <span class="n">found</span> <span class="mi">113</span>
-<span class="n">average</span> <span class="n">chunk</span> <span class="n">size</span> <span class="mi">126</span>
-<span class="n">Listing</span> <span class="n">the</span> <span class="n">chunks</span> <span class="k">as</span> <span class="n">follows</span><span class="p">:</span> 
-<span class="o">-----</span><span class="n">New</span> <span class="n">Chunk</span><span class="o">------</span>
-<span class="n">The</span> <span class="n">Little</span> <span class="n">Prince</span> <span class="n">Chapter</span> <span class="n">I</span>
-<span class="n">Once</span> <span class="n">when</span> <span class="n">I</span> <span class="n">was</span> <span class="n">six</span> <span class="n">years</span> <span class="n">old</span> <span class="n">I</span> <span class="n">saw</span> <span class="n">a</span> <span class="n">magnificent</span> <span class="n">picture</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">book</span><span class="p">,</span> <span class="n">called</span> <span class="kc">True</span> <span class="n">Stories</span> <span class="kn">from</span> <span class="nn">Nature</span>
-
-<span class="o">-----</span><span class="n">New</span> <span class="n">Chunk</span><span class="o">------</span>
-<span class="p">,</span> <span class="n">about</span> <span class="n">the</span> <span class="n">primeval</span> <span class="n">forest</span><span class="o">.</span> <span class="n">It</span> <span class="n">was</span> <span class="n">a</span> <span class="n">picture</span> <span class="n">of</span> <span class="n">a</span> <span class="n">boa</span> <span class="n">constrictor</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">act</span> <span class="n">of</span> <span class="n">swallowing</span> <span class="n">an</span> <span class="n">animal</span><span class="o">.</span> <span class="n">Here</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">dra</span>
-
-<span class="o">-----</span><span class="n">New</span> <span class="n">Chunk</span><span class="o">------</span>
-<span class="n">wing</span><span class="o">.</span>
-<span class="n">Boa</span>
-<span class="n">In</span> <span class="n">the</span> <span class="n">book</span> <span class="n">it</span> <span class="n">said</span><span class="p">:</span> <span class="s2">&quot;Boa constrictors swallow their prey whole, without chewing it. After that they are not able to m</span>
-
-<span class="o">-----</span><span class="n">New</span> <span class="n">Chunk</span><span class="o">------</span>
-<span class="n">ove</span><span class="p">,</span> <span class="ow">and</span> <span class="n">they</span> <span class="n">sleep</span> <span class="n">through</span> <span class="n">the</span> <span class="n">six</span> <span class="n">months</span> <span class="n">that</span> <span class="n">they</span> <span class="n">need</span> <span class="k">for</span> <span class="n">digestion</span><span class="o">.</span><span class="s2">&quot;</span>
-<span class="n">I</span> <span class="n">pondered</span> <span class="n">deeply</span><span class="p">,</span> <span class="n">then</span><span class="p">,</span> <span class="n">over</span> <span class="n">the</span> <span class="n">adventures</span> <span class="n">of</span> <span class="n">the</span> <span class="n">ju</span>
-<span class="o">...</span>
-<span class="o">...</span>
-</pre></div>
+</li>
+</ul>
 </div>
-<p>Make sure to write a Makefile and include the output in your report.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Work together with your partner!</p>
-</div>
+</li>
+</ol>
 </li>
 </ol>
 <div class="section" id="deliverables">
@@ -603,7 +688,7 @@ compilation and running <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 </li>
-<li><p>a tarball containing your <code class="docutils literal notranslate"><span class="pre">cdc</span></code> code and Makefile to compile it.</p></li>
+<li><p>a tarball containing your two <code class="docutils literal notranslate"><span class="pre">cdc</span></code> implementations code and Makefile to compile it.</p></li>
 <li><p>writeup in pdf.</p></li>
 </ul>
 </div>

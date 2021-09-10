@@ -109,8 +109,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       - Annotation
       - Number of function calls ($N$)
       - Number of cycles per call ($T$)
-      - Number of instructions issued ($N_{issue}$)
-      - Total number of cycles ($\frac{N}{N_{issue}}$ $\times$ $T$)
+      - Number of instructions executed in parallel ($N_{par}$)
+      - Total number of cycles ($\frac{N}{N_{par}}$ $\times$ $T$)
     * - `add w0, w0, 1`
       - addition(s) for array indexing
       - 7
@@ -129,8 +129,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     ```{math}
     :label: perf-model
     \begin{eqnarray}
-    T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle\_non\_memory}
-                + \frac{N_{fast\_mem}}{N_{issue}} \times  T_{cycle\_fast\_mem} \\
+    T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory}
+                + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
                 + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
     \end{eqnarray}
     ```
@@ -167,19 +167,19 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     4. Fill in the rest of the table by determining the number of function
         calls
         for each instruction. Assume that one instruction completes per
-        cycle. Also assume that 20 instructions are issued at the same time. Using your table, estimate the latency ($T_{filter\_h\_analytical}$) of the function
+        cycle. Also assume that 13 instructions are executed at the same time. Using your table, estimate the latency ($T_{filter\_h\_analytical}$) of the function
         in cycles. (1 line)
         ````{note}
         The model here is:
         
         ```{math}
-        T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{issue}} \times T_{cycle}
+        T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{par}} \times T_{cycle}
         ```
 
-        where $T_{cycle} = 1$ and $N_{issue} = 20$.
+        where $T_{cycle} = 1$ and $N_{par} = 13$.
         ````
     5. Now assume that only the non-memory instructions identified in 
-        {numref}`example-table-2` complete in one cycle, and also assume that the multiple issue of instructions ($N_{issue} = 20$) only applies to non-memory instructions,
+        {numref}`example-table-2` complete in one cycle, and also assume that the multiple execution of instructions ($N_{par} = 13$) only applies to non-memory instructions,
         estimate the average latency ($T_{cycle\_memory}$) in cycles of the memory operations. (3 lines)
         ```{hint}
         Use the measured latency of `Filter_horizontal` from
@@ -192,9 +192,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{instr} = N_{non\_memory} + N_{memory}
         ```
         ```{math}
-        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
+        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
         ```
-        where $T_{cycle} = 1$ and $N_{issue} = 20$.
+        where $T_{cycle} = 1$ and $N_{par} = 13$.
         ````
     6. For the identified memory operations, how many of these loads and store cycles are to
         memory locations ***not*** loaded  during this invocation
@@ -209,7 +209,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         encountered during a call to the function.
     7. Assuming memory locations that have already been loaded
         during a call to this function  (Part 4f)
-        also take a single cycle and multiple issue of instructions ($N_{issue} = 20$) also applies to them, what is the average number of
+        also take a single cycle and multiple execution of instructions ($N_{par} = 13$) also applies to them, what is the average number of
         cycles ($T_{cycle\_slow\_mem}$) for the remaining loads?
         
         This will require you to use the fraction you added to the table in the
@@ -221,55 +221,127 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{memory} = N_{fast\_mem} + N_{slow\_mem}
         ```
         ```{math}
-        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{issue}} \times T_{cycle}
-                    + \frac{N_{fast\_mem}}{N_{issue}} \times  T_{cycle} \\
+        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle}
+                    + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
                     + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
         ```
-        where $T_{cycle} = 1$ and $N_{issue} = 20$.
+        where $T_{cycle} = 1$ and $N_{par} = 13$.
         ````
 4. **Coding**
+    1. Implement the `hash_func` and `cdc` functions from the following Python code in C/C++. You can find the starter code at `hw2/cdc/cdc.cpp`. You are free to use C/C++ standard library data structures
+    as you see fit. 
+        ```Python
+        win_size = 16
+        prime = 3
+        modulus = 256
+        target = 0
 
-    In this section, you'll write some code from the scratch.
-    Read the following resources and write the C code for Content-Defined Chunking (Rabin Fingerprint)
-      - https://moinakg.wordpress.com/tag/rabin-fingerprint/
-      - https://en.wikipedia.org/wiki/Rabin_fingerprint
 
-    We have given you some starter code at `hw2/cdc`. The code reads a file
-    called `prince.txt` and puts it into a buffer. Your task is to pass
-    this buffer to a function called `cdc`. You are free to use C/C++ standard library data structures
-    as you see fit. Your implementation doesn't need to be the
-    most efficient and can be very simple. We are only looking for functional code. You are free to
-    choose a maximum and minimum chunk size. Following is an example output
-    we expect your program to produce:
-    ```
-    bytes_read 14247
-    Using max chunksize of 128
-    Using min chunksize of 32
-    chunks found 113
-    average chunk size 126
-    Listing the chunks as follows: 
-    -----New Chunk------
-    The Little Prince Chapter I
-    Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature
+        def hash_func(input, pos):
+            hash = 0
+            for i in range(0, win_size):
+                hash += ord(input[pos+win_size-1-i])*(pow(prime, i+1))
+            return hash
 
-    -----New Chunk------
-    , about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the dra
 
-    -----New Chunk------
-    wing.
-    Boa
-    In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to m
+        def cdc(buff, buff_size):
+            for i in range(win_size, buff_size-win_size):
+                if((hash_func(buff, i) % modulus)) == target:
+                    print(i)
 
-    -----New Chunk------
-    ove, and they sleep through the six months that they need for digestion."
-    I pondered deeply, then, over the adventures of the ju
-    ...
-    ...
-    ```
-    Make sure to write a Makefile and include the output in your report.
-    ```{tip}
-    Work together with your partner!
-    ```
+
+        def test_cdc(filename):
+            with open(filename) as f:
+                buff = f.read()
+                cdc(buff, len(buff))
+
+
+        test_cdc("prince.txt")
+
+        ```
+        Verify that your program outputs the following:
+        ```{admonition} Output
+        299
+        366
+        367
+        838
+        1001
+        1263
+        2141
+        2283
+        2660
+        2708
+        2748
+        2820
+        3143
+        3210
+        3211
+        3682
+        3845
+        4107
+        4985
+        5127
+        5504
+        5552
+        5592
+        5664
+        5987
+        6054
+        6055
+        6526
+        6689
+        6951
+        7829
+        7971
+        8348
+        8396
+        8436
+        8508
+        8831
+        8898
+        8899
+        9370
+        9533
+        9795
+        10673
+        10815
+        11192
+        11240
+        11280
+        11352
+        11675
+        11742
+        11743
+        12214
+        12377
+        12639
+        13517
+        13659
+        14036
+        14084
+        14124
+        14196
+        ```
+        ```{tip}
+        - To verify, you can first create a text file with the output, e.g. `golden.txt`
+        - You can then write the output of your program to another text file buy
+        redirecting the output in the command line, e.g. `./cdc > out.txt`
+        - You can then use `diff` which will show differences in values if any, e.g. `diff out.txt golden.txt`
+        ```
+    2. It is more efficient to not recompute the whole hash at every window.
+    Convince yourself that the next hash computation can be expressed as:
+        ```Python
+        hash_func(input, pos+1) = hash_func(input, pos)*prime - input[pos]*pow(prime, win_size) + input[pos+win_size]*prime
+        ```
+        Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
+    3. Time the two `cdc` implementations and compare.
+        ```{tip}
+        - Work together with your partner!
+        - Read the following resources to gain more context about the code:
+          <br> Content-Defined Chunking (Rabin Fingerprint)
+          - https://moinakg.wordpress.com/tag/rabin-fingerprint/
+          - https://en.wikipedia.org/wiki/Rabin_fingerprint
+        ```
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
@@ -284,5 +356,5 @@ In summary, upload the following in their respective links in canvas:
     tar -xvzf <file_name.tgz>
     ```
     ````
-  - a tarball containing your `cdc` code and Makefile to compile it.
+  - a tarball containing your two `cdc` implementations code and Makefile to compile it.
   - writeup in pdf.
