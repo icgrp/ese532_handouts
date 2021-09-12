@@ -228,7 +228,7 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 Once you have 3h completed from the {doc}`homework_submission`,
 continue with the following.
 - First, cd to the HW5 directory and source settings to be able to run vitis:
-  `source sourceMe.sh`. If you work locally, souce `settings64.sh` in vitis
+  `source sourceMe.sh`. If you work locally, source `settings64.sh` in vitis
   installation directory.
 - Start Vitis by `vitis &` in the terminal. You should now see the IDE.
 - Select Workspace as you want and click ***Launch***.
