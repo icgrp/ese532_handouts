@@ -23,191 +23,77 @@ times you need to invoke low-level placement and routing and introduce
  simulation and emulation you can use validate your design before
  invoking low-level placement and routing.
 
-<!-- ## Getting Started with Vitis on Amazon F1 Instance
-### Pre-requisites
-Make sure you complete the following pre-requisites before continuing
-with this homework:
-1. You have an AWS account and know how to create AWS 
-    instances. Check {doc}`../hw1/aws_tutorial` for a refresher.
-2. You have access to F1 instances. You can find out if you have
-    access by going to the ***Limits*** tab in your AWS console
-    homepage and then checking for the F1 vCPUs limit as
-    follows. You should see at least 8 vCPUs limit for F1 instance. If you see 0, contact the course staff as
-    soon as possible.
-    ```{image} images/f1_vcpu_limit.png
+In the homework, you could either use linux machines in Detkin/Ketterer or 
+install Vitis locally. If you want to install Vitis locally, we expect that your computer has at least:
+- 16 GB RAM
+- 4 cores
+- 70 GB free hard disk space
+If you want to install Vitis locally, follow the instructions in 
+{ref}`install_locally`. If you want to use Detkin/Ketterer machines, 
+jump to {ref}`software_code`.
+
+(install_locally)=
+### Installing Vitis 2020.2 on your Personal Computer
+<!-- Running Vitis on your local computer will likely be the best interactive
+experience with the GUI.  However, it will take more time and effort (and
+disk space) to get it setup.  Ultimately, we recommend you set it up, but
+the other two options means that getting it setup on your local computer
+does not need to be in your critical path to starting to use the Ultra96. -->
+
+<!-- Note that Vitis only supports Windows and Linux. Although
+you can use Windows, we strongly suggest you install linux,
+since we developed our homework code on Linux (Ubuntu 20.04). 
+We won't be able to
+help you if you encounter unexpected bugs and issues with tools
+that may arise from using a different OS. For MacOS users,
+you have no choice other than installing Vitis in a Virtual Machine. Following are two tutorials we have on setting up
+a virtual machine. Use Ubuntu 20.04 and the use the instructions
+below to install Vitis (the tutorials install SDSoC and you should not install that) on your virtual machine:
+- [ESE532 SDSoC on Parallels Desktop](https://youtu.be/HaOWfmCAyCE)
+- [ESE532 SDSoC on Virtual Box](https://docs.google.com/document/d/1XKVsD3gt8NeJgvcykNxD37CZME8r-dkUBl1D8KESYZk/edit?usp=sharing) -->
+
+Note that Vitis is fully supported in Linux OS only.
+Follow the instructions below to install Vitis on your linux machine:
+1. Download 
+***Xilinx Unified Installer 2020.2: Linux Self Extracting Web Installer*** in
+[here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vitis/2020-2.html). Create an account with Xilinx if you don't have one.
+1. Open a terminal and use the following command:
     ```
-3. Read about Vitis from [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part1.md).
-
-In this homework, we will use two instances:
-- `z1d.2xlarge` referred to as the ***build*** instance where
-    we will compile and build our fpga binary. It costs
-    $0.744$/hr. You can create this instance in any AWS region.
-- `f1.2xlarge` referred to as the ***runtime*** instance where
-    we will run our fpga binary. It costs $1.65$/hr. We can
-    only use `us-east-1` (N. Virginia) for this instance.
-
-(launch_instance)=
-### Launch the build instance
-1. Navigate to the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ?qid=1585105385966&sr=0-1&ref_=srh_res_product_title)
-1. Click on **Continue to Subscribe**
-1. Accept the EULA and click **Continue to Configuration**
-1. Select version v1.9.0 and US East (N.Virginia)
-1. Click on **Continue to Launch**
-1. Select **Launch through EC2** in the **Choose Action** drop-down and click **Launch**
-1. Select **z1d.2xlarge** Instance type
-1. At the top of the console, click on **6. Configure Security Groups** 
-1. Click **Add Rule** ( Note : Add a new rule dont modify existing rule )
-    1. Select **Custom TCP Rule** from the **Type** pull-down menu
-    1. Type `8443` in the **Port Range** field
-    1. Select **Anywhere** from the **Source** pull-down
-1. Click **Review and Launch**. This brings up the review page.
-1. Click **Launch** to launch your instance.
-1. Select a valid key pair and **check** the acknowledge box at the bottom of the dialog
-1. Select **Launch Instances**. This brings up the launch status page
-1. When ready, select **View Instances** at the bottom of the page
-1. Login to your build instance by doing:
+    chmod +x Xilinx_Unified_2020.2_1118_1232_Lin64.bin
     ```
-    ssh -i <AWS key pairs.pem> centos@<IPv4 Public IP of EC2 instance>
+1. Extract the installer:
     ```
-    ```{note}
-    The default user is centos.
+    ./Xilinx_Unified_2020.2_1118_1232_Lin64.bin --noexec --target ./xilinx-installer
     ```
-(dcv_setup)=
-### Setup remote desktop
-We will use NICE DCV as our remote desktop server on Amazon. We will use
-the remote desktop to work with several Vitis GUI utilities.
-1. Attach NICE DCV license to your `z1d.2xlarge` instance by
-    doing the following:
-    1. Sign in to the AWS Management Console and open the IAM console at <https://console.aws.amazon.com/iam/>.
-    1. In the navigation pane of the IAM console, choose ***Roles***, and then choose ***Create role***.
-    1. For ***Select type of trusted entity***, choose ***AWS service***.
-    1. For ***Choose a use case***, select ***EC2*** and then
-    click ***Next: Permissions***.
-    1. Click on ***Next: Tags*** to move forward.
-    1. Click on ***Next: Review*** to move forward.
-    1. Enter a name, e.g. "DCVLicenseAccessRole" and click
-        ***Create role***.
-    1. Click on Policies in the left menu.
-    1. Click on ***Create policy***.
-    1. Click on the ***JSON*** tab and paste the following:
-        ```
-        {
-            "Version": "2012-10-17",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Action": "s3:GetObject",
-                    "Resource": "arn:aws:s3:::dcv-license.us-east-1/*"
-                }
-            ]
-        }
-        ```
-        ```{note}
-        Change `us-east-1` to the region you are using (if different).
-        ```
-    1. Enter a name, e.g. "DCVLicensePolicy" and click
-        ***Create policy***.
-    1. Search for your new policy and click on it to open it.
-    1. Click on ***Policy usage*** and then on ***Attach***.
-    1. Enter your DCV role name, select the role and click on ***Attach policy***.
-    1. Go to your console home page and click on ***Instances***.
-    1. Right-click on your `z1d.2xlarge instance and click on
-    ***Instance settings*** and then ***Modify IAM role***.
-    1. From the drop-down menu, select your DCV role name and
-    click save. Your instance will now be able to use the server.
-
-1. Login to your `z1d.2xlarge` instance and install NICE DCV pre-requisites
-
-   ```
-   sudo yum -y install kernel-devel
-   sudo yum -y groupinstall "GNOME Desktop"
-   sudo yum -y install glx-utils
-   ```
-
-1. Install NICE DCV Server
-
-   ```
-   sudo rpm --import https://s3-eu-west-1.amazonaws.com/nice-dcv-publish/NICE-GPG-KEY
-   wget https://d1uj6qtbmh3dt5.cloudfront.net/2019.0/Servers/nice-dcv-2019.0-7318-el7.tgz
-   tar xvf nice-dcv-2019.0-7318-el7.tgz
-   cd nice-dcv-2019.0-7318-el7
-   sudo yum -y install nice-dcv-server-2019.0.7318-1.el7.x86_64.rpm
-   sudo yum -y install nice-xdcv-2019.0.224-1.el7.x86_64.rpm
-   cd ~
-
-   sudo systemctl enable dcvserver
-   sudo systemctl start dcvserver
-   ```
-
-1. Setup a password
-
-   ```
-   sudo passwd centos
-   ```
-
-1. Change firewall settings
-      
-   * Disable firewalld to allow all connections
-   ```
-   sudo systemctl stop firewalld
-   sudo systemctl disable firewalld
-   ```
-
-1. Create a virtual session to connect to    
-   ```{note}
-   You will have to create a new session if you restart your instance. Put this in your
-   `~/.bashrc` so that you automatically
-   create a session on login.
-   ```
-   ```
-   dcv create-session --type virtual --user centos centos
-   ```
-
-1. Connect to the DCV Remote Desktop session
-    1. * Download and install the [DCV Client](https://download.nice-dcv.com/) in your computer.
-       
-       * Use the Public IP address to connect
-
-1. Logging in should show you your new GUI Desktop
-### Setup AWS CLI
-1. Go to <https://console.aws.amazon.com> and then from the top right,
-select your account name, and then ***My Security Credentials***.
-1. Click on ***Access Keys*** and ***Create New Access Key***.
-1. Note down your ***Access Key ID*** and ***Secret Access Key***.
-1. Login to your `z1d.2xlarge` instance and issue the following
-command:
+1. Login with your Xilinx account:
     ```
-    aws configure
+    ./xsetup -b AuthTokenGen
     ```
-1. Enter your access key, add us-east-1 as region and output to be json.
- -->
+    Type the email you have registered for xilinx and press enter.
+    Type the password and press enter - the command from step 4 completes with `Saved authentication token file successfully`.
+1. Save the attached {download}`ese532_install_config.txt <misc/ese532_install_config.txt>` and add your preferred installation location in the `Destination` field. The default location is `/opt/Xilinx`.
+1. Start the installation with the following command:
+    ```
+    ./xsetup -b Install -a XilinxEULA,3rdPartyEULA,WebTalkTerms -c ese532_install_config.txt
+    ```
+    The full installation will take about 30 min - 1 hour.
+1. Open the file `~/.bashrc` in your terminal and add the following line. This is the license for using Vitis:
+    ```
+    export LM_LICENSE_FILE="2100@potato.cis.upenn.edu;1709@potato.cis.upenn.edu;1717@potato.cis.upenn.edu;27010@potato.cis.upenn.edu;27009@potato.cis.upenn.edu"
+    ```
+    Do `source ~/.bashrc` to update the terminal environment
+    with this variable.
+1. You might need to issue the following commands if you encounter an error with `libtinfo`:
+    ```
+    sudo apt update
+    sudo apt install libtinfo-dev
+    sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5
+    ```
+
 (software_code)=
 ### Obtaining and Running the Code
 In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
 function on the FPGA.
-
-<!-- Login to your `z1d.2xlarge` instance and initialize your environment as follows:
-```
-tmux
-git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
-source $AWS_FPGA_REPO_DIR/vitis_setup.sh
-export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
-```
-```{caution}
-Make sure to run under tmux! It will save you hours.
-```
- -->
-<!-- ---
-Clone the `ese532_code` repository using the following command:
-```
-git clone https://github.com/icgrp/ese532_code.git
-```
-If you already have it cloned, pull in the latest changes
-using:
-```
-cd ese532_code/
-git pull origin master
-``` -->
 
 Pull in the latest changes using:
 ```
@@ -219,8 +105,6 @@ The code you will use for [homework submission](homework_submission)
 is in the `hw5` directory. The directory structure looks like this:
 ```
 hw5/
-    Makefile
-    design.cfg
     xrt.ini
     common/
         Constants.h
@@ -229,15 +113,11 @@ hw5/
         Utilities.cpp
         Utilities.h
     hls/
-        export_hls_kernel.sh
-        run_hls.tcl
         MatrixMultiplication.h
         MatrixMultiplication.cpp
         Testbench.cpp
     Host.cpp
 ```
-- There are 5 targets in the Makefile. Use `make help` to learn about them.
-- `design.cfg` defines several options for the v++ compiler. Learn more about it [here](https://developer.xilinx.com/en/articles/using-configuration-files-to-control-vitis-compilation.html).
 - `xrt.ini` defines the options necessary for Vitis Analyzer.
 - The `common` folder has header files and helper functions.
 - You will mostly be working with the code in the `hls` folder. The 
@@ -250,8 +130,8 @@ hw5/
 utilized in `Host.cpp`
 - Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution.
 - Read [this](https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html) to learn about aligned memory allocation with OpenCL.
-TODO: run this in detkin/ketterer environment
-- Run the matrix multiplication on the cpu by doing:
+
+<!-- - Run the matrix multiplication on the cpu by doing:
     ```
     # compile
     source $AWS_FPGA_REPO_DIR/vitis_setup.sh
@@ -267,20 +147,18 @@ TODO: run this in detkin/ketterer environment
     and find out how long each API call took.
     1. Read about how to use Vitis Analyzer from [here](https://github.com/Xilinx/Vitis-Tutorials/blob/master/Getting_Started/Vitis/Part5.md).
 <!--     1. Open a remote desktop session on your `z1d.2xlarge` instance. -->
-    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer and try to associate the api calls with the code in `Host.cpp`.
+<!--     1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer and try to associate the api calls with the code in `Host.cpp`.
     1. Hover over an API call to find out long it took.
-    
-We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. Scroll to {ref}`vitis_hls` to learn about how to
-use Vitis HLS.
+ -->
+We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS.
 
 ---
 
 (vitis_hls)=
 ### Using Vitis HLS
-
 Creating a new project in Vitis HLS is explained [here](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project).
 Make sure you enter the top-level function during the creation of the
-project (although you can also change it later).  The top-level function is
+project (although you can also change it later). The top-level function is
 the function that will be called by the part of your application that runs
 in software.  Vitis HLS needs it for synthesis.  You can also indicate
 which files you want to create.  It is wise to add a testbench file too,
@@ -294,7 +172,6 @@ add any functionality needed to test your function.  That includes calling
 the top function that you would like to test.  When the testbench is
 satisfied that the function is correct, it should return 0.  Otherwise, it
 should return another value.
-
 
 You can run the testbench by selecting ***Project*** $\rightarrow$ ***Run C Simulation*** from the menu.  A window should pop up.  The default settings of the dialog
 should be fine.  You can dismiss the dialog by pressing ***OK***.  You
@@ -345,48 +222,384 @@ So collaborate with your partner if you are unable to use the GUI in AWS or try
 to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
 ``` -->
 
-(resume_build)=
-### Run on the FPGA
+
+(vitis)=
+### Creating Vitis Project
 Once you have 3h completed from the {doc}`homework_submission`,
 continue with the following.
-<!-- #### Compile a hardware function
-- Start building the hardware function by doing `make afi EMAIL=<your email>`,
-    substituting your email. This build will take about 1 hour 20 minutes and in the end
-    it will wait for you to confirm a subscription from your email account; open your email and confirm
-    the subscription and wait to receive an email that your Amazon FPGA Image (AFI) is available (takes about 30 minutes to an hour).
-
-#### Set up a runtime instance
-- Follow the steps from {ref}`launch_instance`, but instead of choosing
-    a `z1d.2xlarge` instance, choose `f1.2xlarge`.
-
-#### Copy binaries to the runtime instance
-- Create a github repository and clone it in your `z1d.2xlarge` instance.
-- Add the `host`, `mmult.awsxclbin` and `xrt.ini` files to the repository; commit and push.
-- Git clone the updated repository in your `f1.2xlarge` instance.
-
-#### Run the application on the FPGA
-- Execute the following commands in your `f1.2xlarge` instance to run your application:
+- First, cd to the HW5 directory and source settings to be able to run vitis:
+  `source sourceMe.sh`. If you work locally, souce `settings64.sh` in vitis
+  installation directory.
+- Start Vitis by `vitis &` in the terminal. You should now see the IDE.
+- Select Workspace as you want and click ***Launch***.
+- Select ***Create Application Project***.
+- You will see Ultra96 platform as shown below. Click ***Next***.
+    ```{figure} images/vitis_ultra96_platform.png
+    ---
+    height: 300px
+    ---
+    Select Ultra96 platform
     ```
-    source $AWS_FPGA_REPO_DIR/vitis_runtime_setup.sh
-    # Wait till the MPD service has initialized. Check systemctl status mpd
-    ./host ./mmult.awsxclbin 
+- Set project name as you want. e.g. hw5_vitis. Then, click ***Next***.
+- You will see Sysroot path, Root FS, and Kernel Image are already set.
+  Click ***Next***.
+    ```{figure} images/vitis_domain.png
+    ---
+    height: 300px
+    ---
+    Application settings should have been already set
     ```
-- You should see the following files generated when you ran:
+- We will create our own application. So, select Empty Application
+  and click ***Finish***. The Vitis IDE creates the project and opens the Design perspective.
+- In the Project Explorer view, you will see ***hw5_vitis [Petalinux]***.
+  This is where the host code should be placed. Right-click the ***src*** folder
+  under ***hw5_vitis [Petalinux]***, and select ***Import Sources***.
+- Check all the utility codes in `ese532_code/hw5/common` and
+  click ***Finish***.
+- Right-click the ***src*** folder again, and similarly import `Host.cpp`
+  in `ese532_code/hw5/`.
+- This time, you want to add the kernel you just generated with Vitis HLS.
+  You will see ***hw5_vitis_kernels*** in the Project Explorer.
+  Right-click the ***src*** folder under
+  ***hw5_vitis_kernels***, and select ***Import Sources***. Similarly,
+  add `mmult.xo` to kernel's src folder and click ***Finish***. You now
+  have the host application, `host.cpp`, and the Vitis HLS kernel,
+  `mmult.xo`, in the project.
+  Click ***Next***.
+    ```{figure} images/vitis_import_src.jpg
+    ---
+    height: 300px
+    ---
+    Import source files
     ```
+- Double-click kernel project in the Project Exploer to open up
+  the Hardware Kernel Project Settings.
+- In the Hardware Functions section of the Project Settings view, select
+  ***Add Hardware Functions***.
+- You will see mmult function in the `mmult.xo`. Select mmult function
+  and click ***OK***.
+    ```{figure} images/vitis_hw_xo.jpg
+    ---
+    height: 300px
+    ---
+    Add hardware function
+    ```
+- You will see Active build configuration on the upper right corner.
+  Set it to ***Hardware***.
+- In the Assistant view on the lower-left corner, you will see ***Hardware***
+  is selected. Right-click ***Hardware*** and click ***build***. This process will
+  take 20~30 minutes.
+
+
+## Environment Setup
+### Setting up Ultra96 and Host Computer
+We have provided you with:
+- An Ultra96 board with a power cable and a JTAG USB cable
+- 2 USB-ethernet adapters
+- 1 ethernet cable
+- 1 SD card and an SD card reader
+- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
+
+<!-- We expect you have a personal computer. If you intend to install
+Vitis locally, we expect that your computer has at least:
+- 16 GB RAM
+- 4 cores
+- 70 GB free hard disk space
+
+Otherwise, our suggestion is that you compile your code either
+on AWS or Biglab (shown later) and then later copy the binaries
+to your personal computer, copy them into the board and finally run them on the board.
+ -->
+<!-- In the end,  -->
+Your setup should look like {numref}`ultra96-setup`.
+We will be using this setup for the rest of the semester.
+```{figure} images/env_setup.jpg
+---
+height: 300px
+---
+Development Environment
+```
+
+### Run on the FPGA
+#### Write the SD Card Image (one time setup)
+Once the build has completed in {ref}`vitis` section, you will see a generated `package` directory. e.g. `hw5_vitis_system/Hardware/package`.
+The package directory contains the following
+files that we are interested in:
+```
+package/sd_card.img
+package/sd_card/BOOT.BIN
+package/sd_card/boot.scr
+package/sd_card/image.ub
+package/sd_card/hw5_vitis
+package/sd_card/binary_container_1.xclbin
+```
+We suggest you to copy files above to you local machine and proceed.
+When you are building for the first time, we will write the
+`package/sd_card.img` image to our SD card.
+You can do that in
+several ways:
+- First put your SD card into the SD card reader and plug it to your computer.
+- In Ubuntu 20.04, open the `Startup Disk Creator`. Select `Disk Images` from the drop down at the bottom right corner and locate
+the `package/sd_card.img` file. Continue to write the image.
+- After it's done, you can verify that there are two partitions in the SD card now:
+    - the first partition has the files we mentioned above. These are the files that will change every time we build our code.
+    - the second partition contains the Linux rootfs. This will not change.
+- If you don't have `Startup Disk Creator`, you can use other programs like [balenaEtcher](https://www.balena.io/etcher/) or
+[Rufus](https://rufus.ie/).
+````{note}
+We will only have to write our SD card image once.
+When we recompile our code, the files that will need to be
+updated are:
+```
+package/sd_card/BOOT.BIN
+package/sd_card/boot.scr
+package/sd_card/image.ub
+package/sd_card/hw5_vitis
+package/sd_card/binary_container_1.xclbin
+```
+We will copy those files to the running board using `scp`.
+We will then reboot the board, which will load the updated
+boot files. The boot files contain the bitstream, which
+reconfigures the ***Programmable Logic*** of the Ultra96. Hence,
+we need a reboot. If you copy the files, but don't do a reboot,
+you will see that your program throws an error.
+````
+```{caution}
+Make sure you don't hot plug/unplug the SD card. This can potentially corrupt the SD card/damage the board. Always shut down the device first and then insert/take out the SD card. You can shut down the device by typing "poweroff" in the serial console of the device.
+```
+
+#### Boot the Ultra96
+- Make sure you have the board connected as shown in {numref}`ultra96-setup`.
+- We will use two terminals on our host computer:
+    - the first terminal will be used to copy binaries into the Ultra96
+    - the second terminal will be used to access the serial console of the Ultra96
+- We will now open the serial console of the Ultra96. You can use any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. We are using `minicom` and following is the command we use for connecting to the serial port:
+    ```
+    sudo minicom -D /dev/ttyUSB1
+    ```
+    `/dev/ttyUSB1` is the port where the Ultra96 dumps all
+    the console output. If you are on Windows, this will be
+    something different, like `COM4`. When you want to get out
+    of `minicom`, use `CTRL-A Z q`
+- After you have connected to the serial port, boot the board
+by pressing the boot switch as shown in {numref}`boot`.
+    ```{figure} images/boot.png
+    ---
+    height: 300px
+    name: boot
+    ---
+    Switch for booting Ultra96
+    ```
+- Watch your serial console for boot messages. Following is what ours look like:
+    ```
+    �Xilinx Zynq MP First Stage Boot Loader
+    Release 2020.1   Oct 17 2020  -  06:29:34
+    NOTICE:  ATF running on XCZU3EG/silicon v4/RTL5.1 at 0xfffea000
+    NOTICE:  BL31: v2.2(release):v1.1-5588-g5918e656e
+    NOTICE:  BL31: Built : 20:07:49, Oct 17 2020
+    U-Boot 2020.01 (Oct 17 2020 - 20:08:47 +0000)
+    Model: Avnet Ultra96 Rev1
+    Board: Xilinx ZynqMP
+    DRAM:  2 GiB
+    .
+    .
+    .
+    Starting kernel ...
+    [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+    [    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
+    [    0.000000] Machine model: Avnet Ultra96 Rev1
+    [    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+    [    0.000000] printk: bootconsole [cdns0] enabled
+    [    0.000000] efi: Getting EFI parameters from FDT:
+    [    0.000000] efi: UEFI not found.
+    [    0.000000] Reserved memory: created DMA memory pool at 0x000000003ed40000, size 1 MiB
+    [    0.000000] OF: reserved mem: initialized node rproc@3ed400000, compatible id shared-dma-pool
+    [    0.000000] cma: Reserved 512 MiB at 0x000000005fc00000
+    .
+    .
+    .
+    .
+    Starting syslogd/klogd: done
+    Starting tcf-agent: OK
+    PetaLinux 2020.1 ultra96v2-2020-1 ttyPS0
+    root@ultra96v2-2020-1:~# The XKEYBOARD keymap compiler (xkbcomp) reports:
+    > Warning:          Unsupported high keycode 372 for name <I372> ignored
+    >                   X11 cannot support keycodes above 255.
+    >                   This warning only shows for the first high keycode.
+    Errors from xkbcomp are not fatal to the X server
+    D-BUS per-session daemon address is: unix:abstract=/tmp/dbus-2CuBS4BnDn,guid=63270a6bec61460191859caa5f9022fc
+    matchbox: Cant find a keycode for keysym 269025056
+    matchbox: ignoring key shortcut XF86Calendar=!$contacts
+    matchbox: Cant find a keycode for keysym 2809
+    matchbox: ignoring key shortcut telephone=!$dates
+    matchbox: Cant find a keycode for keysym 269025050
+    matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
+    dbus-daemon[641]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=0 pid=636 comm="matchbox-desktop ")
+    dbus-daemon[641]: Successfully activated service 'org.a11y.atspi.Registry'
+    SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+    [settings daemon] Forking. run with -n to prevent fork
+    ```
+- Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
+    ```
+    root@u96v2-sbc-base-2020-2:~#
+    ```
+- On the serial console, run your code as follows:
+    ```
+    cd /mnt/sd-mmcblk0p1
+    export XILINX_XRT=/usr
+    ./hw5_vitis binary_container_1.xclbin
+    ```
+    You should see the following output:
+    ```
+    root@u96v2-sbc-base-2020-2:/mnt/sd-mmcblk0p1# ./hw5_vitis binary_container_1.xclbin
+    Loading: 'binary_container_1.xclbin'
+    TEST PASSED
+    ```
+- We will now enable ethernet connection between our Ultra96 and
+    the host computer, such that we can copy files between
+    the devices. Issue the following command in the serial console:
+    ```
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+    ```
+- Now in your second console in the host computer, first
+    find out the name that has been assigned to the USB-ethernet
+    device by issuing `ifconfig`
+    ```
+    enx000ec6c4b500: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+            inet 10.10.7.2  netmask 255.0.0.0  broadcast 10.255.255.255
+            ether 00:0e:c6:c4:b5:00  txqueuelen 1000  (Ethernet)
+            RX packets 213  bytes 32750 (32.7 KB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 249  bytes 25958 (25.9 KB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+            inet 127.0.0.1  netmask 255.0.0.0
+            inet6 ::1  prefixlen 128  scopeid 0x10<host>
+            loop  txqueuelen 1000  (Local Loopback)
+            RX packets 570887  bytes 920673672 (920.6 MB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 570887  bytes 920673672 (920.6 MB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    ```
+    In our case, the USB-ethernet device is `enx000ec6c4b500`.
+    Now issue the following command:
+    ```
+    sudo ifconfig enx000ec6c4b500 10.10.7.2 netmask 255.0.0.0
+    ```
+- We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
+You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
+computer.
+- Let's copy a file. Copy the `xrt.ini` file from your computer to the `/mnt/sd-mmcblk0p1` directory of the Ultra96 as follows:
+    ```
+    scp xrt.ini root@10.10.7.1:/mnt/sd-mmcblk0p1/
+    ```
+    The default password of the device is `root` (you can setup ssh keys so that you don't have to type the passwords all the time).
+- Now re-run the program as before. You should now see the generated files:
+    ```
+    binary_container_1.xclbin.run_summary
     profile_summary.csv
     timeline_trace.csv
-    xclbin.run_summary
     ```
-    Add, commit and push these files in the repository you created and then shutdown your F1 instance.
-    ```{caution}
-    Make sure to shut down your F1 instance! It costs 1.65$/hr
+- Copy these files to your computer by issuing the following command. Modify the command with the username of your computer and
+    the directory you want to put the files in.
     ```
+    scp binary_container_1.xclbin.run_summary timeline_trace.csv profile_summary.csv lilbirb@10.10.7.2:/media/lilbirb/research/
+    ```
+- You can now use Vitis Analayzer in your host computer to view the trace by doing:
+    ```
+    vitis_analyzer ./binary_container_1.xclbin.run_summary
+    ```
+- When you modify your HLS code, that will cause the hardware to
+change, and hence the following files will need to be copied to
+the `/mnt/sd-mmcblk0p1` directory
+    ```
+    package/sd_card/BOOT.BIN
+    package/sd_card/boot.scr
+    package/sd_card/image.ub
+    package/sd_card/hw5_vitis
+    package/sd_card/binary_container_1.xclbin
+    ```
+    After you copy these files, type `reboot` in the serial
+    console and that will reprogram the device.
+    Note that everytime you reboot the device, you will
+    need to issue the following commands:
+    ```
+    export XILINX_XRT=/usr
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+    ```
+    You can put these commands in your `~/.bashrc` of the Ultra96 (use `vim` to edit this file in Ultra96), so that
+    you don't have to type it all the time.
+- When you only modify your host code, you don't have to copy any of the files mentioned above and only neeed to copy the
+OpenCL host binary, which is `hw5_vitis` in this example. You also don't need to reboot the device in that case.
 
----
 This concludes a top-down walk-through of the steps involved
-in running a hardware function on the AWS FPGA.
- -->
- TODO: run this in detkin/ketterer environment
+in running a hardware function on the Ultra96.
+
+#### Boot the Ultra96 (for Windows users only)
+- Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it's COM4.
+    ```{figure} images/win_eth_0.jpg
+    ---
+    height: 300px
+    ---
+    Find the port
+    ```
+- Download and install MobaXterm from [here](https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip).
+- Start MobaXterm. Click ***Session*** in the left top corner and select ***Serial***.
+  Set the serial port as the one you found in the previous step and bps. In the example case,
+  it's COM4 and 115200. Click ***OK***.
+- Boot the board by pressing the boot switch as shown in {numref}`boot`.
+- Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
+    ```
+    root@u96v2-sbc-base-2020-2:~#
+    ```
+- On the serial console, run your code as follows:
+    ```
+    cd /mnt/sd-mmcblk0p1
+    export XILINX_XRT=/usr
+    ./hw5_vitis binary_container_1.xclbin
+    ```
+    You should see the following output:
+    ```
+    root@u96v2-sbc-base-2020-2:/mnt/sd-mmcblk0p1# ./hw5_vitis binary_container_1.xclbin
+    Loading: 'binary_container_1.xclbin'
+    TEST PASSED
+    ```
+- In the local machine's session, type ifconfig and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:
+    ```{figure} images/win_eth_1.jpg
+    ---
+    height: 300px
+    ---
+    ifconfig to find out your local machine's ip
+    ```
+- Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
+  previous step, the ip address of the local machine is `169.254.123.23` and netmask is
+  `255.255.0.0`. So, let's assign the ultra96 to a ip of `169.254.123.24`(note that
+  this is 24!) as follows:
+    ```{figure} images/win_eth_2.jpg
+    ---
+    height: 300px
+    ---
+    Connect you machine and Ultra96
+    ```
+- Your devices are not connected. Go to the local machine's tab and ssh into the Ultra96:
+    ```{figure} images/win_eth_3.jpg
+    ---
+    height: 300px
+    ---
+    ssh in to the Ultra96 and transfer files
+    ```
+- You can see that you can view the files of the Ultra96 on the left hand side.
+  You can easily drag and drop files from/to the local machine to/from Ultra96.
+  Copy `xrt.ini` file from your computer to the `/mnt/sd-mmcblk0p1` directory
+  of the Ultra96.
+- Now re-run the program as before. You should now see the generated files:
+    ```
+    binary_container_1.xclbin.run_summary
+    profile_summary.csv
+    timeline_trace.csv
+    ```
+- Copy these files back to your local machine and analyze with Vitis Analyzer.
+  If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer.
 
 
 ## Reference
@@ -396,6 +609,9 @@ in running a hardware function on the AWS FPGA.
 - <https://github.com/aws/aws-fpga/blob/master/Vitis/docs/Setup_AWS_CLI_and_S3_Bucket.md>
  -->
 - <https://github.com/Xilinx/Vitis-Tutorials/tree/master/Getting_Started>
+- <https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/vitis_hls_analysis/using_the_kernel.html>
 <!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
- --><!-- - <https://github.com/aws/aws-fpga/blob/master/Vitis/README.md>
  -->
+ <!-- - <https://github.com/aws/aws-fpga/blob/master/Vitis/README.md>
+ -->
+

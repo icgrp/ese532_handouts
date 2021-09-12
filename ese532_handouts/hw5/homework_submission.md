@@ -18,32 +18,14 @@ Your writeup should include your answers to the following questions:
         (1 line)
     1. We will now simulate the matrix multiplier in
         Vitis HLS.
-        ````{note}
-        If your remote desktop connection is lagging,
-        you can compile HLS from the command line using the script, `export_hls_kernel.sh`, in the `hw5/hls` directory.
-        The script will compile the HLS code to mmult.xo (which gets exported to `ese532_code/hw5/mmult.xo`). You can view the Vitis HLS reports from the command line after you ran the script and find the resource estimates:
-        ```
-        cat ese532_code/hw5/hls/proj_mmult/solution1/syn/report/mmult_csynth.rpt
-        ```
-        Note that the only way to view the HLS schedule is using the GUI.
-        So collaborate with your partner if you are not able to use the GUI
-        or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
-        ````
-        - On a different terminal, ssh into your `z1d.2xlarge` instance.
-        - Start the DCV server using the following:
-            ```
-            dcv create-session --type virtual --user centos centos
-            ```
-        - Open the NICE DCV Viewer in your computer.
-        - Enter the public IP address of the `z1d.2xlarge` instance.
-        - Enter `centos` and the password you set during DCV setup. You
-            should now the see the desktop.
-        - From the Applications, select System Tools > Terminal.
+        - First, cd to the HW5 directory and source settings to be able to run vitis_hls.
+          `source sourceMe.sh`.
+          If you work locally, source `settings64.sh` in vitis installation directory.
         - Start Vitis HLS by `vitis_hls &` in the terminal. You should now see the IDE.
-        - Create a new project and add `hw5/fpga/hls/MatrixMultiplication.cpp` and `hw5/fpga/hls/MatrixMultiplication.h` as source files.
+        - Create a new project and add `hw5/hls/MatrixMultiplication.cpp` and `hw5/hls/MatrixMultiplication.h` as source files.
         - Specify `mmult` as top function.
-        - Add `hw5/fpga/hls/Testbench.cpp` as TestBench files.
-        - Select the `xcvu9p-flgb2104-2-i` in the device
+        - Add `hw5/hls/Testbench.cpp` as TestBench files.
+        - Select the `xczu3eg-sbva484-1-e` in the device
             selection. Use a 8ns
             clock, and select "Vitis Kernel Flow Target".
             Click Finish.
@@ -123,12 +105,8 @@ Your writeup should include your answers to the following questions:
 
         ```{hint}
          We are just asking for a Resource Bound analysis here.
-         
-         In the F1 instance, our HLS logic gets implemented inside a "shell". The shell consumes about 20% of the FPGA resources, and that includes the PCIe Gen3 X16, DMA engine, DRAM controller interface, ChipScope (Virtual JTAG) and other health monitoring and image loading logic. The remaining 80% of the resources is available for the HLS code you write.
-         
-         How many copies of the each design can you fit in the resources available in F1 shell? What throughput does each design achieve?
+         How many copies of the each design can you fit in the resources available in Ultra96's logic? What throughput does each design achieve?
         ```
-			
 			
 3. **HLS Kernel Optimization: Pipelining**
     1. Remove the unroll pragma, and pipeline the `Main_loop_j`
@@ -159,26 +137,19 @@ Your writeup should include your answers to the following questions:
         1 and synthesize your design. Export your synthesized design by right-clicking on ***solution1*** and then selecting ***Export RTL***. Choose ***Vitis Kernel (.xo)*** as the
         ***Format***. Select output location to be your
         `ese532_code/hw5` directory and select OK.
-        Save your design and quit Vitis HLS. Open a terminal and go to your `ese532_code/hw5` directory. Make sure your terminal environment
-        is initialized as follows.
-        ```
-        source $AWS_FPGA_REPO_DIR/vitis_setup.sh
-        export PLATFORM_REPO_PATHS=$(dirname $AWS_PLATFORM)
-        ```
-        Run by following the instruction in {ref}`resume_build` section.
+        Save your design and quit Vitis HLS. Open a terminal and go to your `ese532_code/hw5` directory.
+        Run by following the instruction in {ref}`vitis` section.
         Commit the Vitis Analyzer files in your repo. We will use it in the next section.
 
 4. **Vitis Analyzer**
     
     We will now use Vitis Analyzer to analyze the trace of our matrix multiplication on the FPGA.
-    ```{note}
+    <!-- ```{note}
     Note that the only way to view the Vitis Analyzer is using the GUI.
     So collaborate with your partner if you are not able to use the GUI
     or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
-    ```
-    1. Open a remote desktop session on your `z1d.2xlarge` instance.
-    1. Assuming you ran the application as instructed in {ref}`resume_build`, open a terminal and `git pull` the files you got from the `f1.2xlarge` instance. 
-    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer.
+    ``` -->
+    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer. If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer.
     1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.
     1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
         Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.
