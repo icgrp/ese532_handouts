@@ -367,7 +367,7 @@ int main() {
     // by writing: std::thread th(is_main_thread);
     th = std::thread(is_main_thread);
 
-    // Assign our thread to cpu 1.
+    // Assign our thread to core 1.
     pin_thread_to_cpu(th, 2); 
 
     // wait for the thread to finish.
@@ -510,3 +510,83 @@ Remember that `static` keyword in a block scope changes the
 is until the program stops executing. This is especially important
 since being able to use old data while new data is being produced
 is key to achieving the pipeline parallelism.
+
+### Monitoring processes using htop
+`htop` tool in Linux lets you monitor the processes running on your system.
+Since there can be multiple users in Biglab at a given time, you would
+want to monitor `htop` and see if the CPUs are looking idle; in which case
+you should do some profiling of you program and get some clean results.
+You can also use `htop` to see where your threads are pinned to.
+
+Once logged into Biglab, type `htop` in the terminal, and you'll
+see a screen like {numref}`htop-init`:
+```{figure} images/htop-init.png
+---
+name: htop-init
+---
+Initial `htop` window
+```
+This gives you an idea if the CPU are being utilized and if the machine
+is being used heavily.
+
+Let's configure some of the view items. Press **F2** (**Fn+F2** in laptops) to enter the **Setup** screen. From the setup screen, select **Display Options** and check **Tree view**. This will let us see the threads we spawn. Also uncheck **Count CPUs from 1 instead of 0**, so that
+we are referring to the same indexing in this walk-through. Now from the
+same setup screen, select **Columns** and select **PROCESSOR** from the
+**Available Columns**. This is will let us see the CPU ID of the thread.'
+Press **Esc** to get back to the main `htop` window.
+
+While keeping `htop` open in one terminal, open a different terminal
+to your Biglab node and compile the following code by pasting it your `Walkthrough.cpp`
+and do `make walkthrough && ./walkthrough`.
+```CPP
+#include <iostream>
+#include <thread>
+#include "Utilities.h"
+#include <unistd.h>
+#include <array>
+
+void my_function(int a, int b) {
+    int c = a + b;
+    std::cout << "From thread id:"
+            << std::this_thread::get_id()
+            << " a+b=" << c << std::endl;
+    sleep(60);
+}
+
+int main() {
+    // pin main thread to cpu 0
+    pin_main_thread_to_cpu0();
+
+    int a = 2;
+    int b = 3;
+    
+
+    // create an array of threads
+    std::array<std::thread, 4> threads;
+    
+    // spawn some threads and pin them to specific cpus
+    for(int i = 0; i < 4; i++) {
+      threads[i] = std::thread(&my_function, a, b);
+      pin_thread_to_cpu(threads[i], 2*i+1); 
+    }
+
+    // wait for threads to finish
+    for(std::thread& th : threads) {
+      th.join();
+    }
+}
+```
+The program waits for a minute. During this time, go back to
+the terminal with `htop`. Press **F4** (**Fn+F4** in laptops)
+and type `walkthrough` to filter our process. You'll see the
+following:
+```{figure} images/htop-threads.png
+---
+name: htop-threads
+---
+`htop` showing threads and cpu assignment
+```
+You can see that we are able to see our threads and how they
+are mapped to different CPU IDs---1, 3, 5, 7---indicating that
+we want to use separate cores instead of hyper-threads in the
+same core.
