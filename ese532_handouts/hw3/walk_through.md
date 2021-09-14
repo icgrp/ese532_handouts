@@ -511,7 +511,7 @@ is until the program stops executing. This is especially important
 since being able to use old data while new data is being produced
 is key to achieving the pipeline parallelism.
 
-### Monitoring processes using htop
+### Monitoring Processes using `htop`
 `htop` tool in Linux lets you monitor the processes running on your system.
 Since there can be multiple users in Biglab at a given time, you would
 want to monitor `htop` and see if the CPUs are looking idle; in which case
