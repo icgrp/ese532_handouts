@@ -41,6 +41,15 @@ Your writeup should include your answers to the following questions:
         that you considered parallelizable in the previous question.  Provide
         the relevant sections of code in your report.
     4. Measure the throughput of your parallel implementation.
+        ```{hint}
+        - Use htop to make sure you measure a clean run where your threads
+        get mostly excluive access to cores on the machine; if the
+		cores on the biglab
+        machine are being used up by others, wait for their jobs to finish or
+        try a different machine.
+		- This applies to all of your parallel timing measurements in this
+        assignment. 
+        ```
     5. Validate your results.  Make sure that your parallel
         version produces the same answers as the original serial
         version.  Explain how you validated your results; report any
