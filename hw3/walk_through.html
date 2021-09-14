@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.3. Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="3.1. Collaboration" href="collaboration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw2/index.html">
+   2. Profiling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/walk_through.html">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   3. Thread Parallel
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     3.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="homework_submission.html">
+     3.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw3/walk_through.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw3/walk_through.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw3/walk_through.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linux-vs-bare-metal">
+   3.2.1. Linux vs Bare-Metal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
+   3.2.2. Obtaining and Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-threads">
+   3.2.3. Working with Threads
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics">
+     3.2.3.1. Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coarse-grain">
+     3.2.3.2. Coarse-grain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipeline">
+     3.2.3.3. Pipeline
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="setup-and-walk-through">
+<h1><span class="section-number">3.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="linux-vs-bare-metal">
+<h2><span class="section-number">3.2.1. </span>Linux vs Bare-Metal<a class="headerlink" href="#linux-vs-bare-metal" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="topo">
+<a class="reference internal image-reference" href="../_images/topo.png"><img alt="../_images/topo.png" src="../_images/topo.png" style="height: 450px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">An 8-core machine with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">¶</a></p>
+</div>
+<p>We will divide the computation into threads that run on different processors.
+<a class="reference internal" href="#topo"><span class="std std-numref">Fig. 3.1</span></a> shows a machine on Biglab. Some nodes in Biglab have 4 cores with
+2 hyper-threads each and others have 8 cores with 1 thread each.
+We will be running these threads on the Linux OS and hence, all the
+heavy lifting of sharing main memory global address is taken care of
+by the OS.</p>
+<p>However, in a bare-metal system:</p>
+<ul class="simple">
+<li><p>we would have to map the main memory (DRAM) into the address spaces of each processors.
+Only then can the processors distribute and coordinate the work (which
+involves communicating pointers to shared memory areas and synchronization).</p></li>
+<li><p>in order to share data, the processors in the bare-metal system must
+agree on the location and organization of the data.</p></li>
+<li><p>we must make sure that the processors respect each other’s private memory areas.
+We can do that in a bare-metal system by mapping private code and data of
+individual processors at different locations.</p></li>
+<li><p>Sharing DRAM is complicated by the fact that DRAM is cached in L1 and L2 caches.
+Data that one processor attempts to write to DRAM may not have been written to
+shared DRAM yet, but instead remain in the private L1 cache of the processor.
+When another processor reads the same memory location, it may observe an old
+value.  Fortunately, our ARM processors (and the Zynq we will later
+use) have a Snoop Control Unit, which bypasses data directly between processors
+as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.</p></li>
+</ul>
+<p>Another problem that we face when we communicate via shared memory is that
+the reading processor should not start reading the memory until the writing
+processor has completed writing the data.  In other words, we need a form
+of synchronization between the cores.  Design of synchronization functions
+is a rather complex subject, which is dealt with in other courses such as
+CIS 471 or CIS 505. In this assignment, we will use the APIs of <code class="docutils literal notranslate"><span class="pre">std::thread</span></code>
+to accomplish synchronization between cores. We will show you exactly how to
+use these APIs in the following sections, but if you would like to learn about
+<code class="docutils literal notranslate"><span class="pre">std::threads</span></code>, here are some useful links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/">Concurrency in C++</a></p></li>
+<li><p><a class="reference external" href="https://eli.thegreenplace.net/2016/c11-threads-affinity-and-hyperthreading/">C++11 threads, affinity and hyperthreading</a></p></li>
+<li><p><a class="reference external" href="https://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php">C++ threads tutorial</a></p></li>
+<li><p><a class="reference external" href="https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/">Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is</a></p></li>
+</ul>
+<p>If you prefer a book, refer to <em><strong>C++ Concurrency in Action</strong></em> by Anthony D. Williams.</p>
+</div>
+<div class="section" id="obtaining-and-running-the-code">
+<h2><span class="section-number">3.2.2. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
+<p>In the previous homework, we dealt with a streaming application that
+compressed only one picture. For this homework, we will use the same
+application, except that it will take a video stream instead of a
+single picture.</p>
+<p>We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
+shared by multiple users—meaning your processes are not the only
+ones running on a core. Hence, you might not see full performance scaling
+as you use more cores. Detkin machines should give you dedicated access
+to the cores.</p>
+<ul>
+<li><p>Login to Biglab and clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
+repository using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">icgrp</span><span class="o">/</span><span class="n">ese532_code</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>If you already have it cloned, pull in the latest changes
+using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>The code you will use for <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a>
+is in the <code class="docutils literal notranslate"><span class="pre">hw3</span></code> directory. The directory structure looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hw3</span><span class="o">/</span>
+    <span class="n">assignment</span><span class="o">/</span>
+        <span class="n">Makefile</span>
+        <span class="n">Walkthrough</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">common</span><span class="o">/</span>
+            <span class="n">App</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Constants</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Stopwatch</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Utilities</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Utilities</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">baseline</span><span class="o">/</span>
+            <span class="n">App</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Compress</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Differentiate</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Scale</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">coarse_grain</span><span class="o">/</span>
+            <span class="o">...</span>
+        <span class="n">pipeline_2_cores</span><span class="o">/</span>
+            <span class="o">...</span>
+        <span class="n">pipeline_4_cores</span><span class="o">/</span>
+            <span class="o">...</span>
+    <span class="n">data</span><span class="o">/</span>
+        <span class="n">Input</span><span class="o">.</span><span class="n">bin</span>
+        <span class="n">Golden</span><span class="o">.</span><span class="n">bin</span>
+</pre></div>
+</div>
+</li>
+<li><p>There are four parts to the homework. You can build all of them by executing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">hw3/assignment</span></code> directory. You can build separately by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">base</span></code> and run <code class="docutils literal notranslate"><span class="pre">./base</span></code> to run the baseline project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">coarse</span></code> and run <code class="docutils literal notranslate"><span class="pre">./coarse</span></code> to run the coarse-grain project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">pipeline2</span></code> and run <code class="docutils literal notranslate"><span class="pre">./pipeline2</span></code> to run the pipeline project on 2 cores.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">pipeline4</span></code> and run <code class="docutils literal notranslate"><span class="pre">./pipeline4</span></code> to run the pipeline project on 4 cores.</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder contains the input data, <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code>, which has 100 frames of
+size <span class="math notranslate nohighlight">\(960\)</span> by <span class="math notranslate nohighlight">\(540\)</span> pixels, where each pixel is a byte. <code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> contains the
+expected output. Each program uses this file to see if there is a mismatch between
+your program’s output and the expected output.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">assignment/common</span></code> folder has header files and helper functions used by the
+four parts.</p></li>
+<li><p>You will mostly be working with the code in the rest of the folders.</p></li>
+</ul>
+</div>
+<div class="section" id="working-with-threads">
+<h2><span class="section-number">3.2.3. </span>Working with Threads<a class="headerlink" href="#working-with-threads" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basics">
+<h3><span class="section-number">3.2.3.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following code:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">my_function</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a+b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>What thread do you think this code is running on?
+Let’s find out. Adding a little bit more to the code:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+
+<span class="c1">// gets the thread id of the main thread</span>
+<span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">::</span><span class="n">id</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// checks if running on main thread using the id</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">is_main_thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is not the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">my_function</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a+b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">is_main_thread</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-TEXT notranslate"><div class="highlight"><pre><span></span>a+b=5
+This is the main thread.
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Can we be really sure? Let’s add a little bit more:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+
+<span class="c1">// gets the thread id of the main thread</span>
+<span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">::</span><span class="n">id</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// checks if running on main thread using the id</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">is_main_thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is not the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">my_function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a+b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">is_main_thread</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// create a new thread, note it&#39;s not running</span>
+<span class="w">    </span><span class="c1">// anything yet.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">th</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// construct the thread to run is_main_thread</span>
+<span class="w">    </span><span class="c1">// note, as soon as you construct it, the thread</span>
+<span class="w">    </span><span class="c1">// starts running.</span>
+<span class="w">    </span><span class="c1">// You could create and run at the same time</span>
+<span class="w">    </span><span class="c1">// by writing: std::thread th(is_main_thread);</span>
+<span class="w">    </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">is_main_thread</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// wait for the thread to finish.</span>
+<span class="w">    </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-TEXT notranslate"><div class="highlight"><pre><span></span>a+b=5
+This is the main thread.
+This is not the main thread.
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>From the above, we learned:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;thread&gt;</span></code> to use thread.</p></li>
+<li><p>don’t construct a thread if you don’t want to run
+it immediately, i.e. just declare it.</p></li>
+<li><p>thread starts running as soon as we construct it,
+i.e. give it a function to run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">th.join()</span></code> is a blocking call and waits for the
+thread to finish at the point of the program
+where it’s called.</p></li>
+<li><p>we are running on the <code class="docutils literal notranslate"><span class="pre">main</span></code> thread by default.</p></li>
+</ul>
+<p>We have multiple cores in Biglab. By default,
+the linux scheduler will schedule our threads into one of these
+cores. What if we know what we are doing and want full
+control over assigning a specific thread to run on a
+specific core? Let’s learn how to do that.</p>
+<p>We have given you two functions:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">pin_thread_to_cpu</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cpu_num</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">pin_main_thread_to_cpu0</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>They are declared and defined in <code class="docutils literal notranslate"><span class="pre">common/Utilities.h</span></code> and
+<code class="docutils literal notranslate"><span class="pre">common/Utilities.cpp</span></code>. Adding to our previous example:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Utilities.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// gets the thread id of the main thread</span>
+<span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">::</span><span class="n">id</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// checks if running on main thread using the id</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">is_main_thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is not the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Assign main thread to cpu 0</span>
+<span class="w">    </span><span class="n">pin_main_thread_to_cpu0</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">my_function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a+b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">is_main_thread</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// create a new thread, note it&#39;s not running</span>
+<span class="w">    </span><span class="c1">// anything yet.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">th</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// construct the thread to run is_main_thread</span>
+<span class="w">    </span><span class="c1">// note, as soon as you construct it, the thread</span>
+<span class="w">    </span><span class="c1">// starts running.</span>
+<span class="w">    </span><span class="c1">// You could create and run at the same time</span>
+<span class="w">    </span><span class="c1">// by writing: std::thread th(is_main_thread);</span>
+<span class="w">    </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">is_main_thread</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Assign our thread to cpu 1.</span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">th</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="c1">// wait for the thread to finish.</span>
+<span class="w">    </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> APIs we have given you, only
+works on Linux. For MacOS and Windows, we let the scheduler
+choose the core. So if you are prototyping on your local
+machine, keep it in mind.</p></li>
+<li><p>Also note how in <a class="reference internal" href="#topo"><span class="std std-numref">Fig. 3.1</span></a> there are 2 hyper-threads
+per core. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
+the index number of the hyper-thread. Hence, for instance, if
+you want to run a thread on core 0 and one on core 1,
+you should pin the threads to either 0 and 2, or 1 and 3.
+This will ensure that each thread is run on a separate core.
+Otherwise, multiple threads on the same core will share resources
+and may affect performance. To see the CPU topology in Biglab,
+use the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/home1/e/ese532/software/usr/bin/:$PATH
+lstopo
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<p>Last thing we need to know is how to pass function and their
+arguments to threads? Modifying our example:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Utilities.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// gets the thread id of the main thread</span>
+<span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">::</span><span class="n">id</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// checks if running on main thread using the id</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">is_main_thread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">main_thread_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is not the main thread.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;From thread id:&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; a+b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Assign main thread to cpu 0</span>
+<span class="w">    </span><span class="n">pin_main_thread_to_cpu0</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">my_function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">is_main_thread</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// create a new thread, note it&#39;s not running</span>
+<span class="w">    </span><span class="c1">// anything yet.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">th</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// construct the thread to run is_main_thread</span>
+<span class="w">    </span><span class="c1">// note, as soon as you construct it, the thread</span>
+<span class="w">    </span><span class="c1">// starts running.</span>
+<span class="w">    </span><span class="c1">// You could create and run at the same time</span>
+<span class="w">    </span><span class="c1">// by writing: std::thread th(is_main_thread);</span>
+<span class="w">    </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">is_main_thread</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Assign our thread to cpu 1.</span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">th</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="c1">// wait for the thread to finish.</span>
+<span class="w">    </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">th2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_function</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">c</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">th2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-TEXT notranslate"><div class="highlight"><pre><span></span>The output is:
+From thread id:0x114275dc0 a+b=5
+This is the main thread.
+This is not the main thread.
+From thread id:0x700001055000 a+b=5
+</pre></div>
+</div>
+<p>From the above, we learned:</p>
+<ul class="simple">
+<li><p>the first argument to constructing a thread is a callback
+function. This callback can be a function object (as we see in <code class="docutils literal notranslate"><span class="pre">th</span></code>),
+a function pointer (as we see in <code class="docutils literal notranslate"><span class="pre">th2</span></code>) or a lambda function.</p></li>
+<li><p>the rest of the arguments are the inputs to the function.
+They are passed-by-value by default (i.e. <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are copied).
+Hence, if you need to pass something by reference (as we see <code class="docutils literal notranslate"><span class="pre">int&amp;</span> <span class="pre">c</span></code> in
+<code class="docutils literal notranslate"><span class="pre">my_function</span></code>), you have to wrap it in <code class="docutils literal notranslate"><span class="pre">std::ref</span></code>.</p></li>
+</ul>
+<hr class="docutils" />
+<p>This concludes everything you need to know about <code class="docutils literal notranslate"><span class="pre">std::threads</span></code> to
+complete this homework. You can run the full walk-through by
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">walkthrough</span></code> and <code class="docutils literal notranslate"><span class="pre">./walkthrough</span></code>.</p>
+</div>
+<div class="section" id="coarse-grain">
+<h3><span class="section-number">3.2.3.2. </span>Coarse-grain<a class="headerlink" href="#coarse-grain" title="Permalink to this headline">¶</a></h3>
+<p>The coarse-grain part of the homework shows you how you can process
+a data parallel function with threads. We show how you change the
+<code class="docutils literal notranslate"><span class="pre">Scale</span></code> function to process it with two threads:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Scale_coarse</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">Input</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">Output</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Y_Start_Idx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Y_End_Idx</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y_Start_Idx</span><span class="p">;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Y_End_Idx</span><span class="p">;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">INPUT_WIDTH_SCALE</span><span class="p">;</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Output</span><span class="p">[(</span><span class="n">Y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">INPUT_WIDTH_SCALE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Input</span><span class="p">[</span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">INPUT_WIDTH_SCALE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>From the code, you can see that we added two additional arguments at the function
+signature, which is then used in the for loop. This helps us realize
+the data parallel behavior of the function and let multiple
+threads work on it:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">Frame</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">FRAMES</span><span class="p">;</span><span class="w"> </span><span class="n">Frame</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ths</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ths</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Scale_coarse</span><span class="p">,</span><span class="w"> </span><span class="n">Input_data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Frame</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FRAME_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_HEIGHT_SCALE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">ths</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Scale_coarse</span><span class="p">,</span><span class="w"> </span><span class="n">Input_data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Frame</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FRAME_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">INPUT_HEIGHT_SCALE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_HEIGHT_SCALE</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">ths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">ths</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">th</span> <span class="p">:</span><span class="w"> </span><span class="n">ths</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>As we can see from the code above, two threads are launched in parallel. One
+processes indices <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">270)</span></code> and the other processes <code class="docutils literal notranslate"><span class="pre">[270,</span> <span class="pre">540)</span></code>.
+If you wanted to use three threads, you can split the indices as <code class="docutils literal notranslate"><span class="pre">[0,180)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">[180,</span> <span class="pre">360)</span></code> and <code class="docutils literal notranslate"><span class="pre">[360,</span> <span class="pre">540)</span></code> and invoke another thread and pin it to cpu 3.</p>
+</div>
+<div class="section" id="pipeline">
+<h3><span class="section-number">3.2.3.3. </span>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h3>
+<p>The pipeline part of the homework shows you how you can orchestrate
+the launching of threads and achieve pipeline parallelism. Start reading
+from the main function, where we launch a process on cpu 0:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">Frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">Frame</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">FRAMES</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">Frame</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">core_0_process</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">Size</span><span class="p">),</span><span class="w"> </span><span class="n">Frame</span><span class="p">,</span><span class="w"> </span><span class="n">Input_data</span><span class="p">,</span><span class="w"> </span><span class="n">Temp_data</span><span class="p">,</span><span class="w"> </span><span class="n">Output_data</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Following a top-down approach, look into <code class="docutils literal notranslate"><span class="pre">core_0_process</span></code> function:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">core_0_process</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Size</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">Frame</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">Input_data</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">Temp_data</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">Output_data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">temp_core_0</span><span class="p">[</span><span class="n">FRAME_SIZE</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">Input_data_core_0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp_core_0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">core_1_thread</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Frame</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">FRAMES</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// current core (core 0) spins up process on core 1</span>
+<span class="w">    </span><span class="n">core_1_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">core_1_process</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">Frame</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">Input_data</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">Temp_data</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">core_1_thread</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// core 0 does its job</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Filter_vertical</span><span class="p">(</span><span class="n">Input_data_core_0</span><span class="p">,</span><span class="w"> </span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Differentiate</span><span class="p">(</span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Compress</span><span class="p">(</span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">Output_data</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// waits for core 1 to finish</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Frame</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">FRAMES</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">core_1_thread</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">Temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="n">Temp_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Input_data_core_0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">Input_data_core_0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Temp</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Pay special attention to the guards—<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(Frame</span> <span class="pre">&lt;</span> <span class="pre">FRAMES</span> <span class="pre">+</span> <span class="pre">1)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(Frame</span> <span class="pre">&gt;</span> <span class="pre">1)</span></code>, and figure out if a code executes or not or
+is waiting on another core to finish. Keep following the code
+like this and you will realize how we mapped the functions
+for the pipelining on 2 cores and pipelining on 4 cores part of the
+homework. In summary:</p>
+<ul class="simple">
+<li><p>for pipelining on 2 cores, we map <code class="docutils literal notranslate"><span class="pre">Scale</span></code> and parts of
+<code class="docutils literal notranslate"><span class="pre">Filter</span></code> on core 1 and then the rest of <code class="docutils literal notranslate"><span class="pre">Filter</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Compress</span></code> on core 2.</p></li>
+<li><p>for pipeline on 4 cores, we map <code class="docutils literal notranslate"><span class="pre">Scale</span></code> on core 2, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>
+on core 1, and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code> and <code class="docutils literal notranslate"><span class="pre">Compress</span></code>
+on core 0. We left an empty prototype function that you can
+use to change the mapping and utilize core 3.</p></li>
+</ul>
+<p>You will also realize how the data flows and how the pipeline
+fills and drains. Lastly, pay special attention to the <code class="docutils literal notranslate"><span class="pre">static</span></code> in
+<code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">unsigned</span> <span class="pre">char</span> </code> of the processes in the pipeline code.
+Remember that <code class="docutils literal notranslate"><span class="pre">static</span></code> keyword in a block scope changes the
+<em><strong>storage class</strong></em> of a variable, i.e. the lifetime of the variable
+is until the program stops executing. This is especially important
+since being able to use old data while new data is being produced
+is key to achieving the pipeline parallelism.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="collaboration.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">3.1. </span>Collaboration</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="homework_submission.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">3.3. </span>Homework Submission</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
