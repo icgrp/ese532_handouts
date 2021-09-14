@@ -1,18 +1,15 @@
 # Setup and Walk-through
-```{include} ../common/aws_caution.md
-```
 ## Linux vs Bare-Metal
-```{figure} images/a1-metal.png
+```{figure} images/topo.png
 ---
 height: 450px
-name: a1-metal
+name: topo
 ---
-Amazon a1.metal instance
+An 8-core machine with 2 hyper-threads
 ```
 We will divide the computation into threads that run on different processors.
-{numref}`a1-metal` shows the machine we will be running on, where we
-will be utilizing four cores out of the 16 cores
-available.
+{numref}`topo` shows a machine on Biglab. Some nodes in Biglab have 4 cores with
+2 hyper-threads each and others have 8 cores with 1 thread each.
 We will be running these threads on the Linux OS and hence, all the
 heavy lifting of sharing main memory global address is taken care of
 by the OS. 
@@ -57,25 +54,13 @@ compressed only one picture. For this homework, we will use the same
 application, except that it will take a video stream instead of a
 single picture.
 
-We will also use a `a1.metal` instance. Amazon AWS
-instances are usually virtual machines---meaning the underlying
-hardware might not necessarily reside on a single machine. The
-`*.metal` instances guarantee that the user application has
-full access to the hardware (all cpus and rams). Since
-we want to see performance scaling as we use more cores, we have
-to use the `a1.metal`. You could run the same code on other
-instances, but you might not necessarily see the performance
-scaling.
+We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
+shared by multiple users---meaning your processes are not the only
+ones running on a core. Hence, you might not see full performance scaling
+as you use more cores. Detkin machines should give you dedicated access
+to the cores.
 
-```{important}
-The `a1.metal` instance costs $0.408 per hour. So be mindful
-of that and your credit usage.
-```
-
-- Create an `a1.metal` instance following {doc}`../hw1/aws_tutorial`.
-    The setup should be exactly the same, except for choosing
-    `a1.metal` as your instance type.
-- Login to your `a1.metal` instance and clone the `ese532_code`
+- Login to Biglab and clone the `ese532_code`
     repository using the following command:
     ```
     git clone https://github.com/icgrp/ese532_code.git
@@ -251,7 +236,7 @@ From the above, we learned:
     where it's called.
 - we are running on the `main` thread by default.
 
-We have 16 cores in `a1.metal` instance. By default,
+We have multiple cores in Biglab. By default,
 the linux scheduler will schedule our threads into one of these
 cores. What if we know what we are doing and want full
 control over assigning a specific thread to run on a
@@ -313,12 +298,25 @@ int main() {
     th.join();
 }
 ```
-```{note}
-The `pin_thread_to_cpu` APIs we have given you, only
+````{note}
+- The `pin_thread_to_cpu` APIs we have given you, only
 works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
 machine, keep it in mind.
-```
+- Also note how in {numref}`topo` there are 2 hyper-threads
+per core. The `cpu_num` argument in `pin_thread_to_cpu` refers to
+the index number of the hyper-thread. Hence, for instance, if
+you want to run a thread on core 0 and one on core 1,
+you should pin the threads to either 0 and 2, or 1 and 3.
+This will ensure that each thread is run on a separate core.
+Otherwise, multiple threads on the same core will share resources
+and may affect performance. To see the CPU topology in Biglab,
+use the following commands:
+  ```
+  export PATH=/home1/e/ese532/software/usr/bin/:$PATH
+  lstopo
+  ```
+````
 
 ---
 Last thing we need to know is how to pass function and their
@@ -511,5 +509,3 @@ Remember that `static` keyword in a block scope changes the
 is until the program stops executing. This is especially important
 since being able to use old data while new data is being produced
 is key to achieving the pipeline parallelism.
-```{include} ../common/aws_caution.md
-```

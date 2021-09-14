@@ -61,7 +61,7 @@ Your writeup should include your answers to the following questions:
         implementation on 2 cores in
         pictures per second. (1 lines)
     2. What is the best performance that one could theoretically
-        achieve with a pipelined mapping of the streaming application on 2 cores over the single ARM core solution?
+        achieve with a pipelined mapping of the streaming application on 2 cores over the single x86 core solution?
         (1 line)
         ```{hint}
         Where is the bottleneck? How does pipelining help in
