@@ -423,30 +423,27 @@ Indicate throughput and data transfer ratios where applicable.</p></li>
 </li>
 </ol>
 </li>
-<li><p><strong>More Parallelism</strong></p>
+<li><p><strong>CDC Parallel</strong></p>
 <p>Building on techniques and observations from previous parts,
-create a revised implementation that uses four 64b ARM cores to achieve
-additional speedup. The initial
-implementation can be found in <code class="docutils literal notranslate"><span class="pre">hw3/assignment/pipeline_4_cores</span></code>, where
-we currently utilize 3 cores.  The provided stream has only <span class="math notranslate nohighlight">\(100\)</span> frames, but
-assume in your performance computations that you are dealing with a
-stream of infinite length.</p>
+create a data-parallel implementation of your CDC function from homework 2 that uses four x86 cores to achieve
+additional speedup. The starter code can be found in <code class="docutils literal notranslate"><span class="pre">hw3/assignment/cdc_parallel</span></code>.</p>
 <ol>
-<li><p>Report the throughput of the initial pipelined
-implementation on 3 cores in
-pictures per second. (1 lines)</p></li>
 <li><p>What is the best performance that one could theoretically
-achieve with a pipelined mapping of the streaming application on 4 cores over the single ARM core solution?
-(1 line)</p>
+achieve with a data-parallel mapping of CDC on 4 cores over the single x86 solution?
+(1 line)</p></li>
+<li><p>Describe the data-parallel mapping that achieves the best performance.
+Try to achieve the best speedup over the single x86 core solution.</p></li>
+<li><p>Implement your design and include your code  in your report.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>Where is the bottleneck? Can you hide the bottleneck
-anymore like you did in 3b? Does the bottleneck limit the best performance you can achieve?</p>
+<ul class="simple">
+<li><p>Use the techniques showed in the walkthrough!</p></li>
+<li><p>You can divide the input file equally for each thread to work on,
+however, make sure that hash calculation for the window of characters between two threads is accounted
+for, in other words, think about the indices you’ll pass to your threads.</p></li>
+</ul>
 </div>
 </li>
-<li><p>Describe the mapping that achieves the best performance.
-Try to achieve the best speedup over the single ARM core solution.</p></li>
-<li><p>Implement your design and include your code  in your report.</p></li>
 <li><p>Report speedup obtained and relate it to your solution. (3–5 lines)</p></li>
 <li><p>Validate your design and report on any discrepancies.</p></li>
 </ol>

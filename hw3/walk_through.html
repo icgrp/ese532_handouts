@@ -432,7 +432,7 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw3</span
             <span class="o">...</span>
         <span class="n">pipeline_2_cores</span><span class="o">/</span>
             <span class="o">...</span>
-        <span class="n">pipeline_4_cores</span><span class="o">/</span>
+        <span class="n">cdc_parallel</span><span class="o">/</span>
             <span class="o">...</span>
     <span class="n">data</span><span class="o">/</span>
         <span class="n">Input</span><span class="o">.</span><span class="n">bin</span>
@@ -446,13 +446,15 @@ in the <code class="docutils literal notranslate"><span class="pre">hw3/assignme
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">base</span></code> and run <code class="docutils literal notranslate"><span class="pre">./base</span></code> to run the baseline project.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">coarse</span></code> and run <code class="docutils literal notranslate"><span class="pre">./coarse</span></code> to run the coarse-grain project.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">pipeline2</span></code> and run <code class="docutils literal notranslate"><span class="pre">./pipeline2</span></code> to run the pipeline project on 2 cores.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">pipeline4</span></code> and run <code class="docutils literal notranslate"><span class="pre">./pipeline4</span></code> to run the pipeline project on 4 cores.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">cdc</span></code> and run <code class="docutils literal notranslate"><span class="pre">./cdc</span></code> to run the data-parallel CDC you will implement on 4 cores.</p></li>
 </ul>
 </li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder contains the input data, <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code>, which has 100 frames of
 size <span class="math notranslate nohighlight">\(960\)</span> by <span class="math notranslate nohighlight">\(540\)</span> pixels, where each pixel is a byte. <code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> contains the
-expected output. Each program uses this file to see if there is a mismatch between
-your program’s output and the expected output.</p></li>
+expected output. <code class="docutils literal notranslate"><span class="pre">base</span></code>, <code class="docutils literal notranslate"><span class="pre">coarse</span></code> and <code class="docutils literal notranslate"><span class="pre">pipeline2</span></code> uses this file to see if there is a mismatch between
+your program’s output and the expected output. <code class="docutils literal notranslate"><span class="pre">cdc</span></code> uses <code class="docutils literal notranslate"><span class="pre">prince.txt</span></code>
+from the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder as an input. <code class="docutils literal notranslate"><span class="pre">golden.txt</span></code> has the expected output
+of your cdc will produce.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">assignment/common</span></code> folder has header files and helper functions used by the
 four parts.</p></li>
 <li><p>You will mostly be working with the code in the rest of the folders.</p></li>
@@ -838,16 +840,15 @@ from the main function, where we launch a process on cpu 0:</p>
 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(Frame</span> <span class="pre">&gt;</span> <span class="pre">1)</span></code>, and figure out if a code executes or not or
 is waiting on another core to finish. Keep following the code
 like this and you will realize how we mapped the functions
-for the pipelining on 2 cores and pipelining on 4 cores part of the
+for the pipelining on 2 cores part of the
 homework. In summary:</p>
 <ul class="simple">
 <li><p>for pipelining on 2 cores, we map <code class="docutils literal notranslate"><span class="pre">Scale</span></code> and parts of
 <code class="docutils literal notranslate"><span class="pre">Filter</span></code> on core 1 and then the rest of <code class="docutils literal notranslate"><span class="pre">Filter</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>
-and <code class="docutils literal notranslate"><span class="pre">Compress</span></code> on core 2.</p></li>
-<li><p>for pipeline on 4 cores, we map <code class="docutils literal notranslate"><span class="pre">Scale</span></code> on core 2, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Compress</span></code> on core 0.</p></li>
+<li><p>if you wanted to map on 3 cores, you could map <code class="docutils literal notranslate"><span class="pre">Scale</span></code> on core 2, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>
 on core 1, and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code> and <code class="docutils literal notranslate"><span class="pre">Compress</span></code>
-on core 0. We left an empty prototype function that you can
-use to change the mapping and utilize core 3.</p></li>
+on core 0.</p></li>
 </ul>
 <p>You will also realize how the data flows and how the pipeline
 fills and drains. Lastly, pay special attention to the <code class="docutils literal notranslate"><span class="pre">static</span></code> in
