@@ -111,7 +111,7 @@ to the cores.
     expected output. `base`, `coarse` and `pipeline2` uses this file to see if there is a mismatch between
     your program's output and the expected output. `cdc` uses `prince.txt`
     from the `data` folder as an input. `golden.txt` has the expected output
-    of your cdc will produce.
+    cdc will produce.
 - The `assignment/common` folder has header files and helper functions used by the
     four parts.
 - You will mostly be working with the code in the rest of the folders.

@@ -116,7 +116,7 @@ Your writeup should include your answers to the following questions:
         Try to achieve the best speedup over the single x86 core solution.
     3. Implement your design and include your code  in your report.
         ```{hint}
-        - Use the techniques showed in the walkthrough!
+        - Use the techniques shown in the walk-through!
         - You can divide the input file equally for each thread to work on,
             however, make sure that hash calculation for the window of characters between two threads is accounted
             for, in other words, think about the indices you'll pass to your threads.
