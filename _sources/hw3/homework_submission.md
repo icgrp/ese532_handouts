@@ -41,6 +41,15 @@ Your writeup should include your answers to the following questions:
         that you considered parallelizable in the previous question.  Provide
         the relevant sections of code in your report.
     4. Measure the throughput of your parallel implementation.
+        ```{hint}
+        - Use htop to make sure you measure a clean run where your threads
+        get mostly excluive access to cores on the machine; if the
+		cores on the biglab
+        machine are being used up by others, wait for their jobs to finish or
+        try a different machine.
+		- This applies to all of your parallel timing measurements in this
+        assignment. 
+        ```
     5. Validate your results.  Make sure that your parallel
         version produces the same answers as the original serial
         version.  Explain how you validated your results; report any
@@ -108,9 +117,10 @@ Your writeup should include your answers to the following questions:
     
     Building on techniques and observations from previous parts,
     create a data-parallel implementation of your CDC function from homework 2 that uses four x86 cores to achieve
-    additional speedup. The starter code can be found in `hw3/assignment/cdc_parallel`.
+    parallelism speedup. The starter code can be found in `hw3/assignment/cdc_parallel`.
     1. What is the best performance that one could theoretically
-        achieve with a data-parallel mapping of CDC on 4 cores over the single x86 solution?
+        achieve with a data-parallel mapping of CDC on 4 cores over the
+        single x86 core solution?
         (1 line)
     2. Describe the data-parallel mapping that achieves the best performance.
         Try to achieve the best speedup over the single x86 core solution.
@@ -119,7 +129,10 @@ Your writeup should include your answers to the following questions:
         - Use the techniques shown in the walk-through!
         - You can divide the input file equally for each thread to work on,
             however, make sure that hash calculation for the window of characters between two threads is accounted
-            for, in other words, think about the indices you'll pass to your threads.
+            for, in other words, think about the indices you'll pass to
+            your threads.
+			You should not miss a chunk break as a result of the way you
+            split inputs between cores.
         ```
     4. Report speedup obtained and relate it to your solution. (3--5 lines)
     5. Validate your design and report on any discrepancies.

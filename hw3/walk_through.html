@@ -366,7 +366,7 @@ individual processors at different locations.</p></li>
 Data that one processor attempts to write to DRAM may not have been written to
 shared DRAM yet, but instead remain in the private L1 cache of the processor.
 When another processor reads the same memory location, it may observe an old
-value.  Fortunately, our ARM processors (and the Zynq we will later
+value.  Fortunately, our x86 processors (and the ARM on the Zynq we will later
 use) have a Snoop Control Unit, which bypasses data directly between processors
 as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.</p></li>
 </ul>
@@ -633,8 +633,8 @@ specific core? Let’s learn how to do that.</p>
 <span class="w">    </span><span class="c1">// by writing: std::thread th(is_main_thread);</span>
 <span class="w">    </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">is_main_thread</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Assign our thread to cpu 1.</span>
-<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">th</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="c1">// Assign our thread to core 1.</span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">th</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">  </span><span class="c1">// threads 0 and 1 on most machines (2   hyperthreads per core) are same core</span>
 
 <span class="w">    </span><span class="c1">// wait for the thread to finish.</span>
 <span class="w">    </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
@@ -711,7 +711,7 @@ arguments to threads? Modifying our example:</p>
 <span class="w">    </span><span class="n">th</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">is_main_thread</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Assign our thread to cpu 1.</span>
-<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">th</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">th</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span>
 
 <span class="w">    </span><span class="c1">// wait for the thread to finish.</span>
 <span class="w">    </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
@@ -814,7 +814,7 @@ from the main function, where we launch a process on cpu 0:</p>
 <span class="w">                                </span><span class="n">Frame</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                </span><span class="n">Input_data</span><span class="p">,</span><span class="w"></span>
 <span class="w">                                </span><span class="n">Temp_data</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">core_1_thread</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">core_1_thread</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="c1">// core 0 does its job</span>
