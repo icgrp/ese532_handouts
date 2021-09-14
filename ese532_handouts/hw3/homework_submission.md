@@ -104,30 +104,25 @@ Your writeup should include your answers to the following questions:
         4. How much smaller do we have to make the kernel (`FILTER_LENGTH`) of
             `Filter` to move the bottleneck? (7 lines)
 
-4. **More Parallelism**
+4. **CDC Parallel**
     
     Building on techniques and observations from previous parts,
-    create a revised implementation that uses four 64b ARM cores to achieve
-    additional speedup. The initial
-    implementation can be found in `hw3/assignment/pipeline_4_cores`, where
-    we currently utilize 3 cores.  The provided stream has only $100$ frames, but
-    assume in your performance computations that you are dealing with a
-    stream of infinite length.
-    1. Report the throughput of the initial pipelined
-        implementation on 3 cores in
-        pictures per second. (1 lines)
-    2. What is the best performance that one could theoretically
-        achieve with a pipelined mapping of the streaming application on 4 cores over the single ARM core solution?
+    create a data-parallel implementation of your CDC function from homework 2 that uses four x86 cores to achieve
+    additional speedup. The starter code can be found in `hw3/assignment/cdc_parallel`.
+    1. What is the best performance that one could theoretically
+        achieve with a data-parallel mapping of CDC on 4 cores over the single x86 solution?
         (1 line)
+    2. Describe the data-parallel mapping that achieves the best performance.
+        Try to achieve the best speedup over the single x86 core solution.
+    3. Implement your design and include your code  in your report.
         ```{hint}
-        Where is the bottleneck? Can you hide the bottleneck
-        anymore like you did in 3b? Does the bottleneck limit the best performance you can achieve?
+        - Use the techniques showed in the walkthrough!
+        - You can divide the input file equally for each thread to work on,
+            however, make sure that hash calculation for the window of characters between two threads is accounted
+            for, in other words, think about the indices you'll pass to your threads.
         ```
-    3. Describe the mapping that achieves the best performance.
-        Try to achieve the best speedup over the single ARM core solution.
-    4. Implement your design and include your code  in your report.
-    5. Report speedup obtained and relate it to your solution. (3--5 lines)
-    6. Validate your design and report on any discrepancies.
+    4. Report speedup obtained and relate it to your solution. (3--5 lines)
+    5. Validate your design and report on any discrepancies.
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:

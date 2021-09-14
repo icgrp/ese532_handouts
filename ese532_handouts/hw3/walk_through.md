@@ -94,7 +94,7 @@ to the cores.
                 ...
             pipeline_2_cores/
                 ...
-            pipeline_4_cores/
+            cdc_parallel/
                 ...
         data/
             Input.bin
@@ -105,11 +105,13 @@ to the cores.
     - `make base` and run `./base` to run the baseline project.
     - `make coarse` and run `./coarse` to run the coarse-grain project.
     - `make pipeline2` and run `./pipeline2` to run the pipeline project on 2 cores.
-    - `make pipeline4` and run `./pipeline4` to run the pipeline project on 4 cores.
+    - `make cdc` and run `./cdc` to run the data-parallel CDC you will implement on 4 cores.
 - The `data` folder contains the input data, `Input.bin`, which has 100 frames of
     size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
-    expected output. Each program uses this file to see if there is a mismatch between
-    your program's output and the expected output.
+    expected output. `base`, `coarse` and `pipeline2` uses this file to see if there is a mismatch between
+    your program's output and the expected output. `cdc` uses `prince.txt`
+    from the `data` folder as an input. `golden.txt` has the expected output
+    of your cdc will produce.
 - The `assignment/common` folder has header files and helper functions used by the
     four parts.
 - You will mostly be working with the code in the rest of the folders.
@@ -491,15 +493,14 @@ Pay special attention to the guards---`if (Frame < FRAMES + 1)` and
 `if (Frame > 1)`, and figure out if a code executes or not or
 is waiting on another core to finish. Keep following the code
 like this and you will realize how we mapped the functions
-for the pipelining on 2 cores and pipelining on 4 cores part of the
+for the pipelining on 2 cores part of the
 homework. In summary:
 - for pipelining on 2 cores, we map `Scale` and parts of
     `Filter` on core 1 and then the rest of `Filter`, `Differentiate`
-    and `Compress` on core 2.
-- for pipeline on 4 cores, we map `Scale` on core 2, `Filter_horizontal`
+    and `Compress` on core 0.
+- if you wanted to map on 3 cores, you could map `Scale` on core 2, `Filter_horizontal`
     on core 1, and `Filter_vertical`, `Differentiate` and `Compress`
-    on core 0. We left an empty prototype function that you can
-    use to change the mapping and utilize core 3.
+    on core 0.
 
 You will also realize how the data flows and how the pipeline
 fills and drains. Lastly, pay special attention to the `static` in
