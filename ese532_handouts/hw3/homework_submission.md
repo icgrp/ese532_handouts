@@ -43,7 +43,7 @@ Your writeup should include your answers to the following questions:
     4. Measure the throughput of your parallel implementation.
         ```{hint}
         - Use htop to make sure you measure a clean run where your threads
-        get mostly excluive access to cores on the machine; if the
+        get mostly exclusive access to cores on the machine; if the
 		cores on the biglab
         machine are being used up by others, wait for their jobs to finish or
         try a different machine.
