@@ -27,7 +27,7 @@ However, in a bare-metal system:
     Data that one processor attempts to write to DRAM may not have been written to
     shared DRAM yet, but instead remain in the private L1 cache of the processor.
     When another processor reads the same memory location, it may observe an old
-    value.  Fortunately, our ARM processors (and the Zynq we will later
+    value.  Fortunately, our x86 processors (and the ARM on the Zynq we will later
     use) have a Snoop Control Unit, which bypasses data directly between processors
     as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.
 
@@ -293,8 +293,8 @@ int main() {
     // by writing: std::thread th(is_main_thread);
     th = std::thread(is_main_thread);
 
-    // Assign our thread to cpu 1.
-    pin_thread_to_cpu(th, 1); 
+    // Assign our thread to core 1.
+    pin_thread_to_cpu(th, 2);  // threads 0 and 1 on most machines (2   hyperthreads per core) are same core
 
     // wait for the thread to finish.
     th.join();
@@ -368,7 +368,7 @@ int main() {
     th = std::thread(is_main_thread);
 
     // Assign our thread to cpu 1.
-    pin_thread_to_cpu(th, 1); 
+    pin_thread_to_cpu(th, 2); 
 
     // wait for the thread to finish.
     th.join();
@@ -468,7 +468,7 @@ void core_0_process(int &Size,
                                 Frame,
                                 Input_data,
                                 Temp_data);
-    pin_thread_to_cpu(core_1_thread, 1);
+    pin_thread_to_cpu(core_1_thread, 2);
   }
 
   // core 0 does its job
