@@ -294,7 +294,7 @@ int main() {
     th = std::thread(is_main_thread);
 
     // Assign our thread to core 1.
-    pin_thread_to_cpu(th, 2);  // threads 0 and 1 on most machines (2   hyperthreads per core) are same core
+    pin_thread_to_cpu(th, 2);  // threads 0 and 1 on most machines (2 hyperthreads per core) are the same core
 
     // wait for the thread to finish.
     th.join();
@@ -427,7 +427,7 @@ for (int Frame = 0; Frame < FRAMES; Frame++)
     ths.push_back(std::thread(&Scale_coarse, Input_data + Frame * FRAME_SIZE, Temp_data[0], INPUT_HEIGHT_SCALE / 2, INPUT_HEIGHT_SCALE));
 
     pin_thread_to_cpu(ths[0], 0);
-    pin_thread_to_cpu(ths[1], 1);
+    pin_thread_to_cpu(ths[1], 2);
 
     for (auto &th : ths)
     {
