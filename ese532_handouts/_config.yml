@@ -15,7 +15,6 @@ html:
 exclude_patterns:
   - common/*
   - hw4/*
-  - hw5/*
   - hw6/*
   - hw7/*
   - project/*
