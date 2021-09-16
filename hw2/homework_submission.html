@@ -210,33 +210,6 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw5/index.html">
-   4. Accelerator
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/collaboration.html">
-     4.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/walk_through.html">
-     4.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/homework_submission.html">
-     4.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
 </ul>
 
     </div>
@@ -511,7 +484,7 @@ that setup the loop, but the instruction that are executed on each trip
 through the loop) of the innermost loop. (Do not assume that it is unrolled this time.)
 You can see the instructions by:</p>
 <ul class="simple">
-<li><p>Compiling your code with: <code class="docutils literal notranslate"><span class="pre">g++</span> <span class="pre">-Wall</span> <span class="pre">-S</span> <span class="pre">-g</span> <span class="pre">-O2</span> <span class="pre">-c</span> <span class="pre">Filter.c</span> <span class="pre">-o</span> <span class="pre">Filter.o</span></code>, and</p></li>
+<li><p>Compiling your code with: <code class="docutils literal notranslate"><span class="pre">g++</span> <span class="pre">-Wall</span> <span class="pre">-S</span> <span class="pre">-O2</span> <span class="pre">-c</span> <span class="pre">Filter.c</span> <span class="pre">-o</span> <span class="pre">Filter.s</span></code>, and</p></li>
 <li><p>Opening the generated <code class="docutils literal notranslate"><span class="pre">Filter.s</span></code> assembly file.</p></li>
 </ul>
 <p>Which of these instructions are the compute operations you identified in 3c?</p>
@@ -704,7 +677,7 @@ redirecting the output in the command line, e.g. <code class="docutils literal n
 </li>
 <li><p>It is more efficient to not recompute the whole hash at every window.
 Convince yourself that the next hash computation can be expressed as:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="p">)</span> <span class="o">+</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span>
 </pre></div>
 </div>
 <p>Develop a second, revised <code class="docutils literal notranslate"><span class="pre">cdc</span></code> function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.</p>
