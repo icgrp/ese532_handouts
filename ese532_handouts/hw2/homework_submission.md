@@ -144,7 +144,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     that setup the loop, but the instruction that are executed on each trip
     through the loop) of the innermost loop. (Do not assume that it is unrolled this time.)
     You can see the instructions by:
-        - Compiling your code with: `g++ -Wall -S -g -O2 -c Filter.c -o Filter.o`, and
+        - Compiling your code with: `g++ -Wall -S -O2 -c Filter.c -o Filter.s`, and
         - Opening the generated `Filter.s` assembly file.
     
         Which of these instructions are the compute operations you identified in 3c?
@@ -331,7 +331,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     2. It is more efficient to not recompute the whole hash at every window.
     Convince yourself that the next hash computation can be expressed as:
         ```Python
-        hash_func(input, pos+1) = hash_func(input, pos)*prime - input[pos]*pow(prime, win_size) + input[pos+win_size]*prime
+        hash_func(input, pos+1) = hash_func(input, pos)*prime - input[pos]*pow(prime, win_size+1) + input[pos+win_size]*prime
         ```
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
     3. Time the two `cdc` implementations and compare.
