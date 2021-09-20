@@ -63,7 +63,7 @@ Your writeup should include your answers to the following questions:
     As an alternative to coarse-grain, data-level parallelism, we will
     investigate a pipelined implementation in this question.  The initial
     implementation can be found in `hw3/assignment/pipeline_2_cores`.
-    The provided stream has only $100$ frames, but
+    The provided stream has only $200$ frames, but
     assume in your performance computations that you are dealing with a
     stream of infinite length.
     1. Report the throughput of the initial pipelined 
@@ -98,12 +98,12 @@ Your writeup should include your answers to the following questions:
             second.  (1--2 lines)
     9. Let's investigate the performance if we incorporate the optimized
         pipeline in a video broadcast server.  The input data is read from 
-        an interface with $300$ MB/s throughput.  $75\%$ of traffic is
+        an interface with $600$ MB/s throughput.  $75\%$ of traffic is
         video traffic that is compressed using our pipeline (running on
         2 processors). Assume the 2 cores can pipeline the process perfectly. The remaining
         $25\%$ is other traffic that we protect with an error correction code
         (ECC) running on a dedicated hardware unit that adds $10\%$
-        overhead in size.  The hardware ECC unit processes $150$ MB/s.
+        overhead in size.  The hardware ECC unit processes $200$ MB/s.
         The output of the ECC unit and compression pipeline are 
         output to a single $2$-Gigabit/s Ethernet port.
         1. Draw a streaming dataflow diagram for the network server.

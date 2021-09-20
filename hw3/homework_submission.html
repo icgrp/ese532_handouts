@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -71,6 +71,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/penn_engineering.png" class="logo" alt="logo">
       
@@ -379,7 +383,7 @@ effects are likely to be responsible for the difference? (1-3 lines)</p></li>
 <p>As an alternative to coarse-grain, data-level parallelism, we will
 investigate a pipelined implementation in this question.  The initial
 implementation can be found in <code class="docutils literal notranslate"><span class="pre">hw3/assignment/pipeline_2_cores</span></code>.
-The provided stream has only <span class="math notranslate nohighlight">\(100\)</span> frames, but
+The provided stream has only <span class="math notranslate nohighlight">\(200\)</span> frames, but
 assume in your performance computations that you are dealing with a
 stream of infinite length.</p>
 <ol>
@@ -417,12 +421,12 @@ and any discrepancies. (1–3 lines)</p></li>
 second.  (1–2 lines)</p></li>
 <li><p>Let’s investigate the performance if we incorporate the optimized
 pipeline in a video broadcast server.  The input data is read from
-an interface with <span class="math notranslate nohighlight">\(300\)</span> MB/s throughput.  <span class="math notranslate nohighlight">\(75\%\)</span> of traffic is
+an interface with <span class="math notranslate nohighlight">\(600\)</span> MB/s throughput.  <span class="math notranslate nohighlight">\(75\%\)</span> of traffic is
 video traffic that is compressed using our pipeline (running on
 2 processors). Assume the 2 cores can pipeline the process perfectly. The remaining
 <span class="math notranslate nohighlight">\(25\%\)</span> is other traffic that we protect with an error correction code
 (ECC) running on a dedicated hardware unit that adds <span class="math notranslate nohighlight">\(10\%\)</span>
-overhead in size.  The hardware ECC unit processes <span class="math notranslate nohighlight">\(150\)</span> MB/s.
+overhead in size.  The hardware ECC unit processes <span class="math notranslate nohighlight">\(200\)</span> MB/s.
 The output of the ECC unit and compression pipeline are
 output to a single <span class="math notranslate nohighlight">\(2\)</span>-Gigabit/s Ethernet port.</p>
 <ol class="simple">
@@ -529,7 +533,7 @@ split inputs between cores.</p></li>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
