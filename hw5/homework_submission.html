@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.3. Homework Submission &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="5.2. Setup and Walk-through" href="walk_through.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw2/index.html">
+   2. Profiling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/walk_through.html">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw3/index.html">
+   3. Thread Parallel
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/collaboration.html">
+     3.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/walk_through.html">
+     3.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/homework_submission.html">
+     3.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw4/index.html">
+   4. SIMD
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw4/collaboration.html">
+     4.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw4/walk_through.html">
+     4.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw4/homework_submission.html">
+     4.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   5. Accelerator
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     5.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="walk_through.html">
+     5.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw5/homework_submission.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw5/homework_submission.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw5/homework_submission.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deliverables">
+   5.3.1. Deliverables
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-submission">
+<h1><span class="section-number">5.3. </span>Homework Submission<a class="headerlink" href="#homework-submission" title="Permalink to this headline">¶</a></h1>
+<!-- ```{include} ../common/aws_caution.md
+``` -->
+<p>Your writeup should follow <a class="reference internal" href="../writeup_guidelines.html"><span class="doc std std-doc">the writeup guidelines</span></a>.
+Your writeup should include your answers to the following questions:</p>
+<style type="text/css">
+    ol { list-style-type: decimal; }
+    ol ol { list-style-type: lower-alpha; }
+    ol ol ol { list-style-type: lower-roman; }
+    table { width: 100%; }
+    td {height:50px;text-align: center;}
+    tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<ol>
+<li><p><strong>Initial CPU implementation and HLS Kernel</strong></p>
+<ol class="simple">
+<li><p>Find the latency of the matrix multiplier (mmult kernel) on the Xeon core using Vitis Analyzer (refer to the <a class="reference internal" href="walk_through.html#software-code"><span class="std std-ref">Obtaining and Running the Code</span></a>) and report it in ms. This is our baseline.
+(1 line)</p></li>
+<li><p>We will now simulate the matrix multiplier in
+Vitis HLS.</p>
+<ul class="simple">
+<li><p>First, cd to the HW5 directory and source settings to be able to run vitis_hls.
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.
+If you work locally, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis installation directory.</p></li>
+<li><p>Start Vitis HLS by <code class="docutils literal notranslate"><span class="pre">vitis_hls</span> <span class="pre">&amp;</span></code> in the terminal. You should now see the IDE.</p></li>
+<li><p>Create a new project and add <code class="docutils literal notranslate"><span class="pre">hw5/hls/MatrixMultiplication.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">hw5/hls/MatrixMultiplication.h</span></code> as source files.</p></li>
+<li><p>Specify <code class="docutils literal notranslate"><span class="pre">mmult</span></code> as top function.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">hw5/hls/Testbench.cpp</span></code> as TestBench files.</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">xczu3eg-sbva484-1-e</span></code> in the device
+selection. Use a 8ns
+clock, and select “Vitis Kernel Flow Target”.
+Click Finish.</p></li>
+<li><p>Right-click on <em><strong>solution1</strong></em> and select
+<em><strong>Solution Settings</strong></em>.</p></li>
+<li><p>In the <em><strong>General</strong></em> tab, click on <em><strong>Add</strong></em>.</p></li>
+<li><p>Select <em><strong>config_compile</strong></em> command and set
+<em><strong>pipeline_loops</strong></em> to 0. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
+since we are going to do it ourselves.</p></li>
+<li><p>Run C simulation by right-clicking on the project on the <em><strong>Explorer</strong></em> view, and verify that the test
+passes in the console.  Include the console output in your
+report.</p></li>
+</ul>
+</li>
+<li><p>Look at the testbench.  How does the testbench
+verify that the code is correct? (3 lines)
+(We provide you a testbench here.  As you develop your own
+components for the project, you will need to develop your own
+testbenches.  Our testbenches can serve as an example and
+template for you.)</p></li>
+<li><p>Synthesize the matrix multiplier in Vitis HLS. Analyze the <em><strong>Synthesis Report</strong></em> by expanding the <em><strong>solution1</strong></em> tab in the <em><strong>Explorer</strong></em> view, browsing to <em><strong>syn/report</strong></em> and opening the <code class="docutils literal notranslate"><span class="pre">.rpt</span></code> file.
+What is the expected latency of the hardware accelerator in ms? (1 line)</p></li>
+<li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
+and LUT) does the implementation consume? (4 lines)</p></li>
+<li><p>Analyze how the computations are scheduled in time.  You can
+see this information in the <em><strong>Schedule Viewer</strong></em> of the
+<em><strong>Analysis</strong></em> perspective.  How many cycles does a
+multiplication take? (1 line)</p></li>
+<li><p>Make a schematic drawing of the hardware implementation
+consisting of the data path and state machine similar to Figure 2
+of the <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=9">Vitis HLS User Guide</a>.
+You can ignore the addressing and loop hardware (such as
+<code class="docutils literal notranslate"><span class="pre">phi_mux</span></code> and <code class="docutils literal notranslate"><span class="pre">icmp</span></code>) in your data path.</p></li>
+<li><p>Explain why the performance of this accelerator is
+worse than the software implementation. (3 lines)</p></li>
+</ol>
+</li>
+<li><p><strong>HLS Kernel Optimization: Loop Unrolling</strong></p>
+<ol>
+<li><p>Go back to the <em><strong>Synthesis</strong></em> perspective, and unroll the
+loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code> 2 times using an <code class="docutils literal notranslate"><span class="pre">unroll</span></code>
+pragma (See <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hlspragmas.html#ariaid-title25">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
+reduce the latency of the entire loop evaluation (all
+iterations) compared to the original (non-unrolled)
+loop.  (3-4 lines).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>What characteristic of the original code prevented
+this optimization? and why is the unrolled loop able to exploit
+more parallelism?</p>
+</div>
+</li>
+<li><p>We could also have unrolled the loop manually.
+What would the
+equivalent C code look like?</p></li>
+<li><p>Inspect the resource usage in the <em><strong>Resource Profile</strong></em>
+view of the <em><strong>Analysis</strong></em> perspective, as we increase the unroll factor. Of the
+computational resources (<code class="docutils literal notranslate"><span class="pre">fmul</span></code> and <code class="docutils literal notranslate"><span class="pre">fadd</span></code>)
+which one(s) are shared by  multiple operations? (1 line)</p></li>
+<li><p>Unroll the loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code>
+completely, and
+synthesize the design again.
+You may notice that the estimated clock period in the <em><strong>Synthesis Report</strong></em> is shown in red. What does this mean? (3 lines)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to
+variation among Vitis HLS versions, sometimes it works and
+nothing is flagged.  The intent of this question is to
+illustrate things you may encounter and (with the following
+questions) show you how to address them.  If it’s not
+flagged in red, just report the estimated clock period.</p>
+</div>
+</li>
+<li><p>Change the clock period to 20ns, and
+synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)</p></li>
+<li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
+and LUT) does this implementation consume? (4 lines)</p></li>
+<li><p>You may have noticed that all floating-point additions are
+scheduled in series.  What does this imply about floating-point
+additions? (2 lines)</p></li>
+<li><p>We want to multiply two streams of matrices with each other.  We
+can fill the FPGA with copies of one of the accelerators from question
+1d or 2d.  Which
+accelerator would you choose for the highest throughput?</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>We are just asking for a Resource Bound analysis here.
+How many copies of the each design can you fit in the resources available in Ultra96’s logic? What throughput does each design achieve?</p>
+</div>
+</li>
+</ol>
+</li>
+<li><p><strong>HLS Kernel Optimization: Pipelining</strong></p>
+<ol class="simple">
+<li><p>Remove the unroll pragma, and pipeline the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
+loop with the minimal initiation
+interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma.  Restore the
+clock period to 8ns.  Synthesize the design again.  Report the
+initiation interval that the design achieved. (You may find the timing is
+still not met. It does not matter, we will fix it later.) (1 line)</p></li>
+<li><p>Draw a schematic for the data path of <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
+and show how it is connected to the memories.  You can find the
+variables that are mapped onto memories in the <em><strong>Resource Profile</strong></em> view of the
+<em><strong>Analysis</strong></em> perspective.</p></li>
+<li><p>Assuming a continuous flow of input data, how many data words
+does the pipelined loop need per clock cycle from <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code>?
+(1 line)</p></li>
+<li><p>Considering what you found in the two previous questions, why does
+the tool not achieve an initiation interval of 1? (3 lines)</p></li>
+<li><p>We can partition <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code> and <code class="docutils literal notranslate"><span class="pre">Buffer_2</span></code> to
+achieve a better performance.  Illustrate the best way to partition
+each of the arrays with a picture that shows how the elements of
+these arrays are accessed by one iteration of the pipelined loop.</p></li>
+<li><p>Partition the buffers according to your description in the
+previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=231">Section of the Vitis HLS User Guide</a>
+for examples of array partitioning pragma). Synthesize the design and report the expected latency in ms. Provide the modified <code class="docutils literal notranslate"><span class="pre">mmult</span></code> code in your report.</p></li>
+<li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
+and LUT) does this implementation consume? (4 lines)</p></li>
+<li><p>Pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop also with an II of
+1 and synthesize your design. Export your synthesized design by right-clicking on <em><strong>solution1</strong></em> and then selecting <em><strong>Export RTL</strong></em>. Choose <em><strong>Vitis Kernel (.xo)</strong></em> as the
+<em><strong>Format</strong></em>. Select output location to be your
+<code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory and select OK.
+Save your design and quit Vitis HLS. Open a terminal and go to your <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory.
+Run by following the instruction in <a class="reference internal" href="walk_through.html#vitis"><span class="std std-ref">Creating Vitis Project</span></a> section.
+Commit the Vitis Analyzer files in your repo. We will use it in the next section.</p></li>
+</ol>
+</li>
+<li><p><strong>Vitis Analyzer</strong></p>
+<p>We will now use Vitis Analyzer to analyze the trace of our matrix multiplication on the FPGA.</p>
+ <!-- ```{note}
+ Note that the only way to view the Vitis Analyzer is using the GUI.
+ So collaborate with your partner if you are not able to use the GUI
+ or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
+ ``` -->
+<ol>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">vitis_analyzer</span> <span class="pre">./xclbin.run_summary</span></code> to open Vitis Analyzer. If you installed Vitis on Windows, launch Vitis first and <em><strong>Xilinx</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Vitis Shell</strong></em> to launch the shell. Then <code class="docutils literal notranslate"><span class="pre">vitis_analyer</span></code> to launch vitis_analyzer.</p></li>
+<li><p>Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.</p></li>
+<li><p>Take a screenshot of the <em><strong>Application Timeline</strong></em>. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can’t fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
+Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/vitis_analyzer.png"><img alt="../_images/vitis_analyzer.png" src="../_images/vitis_analyzer.png" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5.11 </span><span class="caption-text">Example screenshot</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ol>
+</li>
+<li><p><strong>Breakeven and Net Acceleration</strong></p>
+<p>We can model an accelerator with setup and transfer time as:</p>
+<div class="math notranslate nohighlight" id="equation-accelerator-model">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-accelerator-model" title="Permalink to this equation">¶</a></span>\[T_{accel} = T_{setup}+T_{transfer}+T_{fpga}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(T_{seq}\)</span> be the time for an operation (such as the matrix multiply) on the x86 host that your found in 1a
+and <span class="math notranslate nohighlight">\(T_{fpga}\)</span> be the time for the operation on the FPGA that you found in 4d.</p>
+<p>Let <span class="math notranslate nohighlight">\(S_{fpga}=\frac{T_{seq}}{T_{fpga}}\)</span> or <span class="math notranslate nohighlight">\(T_{fpga}=\frac{T_{seq}}{S_{fpga}}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(T_{setup}\)</span> is the time to setup the operation and <span class="math notranslate nohighlight">\(T_{transfer}\)</span> is the time to move the data for the operation to the FPGA and back.</p>
+<ol>
+<li><p>What is <span class="math notranslate nohighlight">\(S_{fpga}\)</span> for the matrix-multiply operation above?</p></li>
+<li><p>Find <span class="math notranslate nohighlight">\(T_{setup}\)</span> using the trace in 4f.</p></li>
+<li><p>Find <span class="math notranslate nohighlight">\(T_{transfer}\)</span> using the trace in 4f.</p></li>
+<li><p>Using <span class="math notranslate nohighlight">\(S_{fpga}\)</span>, <span class="math notranslate nohighlight">\(T_{setup}\)</span>, and <span class="math notranslate nohighlight">\(T_{transfer}\)</span> from the above, how
+large would <span class="math notranslate nohighlight">\(T_{seq}\)</span> need to be to get an actual overall speedup?</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Solve for <span class="math notranslate nohighlight">\(T_{seq}\)</span> in:</p>
+<div class="math notranslate nohighlight">
+\[\frac{T_{seq}}{T_{accel}} &gt; 1\]</div>
+</div>
+</li>
+<li><p>How does <span class="math notranslate nohighlight">\(T_{seq}\)</span> scale with the matrix dimension <span class="math notranslate nohighlight">\(N\)</span>? (write an
+equation for <span class="math notranslate nohighlight">\(T_{seq}\)</span> as a function of <span class="math notranslate nohighlight">\(N\)</span>).</p></li>
+<li><p>How does <span class="math notranslate nohighlight">\(T_{fpga}\)</span> scale with the matrix dimension <span class="math notranslate nohighlight">\(N\)</span>? (write an
+equation for <span class="math notranslate nohighlight">\(T_{fpga}\)</span> as a function of <span class="math notranslate nohighlight">\(N\)</span>) for your fully unrolled
+loop strategy from Problem 3 (<code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code> pipelined, <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code> unrolled).</p></li>
+<li><p>How does <span class="math notranslate nohighlight">\(T_{transfer}\)</span> scale with the matrix dimension <span class="math notranslate nohighlight">\(N\)</span>? (write an
+equation for <span class="math notranslate nohighlight">\(T_{transfer}\)</span> as a function of <span class="math notranslate nohighlight">\(N\)</span>).</p></li>
+<li><p>Based on 5e, 5f, 5g, for what value of <span class="math notranslate nohighlight">\(N\)</span> would <span class="math notranslate nohighlight">\(T_{accel}\)</span> be equal to the value of <span class="math notranslate nohighlight">\(T_{seq}\)</span>?</p></li>
+<li><p>Based on the above, for what value of <span class="math notranslate nohighlight">\(N\)</span> would <span class="math notranslate nohighlight">\(T_{accel}=\frac{T_{seq}}{10}\)</span>, i.e. what value of <span class="math notranslate nohighlight">\(N\)</span> would show a 10x speedup?</p></li>
+<li><p>For the value of <span class="math notranslate nohighlight">\(N\)</span> found in 5i, what is the value of <span class="math notranslate nohighlight">\(S_{fpga}\)</span>?</p></li>
+<li><p>If you perform a large number of accelerator invocations, you only need to perform the setup operations once.</p>
+<div class="math notranslate nohighlight" id="equation-accelerator-model-k-invoke">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-accelerator-model-k-invoke" title="Permalink to this equation">¶</a></span>\[T_{accel} = T_{setup}+k \cdot (T_{transfer}+T_{fpga})\]</div>
+<p>Assuming the number of invocations, <span class="math notranslate nohighlight">\(k\)</span>, is large (say 1 million), how does
+this change the value of N for 10x speedup (
+<span class="math notranslate nohighlight">\(T_{accel}=\frac{T_{seq}}{10}\)</span>) ?</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Reflection</strong></p>
+<ol>
+<li><p>Problems 1–3 in this assignment took you through
+a specific optimization sequence for this task.
+Describe the optimization sequence in terms
+of identification and reduction of bottlenecks. (4 lines)</p></li>
+<li><p>Make an area-time plot for the three designs with
+a curve for DSPs and BlockRAMs.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Expected latency (ms) on X-axis, DSPs and BlockRAMs as separate curves on the Y-axis.</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<!--     1. Go to your AWS Billing page and report the total
+        amount of credit used so far (make sure to add up credit used from September). -->
+<div class="section" id="deliverables">
+<h2><span class="section-number">5.3.1. </span>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
+<p>In summary, upload the following in their respective links in canvas:</p>
+<ul class="simple">
+<li><p>writeup in pdf.</p></li>
+</ul>
+<!-- ```{include} ../common/aws_caution.md
+``` -->
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="walk_through.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">5.2. </span>Setup and Walk-through</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

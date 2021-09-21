@@ -1,0 +1,1012 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.3. Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="4.1. Collaboration" href="collaboration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw2/index.html">
+   2. Profiling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/walk_through.html">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw3/index.html">
+   3. Thread Parallel
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/collaboration.html">
+     3.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/walk_through.html">
+     3.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/homework_submission.html">
+     3.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   4. SIMD
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     4.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="homework_submission.html">
+     4.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw5/index.html">
+   5. Accelerator
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/collaboration.html">
+     5.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/walk_through.html">
+     5.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/homework_submission.html">
+     5.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw4/walk_through.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw4/walk_through.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw4/walk_through.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectorization">
+   4.2.1. Vectorization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
+   4.2.2. Obtaining and Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   4.2.3. Environment Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-ultra96-and-host-computer">
+     4.2.3.1. Setting up Ultra96 and Host Computer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-on-the-fpga">
+     4.2.3.2. Run on the FPGA
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#write-the-sd-card-image">
+       4.2.3.2.1. Write the SD Card Image
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boot-the-ultra96">
+       4.2.3.2.2. Boot the Ultra96
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boot-the-ultra96-for-windows-users-only">
+       4.2.3.2.3. Boot the Ultra96 (for Windows users only)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-neon">
+   4.2.4. Working with NEON
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics">
+     4.2.4.1. Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coding-with-neon-intrinsics">
+     4.2.4.2. Coding with NEON Intrinsics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization">
+     4.2.4.3. Optimization:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-resources">
+     4.2.4.4. More Resources:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="setup-and-walk-through">
+<h1><span class="section-number">4.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
+<style type="text/css">
+    table { width: 100%; }
+    th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
+    td {height:50px;text-align: center;}
+    tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<div class="section" id="vectorization">
+<h2><span class="section-number">4.2.1. </span>Vectorization<a class="headerlink" href="#vectorization" title="Permalink to this headline">¶</a></h2>
+<p>We will divide the computation into vectors that run on
+the NEON units in our ARM cores.
+<a class="reference internal" href="#cortex-a53"><span class="std std-numref">Fig. 4.1</span></a> shows the high level block diagram of
+the ARM core in Ultra96 board.</p>
+<div class="figure align-default" id="cortex-a53">
+<a class="reference internal image-reference" href="../_images/cortex-a53.png"><img alt="../_images/cortex-a53.png" src="../_images/cortex-a53.png" style="height: 452px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">ARM Cortex A-53 Overview. Source: <a class="reference external" href="https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh">ANANDTECH</a></span><a class="headerlink" href="#cortex-a53" title="Permalink to this image">¶</a></p>
+</div>
+<!-- The Ultra96 boards have ARM Cortex A-53 cores. Compared to the A-72, it's a
+2-way decode, in-order core with one 64-bit NEON SIMD unit,
+as shown in {numref}`arm-core-table`.
+```{list-table} ARM Core Comparison, Source: [A-53](https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3), [A-72](https://www.anandtech.com/show/9184/arm-reveals-cortex-a72-architecture-details)
+:header-rows: 1
+:name: arm-core-table
+
+* -  
+  - Cortex A-53
+  - Cortex A-72
+* - ARM ISA
+  - ARMv8 (32/64-bit)
+  - ARMv8 (32/64-bit)
+* - Decoder Width
+  - 2 micro-ops
+  - 3 ops (5 micro-ops)
+* - Maximum Pipeline Length
+  - 8
+  - 16 stages
+* - Integer Add
+  - 2
+  - 2
+* - Integer Mul
+  - 1
+  - 1
+* - Load/Store Units
+  - 1
+  - 1 + 1 (Dedicated L/S)
+* - Branch Units
+  - 1
+  - 1
+* - FP/NEON ALUs
+  - 1x64-bit
+  - 2x128-bit
+* - L1 Cache
+  - 8KB-64KB I\$ + 8KB-64KB D\$
+  - 48KB I\$ + 32KB D\$
+* - L2 Cache
+  - 128KB - 2MB (Optional)
+  - 512KB - 4MB
+```
+  -->
+<p>We will use the NEON Intrinsics API to program the NEON
+Units in our cores. An intrinsic behaves syntactically like a function,
+but the compiler translates it to a specific instruction that is inlined
+in the code. In the following sections, we will guide you through
+reading the NEON Programmer’s guide and learning to use these APIs.</p>
+</div>
+<div class="section" id="obtaining-and-running-the-code">
+<h2><span class="section-number">4.2.2. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
+<p>In the previous homework, we dealt with a streaming application that
+compressed a video stream, and explored how to implement coarse-grain data-level parallelism
+and pipeline parallelism using <code class="docutils literal notranslate"><span class="pre">std::threads</span></code> to speedup the application. For this homework,
+we will use the same application and implement fine-grain, data-level
+parallelism on a vector architecture;  we will explore both auto
+vectorization with the compiler and hand-crafted NEON vector intrinsics.</p>
+<ul>
+<li><p>On you local machine, clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
+repository using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">icgrp</span><span class="o">/</span><span class="n">ese532_code</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>If you already have it cloned, pull in the latest changes
+using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>The code you will use for <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a>
+is in the <code class="docutils literal notranslate"><span class="pre">hw4</span></code> directory. The directory structure looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hw4</span><span class="o">/</span>
+    <span class="n">assignment</span><span class="o">/</span>
+        <span class="n">Makefile</span>
+        <span class="n">common</span><span class="o">/</span>
+            <span class="n">App</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Constants</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Stopwatch</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Utilities</span><span class="o">.</span><span class="n">h</span>
+            <span class="n">Utilities</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">src</span><span class="o">/</span>
+            <span class="n">App</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Compress</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Differentiate</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span>
+            <span class="n">Scale</span><span class="o">.</span><span class="n">cpp</span>
+        <span class="n">neon_example</span><span class="o">/</span>
+            <span class="n">Example</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">data</span><span class="o">/</span>
+        <span class="n">Input</span><span class="o">.</span><span class="n">bin</span>
+        <span class="n">Golden</span><span class="o">.</span><span class="n">bin</span>
+</pre></div>
+</div>
+</li>
+<li><p>There are 3 targets. You can build all of them by executing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">hw4/assignment</span></code> directory. You can build separately by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">baseline</span></code> and <code class="docutils literal notranslate"><span class="pre">./baseline</span></code> to run the project with no vectorization of
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">neon_filter</span></code> and <code class="docutils literal notranslate"><span class="pre">./neon_filter</span></code> to run the project with <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> vectorized
+(you will modify the vectorized code later).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">./example</span></code> to run the neon example.</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder contains the input data, <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code>, which has TODO:<em><strong>100</strong></em> frames of
+size <span class="math notranslate nohighlight">\(960\)</span> by <span class="math notranslate nohighlight">\(540\)</span> pixels, where each pixel is a byte. <code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> contains the
+expected output. Each program uses this file to see if there is a mismatch between
+your program’s output and the expected output.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">assignment/common</span></code> folder has header files and helper functions used by the
+four parts.</p></li>
+<li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">assignment/src</span></code> folder.</p></li>
+</ul>
+</div>
+<div class="section" id="environment-setup">
+<h2><span class="section-number">4.2.3. </span>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setting-up-ultra96-and-host-computer">
+<h3><span class="section-number">4.2.3.1. </span>Setting up Ultra96 and Host Computer<a class="headerlink" href="#setting-up-ultra96-and-host-computer" title="Permalink to this headline">¶</a></h3>
+<p>We have provided you with:</p>
+<ul class="simple">
+<li><p>An Ultra96 board with a power cable and a JTAG USB cable</p></li>
+<li><p>2 USB-ethernet adapters</p></li>
+<li><p>1 ethernet cable</p></li>
+<li><p>1 SD card and an SD card reader</p></li>
+<li><p>USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)</p></li>
+</ul>
+<p>Your setup for this HW should look like <a class="reference internal" href="#ultra96-setup"><span class="std std-numref">Fig. 4.2</span></a>.</p>
+<div class="figure align-default" id="ultra96-setup">
+<a class="reference internal image-reference" href="../_images/env_setup.jpg"><img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="run-on-the-fpga">
+<h3><span class="section-number">4.2.3.2. </span>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="write-the-sd-card-image">
+<h4><span class="section-number">4.2.3.2.1. </span>Write the SD Card Image<a class="headerlink" href="#write-the-sd-card-image" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>Download a sample SD card image for Ultra96 from
+<a class="reference external" href="https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc%5FcnRpbWU9cUdwLVM2ZDgyVWc&amp;id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample%2Fu96v2%5Fsbc%5Fvadd%5F2020%5F2%2Etar%2Egz&amp;parent=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample">here</a>.</p></li>
+<li><p>Then, unzip the file. The .gz file contains <code class="docutils literal notranslate"><span class="pre">sd_card.img</span></code> and <code class="docutils literal notranslate"><span class="pre">README.txt</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_vadd_2020_2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">sd_card.img</span></code> to your SD card.</p>
+<ul class="simple">
+<li><p>In Ubuntu 20.04, you can use <code class="docutils literal notranslate"><span class="pre">Startup</span> <span class="pre">Disk</span> <span class="pre">Creator</span></code>.</p></li>
+<li><p>You can also use <a class="reference external" href="https://rufus.ie/">Rufus</a> or
+<a class="reference external" href="https://www.balena.io/etcher/">balenaEtcher</a>.</p></li>
+</ul>
+</li>
+<li><p>Once you finish writing the image to the SD card, slide it into your Ultra96’s SD card slot.</p></li>
+</ul>
+</div>
+<div class="section" id="boot-the-ultra96">
+<h4><span class="section-number">4.2.3.2.2. </span>Boot the Ultra96<a class="headerlink" href="#boot-the-ultra96" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>The instructions here are for Linux users. For Windows users, skim these through, and
+go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (for Windows users only)</span></a>.</p></li>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#ultra96-setup"><span class="std std-numref">Fig. 4.2</span></a>.</p></li>
+<li><p>We will use two terminals on our host computer:</p>
+<ul class="simple">
+<li><p>the first terminal will be used to copy binaries into the Ultra96</p></li>
+<li><p>the second terminal will be used to access the serial console of the Ultra96</p></li>
+</ul>
+</li>
+<li><p>We will now open the serial console of the Ultra96. You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port. We are using <code class="docutils literal notranslate"><span class="pre">minicom</span></code> and following is the command we use for connecting to the serial port:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">minicom</span> <span class="o">-</span><span class="n">D</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
+the console output. If you are on Windows, this will be
+something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>. When you want to get out
+of <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, use <code class="docutils literal notranslate"><span class="pre">CTRL-A</span> <span class="pre">Z</span> <span class="pre">q</span></code></p>
+</li>
+<li><p>After you have connected to the serial port, boot the board
+by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 5.6</span></a>.</p>
+<div class="figure align-default" id="boot">
+<a class="reference internal image-reference" href="../_images/boot.png"><img alt="../_images/boot.png" src="../_images/boot.png" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Watch your serial console for boot messages. Following is what ours look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>�Xilinx Zynq MP First Stage Boot Loader
+Release 2020.1   Oct 17 2020  -  06:29:34
+NOTICE:  ATF running on XCZU3EG/silicon v4/RTL5.1 at 0xfffea000
+NOTICE:  BL31: v2.2(release):v1.1-5588-g5918e656e
+NOTICE:  BL31: Built : 20:07:49, Oct 17 2020
+U-Boot 2020.01 (Oct 17 2020 - 20:08:47 +0000)
+Model: Avnet Ultra96 Rev1
+Board: Xilinx ZynqMP
+DRAM:  2 GiB
+.
+.
+.
+Starting kernel ...
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
+[    0.000000] Machine model: Avnet Ultra96 Rev1
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options &#39;115200n8&#39;)
+[    0.000000] printk: bootconsole [cdns0] enabled
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created DMA memory pool at 0x000000003ed40000, size 1 MiB
+[    0.000000] OF: reserved mem: initialized node rproc@3ed400000, compatible id shared-dma-pool
+[    0.000000] cma: Reserved 512 MiB at 0x000000005fc00000
+.
+.
+.
+.
+Starting syslogd/klogd: done
+Starting tcf-agent: OK
+PetaLinux 2020.1 ultra96v2-2020-1 ttyPS0
+root@ultra96v2-2020-1:~# The XKEYBOARD keymap compiler (xkbcomp) reports:
+&gt; Warning:          Unsupported high keycode 372 for name &lt;I372&gt; ignored
+&gt;                   X11 cannot support keycodes above 255.
+&gt;                   This warning only shows for the first high keycode.
+Errors from xkbcomp are not fatal to the X server
+D-BUS per-session daemon address is: unix:abstract=/tmp/dbus-2CuBS4BnDn,guid=63270a6bec61460191859caa5f9022fc
+matchbox: Cant find a keycode for keysym 269025056
+matchbox: ignoring key shortcut XF86Calendar=!$contacts
+matchbox: Cant find a keycode for keysym 2809
+matchbox: ignoring key shortcut telephone=!$dates
+matchbox: Cant find a keycode for keysym 269025050
+matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
+dbus-daemon[641]: Activating service name=&#39;org.a11y.atspi.Registry&#39; requested by &#39;:1.0&#39; (uid=0 pid=636 comm=&quot;matchbox-desktop &quot;)
+dbus-daemon[641]: Successfully activated service &#39;org.a11y.atspi.Registry&#39;
+SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+[settings daemon] Forking. run with -n to prevent fork
+</pre></div>
+</div>
+</li>
+<li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+</pre></div>
+</div>
+</li>
+<li><p>We will now enable ethernet connection between our Ultra96 and
+the host computer, such that we can copy files between
+the devices. Issue the following command in the serial console:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifconfig</span> <span class="n">eth0</span> <span class="mf">10.10.7.1</span> <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Now in your second console in the host computer, first
+find out the name that has been assigned to the USB-ethernet
+device by issuing <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enx000ec6c4b500</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
+        <span class="n">inet</span> <span class="mf">10.10.7.2</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>  <span class="n">broadcast</span> <span class="mf">10.255.255.255</span>
+        <span class="n">ether</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">e</span><span class="p">:</span><span class="n">c6</span><span class="p">:</span><span class="n">c4</span><span class="p">:</span><span class="n">b5</span><span class="p">:</span><span class="mi">00</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">213</span>  <span class="nb">bytes</span> <span class="mi">32750</span> <span class="p">(</span><span class="mf">32.7</span> <span class="n">KB</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">249</span>  <span class="nb">bytes</span> <span class="mi">25958</span> <span class="p">(</span><span class="mf">25.9</span> <span class="n">KB</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+<span class="n">lo</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">73</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">LOOPBACK</span><span class="p">,</span><span class="n">RUNNING</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">65536</span>
+        <span class="n">inet</span> <span class="mf">127.0.0.1</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
+        <span class="n">inet6</span> <span class="p">::</span><span class="mi">1</span>  <span class="n">prefixlen</span> <span class="mi">128</span>  <span class="n">scopeid</span> <span class="mh">0x10</span><span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>
+        <span class="n">loop</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Local</span> <span class="n">Loopback</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">570887</span>  <span class="nb">bytes</span> <span class="mi">920673672</span> <span class="p">(</span><span class="mf">920.6</span> <span class="n">MB</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">570887</span>  <span class="nb">bytes</span> <span class="mi">920673672</span> <span class="p">(</span><span class="mf">920.6</span> <span class="n">MB</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>In our case, the USB-ethernet device is <code class="docutils literal notranslate"><span class="pre">enx000ec6c4b500</span></code>.
+Now issue the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ifconfig</span> <span class="n">enx000ec6c4b500</span> <span class="mf">10.10.7.2</span> <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
+</pre></div>
+</div>
+</li>
+<li><p>We have now assigned IP <code class="docutils literal notranslate"><span class="pre">10.10.7.1</span></code> to our Ultra96 and IP <code class="docutils literal notranslate"><span class="pre">10.10.7.2</span></code> to our USB ethernet device connected to our host computer.
+You can test the connection by doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.2</span></code> from the Ultra96 serial console, and doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.1</span></code> from the host
+computer.</p></li>
+<li><p>Let’s copy <code class="docutils literal notranslate"><span class="pre">hw4</span></code> directory to Ultra96:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">hw4</span> <span class="n">root</span><span class="o">@</span><span class="mf">10.10.7.1</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">root</span><span class="o">/</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="boot-the-ultra96-for-windows-users-only">
+<span id="boot-windows"></span><h4><span class="section-number">4.2.3.2.3. </span>Boot the Ultra96 (for Windows users only)<a class="headerlink" href="#boot-the-ultra96-for-windows-users-only" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/win_eth_0.jpg"><img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Download and install MobaXterm from <a class="reference external" href="https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip">here</a>.</p></li>
+<li><p>Start MobaXterm. Click <em><strong>Session</strong></em> in the left top corner and select <em><strong>Serial</strong></em>.
+Set the serial port as the one you found in the previous step and bps. In the example case,
+it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
+<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 5.6</span></a>.</p></li>
+<li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+</pre></div>
+</div>
+</li>
+<li><p>Click plus sign to open up the local machine’s session(new tab).
+Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/win_eth_1.jpg"><img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
+previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
+<code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(note that
+this is 24!) as follows:</p>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/win_eth_2.jpg"><img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Your devices are not connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
+<div class="figure align-default" id="id4">
+<a class="reference internal image-reference" href="../_images/win_eth_3.jpg"><img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>You can view the files of the Ultra96 on the left hand side.
+You can easily drag and drop files from/to the local machine to/from Ultra96.
+Drag and drop <code class="docutils literal notranslate"><span class="pre">hw4</span></code> folder on the left hand side to start this HW.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-neon">
+<h2><span class="section-number">4.2.4. </span>Working with NEON<a class="headerlink" href="#working-with-neon" title="Permalink to this headline">¶</a></h2>
+<p>We are going to do some reading from the arm developer website articles and
+the NEON Programmer’s Guide in the following sections.</p>
+<div class="section" id="basics">
+<h3><span class="section-number">4.2.4.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+<p>Read <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/introducing-neon-for-armv8-a/single-page">Introducing Neon for Armv8-a</a> and answer the
+following questions. We have given you the answers, however make sure you
+do the reading! Knowing where to look in a programmer’s
+guide is a skill by itself and we want to learn it now than later.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Give an example of a SISD instruction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">r0,</span> <span class="pre">r5</span></code></p>
+<p>and any instruction from the <a class="reference download internal" download="" href="../_downloads/c41cbc11e03ca7fc78a366e3e8eac3cf/QRC0001_UAL.pdf"><code class="xref download docutils literal notranslate"><span class="pre">ARM</span> <span class="pre">and</span> <span class="pre">Thumb-2</span> <span class="pre">ISA</span> <span class="pre">quick</span> <span class="pre">reference</span> <span class="pre">guide</span></code></a></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. Give an example of a SIMD instruction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">v10.4s,</span> <span class="pre">v8.4s,</span> <span class="pre">v9.4s</span></code></p>
+<p>and any instruction from the <a class="reference external" href="https://community.arm.com/developer/tools-software/oss-platforms/b/android-blog/posts/arm-neon-programming-quick-reference">NEON quick reference guide</a></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. What is the size of a register in a Armv8-A NEON unit?</p>
+<p>128-bit</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">4. What does a NEON register contain?</p>
+<p>vectors of elements of the same data type</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">5. How many sizes of NEON vectors are there and what are those sizes?</p>
+<p>Two sizes: 64-bit and 128-bit NEON vectors</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">6. What is a lane?</p>
+<p>The same element position in the input and output registers is referred to as a lane.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">7. How many lanes are there in a uint16x8_t NEON vector data type?</p>
+<p>8</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">8. How many lanes are there in a uint32x2_t NEON vector data type?</p>
+<p>2</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">9. Can there be a carry or overflow from one lane to another?</p>
+<p>No.</p>
+</div>
+<hr class="docutils" />
+<p>Read <a class="reference external" href="https://developer.arm.com/documentation/den0024/a/armv8-registers/neon-and-floating-point-registers">NEON and floating-point registers</a> and answer the
+following questions:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">1. How many NEON registers are there in ARMv8 and what are they labeled as?</p>
+<p>32 128-bit NEON registers, labeled as V0-V31.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. What is the difference between an operand labeled v0.16b and an operand labeled q0?</p>
+<p>v0.16b is a vector register and has 16 lanes with each lane having 1 byte.
+q0 is a scalar register of 128-bits.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. Are registered labeled b0, h0, s0, d0, q0 separate registers?</p>
+<p>No, all of them belong to the same register v0. They are qualified names for registers when a NEON instruction operate on scalar data.</p>
+</div>
+<hr class="docutils" />
+<p>Read chapter four from the <a class="reference download internal" download="" href="../_downloads/b8a011355a55096090c5b62e49f605c7/neon_programmers_guide.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NEON</span> <span class="pre">Programmer's</span> <span class="pre">Guide</span></code></a> and answer the following questions:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Where are the NEON Intrinsics declared?</p>
+<p>in <code class="docutils literal notranslate"><span class="pre">arm_neon.h</span></code> header file</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. What NEON data type are you going to use for an unsigned char array of size 16 elements?</p>
+<p>uint8x16_t. It will got to Q register.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. When should you use intrinsics with ‘q’ suffix vs intrinsics without ‘q’ suffix?</p>
+<p>When the input and output vectors are 64-bit vectors, don’t use intrinsics with ‘q’ suffix.
+When the input and output vectors are 128-bit vectors, do use intrinsics with ‘q’ suffix.</p>
+</div>
+</div>
+<div class="section" id="coding-with-neon-intrinsics">
+<span id="coding-neon"></span><h3><span class="section-number">4.2.4.2. </span>Coding with NEON Intrinsics<a class="headerlink" href="#coding-with-neon-intrinsics" title="Permalink to this headline">¶</a></h3>
+<p>Read chapter four from the NEON Programmer’s Guide and answer the following questions.
+Use the <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">Neon Intrinsics Reference</a> website to find and understand any instruction.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This will help you in coding for your homework.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Which intrinsic should you use to duplicate a scalar value to a variable of type uint16x8_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vdupq_n_u16</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. Which intrinsic should you use to load 16 bytes from a pointer to a variable of type uint8x16_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vld1q_u8</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. Which intrinsic should you use to add two vectors of type uint8x8_t without overflowing?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vaddl_u8</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">4. Which intrinsic should you use to get the first 8 lanes (low) of a variable of type uint8x16_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vget_low_u8</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">5. Which intrinsic should you use to get the second 8 lanes (high) of a variable of type uint8x16_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vget_high_u8</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">6. Which intrinsic should you use to multiply two vectors of type uint16x8_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vmulq_u16</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">7. Which intrinsic should you use to multiply two vectors of type uint16x8_t and accumlate the result to a variable of type uint16x8_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vmlaq_u16</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">8. Which intrinsic should you use to shift a variable of type uint16x8_t to the right?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vshrq_n_u16</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">9. Which intrinsic should you use to cast the uint8_t values in a variable of type uint8x8_t to be uint16_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vmovl_u8</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">10. Which intrinsic should you use to cast the uint16_t values in a variable of type uint16x8_t to be uint8_t?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vmovn_u16</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">11. Which intrinsic should you use to join two uint8x8_t vectors into a uint8x16_t vector?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vcombine_u8</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">12. Which intrinsic should you use to store data from a uint8x16_t variable to a pointer?</p>
+<p><code class="docutils literal notranslate"><span class="pre">vst1q_u8</span></code></p>
+</div>
+</div>
+<div class="section" id="optimization">
+<h3><span class="section-number">4.2.4.3. </span>Optimization:<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Read section 2.1.10, 2.8, and chapter 5 from the NEON Programmer’s Guide.</p></li>
+<li><p>Watch the talk: <a class="reference external" href="https://youtu.be/ixuDntaSnHI">Taming ARMv8 NEON: from theory to benchmark results</a></p></li>
+<li><p>Read (supplemental) <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/optimizing-c-code-with-neon-intrinsics/single-page">Optimizing C Code with Neon Intrinsics</a></p></li>
+<li><p>Read (supplemental) <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/coding-for-neon/single-page">Coding for NEON</a></p></li>
+<li><p>Read (supplemental) <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/neon-intrinsics-chromium-case-study/single-page">Neon Intrinsics Chromium Case Study</a></p></li>
+<li><p>Read (supplemental) <a class="reference external" href="http://www.cs.utexas.edu/~pingali/CS377P/2017sp/lectures/david-vectorization.pdf">Program Optimization through Loop Vectorization</a></p></li>
+</ul>
+</div>
+<div class="section" id="more-resources">
+<h3><span class="section-number">4.2.4.4. </span>More Resources:<a class="headerlink" href="#more-resources" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://community.arm.com/developer/tools-software/oss-platforms/b/android-blog/posts/arm-neon-programming-quick-reference">NEON Quick reference guide</a></p></li>
+<li><p><a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">NEON Intrinsics Reference</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="collaboration.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">4.1. </span>Collaboration</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="homework_submission.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">4.3. </span>Homework Submission</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

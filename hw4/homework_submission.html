@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.3. Homework Submission &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Accelerator" href="../hw5/index.html" />
+    <link rel="prev" title="4.2. Setup and Walk-through" href="walk_through.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw2/index.html">
+   2. Profiling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/walk_through.html">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw3/index.html">
+   3. Thread Parallel
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/collaboration.html">
+     3.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/walk_through.html">
+     3.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/homework_submission.html">
+     3.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   4. SIMD
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     4.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="walk_through.html">
+     4.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw5/index.html">
+   5. Accelerator
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/collaboration.html">
+     5.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/walk_through.html">
+     5.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/homework_submission.html">
+     5.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw4/homework_submission.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw4/homework_submission.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw4/homework_submission.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deliverables">
+   4.3.1. Deliverables
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-submission">
+<h1><span class="section-number">4.3. </span>Homework Submission<a class="headerlink" href="#homework-submission" title="Permalink to this headline">¶</a></h1>
+<p>Your writeup should follow <a class="reference internal" href="../writeup_guidelines.html"><span class="doc std std-doc">the writeup guidelines</span></a>.
+Your writeup should include your answers to the following questions:</p>
+<style type="text/css">
+    ol { list-style-type: decimal; }
+    ol ol { list-style-type: lower-alpha; }
+    ol ol ol { list-style-type: lower-roman; }
+    table { width: 100%; }
+    td {height:50px;text-align: center;}
+    tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<ol>
+<li><p><strong>Teamwork</strong></p>
+<p>As the difficulty of homework is ramping up, we encourage you to spend
+a moment planning on how to tackle the homework as a team.</p>
+<ol class="simple">
+<li><p>Describe which tasks of this homework you will perform, which
+tasks will be performed by your teammate(s), and which tasks
+you will perform together (e.g., pair programming, where you
+both sit together at the same terminal).  Motivate your task
+distribution. (5 lines)</p></li>
+<li><p>Give an estimate of the duration of each of the tasks. (5 lines)</p></li>
+<li><p>Record the actual time spent on tasks as you work through
+the assignment.</p></li>
+<li><p>Explain how you will make sure that the lessons and
+knowledge gained from the exercises are shared with
+everybody in the team. (3 lines)</p></li>
+</ol>
+</li>
+<li><p><strong>Compiler Optimizations</strong></p>
+<p>Before we dive into the vector optimizations, we will investigate the
+effects of different levels of compiler optimizations.</p>
+<table class="table" id="optimization-table">
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">Latency and Code size per Optimization Level</span><a class="headerlink" href="#optimization-table" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Optimization level</p></th>
+<th class="head"><p>Latency (ns)</p></th>
+<th class="head"><p>Code size (bytes)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-O0</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-O1</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-O2</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-O3</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-Os</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p>Measure the latency and size of the <code class="docutils literal notranslate"><span class="pre">baseline</span></code> target at the
+different optimization levels. Put your measurements in a table like
+<a class="reference internal" href="#optimization-table"><span class="std std-numref">Table 4.1</span></a>. You can change
+the optimization level by editing the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.</p></li>
+<li><p>Include the assembly code of the innermost loop of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>
+at optimization level <code class="docutils literal notranslate"><span class="pre">-O0</span></code> in your report. Use the following command to get the assembly and then look for <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in <code class="docutils literal notranslate"><span class="pre">Filter_O1.s</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">O0</span> <span class="o">-</span><span class="n">mcpu</span><span class="o">=</span><span class="n">native</span> <span class="o">-</span><span class="n">fno</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">vectorize</span> <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">stdout</span> <span class="o">|</span> <span class="n">c</span><span class="o">++</span><span class="n">filt</span> <span class="o">&gt;</span> <span class="n">Filter_O1</span><span class="o">.</span><span class="n">s</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">-fno-tree-vectorize</span></code> disables automatic vectorization. We will
+look at automatic vectorization in the next section.</p>
+</div>
+</li>
+<li><p>Include the assembly code of the innermost loop of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> at optimization level
+<code class="docutils literal notranslate"><span class="pre">-O2</span></code> in your report.</p></li>
+<li><p>Based on the machine code of questions 2b and 2c, explain the most important
+difference between the <code class="docutils literal notranslate"><span class="pre">-O0</span></code> and <code class="docutils literal notranslate"><span class="pre">-O2</span></code> versions. (2 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Leading questions:</p>
+<ul class="simple">
+<li><p>for each case (<code class="docutils literal notranslate"><span class="pre">-O0</span></code>, <code class="docutils literal notranslate"><span class="pre">-O2</span></code>), how many times does the
+loop read the variable i?</p></li>
+<li><p>for each case (<code class="docutils literal notranslate"><span class="pre">-O0</span></code>, <code class="docutils literal notranslate"><span class="pre">-O2</span></code>), how many times does the
+loop read and write the variable Sum?</p></li>
+<li><p>why is the <code class="docutils literal notranslate"><span class="pre">-O2</span></code> loop able to avoid
+recalculating <code class="docutils literal notranslate"><span class="pre">Y*INPUT_WIDTH+X</span></code> inside the loop
+body?</p></li>
+<li><p>what else is the <code class="docutils literal notranslate"><span class="pre">-O2</span></code> loop able to avoid reading from
+memory or recaculating?</p></li>
+<li><p>how is the <code class="docutils literal notranslate"><span class="pre">-O2</span></code> loop able to perform fewer operations?</p></li>
+</ul>
+</div>
+</li>
+<li><p>Why would you want to use optimization level <code class="docutils literal notranslate"><span class="pre">-O0</span></code>? (3 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Compile the code with <code class="docutils literal notranslate"><span class="pre">-O3</span></code> and track the values of the
+variables <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">i</span></code> as you step through
+<code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>.</p>
+</div>
+</li>
+<li><p>Include the assembly code of the innermost loop of
+<code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> at optimization level <code class="docutils literal notranslate"><span class="pre">-O3</span></code> in your report.</p></li>
+<li><p>Based on the machine code of questions 2c and
+2f, explain the most important difference between the
+<code class="docutils literal notranslate"><span class="pre">-O2</span></code> and <code class="docutils literal notranslate"><span class="pre">-O3</span></code> versions. (1 line)</p></li>
+<li><p>What are two drawbacks of using a higher optimization level? (5 lines)</p></li>
+</ol>
+</li>
+<li><p><strong>Automatic Vectorization</strong></p>
+<p>The easiest way to take advantage of vector instructions is by using
+the automatic vectorization feature of the GCC compiler, which
+automatically generates NEON instructions from loops.
+Automatic vectorization in GCC is sparsely documented in the <a class="reference external" href="https://gcc.gnu.org/projects/tree-ssa/vectorization.html">GCC documentation</a>.
+Although we are not using the ARM compiler, the
+<a class="reference external" href="http://infocenter.arm.com/help/topic/com.arm.doc.dui0472m/chr1359124204202.html">ARM compiler user guide</a>
+may give some more insight on how to style your code for auto
+vectorization.  This
+<a class="reference external" href="http://hpac.cs.umu.se/teaching/sem-accg-16/slides/08.Schmitz-GGC_Autovec.pdf">talk on GCC vectorization</a>
+may also be useful.</p>
+<div class="full-width admonition">
+<p class="admonition-title">Vectorization Speedup Summary</p>
+<table class="table" id="vectorization-table">
+<caption><span class="caption-number">Table 4.2 </span><span class="caption-text">Vectorization Speedup Summary</span><a class="headerlink" href="#vectorization-table" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Baseline</p></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"><p>Baseline with SIMD</p></th>
+<th class="head"></th>
+<th class="head"><p>Baseline with SIMD Modified</p></th>
+<th class="head"></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Latency (ns)</p></th>
+<th class="head"><p>Suitability (Y/N)</p></th>
+<th class="head"><p>Ideal Vectorization Speedup</p></th>
+<th class="head"><p>Latency (ns)</p></th>
+<th class="head"><p>Speedup</p></th>
+<th class="head"><p>Latency (ns)</p></th>
+<th class="head"><p>Speedup</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Scale</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Differentiate</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Compress</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Overall</p></td>
+<td></td>
+<td><p>N/A</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li><p>Report the latency of each stage of the baseline application at
+<code class="docutils literal notranslate"><span class="pre">-O3</span></code>. (Start a table like <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>; we will continue to fill in this
+table throughout this problem.)</p></li>
+<li><p>Based on your understanding of the C code, which loops in
+the streaming stages of the application have
+sufficient data parallelism for vectorization?  Motivate your answer.
+(Mark suitability by filling in Yes or No in the suitability column of <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>; add explanation in 2–5 lines after table.)</p></li>
+<li><p>Identify the critical path lower bound for <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> in
+terms of compute operations.  Focus on the data path.  Ignore
+control flow and offset computations. You may assume
+associativity for integer arithmetic. (5 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Consider only the dependencies in the computation.  What
+happens if you unroll the loops completely?</p>
+</div>
+</li>
+<li><p>What is the size of the (non-index) multiplications performed in
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>?  (How many bits for each of the input
+operands?  How many bits are necessary to hold the output?)
+(one line)</p></li>
+<li><p>Report the resource capacity lower bound for
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>. Focus on the computation; you may ignore control flow and
+addressing computations. There are many resources that may limit the performance.<br />
+(5 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>As with any resource capacity lower bound analysis, you
+may have multiple resources and may need to consider them each
+to identify the one that is most constraining.</p></li>
+<li><p>You will need to review the NEON architecture (which we
+discussed in class and in <a class="reference internal" href="walk_through.html"><span class="doc">Setup and Walk-through</span></a>) and reason  about what resources it has
+available to be used on each cycle. Think about how vectorization
+could exploit the set of computations a NEON unit can do in parallel.</p></li>
+</ul>
+</div>
+</li>
+<li><p>What speedup do you expect your application can achieve if the compiler is able to
+achieve the resource bound identified in 3e? (5 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Remember Amdahl’s Law; think about critical path lower
+bounds and resource capacity lower bounds.</p>
+</div>
+<p>(Fill in the ideal vectorization speedup column in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>; separately show Amdahl’s Law calculation for overall speedup.)</p>
+</li>
+<li><p>We will now enable the vectorization in g++. You can enable it by removing
+the <code class="docutils literal notranslate"><span class="pre">-fno-tree-vectorize</span></code> flag from the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.
+<code class="docutils literal notranslate"><span class="pre">-O3</span></code> optimization automatically turns on the flag <code class="docutils literal notranslate"><span class="pre">-ftree-vectorize</span></code>, which vectorizes
+your code.</p></li>
+<li><p>Report the speedup of the vectorized code with respect to the baseline. (Fill in the “Baseline with SIMD” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>.)</p></li>
+<li><p>Explain the discrepancy between your measured and ideal
+performance based on the optimization of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>.
+(3 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>Look at the size of the multiplications in the assembly code.</p></li>
+<li><p>To read this code, you probably need to understand the
+relation between Q and V registers.  Perhaps useful:</p>
+<ul>
+<li><p><a class="reference external" href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dht0002a/ch01s03s02.html">http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dht0002a/ch01s03s02.html</a></p></li>
+<li><p><a class="reference external" href="https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/scalar-register-sizes">https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/scalar-register-sizes</a></p></li>
+<li><p><a class="reference external" href="https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/vector-register-sizes">https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/vector-register-sizes</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+<li><p>Show how you can resolve the issue that you identified
+in the previous problem. (1 line) Include the assembly code of
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after you have resolved the issue.</p></li>
+<li><p>Report the speedup with respect to the baseline after resolving
+the issue in both <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>.
+(Fill in the “Baseline with SIMD Modified” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>.)</p></li>
+</ol>
+</li>
+<li><p><strong>NEON Intrinsics Example</strong></p>
+<p>Review the <a class="reference internal" href="walk_through.html"><span class="doc">Setup and Walk-through</span></a> to learn about NEON intrinsics.</p>
+<ol class="simple">
+<li><p>Review the code in the <code class="docutils literal notranslate"><span class="pre">hw4/assignment/neon_example</span></code> directory.  Note how the
+Neon version instantiates Neon vector intrinsics to perform
+the operation.  Convince yourself the C version and Neon
+version perform the same computation. (no turn in)</p></li>
+<li><p>Build and run the code by doing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">./example</span></code>.</p></li>
+<li><p>Report the speedup for the Neon version compared
+to the C version. (1 line)</p></li>
+<li><p>Review the assembly code produced for both the C and Neon
+versions.  Based on the assembly code, explain how the Neon
+version is able to achieve the speedup you observed compared to
+the C version.  Include assembly code to support your
+description.  (probably 3–5 lines of description in addition to
+snippets of assembly)</p></li>
+</ol>
+</li>
+<li><p><strong>Using NEON Intrinsics</strong></p>
+<p>We will now accelerate the <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> function using intrinsics.
+We have provided you with a neon intrinsics implementation of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>
+in <code class="docutils literal notranslate"><span class="pre">Filter.cpp</span></code> right after the <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">VECTORIZED</span></code>.
+This implementation doesn’t achieve full performance like the
+auto vectorization did. We will find out why and fix it.</p>
+<ol>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">-O3</span></code> optimization and build the
+target by doing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">neon_filter</span></code>. Run it with <code class="docutils literal notranslate"><span class="pre">./neon_filter</span></code> and
+report the latency of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>. Report the speedup with respect to the baseline in 3. Include the assembly code of the neon intrinsic implementation of
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>.</p></li>
+<li><p>The <a class="reference internal" href="walk_through.html"><span class="doc">Setup and Walk-through</span></a> talked about how you get lanes by packing
+data into vectors. Moreover, in 3j you saw how data type matters in
+generating performant assembly code that utilizes full lanes of the NEON
+units. Flowing data through the lanes is key to getting full
+throughput out of the NEON units.</p>
+<p>As we saw, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>
+function works on seven 8-bit data elements at a time.
+Describe how our neon intrinsic implementation deal with a number of data elements that is not divisible
+by the number of vector lanes without losing significant
+performance? (3 lines)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul>
+<li><p>Is there anything about the structure of the filter
+(coefficients array) that helps us?</p></li>
+<li><p>Following are two animations. What can you figure out from it?</p>
+<div class="figure align-default" id="baseline-filter">
+<a class="reference internal image-reference" href="../_images/baseline-filter.gif"><img alt="../_images/baseline-filter.gif" src="../_images/baseline-filter.gif" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> without vectorization</span><a class="headerlink" href="#baseline-filter" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="vectorized-filter">
+<a class="reference internal image-reference" href="../_images/vectorized-filter.gif"><img alt="../_images/vectorized-filter.gif" src="../_images/vectorized-filter.gif" style="height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> with vectorization</span><a class="headerlink" href="#vectorized-filter" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li><p>Explain at which granularity and in which order our implementation processes
+the input data with vector instructions. (7 lines)</p></li>
+<li><p>Compare the assembly code from 3j and 5a. What differences do you notice between
+the instructions generated?</p></li>
+<li><p>Using NEON intrinsics, modify <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>
+and try to achieve a speedup with respect to our implementation.
+Include the accelerated function in your report.  Make
+sure that you verify your optimized code functions properly (i.e. you should see <code class="docutils literal notranslate"><span class="pre">Application</span> <span class="pre">completed</span> <span class="pre">successfully.</span></code>).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>Can you find an intrinsic that can be used to reduce the number
+of intrinsics we currently use?</p></li>
+<li><p>You can also lookup the assembly instruction from 3j at <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">NEON Intrinsics Reference</a>
+and find a corresponding intrinsic to use in your modification!</p></li>
+</ul>
+</div>
+</li>
+<li><p>Does your modified <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> achieve the speedup you got in 3k? If not,
+can you figure out why?</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul>
+<li><p>Use the flag <code class="docutils literal notranslate"><span class="pre">-fopt-info-loop-optimized</span></code> as follows to find out which
+loops got vectorized:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">mcpu</span><span class="o">=</span><span class="n">native</span> <span class="o">-</span><span class="n">fopt</span><span class="o">-</span><span class="n">info</span><span class="o">-</span><span class="n">loop</span><span class="o">-</span><span class="n">optimized</span> <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">stdout</span> <span class="o">|</span> <span class="n">c</span><span class="o">++</span><span class="n">filt</span> <span class="o">&gt;</span> <span class="n">Filter_O1</span><span class="o">.</span><span class="n">s</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use the flag <code class="docutils literal notranslate"><span class="pre">-fopt-info-vec-missed</span></code> as follows to find out what the compiler
+wasn’t able to vectorize:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">mcpu</span><span class="o">=</span><span class="n">native</span> <span class="o">-</span><span class="n">fopt</span><span class="o">-</span><span class="n">info</span><span class="o">-</span><span class="n">vec</span><span class="o">-</span><span class="n">missed</span> <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">stdout</span> <span class="o">|</span> <span class="n">c</span><span class="o">++</span><span class="n">filt</span> <span class="o">&gt;</span> <span class="n">Filter_O1</span><span class="o">.</span><span class="n">s</span>
+</pre></div>
+</div>
+</li>
+<li><p>When comparing the assembly code from 3j and the above, how many <code class="docutils literal notranslate"><span class="pre">bne</span></code> instructions
+do you see? What does it tell you about auto vectorization on code that uses
+neon intrinsics? What is a common loop optimization technique to reduce the impact of
+branch instructions?</p></li>
+</ul>
+</div>
+</li>
+<li><p>Try to achieve the same speedup as 3k for your <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after identifying the
+problem in 5f.
+Report the latency of your modified <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> and the application
+as a whole. (2 lines)</p></li>
+<li><p>Compare your performance with the lower bounds. (1 lines)</p></li>
+<li><p>Compare the performance of manual and automatic vectorization.
+(1 lines)</p></li>
+</ol>
+</li>
+<li><p><strong>Reflection</strong></p>
+<p>Reflect on the cooperation in your team.</p>
+<ol class="simple">
+<li><p>Compare your actual time on tasks with your original
+estimates. (table with 1-2 line explanation of major discrepancies)</p></li>
+<li><p>Reflect on your task decomposition (1a).
+Were you able to complete the task as you originally planned?
+What aspects of your original task distribution worked well and why?
+Did you refine the plan during the assignment? How and why?  In
+hindsight, how should you have distributed the tasks? (paragraph)</p></li>
+<li><p>What was the most useful thing you learned from or working with
+your teammate? (2–4 lines)</p></li>
+<li><p>What do you believe was the most useful thing that you were
+able to  contribute to your team? (1–3 lines)</p></li>
+<li><p>Include a screenshot showing your credit usage in
+Amazon AWS.</p></li>
+</ol>
+</li>
+</ol>
+<div class="section" id="deliverables">
+<h2><span class="section-number">4.3.1. </span>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
+<p>In summary, upload the following in their respective links in canvas:</p>
+<ul>
+<li><p>a tarball containing the hw4 source code with your modified neon intrinsics code.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Quick linux commands for tar files</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compress</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">cvzf</span> <span class="o">&lt;</span><span class="n">file_name</span><span class="o">.</span><span class="n">tgz</span><span class="o">&gt;</span> <span class="n">directory_to_compress</span><span class="o">/</span>
+<span class="c1"># Decompress</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="o">&lt;</span><span class="n">file_name</span><span class="o">.</span><span class="n">tgz</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>writeup in pdf.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="walk_through.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">4.2. </span>Setup and Walk-through</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../hw5/index.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">5. </span>Accelerator</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
