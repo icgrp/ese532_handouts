@@ -283,7 +283,7 @@ Your writeup should include your answers to the following questions:
         
         As we saw, `Filter_vertical`
         function works on seven 8-bit data elements at a time.
-        Describe how our neon intrinsic implementation deal with a number of data elements that is not divisible
+        Describe how our neon intrinsic implementation deals with a number of data elements that is not divisible
         by the number of vector lanes without losing significant
         performance? (3 lines)
         ````{hint}
@@ -359,8 +359,6 @@ Your writeup should include your answers to the following questions:
         your teammate? (2--4 lines)
     4. What do you believe was the most useful thing that you were
         able to  contribute to your team? (1--3 lines)
-    5. Include a screenshot showing your credit usage in
-        Amazon AWS.
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:

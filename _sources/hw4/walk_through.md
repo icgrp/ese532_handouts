@@ -332,7 +332,7 @@ the NEON Programmer's Guide in the following sections.
 Read [Introducing Neon for Armv8-a](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/introducing-neon-for-armv8-a/single-page) and answer the
 following questions. We have given you the answers, however make sure you
 do the reading! Knowing where to look in a programmer's
-guide is a skill by itself and we want to learn it now than later.
+guide is a skill by itself and we want to learn it now rather than later.
 ```{admonition} 1. Give an example of a SISD instruction.
 :class: dropdown
 `add r0, r5`
