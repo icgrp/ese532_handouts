@@ -1,6 +1,5 @@
 # Setup and Walk-through
-```{include} ../common/aws_caution.md
-```
+
 <style type="text/css">
     table { width: 100%; }
     th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
@@ -10,17 +9,17 @@
 ## Vectorization
 We will divide the computation into vectors that run on 
 the NEON units in our ARM cores.
-{numref}`cortex-a72` shows the microarchitecture of the
-ARM cores in our A1 instance. It's a 3-way decode, out-of-order
-core with two 128-bit NEON SIMD units.
-```{figure} images/cortex-a72.png
+{numref}`cortex-a53` shows the high level block diagram of
+the ARM core in Ultra96 board.
+
+```{figure} images/cortex-a53.png
 ---
-height: 500px
-name: cortex-a72
+height: 452px
+name: cortex-a53
 ---
-Microarchitecture of ARM Cortex A-72. Source: [PC Watch](https://pc.watch.impress.co.jp/video/pcw/docs/699/491/p4.pdf)
+ARM Cortex A-53 Overview. Source: [ANANDTECH](https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh)
 ```
-The Ultra96 boards have ARM Cortex A-53 cores. Compared to the A-72, it's a
+<!-- The Ultra96 boards have ARM Cortex A-53 cores. Compared to the A-72, it's a
 2-way decode, in-order core with one 64-bit NEON SIMD unit,
 as shown in {numref}`arm-core-table`.
 ```{list-table} ARM Core Comparison, Source: [A-53](https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3), [A-72](https://www.anandtech.com/show/9184/arm-reveals-cortex-a72-architecture-details)
@@ -61,7 +60,7 @@ as shown in {numref}`arm-core-table`.
   - 128KB - 2MB (Optional)
   - 512KB - 4MB
 ```
- 
+  -->
 We will use the NEON Intrinsics API to program the NEON
 Units in our cores. An intrinsic behaves syntactically like a function,
 but the compiler translates it to a specific instruction that is inlined
@@ -76,7 +75,7 @@ we will use the same application and implement fine-grain, data-level
 parallelism on a vector architecture;  we will explore both auto
 vectorization with the compiler and hand-crafted NEON vector intrinsics. 
 
-- Login to your `a1.xlarge` instance and clone the `ese532_code`
+- On you local machine, clone the `ese532_code`
     repository using the following command:
     ```
     git clone https://github.com/icgrp/ese532_code.git
@@ -108,8 +107,8 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
             neon_example/
                 Example.cpp
         data/
-            Input.bin (symlinks to hw3)
-            Golden.bin (symlinks to hw3)
+            Input.bin
+            Golden.bin
     ```
 - There are 3 targets. You can build all of them by executing `make all`
     in the `hw4/assignment` directory. You can build separately by:
@@ -118,13 +117,212 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
     - `make neon_filter` and `./neon_filter` to run the project with `Filter_vertical` vectorized
       (you will modify the vectorized code later).
     - `make example` and `./example` to run the neon example.
-- The `data` folder contains the input data, `Input.bin`, which has 100 frames of
+- The `data` folder contains the input data, `Input.bin`, which has TODO:***100*** frames of
     size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
     expected output. Each program uses this file to see if there is a mismatch between
     your program's output and the expected output.
 - The `assignment/common` folder has header files and helper functions used by the
     four parts.
 - You will mostly be working with the code in the `assignment/src` folder.
+
+## Environment Setup
+### Setting up Ultra96 and Host Computer
+We have provided you with:
+- An Ultra96 board with a power cable and a JTAG USB cable
+- 2 USB-ethernet adapters
+- 1 ethernet cable
+- 1 SD card and an SD card reader
+- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
+
+Your setup for this HW should look like {numref}`ultra96-setup`.
+```{figure} images/env_setup.jpg
+---
+height: 300px
+name: ultra96-setup
+---
+Development Environment
+```
+
+### Run on the FPGA
+#### Write the SD Card Image
+- Download a sample SD card image for Ultra96 from
+[here](https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc%5FcnRpbWU9cUdwLVM2ZDgyVWc&id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample%2Fu96v2%5Fsbc%5Fvadd%5F2020%5F2%2Etar%2Egz&parent=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample).
+
+- Then, unzip the file. The .gz file contains `sd_card.img` and `README.txt`.
+    ```
+    tar -xvzf u96v2_sbc_vadd_2020_2.tar.gz
+    ```
+- Write `sd_card.img` to your SD card.
+    - In Ubuntu 20.04, you can use `Startup Disk Creator`.
+    - You can also use [Rufus](https://rufus.ie/) or
+      [balenaEtcher](https://www.balena.io/etcher/).
+- Once you finish writing the image to the SD card, slide it into your Ultra96's SD card slot.
+
+#### Boot the Ultra96
+- The instructions here are for Linux users. For Windows users, skim these through, and
+  go to {ref}`boot_windows`.
+- Make sure you have the board connected as shown in {numref}`ultra96-setup`.
+- We will use two terminals on our host computer:
+    - the first terminal will be used to copy binaries into the Ultra96
+    - the second terminal will be used to access the serial console of the Ultra96
+- We will now open the serial console of the Ultra96. You can use any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. We are using `minicom` and following is the command we use for connecting to the serial port:
+    ```
+    sudo minicom -D /dev/ttyUSB1
+    ```
+    `/dev/ttyUSB1` is the port where the Ultra96 dumps all
+    the console output. If you are on Windows, this will be
+    something different, like `COM4`. When you want to get out
+    of `minicom`, use `CTRL-A Z q`
+- After you have connected to the serial port, boot the board
+by pressing the boot switch as shown in {numref}`boot`.
+    ```{figure} images/boot.png
+    ---
+    height: 300px
+    name: boot
+    ---
+    Switch for booting Ultra96
+    ```
+- Watch your serial console for boot messages. Following is what ours look like:
+    ```
+    �Xilinx Zynq MP First Stage Boot Loader
+    Release 2020.1   Oct 17 2020  -  06:29:34
+    NOTICE:  ATF running on XCZU3EG/silicon v4/RTL5.1 at 0xfffea000
+    NOTICE:  BL31: v2.2(release):v1.1-5588-g5918e656e
+    NOTICE:  BL31: Built : 20:07:49, Oct 17 2020
+    U-Boot 2020.01 (Oct 17 2020 - 20:08:47 +0000)
+    Model: Avnet Ultra96 Rev1
+    Board: Xilinx ZynqMP
+    DRAM:  2 GiB
+    .
+    .
+    .
+    Starting kernel ...
+    [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+    [    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
+    [    0.000000] Machine model: Avnet Ultra96 Rev1
+    [    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+    [    0.000000] printk: bootconsole [cdns0] enabled
+    [    0.000000] efi: Getting EFI parameters from FDT:
+    [    0.000000] efi: UEFI not found.
+    [    0.000000] Reserved memory: created DMA memory pool at 0x000000003ed40000, size 1 MiB
+    [    0.000000] OF: reserved mem: initialized node rproc@3ed400000, compatible id shared-dma-pool
+    [    0.000000] cma: Reserved 512 MiB at 0x000000005fc00000
+    .
+    .
+    .
+    .
+    Starting syslogd/klogd: done
+    Starting tcf-agent: OK
+    PetaLinux 2020.1 ultra96v2-2020-1 ttyPS0
+    root@ultra96v2-2020-1:~# The XKEYBOARD keymap compiler (xkbcomp) reports:
+    > Warning:          Unsupported high keycode 372 for name <I372> ignored
+    >                   X11 cannot support keycodes above 255.
+    >                   This warning only shows for the first high keycode.
+    Errors from xkbcomp are not fatal to the X server
+    D-BUS per-session daemon address is: unix:abstract=/tmp/dbus-2CuBS4BnDn,guid=63270a6bec61460191859caa5f9022fc
+    matchbox: Cant find a keycode for keysym 269025056
+    matchbox: ignoring key shortcut XF86Calendar=!$contacts
+    matchbox: Cant find a keycode for keysym 2809
+    matchbox: ignoring key shortcut telephone=!$dates
+    matchbox: Cant find a keycode for keysym 269025050
+    matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
+    dbus-daemon[641]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=0 pid=636 comm="matchbox-desktop ")
+    dbus-daemon[641]: Successfully activated service 'org.a11y.atspi.Registry'
+    SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+    [settings daemon] Forking. run with -n to prevent fork
+    ```
+- Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
+    ```
+    root@u96v2-sbc-base-2020-2:~#
+    ```
+- We will now enable ethernet connection between our Ultra96 and
+    the host computer, such that we can copy files between
+    the devices. Issue the following command in the serial console:
+    ```
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+    ```
+- Now in your second console in the host computer, first
+    find out the name that has been assigned to the USB-ethernet
+    device by issuing `ifconfig`
+    ```
+    enx000ec6c4b500: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+            inet 10.10.7.2  netmask 255.0.0.0  broadcast 10.255.255.255
+            ether 00:0e:c6:c4:b5:00  txqueuelen 1000  (Ethernet)
+            RX packets 213  bytes 32750 (32.7 KB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 249  bytes 25958 (25.9 KB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+            inet 127.0.0.1  netmask 255.0.0.0
+            inet6 ::1  prefixlen 128  scopeid 0x10<host>
+            loop  txqueuelen 1000  (Local Loopback)
+            RX packets 570887  bytes 920673672 (920.6 MB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 570887  bytes 920673672 (920.6 MB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    ```
+    In our case, the USB-ethernet device is `enx000ec6c4b500`.
+    Now issue the following command:
+    ```
+    sudo ifconfig enx000ec6c4b500 10.10.7.2 netmask 255.0.0.0
+    ```
+- We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
+You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
+computer.
+- Let's copy `hw4` directory to Ultra96:
+    ```
+    scp -r hw4 root@10.10.7.1:/home/root/
+    ```
+
+(boot_windows)=
+#### Boot the Ultra96 (for Windows users only)
+- Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it's COM4.
+    ```{figure} images/win_eth_0.jpg
+    ---
+    height: 300px
+    ---
+    Find the port
+    ```
+- Download and install MobaXterm from [here](https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip).
+- Start MobaXterm. Click ***Session*** in the left top corner and select ***Serial***.
+  Set the serial port as the one you found in the previous step and bps. In the example case,
+  it's COM4 and 115200. Click ***OK***.
+- Boot the board by pressing the boot switch as shown in {numref}`boot`.
+- Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
+    ```
+    root@u96v2-sbc-base-2020-2:~#
+    ```
+
+- Click plus sign to open up the local machine's session(new tab).
+  Type `ifconfig` and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:
+    ```{figure} images/win_eth_1.jpg
+    ---
+    height: 300px
+    ---
+    ifconfig to find out your local machine's ip
+    ```
+- Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
+  previous step, the ip address of the local machine is `169.254.123.23` and netmask is
+  `255.255.0.0`. So, let's assign the ultra96 to a ip of `169.254.123.24`(note that
+  this is 24!) as follows:
+    ```{figure} images/win_eth_2.jpg
+    ---
+    height: 300px
+    ---
+    Connect you machine and Ultra96
+    ```
+- Your devices are not connected. Go to the local machine's tab and ssh into the Ultra96:
+    ```{figure} images/win_eth_3.jpg
+    ---
+    height: 300px
+    ---
+    ssh in to the Ultra96 and transfer files
+    ```
+- You can view the files of the Ultra96 on the left hand side.
+  You can easily drag and drop files from/to the local machine to/from Ultra96.
+  Drag and drop `hw4` folder on the left hand side to start this HW.
+
+
 
 ## Working with NEON
 We are going to do some reading from the arm developer website articles and
