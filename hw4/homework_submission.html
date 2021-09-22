@@ -373,7 +373,7 @@ everybody in the team. (3 lines)</p></li>
 <p>Before we dive into the vector optimizations, we will investigate the
 effects of different levels of compiler optimizations.</p>
 <table class="table" id="optimization-table">
-<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">Latency and Code size per Optimization Level</span><a class="headerlink" href="#optimization-table" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 4.2 </span><span class="caption-text">Latency and Code size per Optimization Level</span><a class="headerlink" href="#optimization-table" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -408,10 +408,28 @@ effects of different levels of compiler optimizations.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>You will compile all code in this homework directly in the Ultra96.
+The <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler in the Ultra96 is the ARM compiler.</p></li>
+<li><p>You should edit your code in your host computer (<code class="docutils literal notranslate"><span class="pre">vim</span></code> in the Ultra96
+doesn’t work properly). Every time you edit, you can <code class="docutils literal notranslate"><span class="pre">scp</span></code> your revised code,
+or:</p>
+<ul>
+<li><p>use <em>Remote Explorer</em> in VSCode to open a connection to the Ultra96 or</p></li>
+<li><p>if on Windows, use MobaXterm to directly edit the files in the device.</p></li>
+</ul>
+</li>
+<li><p>Make sure that you are able to keep track of your edited files. Given
+there is no internet connection in the Ultra96 at the moment, you should
+copy back results as needed and version control your code using git repositories in your host computer.</p></li>
+</ul>
+</div>
 <ol>
 <li><p>Measure the latency and size of the <code class="docutils literal notranslate"><span class="pre">baseline</span></code> target at the
 different optimization levels. Put your measurements in a table like
-<a class="reference internal" href="#optimization-table"><span class="std std-numref">Table 4.1</span></a>. You can change
+<a class="reference internal" href="#optimization-table"><span class="std std-numref">Table 4.2</span></a>. You can change
 the optimization level by editing the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.</p></li>
 <li><p>Include the assembly code of the innermost loop of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>
 at optimization level <code class="docutils literal notranslate"><span class="pre">-O0</span></code> in your report. Use the following command to get the assembly and then look for <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in <code class="docutils literal notranslate"><span class="pre">Filter_O1.s</span></code>:</p>
@@ -475,7 +493,7 @@ may also be useful.</p>
 <div class="full-width admonition">
 <p class="admonition-title">Vectorization Speedup Summary</p>
 <table class="table" id="vectorization-table">
-<caption><span class="caption-number">Table 4.2 </span><span class="caption-text">Vectorization Speedup Summary</span><a class="headerlink" href="#vectorization-table" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 4.3 </span><span class="caption-text">Vectorization Speedup Summary</span><a class="headerlink" href="#vectorization-table" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 13%" />
 <col style="width: 13%" />
@@ -566,12 +584,12 @@ may also be useful.</p>
 </div>
 <ol>
 <li><p>Report the latency of each stage of the baseline application at
-<code class="docutils literal notranslate"><span class="pre">-O3</span></code>. (Start a table like <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>; we will continue to fill in this
+<code class="docutils literal notranslate"><span class="pre">-O3</span></code>. (Start a table like <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.3</span></a>; we will continue to fill in this
 table throughout this problem.)</p></li>
 <li><p>Based on your understanding of the C code, which loops in
 the streaming stages of the application have
 sufficient data parallelism for vectorization?  Motivate your answer.
-(Mark suitability by filling in Yes or No in the suitability column of <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>; add explanation in 2–5 lines after table.)</p></li>
+(Mark suitability by filling in Yes or No in the suitability column of <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.3</span></a>; add explanation in 2–5 lines after table.)</p></li>
 <li><p>Identify the critical path lower bound for <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> in
 terms of compute operations.  Focus on the data path.  Ignore
 control flow and offset computations. You may assume
@@ -610,13 +628,13 @@ achieve the resource bound identified in 3e? (5 lines)</p>
 <p>Remember Amdahl’s Law; think about critical path lower
 bounds and resource capacity lower bounds.</p>
 </div>
-<p>(Fill in the ideal vectorization speedup column in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>; separately show Amdahl’s Law calculation for overall speedup.)</p>
+<p>(Fill in the ideal vectorization speedup column in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.3</span></a>; separately show Amdahl’s Law calculation for overall speedup.)</p>
 </li>
 <li><p>We will now enable the vectorization in g++. You can enable it by removing
 the <code class="docutils literal notranslate"><span class="pre">-fno-tree-vectorize</span></code> flag from the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.
 <code class="docutils literal notranslate"><span class="pre">-O3</span></code> optimization automatically turns on the flag <code class="docutils literal notranslate"><span class="pre">-ftree-vectorize</span></code>, which vectorizes
 your code.</p></li>
-<li><p>Report the speedup of the vectorized code with respect to the baseline. (Fill in the “Baseline with SIMD” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>.)</p></li>
+<li><p>Report the speedup of the vectorized code with respect to the baseline. (Fill in the “Baseline with SIMD” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.3</span></a>.)</p></li>
 <li><p>Explain the discrepancy between your measured and ideal
 performance based on the optimization of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>.
 (3 lines)</p>
@@ -640,7 +658,7 @@ in the previous problem. (1 line) Include the assembly code of
 <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after you have resolved the issue.</p></li>
 <li><p>Report the speedup with respect to the baseline after resolving
 the issue in both <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>.
-(Fill in the “Baseline with SIMD Modified” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.2</span></a>.)</p></li>
+(Fill in the “Baseline with SIMD Modified” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 4.3</span></a>.)</p></li>
 </ol>
 </li>
 <li><p><strong>NEON Intrinsics Example</strong></p>
@@ -689,11 +707,11 @@ performance? (3 lines)</p>
 (coefficients array) that helps us?</p></li>
 <li><p>Following are two animations. What can you figure out from it?</p>
 <div class="figure align-default" id="baseline-filter">
-<a class="reference internal image-reference" href="../_images/baseline-filter.gif"><img alt="../_images/baseline-filter.gif" src="../_images/baseline-filter.gif" style="height: 250px;" /></a>
+<img alt="../_images/baseline-filter.gif" src="../_images/baseline-filter.gif" />
 <p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> without vectorization</span><a class="headerlink" href="#baseline-filter" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="vectorized-filter">
-<a class="reference internal image-reference" href="../_images/vectorized-filter.gif"><img alt="../_images/vectorized-filter.gif" src="../_images/vectorized-filter.gif" style="height: 250px;" /></a>
+<img alt="../_images/vectorized-filter.gif" src="../_images/vectorized-filter.gif" />
 <p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> with vectorization</span><a class="headerlink" href="#vectorized-filter" title="Permalink to this image">¶</a></p>
 </div>
 </li>

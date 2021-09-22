@@ -332,8 +332,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
-   4.2.2. Obtaining and Running the Code
+  <a class="reference internal nav-link" href="#obtaining-the-code">
+   4.2.2. Obtaining the Code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -357,13 +357,13 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#boot-the-ultra96">
-       4.2.3.2.2. Boot the Ultra96
+      <a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-with-linux">
+       4.2.3.2.2. Boot the Ultra96 (Environment - Personal Computer with Linux)
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#boot-the-ultra96-for-windows-users-only">
-       4.2.3.2.3. Boot the Ultra96 (for Windows users only)
+      <a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
+       4.2.3.2.3. Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)
       </a>
      </li>
     </ul>
@@ -371,28 +371,33 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-code">
+   4.2.4. Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#working-with-neon">
-   4.2.4. Working with NEON
+   4.2.5. Working with NEON
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#basics">
-     4.2.4.1. Basics
+     4.2.5.1. Basics
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#coding-with-neon-intrinsics">
-     4.2.4.2. Coding with NEON Intrinsics
+     4.2.5.2. Coding with NEON Intrinsics
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#optimization">
-     4.2.4.3. Optimization:
+     4.2.5.3. Optimization:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#more-resources">
-     4.2.4.4. More Resources:
+     4.2.5.4. More Resources:
     </a>
    </li>
   </ul>
@@ -411,7 +416,8 @@
   <div class="section" id="setup-and-walk-through">
 <h1><span class="section-number">4.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
 <style type="text/css">
-    table { width: 100%; }
+    .table { margin-left:auto; margin-right:auto;}
+    .table { width: 70%; }
     th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
     td {height:50px;text-align: center;}
     tr:nth-child(even) {background-color: #f2f2f2;}
@@ -423,59 +429,64 @@ the NEON units in our ARM cores.
 <a class="reference internal" href="#cortex-a53"><span class="std std-numref">Fig. 4.1</span></a> shows the high level block diagram of
 the ARM core in Ultra96 board.</p>
 <div class="figure align-default" id="cortex-a53">
-<a class="reference internal image-reference" href="../_images/cortex-a53.png"><img alt="../_images/cortex-a53.png" src="../_images/cortex-a53.png" style="height: 452px;" /></a>
+<img alt="../_images/cortex-a53.png" src="../_images/cortex-a53.png" />
 <p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">ARM Cortex A-53 Overview. Source: <a class="reference external" href="https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh">ANANDTECH</a></span><a class="headerlink" href="#cortex-a53" title="Permalink to this image">¶</a></p>
 </div>
-<!-- The Ultra96 boards have ARM Cortex A-53 cores. Compared to the A-72, it's a
+<p>The Ultra96 boards have ARM Cortex A-53 cores. It’s a
 2-way decode, in-order core with one 64-bit NEON SIMD unit,
-as shown in {numref}`arm-core-table`.
-```{list-table} ARM Core Comparison, Source: [A-53](https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3), [A-72](https://www.anandtech.com/show/9184/arm-reveals-cortex-a72-architecture-details)
-:header-rows: 1
-:name: arm-core-table
-
-* -  
-  - Cortex A-53
-  - Cortex A-72
-* - ARM ISA
-  - ARMv8 (32/64-bit)
-  - ARMv8 (32/64-bit)
-* - Decoder Width
-  - 2 micro-ops
-  - 3 ops (5 micro-ops)
-* - Maximum Pipeline Length
-  - 8
-  - 16 stages
-* - Integer Add
-  - 2
-  - 2
-* - Integer Mul
-  - 1
-  - 1
-* - Load/Store Units
-  - 1
-  - 1 + 1 (Dedicated L/S)
-* - Branch Units
-  - 1
-  - 1
-* - FP/NEON ALUs
-  - 1x64-bit
-  - 2x128-bit
-* - L1 Cache
-  - 8KB-64KB I\$ + 8KB-64KB D\$
-  - 48KB I\$ + 32KB D\$
-* - L2 Cache
-  - 128KB - 2MB (Optional)
-  - 512KB - 4MB
-```
-  -->
+as shown in <a class="reference internal" href="#arm-core-table"><span class="std std-numref">Table 4.1</span></a>.</p>
+<table class="table" id="arm-core-table">
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">ARM Core, Source: <a class="reference external" href="https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3">A-53</a></span><a class="headerlink" href="#arm-core-table" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Cortex A-53</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ARM ISA</p></td>
+<td><p>ARMv8 (32/64-bit)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Decoder Width</p></td>
+<td><p>2 micro-ops</p></td>
+</tr>
+<tr class="row-even"><td><p>Maximum Pipeline Length</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>Integer Add</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Integer Mul</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Load/Store Units</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Branch Units</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>FP/NEON ALUs</p></td>
+<td><p>1x64-bit</p></td>
+</tr>
+<tr class="row-even"><td><p>L1 Cache</p></td>
+<td><p>8KB-64KB I$ + 8KB-64KB D$</p></td>
+</tr>
+<tr class="row-odd"><td><p>L2 Cache</p></td>
+<td><p>128KB - 2MB (Optional)</p></td>
+</tr>
+</tbody>
+</table>
 <p>We will use the NEON Intrinsics API to program the NEON
 Units in our cores. An intrinsic behaves syntactically like a function,
 but the compiler translates it to a specific instruction that is inlined
 in the code. In the following sections, we will guide you through
 reading the NEON Programmer’s guide and learning to use these APIs.</p>
 </div>
-<div class="section" id="obtaining-and-running-the-code">
-<h2><span class="section-number">4.2.2. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="obtaining-the-code">
+<h2><span class="section-number">4.2.2. </span>Obtaining the Code<a class="headerlink" href="#obtaining-the-code" title="Permalink to this headline">¶</a></h2>
 <p>In the previous homework, we dealt with a streaming application that
 compressed a video stream, and explored how to implement coarse-grain data-level parallelism
 and pipeline parallelism using <code class="docutils literal notranslate"><span class="pre">std::threads</span></code> to speedup the application. For this homework,
@@ -519,23 +530,7 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw4</span
 </pre></div>
 </div>
 </li>
-<li><p>There are 3 targets. You can build all of them by executing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>
-in the <code class="docutils literal notranslate"><span class="pre">hw4/assignment</span></code> directory. You can build separately by:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">baseline</span></code> and <code class="docutils literal notranslate"><span class="pre">./baseline</span></code> to run the project with no vectorization of
-<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> function.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">neon_filter</span></code> and <code class="docutils literal notranslate"><span class="pre">./neon_filter</span></code> to run the project with <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> vectorized
-(you will modify the vectorized code later).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">./example</span></code> to run the neon example.</p></li>
-</ul>
-</li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder contains the input data, <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code>, which has TODO:<em><strong>100</strong></em> frames of
-size <span class="math notranslate nohighlight">\(960\)</span> by <span class="math notranslate nohighlight">\(540\)</span> pixels, where each pixel is a byte. <code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> contains the
-expected output. Each program uses this file to see if there is a mismatch between
-your program’s output and the expected output.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">assignment/common</span></code> folder has header files and helper functions used by the
-four parts.</p></li>
-<li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">assignment/src</span></code> folder.</p></li>
+<li><p>We will now copy the <code class="docutils literal notranslate"><span class="pre">hw4</span></code> directory into the Ultra96.</p></li>
 </ul>
 </div>
 <div class="section" id="environment-setup">
@@ -552,7 +547,7 @@ four parts.</p></li>
 </ul>
 <p>Your setup for this HW should look like <a class="reference internal" href="#ultra96-setup"><span class="std std-numref">Fig. 4.2</span></a>.</p>
 <div class="figure align-default" id="ultra96-setup">
-<a class="reference internal image-reference" href="../_images/env_setup.jpg"><img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" style="height: 300px;" /></a>
+<img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" />
 <p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -562,7 +557,17 @@ four parts.</p></li>
 <h4><span class="section-number">4.2.3.2.1. </span>Write the SD Card Image<a class="headerlink" href="#write-the-sd-card-image" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Download a sample SD card image for Ultra96 from
-<a class="reference external" href="https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc%5FcnRpbWU9cUdwLVM2ZDgyVWc&amp;id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample%2Fu96v2%5Fsbc%5Fvadd%5F2020%5F2%2Etar%2Egz&amp;parent=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample">here</a>.</p></li>
+<a class="reference external" href="https://www.element14.com/community/docs/DOC-95649/l/ultra96-v2">here</a>.</p>
+<ul class="simple">
+<li><p>In the <strong>Reference Designs</strong> tab:</p>
+<ul>
+<li><p>Click on the <strong>Ultra96-V2 – Vitis PetaLinux Platform 2020+ Vector Add (Sharepoint site)</strong> link.</p></li>
+<li><p>Browse to <strong>2020.2</strong> -&gt; <strong>Vitis_PreBuilt_Example</strong> -&gt; <strong>u96v2_sbc_vadd_2020_2.tar.gz</strong></p></li>
+<li><p>Click on the download button</p></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>Then, unzip the file. The .gz file contains <code class="docutils literal notranslate"><span class="pre">sd_card.img</span></code> and <code class="docutils literal notranslate"><span class="pre">README.txt</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_vadd_2020_2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
@@ -578,11 +583,11 @@ four parts.</p></li>
 <li><p>Once you finish writing the image to the SD card, slide it into your Ultra96’s SD card slot.</p></li>
 </ul>
 </div>
-<div class="section" id="boot-the-ultra96">
-<h4><span class="section-number">4.2.3.2.2. </span>Boot the Ultra96<a class="headerlink" href="#boot-the-ultra96" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="boot-the-ultra96-environment-personal-computer-with-linux">
+<h4><span class="section-number">4.2.3.2.2. </span>Boot the Ultra96 (Environment - Personal Computer with Linux)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-with-linux" title="Permalink to this headline">¶</a></h4>
 <ul>
-<li><p>The instructions here are for Linux users. For Windows users, skim these through, and
-go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (for Windows users only)</span></a>.</p></li>
+<li><p>The instructions here are for users running Linux on their personal computers. For Windows users, skim these through, and
+go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a>.</p></li>
 <li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#ultra96-setup"><span class="std std-numref">Fig. 4.2</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
@@ -602,7 +607,7 @@ of <code class="docutils literal notranslate"><span class="pre">minicom</span></
 <li><p>After you have connected to the serial port, boot the board
 by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 4.3</span></a>.</p>
 <div class="figure align-default" id="boot">
-<a class="reference internal image-reference" href="../_images/boot.png"><img alt="../_images/boot.png" src="../_images/boot.png" style="height: 300px;" /></a>
+<img alt="../_images/boot.png" src="../_images/boot.png" />
 <p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">¶</a></p>
 </div>
 </li>
@@ -704,12 +709,12 @@ computer.</p></li>
 </li>
 </ul>
 </div>
-<div class="section" id="boot-the-ultra96-for-windows-users-only">
-<span id="boot-windows"></span><h4><span class="section-number">4.2.3.2.3. </span>Boot the Ultra96 (for Windows users only)<a class="headerlink" href="#boot-the-ultra96-for-windows-users-only" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
+<span id="boot-windows"></span><h4><span class="section-number">4.2.3.2.3. </span>Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
 <div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/win_eth_0.jpg"><img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" style="height: 300px;" /></a>
+<img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" />
 <p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </li>
@@ -726,7 +731,7 @@ it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
 <li><p>Click plus sign to open up the local machine’s session(new tab).
 Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
 <div class="figure align-default" id="id2">
-<a class="reference internal image-reference" href="../_images/win_eth_1.jpg"><img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" style="height: 300px;" /></a>
+<img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" />
 <p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </li>
@@ -735,13 +740,13 @@ previous step, the ip address of the local machine is <code class="docutils lite
 <code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(note that
 this is 24!) as follows:</p>
 <div class="figure align-default" id="id3">
-<a class="reference internal image-reference" href="../_images/win_eth_2.jpg"><img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" style="height: 300px;" /></a>
+<img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" />
 <p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </li>
-<li><p>Your devices are not connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
+<li><p>Your devices are now connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
 <div class="figure align-default" id="id4">
-<a class="reference internal image-reference" href="../_images/win_eth_3.jpg"><img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" style="height: 300px;" /></a>
+<img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" />
 <p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </li>
@@ -752,12 +757,34 @@ Drag and drop <code class="docutils literal notranslate"><span class="pre">hw4</
 </div>
 </div>
 </div>
+<div class="section" id="running-the-code">
+<h2><span class="section-number">4.2.4. </span>Running the Code<a class="headerlink" href="#running-the-code" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>There are 3 targets, which we will build <strong>in the Ultra96</strong>. You can build all of them by executing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">hw4/assignment</span></code> directory. You can build separately by:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">baseline</span></code> and <code class="docutils literal notranslate"><span class="pre">./baseline</span></code> to run the project with no vectorization of
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">neon_filter</span></code> and <code class="docutils literal notranslate"><span class="pre">./neon_filter</span></code> to run the project with <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> vectorized
+(you will modify the vectorized code later).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">./example</span></code> to run the neon example.</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder contains the input data, <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code>, which has 200 frames of
+size <span class="math notranslate nohighlight">\(960\)</span> by <span class="math notranslate nohighlight">\(540\)</span> pixels, where each pixel is a byte. <code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> contains the
+expected output. Each program uses this file to see if there is a mismatch between
+your program’s output and the expected output.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">assignment/common</span></code> folder has header files and helper functions used by the
+four parts.</p></li>
+<li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">assignment/src</span></code> folder.</p></li>
+</ul>
+</div>
 <div class="section" id="working-with-neon">
-<h2><span class="section-number">4.2.4. </span>Working with NEON<a class="headerlink" href="#working-with-neon" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2.5. </span>Working with NEON<a class="headerlink" href="#working-with-neon" title="Permalink to this headline">¶</a></h2>
 <p>We are going to do some reading from the arm developer website articles and
 the NEON Programmer’s Guide in the following sections.</p>
 <div class="section" id="basics">
-<h3><span class="section-number">4.2.4.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.5.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
 <p>Read <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/introducing-neon-for-armv8-a/single-page">Introducing Neon for Armv8-a</a> and answer the
 following questions. We have given you the answers, however make sure you
 do the reading! Knowing where to look in a programmer’s
@@ -833,7 +860,7 @@ When the input and output vectors are 128-bit vectors, do use intrinsics with �
 </div>
 </div>
 <div class="section" id="coding-with-neon-intrinsics">
-<span id="coding-neon"></span><h3><span class="section-number">4.2.4.2. </span>Coding with NEON Intrinsics<a class="headerlink" href="#coding-with-neon-intrinsics" title="Permalink to this headline">¶</a></h3>
+<span id="coding-neon"></span><h3><span class="section-number">4.2.5.2. </span>Coding with NEON Intrinsics<a class="headerlink" href="#coding-with-neon-intrinsics" title="Permalink to this headline">¶</a></h3>
 <p>Read chapter four from the NEON Programmer’s Guide and answer the following questions.
 Use the <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">Neon Intrinsics Reference</a> website to find and understand any instruction.</p>
 <div class="admonition tip">
@@ -890,7 +917,7 @@ Use the <a class="reference external" href="https://developer.arm.com/architectu
 </div>
 </div>
 <div class="section" id="optimization">
-<h3><span class="section-number">4.2.4.3. </span>Optimization:<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.5.3. </span>Optimization:<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Read section 2.1.10, 2.8, and chapter 5 from the NEON Programmer’s Guide.</p></li>
 <li><p>Watch the talk: <a class="reference external" href="https://youtu.be/ixuDntaSnHI">Taming ARMv8 NEON: from theory to benchmark results</a></p></li>
@@ -901,7 +928,7 @@ Use the <a class="reference external" href="https://developer.arm.com/architectu
 </ul>
 </div>
 <div class="section" id="more-resources">
-<h3><span class="section-number">4.2.4.4. </span>More Resources:<a class="headerlink" href="#more-resources" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.5.4. </span>More Resources:<a class="headerlink" href="#more-resources" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://community.arm.com/developer/tools-software/oss-platforms/b/android-blog/posts/arm-neon-programming-quick-reference">NEON Quick reference guide</a></p></li>
 <li><p><a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">NEON Intrinsics Reference</a></p></li>

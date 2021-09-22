@@ -55,6 +55,18 @@ Your writeup should include your answers to the following questions:
       -  
       -  
     ```
+    ```{important}
+    - You will compile all code in this homework directly in the Ultra96.
+    The `g++` compiler in the Ultra96 is the ARM compiler.
+    - You should edit your code in your host computer (`vim` in the Ultra96
+    doesn't work properly). Every time you edit, you can `scp` your revised code,
+    or:
+        - use *Remote Explorer* in VSCode to open a connection to the Ultra96 or
+        - if on Windows, use MobaXterm to directly edit the files in the device.
+    - Make sure that you are able to keep track of your edited files. Given
+    there is no internet connection in the Ultra96 at the moment, you should
+    copy back results as needed and version control your code using git repositories in your host computer.
+    ```
     1. Measure the latency and size of the `baseline` target at the
         different optimization levels. Put your measurements in a table like
         {numref}`optimization-table`. You can change
@@ -292,14 +304,12 @@ Your writeup should include your answers to the following questions:
         - Following are two animations. What can you figure out from it?
             ```{figure} images/baseline-filter.gif
             ---
-            height: 250px
             name: baseline-filter
             ---
             `Filter_vertical` without vectorization
             ```
             ```{figure} images/vectorized-filter.gif
             ---
-            height: 250px
             name: vectorized-filter
             ---
             `Filter_vertical` with vectorization
