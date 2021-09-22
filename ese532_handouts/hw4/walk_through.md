@@ -1,7 +1,8 @@
 # Setup and Walk-through
 
 <style type="text/css">
-    table { width: 100%; }
+    .table { margin-left:auto; margin-right:auto;}
+    .table { width: 70%; }
     th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
     td {height:50px;text-align: center;}
     tr:nth-child(even) {background-color: #f2f2f2;}
@@ -14,60 +15,47 @@ the ARM core in Ultra96 board.
 
 ```{figure} images/cortex-a53.png
 ---
-height: 452px
 name: cortex-a53
 ---
 ARM Cortex A-53 Overview. Source: [ANANDTECH](https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh)
 ```
-<!-- The Ultra96 boards have ARM Cortex A-53 cores. Compared to the A-72, it's a
+The Ultra96 boards have ARM Cortex A-53 cores. It's a
 2-way decode, in-order core with one 64-bit NEON SIMD unit,
 as shown in {numref}`arm-core-table`.
-```{list-table} ARM Core Comparison, Source: [A-53](https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3), [A-72](https://www.anandtech.com/show/9184/arm-reveals-cortex-a72-architecture-details)
+```{list-table} ARM Core, Source: [A-53](https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3)
 :header-rows: 1
 :name: arm-core-table
 
 * -  
   - Cortex A-53
-  - Cortex A-72
 * - ARM ISA
-  - ARMv8 (32/64-bit)
   - ARMv8 (32/64-bit)
 * - Decoder Width
   - 2 micro-ops
-  - 3 ops (5 micro-ops)
 * - Maximum Pipeline Length
   - 8
-  - 16 stages
 * - Integer Add
-  - 2
   - 2
 * - Integer Mul
   - 1
-  - 1
 * - Load/Store Units
   - 1
-  - 1 + 1 (Dedicated L/S)
 * - Branch Units
-  - 1
   - 1
 * - FP/NEON ALUs
   - 1x64-bit
-  - 2x128-bit
 * - L1 Cache
   - 8KB-64KB I\$ + 8KB-64KB D\$
-  - 48KB I\$ + 32KB D\$
 * - L2 Cache
   - 128KB - 2MB (Optional)
-  - 512KB - 4MB
 ```
-  -->
 We will use the NEON Intrinsics API to program the NEON
 Units in our cores. An intrinsic behaves syntactically like a function,
 but the compiler translates it to a specific instruction that is inlined
 in the code. In the following sections, we will guide you through
 reading the NEON Programmer's guide and learning to use these APIs.
 
-## Obtaining and Running the Code
+## Obtaining the Code
 In the previous homework, we dealt with a streaming application that
 compressed a video stream, and explored how to implement coarse-grain data-level parallelism
 and pipeline parallelism using `std::threads` to speedup the application. For this homework,
@@ -110,20 +98,7 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
             Input.bin
             Golden.bin
     ```
-- There are 3 targets. You can build all of them by executing `make all`
-    in the `hw4/assignment` directory. You can build separately by:
-    - `make baseline` and `./baseline` to run the project with no vectorization of 
-      `Filter_vertical` function.
-    - `make neon_filter` and `./neon_filter` to run the project with `Filter_vertical` vectorized
-      (you will modify the vectorized code later).
-    - `make example` and `./example` to run the neon example.
-- The `data` folder contains the input data, `Input.bin`, which has TODO:***100*** frames of
-    size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
-    expected output. Each program uses this file to see if there is a mismatch between
-    your program's output and the expected output.
-- The `assignment/common` folder has header files and helper functions used by the
-    four parts.
-- You will mostly be working with the code in the `assignment/src` folder.
+- We will now copy the `hw4` directory into the Ultra96.
 
 ## Environment Setup
 ### Setting up Ultra96 and Host Computer
@@ -137,7 +112,6 @@ We have provided you with:
 Your setup for this HW should look like {numref}`ultra96-setup`.
 ```{figure} images/env_setup.jpg
 ---
-height: 300px
 name: ultra96-setup
 ---
 Development Environment
@@ -146,8 +120,11 @@ Development Environment
 ### Run on the FPGA
 #### Write the SD Card Image
 - Download a sample SD card image for Ultra96 from
-[here](https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc%5FcnRpbWU9cUdwLVM2ZDgyVWc&id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample%2Fu96v2%5Fsbc%5Fvadd%5F2020%5F2%2Etar%2Egz&parent=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease%2F2020%2E2%2FVitis%5FPreBuilt%5FExample).
-
+[here](https://www.element14.com/community/docs/DOC-95649/l/ultra96-v2).
+  - In the **Reference Designs** tab:
+    - Click on the **Ultra96-V2 – Vitis PetaLinux Platform 2020+ Vector Add (Sharepoint site)** link.
+    - Browse to **2020.2** -> **Vitis_PreBuilt_Example** -> **u96v2_sbc_vadd_2020_2.tar.gz**
+    - Click on the download button
 - Then, unzip the file. The .gz file contains `sd_card.img` and `README.txt`.
     ```
     tar -xvzf u96v2_sbc_vadd_2020_2.tar.gz
@@ -158,8 +135,8 @@ Development Environment
       [balenaEtcher](https://www.balena.io/etcher/).
 - Once you finish writing the image to the SD card, slide it into your Ultra96's SD card slot.
 
-#### Boot the Ultra96
-- The instructions here are for Linux users. For Windows users, skim these through, and
+#### Boot the Ultra96 (Environment - Personal Computer with Linux)
+- The instructions here are for users running Linux on their personal computers. For Windows users, skim these through, and
   go to {ref}`boot_windows`.
 - Make sure you have the board connected as shown in {numref}`ultra96-setup`.
 - We will use two terminals on our host computer:
@@ -177,7 +154,6 @@ Development Environment
 by pressing the boot switch as shown in {numref}`boot`.
     ```{figure} images/boot.png
     ---
-    height: 300px
     name: boot
     ---
     Switch for booting Ultra96
@@ -275,12 +251,9 @@ computer.
     ```
 
 (boot_windows)=
-#### Boot the Ultra96 (for Windows users only)
+#### Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)
 - Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it's COM4.
     ```{figure} images/win_eth_0.jpg
-    ---
-    height: 300px
-    ---
     Find the port
     ```
 - Download and install MobaXterm from [here](https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip).
@@ -296,9 +269,6 @@ computer.
 - Click plus sign to open up the local machine's session(new tab).
   Type `ifconfig` and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:
     ```{figure} images/win_eth_1.jpg
-    ---
-    height: 300px
-    ---
     ifconfig to find out your local machine's ip
     ```
 - Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
@@ -306,23 +276,31 @@ computer.
   `255.255.0.0`. So, let's assign the ultra96 to a ip of `169.254.123.24`(note that
   this is 24!) as follows:
     ```{figure} images/win_eth_2.jpg
-    ---
-    height: 300px
-    ---
     Connect you machine and Ultra96
     ```
-- Your devices are not connected. Go to the local machine's tab and ssh into the Ultra96:
+- Your devices are now connected. Go to the local machine's tab and ssh into the Ultra96:
     ```{figure} images/win_eth_3.jpg
-    ---
-    height: 300px
-    ---
     ssh in to the Ultra96 and transfer files
     ```
 - You can view the files of the Ultra96 on the left hand side.
   You can easily drag and drop files from/to the local machine to/from Ultra96.
   Drag and drop `hw4` folder on the left hand side to start this HW.
 
-
+## Running the Code
+- There are 3 targets, which we will build **in the Ultra96**. You can build all of them by executing `make all`
+    in the `hw4/assignment` directory. You can build separately by:
+    - `make baseline` and `./baseline` to run the project with no vectorization of 
+      `Filter_vertical` function.
+    - `make neon_filter` and `./neon_filter` to run the project with `Filter_vertical` vectorized
+      (you will modify the vectorized code later).
+    - `make example` and `./example` to run the neon example.
+- The `data` folder contains the input data, `Input.bin`, which has 200 frames of
+    size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
+    expected output. Each program uses this file to see if there is a mismatch between
+    your program's output and the expected output.
+- The `assignment/common` folder has header files and helper functions used by the
+    four parts.
+- You will mostly be working with the code in the `assignment/src` folder.
 
 ## Working with NEON
 We are going to do some reading from the arm developer website articles and
