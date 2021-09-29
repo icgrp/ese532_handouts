@@ -104,10 +104,35 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
 ### Setting up Ultra96 and Host Computer
 We have provided you with:
 - An Ultra96 board with a power cable and a JTAG USB cable
+  - Please check SW3 as the Note below. 
+    1 shuold be in the "off" position, 
+    and 2 should be in the "on" position.
 - 2 USB-ethernet adapters
 - 1 ethernet cable
 - 1 SD card and an SD card reader
 - USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
+
+````{note}
+Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:
+```{figure} images/sd_card_mode.jpg
+---
+height: 300px
+---
+SD card mode. 1 is OFF and 2 is ON at SW3.
+```
+
+And also make sure you have properly connected the JTAG module as follows:
+```{figure} images/jtag.png
+---
+height: 300px
+---
+JTAG module
+```
+````
+```{caution}
+> Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <http://www.zedboard.org/product/ultra96-usb-jtaguart-pod>
+```
+
 
 Your setup for this HW should look like {numref}`ultra96-setup`.
 ```{figure} images/env_setup.jpg
