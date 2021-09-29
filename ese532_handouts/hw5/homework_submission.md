@@ -14,7 +14,7 @@ Your writeup should include your answers to the following questions:
 </style>
 
 1. **Initial CPU implementation and HLS Kernel**
-    1. Find the latency of the matrix multiplier (mmult kernel) on the Xeon core using Vitis Analyzer (refer to the {ref}`software_code`) and report it in ms. This is our baseline.
+    1. Find the latency of the matrix multiplier (mmult kernel) using Vitis Analyzer (refer to the {ref}`software_code`) and report it in ms. This is our baseline.
         (1 line)
     1. We will now simulate the matrix multiplier in
         Vitis HLS.
@@ -149,7 +149,8 @@ Your writeup should include your answers to the following questions:
     So collaborate with your partner if you are not able to use the GUI
     or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
     ``` -->
-    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer. If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer.
+    1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer. 
+    <!-- If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer. -->
     1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.
     1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
         Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.

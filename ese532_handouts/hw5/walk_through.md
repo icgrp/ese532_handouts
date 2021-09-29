@@ -25,6 +25,7 @@ times you need to invoke low-level placement and routing and introduce
 
 In the homework, you could either use linux machines in Detkin/Ketterer or 
 install Vitis locally. If you want to install Vitis locally, we expect that your computer has at least:
+- Linux OS
 - 16 GB RAM
 - 4 cores
 - 70 GB free hard disk space
@@ -33,7 +34,7 @@ If you want to install Vitis locally, follow the instructions in
 jump to {ref}`software_code`.
 
 (install_locally)=
-### Installing Vitis 2020.2 on your Personal Computer
+### Installing Vitis 2020.2 on your Personal Computer(Linux OS)
 <!-- Running Vitis on your local computer will likely be the best interactive
 experience with the GUI.  However, it will take more time and effort (and
 disk space) to get it setup.  Ultimately, we recommend you set it up, but
@@ -236,7 +237,7 @@ continue with the following.
 - You will see Ultra96 platform as shown below. Click ***Next***.
     ```{figure} images/vitis_ultra96_platform.png
     ---
-    height: 300px
+    height: 400px
     ---
     Select Ultra96 platform
     ```
@@ -244,9 +245,6 @@ continue with the following.
 - You will see Sysroot path, Root FS, and Kernel Image are already set.
   Click ***Next***.
     ```{figure} images/vitis_domain.png
-    ---
-    height: 300px
-    ---
     Application settings should have been already set
     ```
 - We will create our own application. So, select Empty Application
@@ -267,9 +265,6 @@ continue with the following.
   `mmult.xo`, in the project.
   Click ***Next***.
     ```{figure} images/vitis_import_src.jpg
-    ---
-    height: 300px
-    ---
     Import source files
     ```
 - Double-click kernel project in the Project Exploer to open up
@@ -279,9 +274,6 @@ continue with the following.
 - You will see mmult function in the `mmult.xo`. Select mmult function
   and click ***OK***.
     ```{figure} images/vitis_hw_xo.jpg
-    ---
-    height: 300px
-    ---
     Add hardware function
     ```
 - You will see Active build configuration on the upper right corner.
@@ -293,12 +285,12 @@ continue with the following.
 
 ## Environment Setup
 ### Setting up Ultra96 and Host Computer
-We have provided you with:
+<!-- We have provided you with:
 - An Ultra96 board with a power cable and a JTAG USB cable
 - 2 USB-ethernet adapters
 - 1 ethernet cable
 - 1 SD card and an SD card reader
-- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
+- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer) -->
 
 <!-- We expect you have a personal computer. If you intend to install
 Vitis locally, we expect that your computer has at least:
@@ -313,6 +305,8 @@ to your personal computer, copy them into the board and finally run them on the 
 <!-- In the end,  -->
 Your setup should look like {numref}`ultra96-setup`.
 We will be using this setup for the rest of the semester.
+<!-- You can also use Windows PCs in Detkin/Ketterer. -->
+
 ```{figure} images/env_setup.jpg
 ---
 height: 300px
@@ -334,18 +328,25 @@ package/sd_card/hw5_vitis
 package/sd_card/binary_container_1.xclbin
 ```
 We suggest you to copy files above to you local machine and proceed.
+If your laptop is Linux, you can use `scp` and if you are using
+Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
 When you are building for the first time, we will write the
 `package/sd_card.img` image to our SD card.
-You can do that in
-several ways:
-- First put your SD card into the SD card reader and plug it to your computer.
-- In Ubuntu 20.04, open the `Startup Disk Creator`. Select `Disk Images` from the drop down at the bottom right corner and locate
-the `package/sd_card.img` file. Continue to write the image.
+
+- Write `sd_card.img` to your SD card.
+    - In Ubuntu 20.04, you can use `Startup Disk Creator`.
+    - You can also use [Rufus](https://rufus.ie/) or
+      [balenaEtcher](https://www.balena.io/etcher/).
+- Once you finish writing the image to the SD card, slide it into your Ultra96's SD card slot.
+
+<!-- - First put your SD card into the SD card reader and plug it to your computer.
+- In Ubuntu 20.04, you can use `Startup Disk Creator`.
+- You can also use [Rufus](https://rufus.ie/) or
+      [balenaEtcher](https://www.balena.io/etcher/).
 - After it's done, you can verify that there are two partitions in the SD card now:
     - the first partition has the files we mentioned above. These are the files that will change every time we build our code.
-    - the second partition contains the Linux rootfs. This will not change.
-- If you don't have `Startup Disk Creator`, you can use other programs like [balenaEtcher](https://www.balena.io/etcher/) or
-[Rufus](https://rufus.ie/).
+    - the second partition contains the Linux rootfs. This will not change. -->
+
 ````{note}
 We will only have to write our SD card image once.
 When we recompile our code, the files that will need to be
@@ -369,6 +370,26 @@ Make sure you don't hot plug/unplug the SD card. This can potentially corrupt th
 ```
 
 #### Boot the Ultra96
+````{note}
+Please make sure you have set the board in SD card mode as follows:
+```{figure} images/sd_card_mode.jpg
+---
+height: 300px
+---
+SD card mode. 1 is OFF and 2 is ON at SW3.
+```
+
+If you are receiving the boards disassembled, 
+make sure you have properly connected the JTAG module as follows:
+```{figure} images/jtag.png
+---
+height: 300px
+---
+JTAG module
+```
+````
+- From now on, the setup is really similar to the one in HW4.
+  But this time, we have something to run on FPGA's programmable logic!
 - Make sure you have the board connected as shown in {numref}`ultra96-setup`.
 - We will use two terminals on our host computer:
     - the first terminal will be used to copy binaries into the Ultra96
@@ -385,60 +406,12 @@ Make sure you don't hot plug/unplug the SD card. This can potentially corrupt th
 by pressing the boot switch as shown in {numref}`boot`.
     ```{figure} images/boot.png
     ---
-    height: 300px
     name: boot
+    height: 300px
     ---
     Switch for booting Ultra96
     ```
-- Watch your serial console for boot messages. Following is what ours look like:
-    ```
-    �Xilinx Zynq MP First Stage Boot Loader
-    Release 2020.1   Oct 17 2020  -  06:29:34
-    NOTICE:  ATF running on XCZU3EG/silicon v4/RTL5.1 at 0xfffea000
-    NOTICE:  BL31: v2.2(release):v1.1-5588-g5918e656e
-    NOTICE:  BL31: Built : 20:07:49, Oct 17 2020
-    U-Boot 2020.01 (Oct 17 2020 - 20:08:47 +0000)
-    Model: Avnet Ultra96 Rev1
-    Board: Xilinx ZynqMP
-    DRAM:  2 GiB
-    .
-    .
-    .
-    Starting kernel ...
-    [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
-    [    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
-    [    0.000000] Machine model: Avnet Ultra96 Rev1
-    [    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
-    [    0.000000] printk: bootconsole [cdns0] enabled
-    [    0.000000] efi: Getting EFI parameters from FDT:
-    [    0.000000] efi: UEFI not found.
-    [    0.000000] Reserved memory: created DMA memory pool at 0x000000003ed40000, size 1 MiB
-    [    0.000000] OF: reserved mem: initialized node rproc@3ed400000, compatible id shared-dma-pool
-    [    0.000000] cma: Reserved 512 MiB at 0x000000005fc00000
-    .
-    .
-    .
-    .
-    Starting syslogd/klogd: done
-    Starting tcf-agent: OK
-    PetaLinux 2020.1 ultra96v2-2020-1 ttyPS0
-    root@ultra96v2-2020-1:~# The XKEYBOARD keymap compiler (xkbcomp) reports:
-    > Warning:          Unsupported high keycode 372 for name <I372> ignored
-    >                   X11 cannot support keycodes above 255.
-    >                   This warning only shows for the first high keycode.
-    Errors from xkbcomp are not fatal to the X server
-    D-BUS per-session daemon address is: unix:abstract=/tmp/dbus-2CuBS4BnDn,guid=63270a6bec61460191859caa5f9022fc
-    matchbox: Cant find a keycode for keysym 269025056
-    matchbox: ignoring key shortcut XF86Calendar=!$contacts
-    matchbox: Cant find a keycode for keysym 2809
-    matchbox: ignoring key shortcut telephone=!$dates
-    matchbox: Cant find a keycode for keysym 269025050
-    matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
-    dbus-daemon[641]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=0 pid=636 comm="matchbox-desktop ")
-    dbus-daemon[641]: Successfully activated service 'org.a11y.atspi.Registry'
-    SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
-    [settings daemon] Forking. run with -n to prevent fork
-    ```
+- Watch your serial console for boot messages.
 - Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
     ```
     root@u96v2-sbc-base-2020-2:~#
@@ -538,9 +511,6 @@ in running a hardware function on the Ultra96.
 #### Boot the Ultra96 (for Windows users only)
 - Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it's COM4.
     ```{figure} images/win_eth_0.jpg
-    ---
-    height: 300px
-    ---
     Find the port
     ```
 - Download and install MobaXterm from [here](https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip).
@@ -566,26 +536,17 @@ in running a hardware function on the Ultra96.
     ```
 - In the local machine's session, type ifconfig and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:
     ```{figure} images/win_eth_1.jpg
-    ---
-    height: 300px
-    ---
     ifconfig to find out your local machine's ip
     ```
 - Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
   previous step, the ip address of the local machine is `169.254.123.23` and netmask is
-  `255.255.0.0`. So, let's assign the ultra96 to a ip of `169.254.123.24`(note that
-  this is 24!) as follows:
+  `255.255.0.0`. So, let's assign the ultra96 to a ip of `169.254.123.24`(**note that
+  this is 24!**) as follows:
     ```{figure} images/win_eth_2.jpg
-    ---
-    height: 300px
-    ---
     Connect you machine and Ultra96
     ```
 - Your devices are not connected. Go to the local machine's tab and ssh into the Ultra96:
     ```{figure} images/win_eth_3.jpg
-    ---
-    height: 300px
-    ---
     ssh in to the Ultra96 and transfer files
     ```
 - You can see that you can view the files of the Ultra96 on the left hand side.
@@ -599,7 +560,7 @@ in running a hardware function on the Ultra96.
     timeline_trace.csv
     ```
 - Copy these files back to your local machine and analyze with Vitis Analyzer.
-  If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer.
+  <!-- If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer. -->
 
 
 ## Reference
