@@ -14,7 +14,7 @@ html:
   extra_navbar: ""
 exclude_patterns:
   - common/*
-  - hw5/*
+#   - hw5/*
   - hw6/*
   - hw7/*
   - project/*
