@@ -303,13 +303,15 @@ on AWS or Biglab (shown later) and then later copy the binaries
 to your personal computer, copy them into the board and finally run them on the board.
  -->
 <!-- In the end,  -->
-Your setup should look like {numref}`ultra96-setup`.
+Your setup should look like {numref}`ultra96-setup-hw5`.
 We will be using this setup for the rest of the semester.
 <!-- You can also use Windows PCs in Detkin/Ketterer. -->
 
 ```{figure} images/env_setup.jpg
 ---
 height: 300px
+---
+name: ultra96-setup-hw5
 ---
 Development Environment
 ```
@@ -327,7 +329,7 @@ package/sd_card/image.ub
 package/sd_card/hw5_vitis
 package/sd_card/binary_container_1.xclbin
 ```
-We suggest you to copy files above to you local machine and proceed.
+We suggest you to copy files above to your local machine and proceed.
 If your laptop is Linux, you can use `scp` and if you are using
 Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
 When you are building for the first time, we will write the
@@ -365,6 +367,15 @@ reconfigures the ***Programmable Logic*** of the Ultra96. Hence,
 we need a reboot. If you copy the files, but don't do a reboot,
 you will see that your program throws an error.
 ````
+
+````{note}
+  If your Ultra96 is connected to a different machine from the one where
+  you are running Vitis (e.g., you are running Vitis on a detkin machine,
+  but your Ultra96 is connected to your laptop), you will need to first
+  copy the files from the Vitis machine to the Ultra96-host machine and
+  then copy them from the Ultra96-host to the Ultra96.
+````
+
 ```{caution}
 Make sure you don't hot plug/unplug the SD card. This can potentially corrupt the SD card/damage the board. Always shut down the device first and then insert/take out the SD card. You can shut down the device by typing "poweroff" in the serial console of the device.
 ```
@@ -390,7 +401,7 @@ JTAG module
 ````
 - From now on, the setup is really similar to the one in HW4.
   But this time, we have something to run on FPGA's programmable logic!
-- Make sure you have the board connected as shown in {numref}`ultra96-setup`.
+- Make sure you have the board connected as shown in {numref}`ultra96-setup-hw5`.
 - We will use two terminals on our host computer:
     - the first terminal will be used to copy binaries into the Ultra96
     - the second terminal will be used to access the serial console of the Ultra96
@@ -415,18 +426,6 @@ by pressing the boot switch as shown in {numref}`boot`.
 - Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
     ```
     root@u96v2-sbc-base-2020-2:~#
-    ```
-- On the serial console, run your code as follows:
-    ```
-    cd /mnt/sd-mmcblk0p1
-    export XILINX_XRT=/usr
-    ./hw5_vitis binary_container_1.xclbin
-    ```
-    You should see the following output:
-    ```
-    root@u96v2-sbc-base-2020-2:/mnt/sd-mmcblk0p1# ./hw5_vitis binary_container_1.xclbin
-    Loading: 'binary_container_1.xclbin'
-    TEST PASSED
     ```
 - We will now enable ethernet connection between our Ultra96 and
     the host computer, such that we can copy files between
@@ -462,11 +461,29 @@ by pressing the boot switch as shown in {numref}`boot`.
 - We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
 You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
 computer.
-- Let's copy a file. Copy the `xrt.ini` file from your computer to the `/mnt/sd-mmcblk0p1` directory of the Ultra96 as follows:
+
+- If you haven't already done so, you can now use scp to copy files from
+package/ to /mnt/sd-mmcblk0p1/ on the Ultra96.
+
+- On the serial console, you can now run your code as follows:
+    ```
+    cd /mnt/sd-mmcblk0p1
+    export XILINX_XRT=/usr
+    ./hw5_vitis binary_container_1.xclbin
+    ```
+    You should see the following output:
+    ```
+    root@u96v2-sbc-base-2020-2:/mnt/sd-mmcblk0p1# ./hw5_vitis binary_container_1.xclbin
+    Loading: 'binary_container_1.xclbin'
+    TEST PASSED
+    ```
+
+- Let's copy another file. Copy the `xrt.ini` file from your computer to the `/mnt/sd-mmcblk0p1` directory of the Ultra96 as follows:
     ```
     scp xrt.ini root@10.10.7.1:/mnt/sd-mmcblk0p1/
     ```
     The default password of the device is `root` (you can setup ssh keys so that you don't have to type the passwords all the time).
+
 - Now re-run the program as before. You should now see the generated files:
     ```
     binary_container_1.xclbin.run_summary
@@ -478,6 +495,15 @@ computer.
     ```
     scp binary_container_1.xclbin.run_summary timeline_trace.csv profile_summary.csv lilbirb@10.10.7.2:/media/lilbirb/research/
     ```
+
+````{note}
+  If your Ultra96 is connected to a different machine from the one where
+  you are running Vitis (e.g., you are running Vitis on a detkin machine,
+  but your Ultra96 is connected to your laptop), you will need to first
+  copy the files the Ultra96-host machine as above, then copy from the Ultra96-host machine 
+  to the Vitis machine.
+````
+
 - You can now use Vitis Analayzer in your host computer to view the trace by doing:
     ```
     vitis_analyzer ./binary_container_1.xclbin.run_summary
@@ -522,18 +548,7 @@ in running a hardware function on the Ultra96.
     ```
     root@u96v2-sbc-base-2020-2:~#
     ```
-- On the serial console, run your code as follows:
-    ```
-    cd /mnt/sd-mmcblk0p1
-    export XILINX_XRT=/usr
-    ./hw5_vitis binary_container_1.xclbin
-    ```
-    You should see the following output:
-    ```
-    root@u96v2-sbc-base-2020-2:/mnt/sd-mmcblk0p1# ./hw5_vitis binary_container_1.xclbin
-    Loading: 'binary_container_1.xclbin'
-    TEST PASSED
-    ```
+
 - In the local machine's session, type ifconfig and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:
     ```{figure} images/win_eth_1.jpg
     ifconfig to find out your local machine's ip
@@ -549,10 +564,28 @@ in running a hardware function on the Ultra96.
     ```{figure} images/win_eth_3.jpg
     ssh in to the Ultra96 and transfer files
     ```
+
+- If you haven't already done so, you can now use WinSCP to copy files from
+BOOT to /mnt/sd-mmcblk0p1 on the Ultra96.
+
+- On the serial console, you can now run your code as follows:
+    ```
+    cd /mnt/sd-mmcblk0p1
+    export XILINX_XRT=/usr
+    ./hw5_vitis binary_container_1.xclbin
+    ```
+    You should see the following output:
+    ```
+    root@u96v2-sbc-base-2020-2:/mnt/sd-mmcblk0p1# ./hw5_vitis binary_container_1.xclbin
+    Loading: 'binary_container_1.xclbin'
+    TEST PASSED
+    ```
+
 - You can see that you can view the files of the Ultra96 on the left hand side.
   You can easily drag and drop files from/to the local machine to/from Ultra96.
   Copy `xrt.ini` file from your computer to the `/mnt/sd-mmcblk0p1` directory
   of the Ultra96.
+
 - Now re-run the program as before. You should now see the generated files:
     ```
     binary_container_1.xclbin.run_summary

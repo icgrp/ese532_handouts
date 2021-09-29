@@ -390,24 +390,31 @@
      5.2.2.1. Setting up Ultra96 and Host Computer
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#name-ultra96-setup-hw5">
+   5.2.3. name: ultra96-setup-hw5
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-on-the-fpga">
-     5.2.2.2. Run on the FPGA
+     5.2.3.1. Run on the FPGA
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#write-the-sd-card-image-one-time-setup">
-       5.2.2.2.1. Write the SD Card Image (one time setup)
+       5.2.3.1.1. Write the SD Card Image (one time setup)
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boot-the-ultra96">
-       5.2.2.2.2. Boot the Ultra96
+       5.2.3.1.2. Boot the Ultra96
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boot-the-ultra96-for-windows-users-only">
-       5.2.2.2.3. Boot the Ultra96 (for Windows users only)
+       5.2.3.1.3. Boot the Ultra96 (for Windows users only)
       </a>
      </li>
     </ul>
@@ -416,7 +423,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reference">
-   5.2.3. Reference
+   5.2.4. Reference
   </a>
  </li>
 </ul>
@@ -740,18 +747,21 @@ on AWS or Biglab (shown later) and then later copy the binaries
 to your personal computer, copy them into the board and finally run them on the board.
  -->
 <!-- In the end,  -->
-<p>Your setup should look like <a class="reference internal" href="../hw4/walk_through.html#ultra96-setup"><span class="std std-numref">Fig. 4.4</span></a>.
+<p>Your setup should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code>.
 We will be using this setup for the rest of the semester.</p>
 <!-- You can also use Windows PCs in Detkin/Ketterer. -->
-<div class="figure align-default" id="id5">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../_images/env_setup1.jpg"><img alt="../_images/env_setup1.jpg" src="../_images/env_setup1.jpg" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+</div>
+<div class="section" id="name-ultra96-setup-hw5">
+<h2><span class="section-number">5.2.3. </span>name: ultra96-setup-hw5<a class="headerlink" href="#name-ultra96-setup-hw5" title="Permalink to this headline">¶</a></h2>
+<p>Development Environment</p>
 <div class="section" id="run-on-the-fpga">
-<h3><span class="section-number">5.2.2.2. </span>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.3.1. </span>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="write-the-sd-card-image-one-time-setup">
-<h4><span class="section-number">5.2.2.2.1. </span>Write the SD Card Image (one time setup)<a class="headerlink" href="#write-the-sd-card-image-one-time-setup" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.2.3.1.1. </span>Write the SD Card Image (one time setup)<a class="headerlink" href="#write-the-sd-card-image-one-time-setup" title="Permalink to this headline">¶</a></h4>
 <p>Once the build has completed in <a class="reference internal" href="#vitis"><span class="std std-ref">Creating Vitis Project</span></a> section, you will see a generated <code class="docutils literal notranslate"><span class="pre">package</span></code> directory. e.g. <code class="docutils literal notranslate"><span class="pre">hw5_vitis_system/Hardware/package</span></code>.
 The package directory contains the following
 files that we are interested in:</p>
@@ -763,7 +773,7 @@ files that we are interested in:</p>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
-<p>We suggest you to copy files above to you local machine and proceed.
+<p>We suggest you to copy files above to your local machine and proceed.
 If your laptop is Linux, you can use <code class="docutils literal notranslate"><span class="pre">scp</span></code> and if you are using
 Windows you can use programs like <a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a>.
 When you are building for the first time, we will write the
@@ -804,31 +814,39 @@ reconfigures the <em><strong>Programmable Logic</strong></em> of the Ultra96. He
 we need a reboot. If you copy the files, but don’t do a reboot,
 you will see that your program throws an error.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Ultra96 is connected to a different machine from the one where
+you are running Vitis (e.g., you are running Vitis on a detkin machine,
+but your Ultra96 is connected to your laptop), you will need to first
+copy the files from the Vitis machine to the Ultra96-host machine and
+then copy them from the Ultra96-host to the Ultra96.</p>
+</div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Make sure you don’t hot plug/unplug the SD card. This can potentially corrupt the SD card/damage the board. Always shut down the device first and then insert/take out the SD card. You can shut down the device by typing “poweroff” in the serial console of the device.</p>
 </div>
 </div>
 <div class="section" id="boot-the-ultra96">
-<h4><span class="section-number">5.2.2.2.2. </span>Boot the Ultra96<a class="headerlink" href="#boot-the-ultra96" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.2.3.1.2. </span>Boot the Ultra96<a class="headerlink" href="#boot-the-ultra96" title="Permalink to this headline">¶</a></h4>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Please make sure you have set the board in SD card mode as follows:</p>
-<div class="figure align-default" id="id6">
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../_images/sd_card_mode1.jpg"><img alt="../_images/sd_card_mode1.jpg" src="../_images/sd_card_mode1.jpg" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5.6 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5.5 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>If you are receiving the boards disassembled,
 make sure you have properly connected the JTAG module as follows:</p>
-<div class="figure align-default" id="id7">
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../_images/jtag1.png"><img alt="../_images/jtag1.png" src="../_images/jtag1.png" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5.7 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5.6 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <ul>
 <li><p>From now on, the setup is really similar to the one in HW4.
 But this time, we have something to run on FPGA’s programmable logic!</p></li>
-<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="../hw4/walk_through.html#ultra96-setup"><span class="std std-numref">Fig. 4.4</span></a>.</p></li>
+<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries into the Ultra96</p></li>
@@ -845,28 +863,15 @@ something different, like <code class="docutils literal notranslate"><span class
 of <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, use <code class="docutils literal notranslate"><span class="pre">CTRL-A</span> <span class="pre">Z</span> <span class="pre">q</span></code></p>
 </li>
 <li><p>After you have connected to the serial port, boot the board
-by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 5.8</span></a>.</p>
+by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 5.7</span></a>.</p>
 <div class="figure align-default" id="boot">
 <a class="reference internal image-reference" href="../_images/boot1.png"><img alt="../_images/boot1.png" src="../_images/boot1.png" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5.8 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">¶</a></p>
 </div>
 </li>
 <li><p>Watch your serial console for boot messages.</p></li>
 <li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
-</pre></div>
-</div>
-</li>
-<li><p>On the serial console, run your code as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
-<span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
-<span class="o">./</span><span class="n">hw5_vitis</span> <span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
-</pre></div>
-</div>
-<p>You should see the following output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span><span class="c1"># ./hw5_vitis binary_container_1.xclbin</span>
-<span class="n">Loading</span><span class="p">:</span> <span class="s1">&#39;binary_container_1.xclbin&#39;</span>
-<span class="n">TEST</span> <span class="n">PASSED</span>
 </pre></div>
 </div>
 </li>
@@ -906,7 +911,22 @@ Now issue the following command:</p>
 <li><p>We have now assigned IP <code class="docutils literal notranslate"><span class="pre">10.10.7.1</span></code> to our Ultra96 and IP <code class="docutils literal notranslate"><span class="pre">10.10.7.2</span></code> to our USB ethernet device connected to our host computer.
 You can test the connection by doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.2</span></code> from the Ultra96 serial console, and doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.1</span></code> from the host
 computer.</p></li>
-<li><p>Let’s copy a file. Copy the <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file from your computer to the <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1</span></code> directory of the Ultra96 as follows:</p>
+<li><p>If you haven’t already done so, you can now use scp to copy files from
+package/ to /mnt/sd-mmcblk0p1/ on the Ultra96.</p></li>
+<li><p>On the serial console, you can now run your code as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
+<span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
+<span class="o">./</span><span class="n">hw5_vitis</span> <span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
+</pre></div>
+</div>
+<p>You should see the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span><span class="c1"># ./hw5_vitis binary_container_1.xclbin</span>
+<span class="n">Loading</span><span class="p">:</span> <span class="s1">&#39;binary_container_1.xclbin&#39;</span>
+<span class="n">TEST</span> <span class="n">PASSED</span>
+</pre></div>
+</div>
+</li>
+<li><p>Let’s copy another file. Copy the <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file from your computer to the <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1</span></code> directory of the Ultra96 as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">xrt</span><span class="o">.</span><span class="n">ini</span> <span class="n">root</span><span class="o">@</span><span class="mf">10.10.7.1</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span><span class="o">/</span>
 </pre></div>
 </div>
@@ -925,6 +945,16 @@ the directory you want to put the files in.</p>
 </pre></div>
 </div>
 </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Ultra96 is connected to a different machine from the one where
+you are running Vitis (e.g., you are running Vitis on a detkin machine,
+but your Ultra96 is connected to your laptop), you will need to first
+copy the files the Ultra96-host machine as above, then copy from the Ultra96-host machine
+to the Vitis machine.</p>
+</div>
+<ul>
 <li><p>You can now use Vitis Analayzer in your host computer to view the trace by doing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_analyzer</span> <span class="o">./</span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
 </pre></div>
@@ -958,25 +988,48 @@ OpenCL host binary, which is <code class="docutils literal notranslate"><span cl
 in running a hardware function on the Ultra96.</p>
 </div>
 <div class="section" id="boot-the-ultra96-for-windows-users-only">
-<h4><span class="section-number">5.2.2.2.3. </span>Boot the Ultra96 (for Windows users only)<a class="headerlink" href="#boot-the-ultra96-for-windows-users-only" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">5.2.3.1.3. </span>Boot the Ultra96 (for Windows users only)<a class="headerlink" href="#boot-the-ultra96-for-windows-users-only" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
-<div class="figure align-default" id="id8">
+<div class="figure align-default" id="id7">
 <img alt="../_images/win_eth_01.jpg" src="../_images/win_eth_01.jpg" />
-<p class="caption"><span class="caption-number">Fig. 5.9 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5.8 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </li>
 <li><p>Download and install MobaXterm from <a class="reference external" href="https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip">here</a>.</p></li>
 <li><p>Start MobaXterm. Click <em><strong>Session</strong></em> in the left top corner and select <em><strong>Serial</strong></em>.
 Set the serial port as the one you found in the previous step and bps. In the example case,
 it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
-<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 5.8</span></a>.</p></li>
+<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 5.7</span></a>.</p></li>
 <li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
 </pre></div>
 </div>
 </li>
-<li><p>On the serial console, run your code as follows:</p>
+<li><p>In the local machine’s session, type ifconfig and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
+<div class="figure align-default" id="id8">
+<img alt="../_images/win_eth_11.jpg" src="../_images/win_eth_11.jpg" />
+<p class="caption"><span class="caption-number">Fig. 5.9 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
+previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
+<code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(<strong>note that
+this is 24!</strong>) as follows:</p>
+<div class="figure align-default" id="id9">
+<img alt="../_images/win_eth_21.jpg" src="../_images/win_eth_21.jpg" />
+<p class="caption"><span class="caption-number">Fig. 5.10 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Your devices are not connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
+<div class="figure align-default" id="id10">
+<img alt="../_images/win_eth_31.jpg" src="../_images/win_eth_31.jpg" />
+<p class="caption"><span class="caption-number">Fig. 5.11 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>If you haven’t already done so, you can now use WinSCP to copy files from
+BOOT to /mnt/sd-mmcblk0p1 on the Ultra96.</p></li>
+<li><p>On the serial console, you can now run your code as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
 <span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
 <span class="o">./</span><span class="n">hw5_vitis</span> <span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
@@ -987,27 +1040,6 @@ it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
 <span class="n">Loading</span><span class="p">:</span> <span class="s1">&#39;binary_container_1.xclbin&#39;</span>
 <span class="n">TEST</span> <span class="n">PASSED</span>
 </pre></div>
-</div>
-</li>
-<li><p>In the local machine’s session, type ifconfig and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
-<div class="figure align-default" id="id9">
-<img alt="../_images/win_eth_11.jpg" src="../_images/win_eth_11.jpg" />
-<p class="caption"><span class="caption-number">Fig. 5.10 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
-previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
-<code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(<strong>note that
-this is 24!</strong>) as follows:</p>
-<div class="figure align-default" id="id10">
-<img alt="../_images/win_eth_21.jpg" src="../_images/win_eth_21.jpg" />
-<p class="caption"><span class="caption-number">Fig. 5.11 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Your devices are not connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
-<div class="figure align-default" id="id11">
-<img alt="../_images/win_eth_31.jpg" src="../_images/win_eth_31.jpg" />
-<p class="caption"><span class="caption-number">Fig. 5.12 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </li>
 <li><p>You can see that you can view the files of the Ultra96 on the left hand side.
@@ -1029,7 +1061,7 @@ of the Ultra96.</p></li>
 </div>
 </div>
 <div class="section" id="reference">
-<h2><span class="section-number">5.2.3. </span>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.4. </span>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <!-- - <https://github.com/Xilinx/Vitis-AWS-F1-Developer-Labs/blob/master/setup/instructions.md>
 - <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html>
 - <https://www.ni-sp.com/setting-up-access-to-the-nice-dcv-license-in-ec2/>
