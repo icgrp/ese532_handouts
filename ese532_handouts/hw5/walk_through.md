@@ -306,10 +306,10 @@ Your setup should look like {numref}`ultra96-setup-hw5`.
 We will be using this setup for the rest of the semester.
 <!-- You can also use Windows PCs in Detkin/Ketterer. -->
 
+
 ```{figure} images/env_setup.jpg
 ---
 height: 300px
----
 name: ultra96-setup-hw5
 ---
 Development Environment
