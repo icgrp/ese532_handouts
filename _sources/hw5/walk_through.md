@@ -106,6 +106,7 @@ The code you will use for [homework submission](homework_submission)
 is in the `hw5` directory. The directory structure looks like this:
 ```
 hw5/
+    sourceMe.sh
     xrt.ini
     common/
         Constants.h
@@ -119,6 +120,7 @@ hw5/
         Testbench.cpp
     Host.cpp
 ```
+- `sourceMe.sh` will help you to source Xilins tools
 - `xrt.ini` defines the options necessary for Vitis Analyzer.
 - The `common` folder has header files and helper functions.
 - You will mostly be working with the code in the `hls` folder. The 
@@ -236,9 +238,6 @@ continue with the following.
 - Select ***Create Application Project***.
 - You will see Ultra96 platform as shown below. Click ***Next***.
     ```{figure} images/vitis_ultra96_platform.png
-    ---
-    height: 400px
-    ---
     Select Ultra96 platform
     ```
 - Set project name as you want. e.g. hw5_vitis. Then, click ***Next***.
