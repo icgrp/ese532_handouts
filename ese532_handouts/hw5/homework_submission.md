@@ -26,16 +26,16 @@ Your writeup should include your answers to the following questions:
         - Specify `mmult` as top function.
         - Add `hw5/hls/Testbench.cpp` as TestBench files.
         - Select the `xczu3eg-sbva484-1-e` in the device
-            selection. Use a 8ns
+            selection. Use a ***8ns***
             clock, and select "Vitis Kernel Flow Target".
             Click Finish.
         - Right-click on ***solution1*** and select
             ***Solution Settings***.
         - In the ***General*** tab, click on ***Add***.
         - Select ***config_compile*** command and set
-            ***pipeline_loops*** to 0. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
+            ***pipeline_loops*** to ***0***. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
             since we are going to do it ourselves.
-        - Run C simulation by right-clicking on the project on the ***Explorer*** view, and verify that the test
+        - ***Run C simulation*** by right-clicking on the project on the ***Explorer*** view, and verify that the test
             passes in the console.  Include the console output in your
             report.
     1. Look at the testbench.  How does the testbench
