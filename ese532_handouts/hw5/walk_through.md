@@ -279,7 +279,7 @@ continue with the following.
   Set it to ***Hardware***.
 - In the Assistant view on the lower-left corner, you will see ***Hardware***
   is selected. Right-click ***Hardware*** and click ***build***. This process will
-  take 40~50 minutes.
+  take >20 minutes depending on your kernel design.
 
 
 ## Environment Setup
