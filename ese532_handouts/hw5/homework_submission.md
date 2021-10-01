@@ -14,8 +14,8 @@ Your writeup should include your answers to the following questions:
 </style>
 
 1. **Initial CPU implementation and HLS Kernel**
-    1. Find the latency of the matrix multiplier (mmult kernel) using Vitis Analyzer (refer to the {ref}`software_code`) and report it in ms. This is our baseline.
-        (1 line)
+    1. Find the latency of the matrix multiplier (mmult kernel) using `stopwatch` class in
+        `hw5/hls/Testbench.cpp`. Use `-O3` and report it in ms. This is our baseline. (1 line)
     1. We will now simulate the matrix multiplier in
         Vitis HLS.
         - First, cd to the HW5 directory and source settings to be able to run vitis_hls.
@@ -27,7 +27,7 @@ Your writeup should include your answers to the following questions:
         - Add `hw5/hls/Testbench.cpp` as TestBench files.
         - Select the `xczu3eg-sbva484-1-e` in the device
             selection. Use a ***8ns***
-            clock, and select "Vitis Kernel Flow Target".
+            clock, and select ***Vitis Kernel Flow Target*** for the Flow Target.
             Click Finish.
         - Right-click on ***solution1*** and select
             ***Solution Settings***.
@@ -44,7 +44,8 @@ Your writeup should include your answers to the following questions:
             components for the project, you will need to develop your own
             testbenches.  Our testbenches can serve as an example and
             template for you.)
-    1. Synthesize the matrix multiplier in Vitis HLS. Analyze the ***Synthesis Report*** by expanding the ***solution1*** tab in the ***Explorer*** view, browsing to ***syn/report*** and opening the `.rpt` file.
+    1. Synthesize the matrix multiplier in Vitis HLS.  
+       Analyze the ***Synthesis Report*** by expanding the ***solution1*** tab in the ***Explorer*** view, browsing to ***syn/report*** and opening the `.rpt` file.
         What is the expected latency of the hardware accelerator in ms? (1 line)
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does the implementation consume? (4 lines)
@@ -60,7 +61,7 @@ Your writeup should include your answers to the following questions:
     1. Explain why the performance of this accelerator is
             worse than the software implementation. (3 lines)
 2. **HLS Kernel Optimization: Loop Unrolling**
-    1. Go back to the ***Synthesis*** perspective, and unroll the
+    1. Go back to the ***Synthesis perspective***, and unroll the
         loop with label `Main_loop_k` 2 times using an `unroll`
         pragma (See [this](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hlspragmas.html#ariaid-title25) for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
         reduce the latency of the entire loop evaluation (all
@@ -134,7 +135,9 @@ Your writeup should include your answers to the following questions:
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
     1. Pipeline the `Init_loop_j` loop also with an II of
-        1 and synthesize your design. Export your synthesized design by right-clicking on ***solution1*** and then selecting ***Export RTL***. Choose ***Vitis Kernel (.xo)*** as the
+        1 and synthesize your design. Before exporting the synthesized design, you can run C/RTL co-simulation to verify
+        that the RTL is functionally identical to the C code.
+    1. Export your synthesized design by right-clicking on ***solution1*** and then selecting ***Export RTL***. Choose ***Vitis Kernel (.xo)*** as the
         ***Format***. Select output location to be your
         `ese532_code/hw5` directory and select OK.
         Save your design and quit Vitis HLS. Open a terminal and go to your `ese532_code/hw5` directory.
@@ -150,7 +153,6 @@ Your writeup should include your answers to the following questions:
     or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
     ``` -->
     1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer. 
-    <!-- If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer. -->
     1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.
     1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
         Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.
@@ -168,7 +170,7 @@ Your writeup should include your answers to the following questions:
     :label: accelerator-model
     T_{accel} = T_{setup}+T_{transfer}+T_{fpga}
     ```
-    Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the x86 host that your found in 1a
+    Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the ARM that your found in 1a
     and $T_{fpga}$ be the time for the operation on the FPGA that you found in 4d.
     
     Let $S_{fpga}=\frac{T_{seq}}{T_{fpga}}$ or $T_{fpga}=\frac{T_{seq}}{S_{fpga}}$.
