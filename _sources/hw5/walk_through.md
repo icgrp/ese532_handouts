@@ -228,7 +228,7 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 
 (vitis)=
 ### Creating Vitis Project
-Once you have 3h completed from the {doc}`homework_submission`,
+Once you have 3i completed from the {doc}`homework_submission`,
 continue with the following.
 - First, cd to the HW5 directory and source settings to be able to run vitis:
   `source sourceMe.sh`. If you work locally, source `settings64.sh` in vitis
@@ -279,7 +279,7 @@ continue with the following.
   Set it to ***Hardware***.
 - In the Assistant view on the lower-left corner, you will see ***Hardware***
   is selected. Right-click ***Hardware*** and click ***build***. This process will
-  take 20~30 minutes.
+  take 40~50 minutes.
 
 
 ## Environment Setup
