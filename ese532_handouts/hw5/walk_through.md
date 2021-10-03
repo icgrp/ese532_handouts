@@ -153,7 +153,12 @@ utilized in `Host.cpp`
 <!--     1. Run `vitis_analyzer ./xclbin.run_summary` to open Vitis Analyzer and try to associate the api calls with the code in `Host.cpp`.
     1. Hover over an API call to find out long it took.
  -->
-We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS.
+We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize 
+our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. 
+Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS.
+
+Once you have 3i completed from the {doc}`homework_submission`,
+proceed {ref}`vitis`.
 
 ---
 
@@ -228,8 +233,7 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 
 (vitis)=
 ### Creating Vitis Project
-Once you have 3i completed from the {doc}`homework_submission`,
-continue with the following.
+Make sure you have 3i completed from the {doc}`homework_submission`.
 - First, cd to the HW5 directory and source settings to be able to run vitis:
   `source sourceMe.sh`. If you work locally, source `settings64.sh` in vitis
   installation directory.

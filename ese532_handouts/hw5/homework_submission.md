@@ -14,11 +14,13 @@ Your writeup should include your answers to the following questions:
 </style>
 
 1. **Initial CPU implementation and HLS Kernel**
-    1. Find the latency of the matrix multiplier (mmult kernel) using `stopwatch` class in
+    1. You must have the old SD card image you used for HW4. Just like we did in HW4, boot the Ultra96,
+       connect your local machine and the Ultra96, and then copy files in unders the `hw5/hls/` to your Ultra96. 
+       Find the latency of the matrix multiplier (mmult kernel) using `stopwatch` class in
         `hw5/hls/Testbench.cpp`. Use `-O3` and report it in ms. This is our baseline. (1 line)
-    1. We will now simulate the matrix multiplier in
-        Vitis HLS.
-        - First, cd to the HW5 directory and source settings to be able to run vitis_hls.
+    1. Now move to Detkin/Ketter Linux machine(or your local machine if you installed Vitis).
+       We will now simulate the matrix multiplier in Vitis HLS.
+        - First, cd to the HW5 directory that you git cloned, and source settings to be able to run vitis_hls.
           `source sourceMe.sh`.
           If you work locally, source `settings64.sh` in vitis installation directory.
         - Start Vitis HLS by `vitis_hls &` in the terminal. You should now see the IDE.
