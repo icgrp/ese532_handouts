@@ -385,12 +385,14 @@ Your writeup should include your answers to the following questions:</p>
 <ol>
 <li><p><strong>Initial CPU implementation and HLS Kernel</strong></p>
 <ol class="simple">
-<li><p>Find the latency of the matrix multiplier (mmult kernel) using <code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> class in
+<li><p>You must have the old SD card image you used for HW4. Just like we did in HW4, boot the Ultra96,
+connect your local machine and the Ultra96, and then copy files in unders the <code class="docutils literal notranslate"><span class="pre">hw5/hls/</span></code> to your Ultra96.
+Find the latency of the matrix multiplier (mmult kernel) using <code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> class in
 <code class="docutils literal notranslate"><span class="pre">hw5/hls/Testbench.cpp</span></code>. Use <code class="docutils literal notranslate"><span class="pre">-O3</span></code> and report it in ms. This is our baseline. (1 line)</p></li>
-<li><p>We will now simulate the matrix multiplier in
-Vitis HLS.</p>
+<li><p>Now move to Detkin/Ketter Linux machine(or your local machine if you installed Vitis).
+We will now simulate the matrix multiplier in Vitis HLS.</p>
 <ul class="simple">
-<li><p>First, cd to the HW5 directory and source settings to be able to run vitis_hls.
+<li><p>First, cd to the HW5 directory that you git cloned, and source settings to be able to run vitis_hls.
 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.
 If you work locally, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis installation directory.</p></li>
 <li><p>Start Vitis HLS by <code class="docutils literal notranslate"><span class="pre">vitis_hls</span> <span class="pre">&amp;</span></code> in the terminal. You should now see the IDE.</p></li>
