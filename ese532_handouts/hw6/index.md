@@ -1,10 +1,9 @@
 # Accelerator Interface
 
 ```{admonition} Due
-Friday, October 30, 5:00 PM
+Friday, October 22, 5:00 PM
 ```
-In this assignment, we will accelerate an application by implementing
-  functions on the programmable fabric of Ultra96.
+In this assignment, we will go deeper in host/kernel code optimization.
 
   Be warned that this homework requires a number of full Vitis builds, each of
   which can easily take 20--30 minutes, so begin on time and plan your schedule
@@ -17,13 +16,12 @@ In this assignment, we will accelerate an application by implementing
   other builds are running.  The builds in Question~\ref{Interface} do not
   depend on each other, so they can be run concurrently. -->
 
-
-We are delayed in pulling together this assignment and will be releasing it
+<!-- We are delayed in pulling together this assignment and will be releasing it
 in segments so that you can go ahead and get started on the platform
 transition (F1 to Ultra96) and first parts of the assignment while we
 continue to debug and refine the later parts of the assignment.
 
-Watch piazza and check back here for updates.
+Watch piazza and check back here for updates. -->
 
 
 <!-- maybe re-add following when there is an entire assignment to read through. -->

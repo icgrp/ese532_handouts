@@ -1,6 +1,5 @@
 # Setup and Walk-through
-```{include} ../common/aws_caution.md
-```
+
 <style type="text/css">
     table { width: 100%; }
     th { background-color: #4CAF50;color: white;height:50px;text-align: center; }
@@ -8,7 +7,38 @@
     tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 
-## Environment Setup
+### Obtaining and Running the Code
+In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
+function on the FPGA.
+
+Pull in the latest changes using:
+```
+cd ese532_code/
+git pull origin master
+```
+The code you will use for this section
+is in the `hw6` directory. The directory structure looks like this:
+```
+hw6/
+    apps/
+        mmult/
+            cpu/
+                Host.cpp
+            fpga/
+                hls/
+                    MMult.cpp
+                    MMult.h
+                    testbench.cpp
+                Host.cpp
+                xrt.ini
+            sourceMe.sh
+    common/
+        ...
+```
+
+That's it for the HW6's setup!
+
+<!-- ## Environment Setup
 
 ### Setting up Ultra96 and Host Computer
 We have provided you with:
@@ -16,11 +46,11 @@ We have provided you with:
 - 2 USB-ethernet adapters
 - 1 ethernet cable
 - 1 SD card and an SD card reader
-- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
+- USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer) -->
 
 <!-- notes broke up that list too much... I think they can tolerate after -->
 <!-- the list -->
-
+<!-- 
 ````{note}
 Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:
 ```{figure} images/sd_card_mode.jpg
@@ -443,4 +473,4 @@ the `/mnt/sd-mmcblk0p1` directory
 OpenCL host binary, which is `vadd` in this example. You also don't need to reboot the device in that case.
 
 This concludes a top-down walk-through of the steps involved
-in running a hardware function on the Ultra96.
+in running a hardware function on the Ultra96. -->
