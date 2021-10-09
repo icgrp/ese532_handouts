@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6.3. Homework Submission &#8212; ESE532 Handouts Fall 2021</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="6.2. Setup and Walk-through" href="walk_through.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/penn_engineering.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../writeup_guidelines.html">
+   Writeup Guidelines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Homework Assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw1/index.html">
+   1. Remember C
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/collaboration.html">
+     1.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/walk_through.html">
+     1.2. Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/makefile_tutorial.html">
+     1.3. Makefile Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/gdb_tutorial.html">
+     1.4. GDB Tutorial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/c_refresher.html">
+     1.5. C Refresher
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/debug_app.html">
+     1.6. Debug an Application
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw1/homework_submission.html">
+     1.7. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw2/index.html">
+   2. Profiling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/collaboration.html">
+     2.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/walk_through.html">
+     2.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw2/homework_submission.html">
+     2.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw3/index.html">
+   3. Thread Parallel
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/collaboration.html">
+     3.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/walk_through.html">
+     3.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/homework_submission.html">
+     3.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw4/index.html">
+   4. SIMD
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw4/collaboration.html">
+     4.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw4/walk_through.html">
+     4.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw4/homework_submission.html">
+     4.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../hw5/index.html">
+   5. Accelerator
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/collaboration.html">
+     5.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/walk_through.html">
+     5.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hw5/homework_submission.html">
+     5.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   6. Accelerator Interface
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     6.1. Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="walk_through.html">
+     6.2. Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6.3. Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/hw6/homework_submission.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw6/homework_submission.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw6/homework_submission.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deliverables">
+   6.3.1. Deliverables
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="homework-submission">
+<h1><span class="section-number">6.3. </span>Homework Submission<a class="headerlink" href="#homework-submission" title="Permalink to this headline">¶</a></h1>
+<p>Your writeup should follow <a class="reference internal" href="../writeup_guidelines.html"><span class="doc std std-doc">the writeup guidelines</span></a>.
+Your writeup should include your answers to the following questions:</p>
+<style type="text/css">
+    ol { list-style-type: decimal; }
+    ol ol { list-style-type: lower-alpha; }
+    ol ol ol { list-style-type: lower-roman; }
+    table { width: 100%; }
+    td {height:50px;text-align: center;}
+    tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<!-- 1. **Setup**
+
+    ---
+    - We have updated the platform to have contiguous memory support. Please
+    remove the platform you downloaded in the hello world section and
+    download the platform again from the following links:
+        - [Ultra96 Platform](https://ese532-platforms.s3.amazonaws.com/hw6_platform_v2.tar.gz)
+        - [Ultra96 Platform (Asia)](https://ese532-platforms-asia.s3.ap-northeast-2.amazonaws.com/hw6_platform_v2.tar.gz)
+    - Extract the platform to a desired location.
+    - Set the `PLATFORM_REPO_PATHS` to the extracted directory. For instance:
+        ```
+        export PLATFORM_REPO_PATHS=~/ese532_hw6_pfm
+        ```
+    - Get the source code from the `ese532_code` repository by pulling in the latest changes
+    using:
+        ```
+        cd ese532_code/
+        git pull origin master
+        ```
+        The code you will use for this section
+        is in the `hw6` directory. The directory structure looks like this:
+        ```
+        hw6/
+            apps/
+                mmult/
+                    cpu/
+                        Host.cpp
+                    fpga/
+                        hls/
+                            MMult.cpp
+                            MMult.h
+                            testbench.cpp
+                        Host.cpp
+                        design.cfg
+                        package.cfg
+                        xrt.ini
+                    Makefile
+                    compile_on_biglab.sh
+            common/
+                ...
+        ```
+    - cd into `hw6/apps/mmult/` directory.
+    - Use `make cpu` to build the cpu baseline and run with `./mmult_cpu`.
+    - Use `make fpga -j4` to start the Vitis build. This will take about 20-30 minutes and generate the `xclbin`. Note that we used `-j4` to build with 4
+    cpus. If you have more cpus, you can increase this number.
+    `-j16` is usually the maximum parallel jobs Vitis can handle.
+    - Use `make host` to build the OpenCL host code. This produces the `package` folder.
+    - Copy the files from `package` folder to the Ultra96, reboot and run on the fpga.
+    - Use `make clean` to clean all the generated files.
+        ```{warning}
+        If you do `make clean`, you will lose all the files and the compilation will start from the beginning. You can incrementally build and clean as mentioned in the walk-through.
+        ``` -->
+<ol>
+<li><p><strong>Accelerator Interface</strong></p>
+<hr class="docutils" />
+<p>Following the previous HW, we will create Vitis project using Vitis IDE.
+<strong>Note that Makefiles are automatically generated when we build the project,
+and you are welcome to use Makefiles in later in the project.</strong>
+In fact,
+many of Vitis tutorials on the web are using Makefile, which we
+highly recommend you to browse around while you are doing this lab.</p>
+<p>In this HW, we will analyze how the processor
+core communicates with an accelerator. We tell you some
+specific things to experiment with, but you should do some reading from:</p>
+<ul class="simple">
+<li><p>This HW is based on <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html">Xilinx Runtime (XRT) and Vitis System Optimization Tutorials</a></p></li>
+<li><p>Chapter 6, 7, 19, 20 of <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">UG1393</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html">Programming for Vitis HLS</a></p></li>
+</ul>
+<p>The following resources can be helpful for programming HLS and OpenCL host code:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/tree/2020.2">Vitis Accel Examples</a> and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2020.2">Vitis Tutorials</a></p></li>
+<li><p><a class="reference external" href="https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf">OpenCL 1.2 reference card</a></p></li>
+</ul>
+<p>Note that we are running on Linux. If you want to gain a deeper understanding of what’s going on under the hood and how the <em><strong>zocl</strong></em> driver supplied by Xilinx Runtime (XRT)
+manages DMA, refer to the following resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://elinux.org/images/4/49/20140429-dma.pdf">Mastering DMA and IOMMU APIs</a></p></li>
+<li><p><a class="reference external" href="https://events.static.linuxfound.org/images/stories/pdf/lceu2012_nazarwicz.pdf">Contiguous Memory Allocator</a></p></li>
+<li><p><a class="reference external" href="https://xilinx.github.io/XRT/2020.2/html/execution-model.html">XRT Execution</a></p></li>
+</ul>
+<hr class="docutils" />
+<ol>
+<li><p>Like we did in HW5, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code> first. Note that
+you need to adjust the <code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> if you are running
+on your local machine.</p></li>
+<li><p>We will create CPU version’s project.</p>
+<ol>
+<li><p>Launch <code class="docutils literal notranslate"><span class="pre">vitis</span></code> and create application project as we did before.
+All the steps are identical, but when selecting Templates,
+select <em><strong>SW Development templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Empty Applications (C++)</strong></em>.</p></li>
+<li><p>Import following files to <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/cpu/Host.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
+</ul>
+</li>
+<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
+Click <em><strong>ARM v8 Linux g++ linker</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Libraries</strong></em>.
+Add <code class="docutils literal notranslate"><span class="pre">xilinxopencl</span></code> as shown below.</p>
+<div class="figure align-default" id="id1">
+<img alt="../_images/vitis_cpu_linker.png" src="../_images/vitis_cpu_linker.png" />
+<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Add linker flag</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
+Click <em><strong>ARM v8 Linux g++ compiler</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Optimization</strong></em>.
+Set to <strong>O3</strong>.</p></li>
+<li><p>Build the project. You will see <code class="docutils literal notranslate"><span class="pre">.elf</span></code> created in Debug folder.</p></li>
+</ol>
+</li>
+<li><p>Next, we will create FPGA version’s project.</p>
+<ol>
+<li><p>Right click the
+white space in the Project Explorer view, then <em><strong>New</strong></em>
+<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Application Project</strong></em>. Set the name of the project as
+<strong>hw6_fpga</strong>. When selecting Templates,
+select <em><strong>SW acceleration templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span>
+<em><strong>Empty Application</strong></em>.</p></li>
+<li><p>For the kernel <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.cpp</span></code></p></li>
+</ul>
+</li>
+<li><p>For the host <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/Host.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
+</ul>
+</li>
+<li><p>In kernel project, add <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> to the Hardware Functions.</p></li>
+<li><p>Select <em><strong>Hardware</strong></em> in Active build configuration on the
+upper right corner. Your project should look something like below.</p>
+<div class="figure align-default" id="vitis-fpga-setting">
+<img alt="../_images/vitis_fpga_setting.png" src="../_images/vitis_fpga_setting.png" />
+<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Add hardware function and set the build configuration to Hardware</span><a class="headerlink" href="#vitis-fpga-setting" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>In the Assistant view on the lower left corner, you will see
+<em><strong>Hardware</strong></em> is bolded as shown in <a class="reference internal" href="#vitis-fpga-setting"><span class="std std-numref">Fig. 6.2</span></a>.
+Right click it and build the project. It will take about 30 minutes.
+If you are run out of disk space, we recommend you to remove sd card image
+generated in HW5.</p></li>
+<li><p>Like we did in HW5, write the <code class="docutils literal notranslate"><span class="pre">package/sd_card.img</span></code> to the SD card.
+Then, enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>. <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file
+generated from CPU version.</p></li>
+</ol>
+</li>
+<li><p>Run CPU version on Ultra96, and report the latency.</p></li>
+<li><p>For FPGA version, copy in the <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file into the Ultra96 and run the code.
+Copy the Vitis Analyzer files to your computer and open it with Vitis Analyzer.
+Click <em><strong>Profile Summary</strong></em>, and then <em><strong>Summary</strong></em> to see
+<em>Total application runtime</em> and <em>Total kernel runtime</em>.
+Click <em><strong>Kernels &amp; Compute Units</strong></em> to see only the <em>kernel execution time</em>.
+We will check these three latencies throughout this HW.
+Report the latencies.</p></li>
+<li><p>In the previous step, you must have seen warnings regarding unaligned host pointer.
+You will now allocate contiguous host memories.
+Take a look at Step 2 in <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md">this tutorial</a>.
+In <code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/HostAligned.cpp</span></code>, we kindly provide three TODOs for this step.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>As shown in the example link, you should only use the following flags when allocating memory
+using cl::Buffer: CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY, CL_MEM_READ_ONLY | CL_MEM_WRITE_ONLY.
+All other flag usage prevents contiguous memory allocation or behaves non-deterministically on the Ultra96
+(i.e. when using CL_MEM_USE_HOST_PTR).</p>
+</div>
+</li>
+<li><p>Build the project with the modified host code. Because only the host code is modified,
+it should take less than a minute to complete. Note that you do <strong>NOT</strong> have to create a SD card again.
+Copy only neccessary files and report the three latencies in the Vitis Analyzer.</p></li>
+<li><p>In the Vitis Analyzer, open the application timeline. Zoom in at the beginning of the kernel execution, and
+provide a screenshot in the write up.
+Based on the analyzer, suggest at least two ways of improving the performance of the FPGA code.</p></li>
+<li><p>Our initial FPGA host code uses an in-order command queue.
+Find out <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html">how to use an out-of-order command queue</a>
+to get overlap between communication and computation. Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
+Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>It’s just one additional property in command queue, and you probably won’t see the overlap yet.</p>
+</div>
+</li>
+<li><p>How does the code in <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> preserve dependencies between computations?</p></li>
+<li><p>We will now investigate why we still don’t see communication-compute overlap.</p>
+<ul>
+<li><p>In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_hls</span>
+</pre></div>
+</div>
+</li>
+<li><p>Click on <em><strong>open project</strong></em> and browse to the your build generated directory: <code class="docutils literal notranslate"><span class="pre">hw6_fpga_kernels/Hardware/build/mmult_fpga/mmult_fpga/mmult_fpga</span></code>
+and click open.</p></li>
+<li><p>From the <em><strong>Explorer</strong></em> tab, open <em><strong>solution</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>syn</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>report</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>mmult_fpga_csynth.rpt</strong></em>.</p></li>
+<li><p>Browse to the <em><strong>Interface</strong></em> section and examine
+the interface that was generated. Describe how the host processor communicates with the generated interface of the accelerator.</p></li>
+</ul>
+</li>
+<li><p>What needs to happen to the HLS code so that we can achieve task-level parallelism?</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Look at Figure 18: Host to Kernel Dataflow
+of <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf#page=78">UG1393</a></p>
+</div>
+</li>
+<li><p>Modify the HLS code to enable host to kernel dataflow. Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">this code</a>
+as a reference.</p></li>
+<li><p>You will need to use <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>.</p></li>
+<li><p>You will need to use <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">HLS</span> <span class="pre">DATAFLOW</span></code>.</p></li>
+<li><p>Look into the warnings generated by Vitis HLS and determine what changes you need to make with <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">HLS</span> <span class="pre">INTERFACE</span></code>.</p></li>
+<li><p>Refer to following resources for more examples on HLS:</p>
+<ul>
+<li><p><a class="reference external" href="http://kastner.ucsd.edu/wp-content/uploads/2018/03/admin/pp4fpgas.pdf">pp4fpga</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/HLS-Tiny-Tutorials">HLS Tiny Tutorials</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+<li><p>Rebuild the project with the dataflow-enabled kernel, copy the binaries and boot files, reboot and test.
+This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
+We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 6.3</span></a>.</p>
+<div class="figure align-default" id="comp-comm-overlap">
+<img alt="../_images/comp_comm_overlap.png" src="../_images/comp_comm_overlap.png" />
+<p class="caption"><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Use the following command in your host machine. Report the clocks, memory ports and resources that are available on the platform:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>platforminfo $PLATFORM_REPO_PATHS/u96v2_sbc_base.xpfm
+</pre></div>
+</div>
+</li>
+<li><p>Read about kernel and host code synchronization from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/host-code-opt/README.html#kernel-and-host-code-synchronization">here</a>. Add a barrier synchronization to your host code. Only compile the host code, run it and provide a screenshot of the relevant section of vitis analyzer.</p></li>
+<li><p>Assign separate ports to the <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code>. In the Assistant view on the lower left corner,
+<em><strong>hw6_fpga_system_hw_link</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>Hardware</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>binary_container_1</strong></em>.
+Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
+This will take about 30 minutes to build. Report the latency. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. Does assigning multiple ports on Ultra96 have any impact on your design?
+Save/Move the <code class="docutils literal notranslate"><span class="pre">hw6_fpga_system_hw_link/Hardware/binary_container_1.build</span></code> folder of the project to somewhere else before doing the next question.
+We will use the outputs from this question in the next part.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>Learn about how to add multiple ports from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html">here</a></p></li>
+<li><p>Read this <a class="reference external" href="https://ieeexplore.ieee.org/document/8977835/">paper</a> to find out how to efficiently use the ports on Ultra96.</p></li>
+</ul>
+</div>
+</li>
+<li><p>Learn about how to use multiple compute units from
+<a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html">here</a>
+and apply it to your design. Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can also be done in the Compute Unit Settings we visited in the previous question.<br />
+Rebuild the FPGA version,
+copy the binaries and boot files, reboot and test. This will take about 30 minutes to build. Report the latencies.
+Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. If you are run out of the FPGA resources, report it.</p></li>
+</ol>
+</li>
+<li><p><strong>Analyze Implementation</strong></p>
+<p>In this question, we will investigate what the FPGA implementation
+of the matrix multiplication (1m) look like using Vivado (not
+Vivado HLS).  Vivado is part of the Vitis installation.</p>
+<ol>
+<li><p>Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
+flip-flop, and LUT) the implementation (1-q)
+consumes. You can find this information in the <em><strong>Implementation</strong></em> tab on the
+left hand side. Click <em><strong>Report Utilization</strong></em> under <em><strong>Open Implemented Design</strong></em>.
+Launch Vivado using the following commands and open the
+project you saved/moved from the location <code class="docutils literal notranslate"><span class="pre">binary_container_1.build/link/vivado/vpl/prj/prj.xpr</span></code>. (4 lines)</p>
+<ul>
+<li><p>In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vivado</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Report the expected power consumption of this design by clicking <em><strong>Report Power</strong></em> of the <em><strong>Implementation</strong></em> tab. (1 line)</p></li>
+<li><p>On the left top corner, you will see <em><strong>IP Integrator</strong></em>. Click <em><strong>Open Block Design</strong></em> under
+<em><strong>IP Integrator</strong></em>.  Open the <em><strong>Address Editor</strong></em> by choosing the corresponding
+tab above the block design.  In which memory region is the control interface of the
+accelerator wrapper <code class="docutils literal notranslate"><span class="pre">mmult_fpga_1</span></code> mapped?  This region
+is used for such communication as starting the accelerator and
+querying its status.  Writes and reads by the ARM processor are to
+this region are sent over an AXI4-Lite bus to the accelerator
+wrapper, which handles them and controls the accelerator. (1 line)</p></li>
+<li><p>Open the timing report by going to the <em><strong>Implementation</strong></em> tab and pressing <em><strong>Design Timing Summary</strong></em> from the <em><strong>Timing</strong></em> tab.  Click on
+the number next to <a class="reference external" href="http://www.vlsi-expert.com/2011/03/static-timing-analysis-sta-basic-timing.html">Worst Negative Slack</a>.
+Look at the
+<code class="docutils literal notranslate"><span class="pre">Path</span> <span class="pre">Properties</span></code>.  Report in which of the hardware modules that we
+saw in the block design the path begins and ends. (1 line)</p></li>
+<li><p>Include a screenshot of the critical path in your writeup.
+Zoom in to make sure all elements of the path are clearly visible.
+Indicate the type of each element (e.g. LUT, flip-flop,
+carry chain) on the screenshot.</p></li>
+<li><p>Highlight the accelerators in green, the interconnect (<code class="docutils literal notranslate"><span class="pre">M_AXI</span></code> and <code class="docutils literal notranslate"><span class="pre">S_AXI</span></code>) in yellow.  You can do this by right-
+clicking the modules in the Netlist view and selecting
+<em><strong>Highlight Leaf Cells</strong></em>.  Include a screenshot of the entire
+device in your report.</p></li>
+</ol>
+</li>
+</ol>
+<div class="section" id="deliverables">
+<h2><span class="section-number">6.3.1. </span>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
+<p>In summary, upload the following in their respective links in canvas:</p>
+<ul class="simple">
+<li><p>writeup in pdf.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./hw6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="walk_through.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">6.2. </span>Setup and Walk-through</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Department of Electrical and Systems Engineering<br/>
+        
+            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
