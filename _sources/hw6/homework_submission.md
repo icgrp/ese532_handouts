@@ -70,7 +70,7 @@ Your writeup should include your answers to the following questions:
     ---
     Following the previous HW, we will create Vitis project using Vitis IDE.
     **Note that Makefiles are automatically generated when we build the project, 
-    and you are welcome to use Makefiles in later in the project.** 
+    and you are welcome to use Makefiles later in the project.** 
     In fact,
     many of Vitis tutorials on the web are using Makefile, which we
     highly recommend you to browse around while you are doing this lab.
@@ -98,7 +98,7 @@ Your writeup should include your answers to the following questions:
     1. Like we did in HW5, `source sourceMe.sh` first. Note that
     you need to adjust the `sourceMe.sh` if you are running
     on your local machine. 
-    1. We will create CPU version's project. 
+    1. We will create the CPU version's project. 
         1. Launch `vitis` and create application project as we did before. 
         All the steps are identical, but when selecting Templates, 
         select ***SW Development templates*** $\rightarrow$ ***Empty Applications (C++)***.
