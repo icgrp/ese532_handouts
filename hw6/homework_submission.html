@@ -472,7 +472,7 @@ highly recommend you to browse around while you are doing this lab.</p>
 core communicates with an accelerator. We tell you some
 specific things to experiment with, but you should do some reading from:</p>
 <ul class="simple">
-<li><p>This HW is based on <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html">Xilinx Runtime (XRT) and Vitis System Optimization Tutorials</a></p></li>
+<li><p>This HW is highly realted to <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html">Xilinx Runtime (XRT) and Vitis System Optimization Tutorials</a></p></li>
 <li><p>Chapter 6, 7, 19, 20 of <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">UG1393</a></p></li>
 <li><p><a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html">Programming for Vitis HLS</a></p></li>
 </ul>
@@ -553,9 +553,10 @@ upper right corner. Your project should look something like below.</p>
 Right click it and build the project. It will take about 30 minutes.
 If you are run out of disk space, we recommend you to remove sd card image
 generated in HW5.</p></li>
-<li><p>Like we did in HW5, write the <code class="docutils literal notranslate"><span class="pre">package/sd_card.img</span></code> to the SD card.
-Then, enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>. <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file
-generated from CPU version.</p></li>
+<li><p>Like we did in HW5, copy the related files in <code class="docutils literal notranslate"><span class="pre">package/sd_card</span></code> directory
+to Ultra96’s <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1/</span></code> and type <code class="docutils literal notranslate"><span class="pre">reboot</span></code>.
+Enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>.
+Next, <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file generated from CPU version.</p></li>
 </ol>
 </li>
 <li><p>Run CPU version on Ultra96, and report the latency.</p></li>
@@ -579,21 +580,14 @@ All other flag usage prevents contiguous memory allocation or behaves non-determ
 </div>
 </li>
 <li><p>Build the project with the modified host code. Because only the host code is modified,
-it should take less than a minute to complete. Note that you do <strong>NOT</strong> have to create a SD card again.
+it should take less than a minute to complete.
 Copy only neccessary files and report the three latencies in the Vitis Analyzer.</p></li>
 <li><p>In the Vitis Analyzer, open the application timeline. Zoom in at the beginning of the kernel execution, and
 provide a screenshot in the write up.
 Based on the analyzer, suggest at least two ways of improving the performance of the FPGA code.</p></li>
-<li><p>Our initial FPGA host code uses an in-order command queue.
-Find out <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html">how to use an out-of-order command queue</a>
-to get overlap between communication and computation. Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
-Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>It’s just one additional property in command queue, and you probably won’t see the overlap yet.</p>
-</div>
-</li>
-<li><p>How does the code in <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> preserve dependencies between computations?</p></li>
+</ol>
+ <!-- 1. How does the code in `Host.cpp` preserve dependencies between computations?
+<ol>
 <li><p>We will now investigate why we still don’t see communication-compute overlap.</p>
 <ul>
 <li><p>In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:</p>
@@ -605,36 +599,53 @@ Build the project with the modified host code. Report the three latencies. Provi
 and click open.</p></li>
 <li><p>From the <em><strong>Explorer</strong></em> tab, open <em><strong>solution</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>syn</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>report</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>mmult_fpga_csynth.rpt</strong></em>.</p></li>
 <li><p>Browse to the <em><strong>Interface</strong></em> section and examine
-the interface that was generated. Describe how the host processor communicates with the generated interface of the accelerator.</p></li>
+the interface that was generated. Describe how the host processor communicates with the generated interface of the accelerator. –&gt;</p></li>
 </ul>
 </li>
-<li><p>What needs to happen to the HLS code so that we can achieve task-level parallelism?</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Look at Figure 18: Host to Kernel Dataflow
-of <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf#page=78">UG1393</a></p>
+</ol>
+ <!-- 1. What needs to happen to the HLS code so that we can achieve task-level parallelism?
+     ```{hint}
+     Look at Figure 18: Host to Kernel Dataflow
+     of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf#page=78)
+     ``` -->
+<ol>
+<li><p>We will now modify the kernel code.</p>
+<ul>
+<li><p>In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_hls</span>
+</pre></div>
 </div>
 </li>
-<li><p>Modify the HLS code to enable host to kernel dataflow. Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.</p>
+<li><p>Click on <em><strong>open project</strong></em> and browse to the your build generated directory: <code class="docutils literal notranslate"><span class="pre">hw6_fpga_kernels/Hardware/build/mmult_fpga/mmult_fpga/mmult_fpga</span></code>
+and click open.</p></li>
+</ul>
+</li>
+<li><p>Modify the HLS code to enable dataflow and achive II=1.
+Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
+Also, provide the screenshot of <em><strong>Performance &amp; Resource Estimates</strong></em> table in
+the Synthesis Summary Report. If you have <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code> blocks like the code shown in the hint below,
+you need to expand each block in the table to show that you achived II=1.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <ul class="simple">
 <li><p>Use <a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">this code</a>
 as a reference.</p></li>
 <li><p>You will need to use <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>.</p></li>
-<li><p>You will need to use <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">HLS</span> <span class="pre">DATAFLOW</span></code>.</p></li>
-<li><p>Look into the warnings generated by Vitis HLS and determine what changes you need to make with <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">HLS</span> <span class="pre">INTERFACE</span></code>.</p></li>
-<li><p>Refer to following resources for more examples on HLS:</p>
-<ul>
-<li><p><a class="reference external" href="http://kastner.ucsd.edu/wp-content/uploads/2018/03/admin/pp4fpgas.pdf">pp4fpga</a>.</p></li>
-<li><p><a class="reference external" href="https://github.com/Xilinx/HLS-Tiny-Tutorials">HLS Tiny Tutorials</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md">This tutorial</a> is also helpful.</p></li>
 </ul>
 </div>
+ <!-- - You will need to use `#pragma HLS DATAFLOW`.
+ - Look into the warnings generated by Vitis HLS and determine what changes you need to make with `#pragma HLS INTERFACE`.
+ - Refer to following resources for more examples on HLS:
+     - [pp4fpga](http://kastner.ucsd.edu/wp-content/uploads/2018/03/admin/pp4fpgas.pdf).
+     - [HLS Tiny Tutorials](https://github.com/Xilinx/HLS-Tiny-Tutorials) -->
 </li>
 <li><p>Rebuild the project with the dataflow-enabled kernel, copy the binaries and boot files, reboot and test.
-This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
+This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.</p></li>
+<li><p>Our initial FPGA host code uses an in-order command queue.
+Find out <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html">how to use an out-of-order command queue</a>
+to get overlap between communication and computation. Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
+Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
 We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 6.3</span></a>.</p>
 <div class="figure align-default" id="comp-comm-overlap">
 <img alt="../_images/comp_comm_overlap.png" src="../_images/comp_comm_overlap.png" />
@@ -646,11 +657,13 @@ We expect you to see something like <a class="reference internal" href="#comp-co
 </pre></div>
 </div>
 </li>
-<li><p>Read about kernel and host code synchronization from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/host-code-opt/README.html#kernel-and-host-code-synchronization">here</a>. Add a barrier synchronization to your host code. Only compile the host code, run it and provide a screenshot of the relevant section of vitis analyzer.</p></li>
+<li><p>Read about kernel and host code synchronization from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/host-code-opt/README.html#kernel-and-host-code-synchronization">here</a>. Add a barrier synchronization for every <em><strong>8 tasks</strong></em> to your host code.
+Only compile the host code, run it and provide a screenshot of the relevant section of vitis analyzer.</p></li>
 <li><p>Assign separate ports to the <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code>. In the Assistant view on the lower left corner,
 <em><strong>hw6_fpga_system_hw_link</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>Hardware</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>binary_container_1</strong></em>.
 Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
-This will take about 30 minutes to build. Report the latency. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. Does assigning multiple ports on Ultra96 have any impact on your design?
+This will take about 30 minutes to build. Report the latency. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
+Does assigning multiple ports on Ultra96 have any impact on your design?
 Save/Move the <code class="docutils literal notranslate"><span class="pre">hw6_fpga_system_hw_link/Hardware/binary_container_1.build</span></code> folder of the project to somewhere else before doing the next question.
 We will use the outputs from this question in the next part.</p>
 <div class="admonition hint">
