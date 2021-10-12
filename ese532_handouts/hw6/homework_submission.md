@@ -225,12 +225,18 @@ Your writeup should include your answers to the following questions:
     Find out [how to use an out-of-order command queue](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html) 
     to get overlap between communication and computation. Make the necessary change in the `Host.cpp` and provide the change in the report. 
     Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
-    We expect you to see something like {numref}`comp_comm_overlap`.
+    We expect you to see something like {numref}`comp_comm_overlap` or {numref}`comp_comm_overlap_2`.
         ```{figure} images/comp_comm_overlap.png
         ---
         name: comp_comm_overlap
         ---
         Communication and Computation overlap
+        ```
+        ```{figure} images/comp_comm_overlap_2.png
+        ---
+        name: comp_comm_overlap_2
+        ---
+        Communication and Computation overlap when a kernel runtime is longer
         ```
 
     1. Use the following command in your host machine. Report the clocks, memory ports and resources that are available on the platform:
