@@ -398,7 +398,9 @@
   <div class="section" id="homework-submission">
 <h1><span class="section-number">6.3. </span>Homework Submission<a class="headerlink" href="#homework-submission" title="Permalink to this headline">¶</a></h1>
 <p>Your writeup should follow <a class="reference internal" href="../writeup_guidelines.html"><span class="doc std std-doc">the writeup guidelines</span></a>.
-Your writeup should include your answers to the following questions:</p>
+Your writeup should include your answers to the questions below. Even if a certain
+question(like 1-(c) or 1-(f)) is just a “step”, please include it in your report and leave the bullet blank
+for the sake of easy grading.</p>
 <style type="text/css">
     ol { list-style-type: decimal; }
     ol ol { list-style-type: lower-alpha; }
@@ -461,104 +463,7 @@ Your writeup should include your answers to the following questions:</p>
         ``` -->
 <ol>
 <li><p><strong>Accelerator Interface</strong></p>
-<hr class="docutils" />
-<p>Following the previous HW, we will create Vitis project using Vitis IDE.
-<strong>Note that Makefiles are automatically generated when we build the project,
-and you are welcome to use Makefiles later in the project.</strong>
-In fact,
-many of Vitis tutorials on the web are using Makefile, which we
-highly recommend you to browse around while you are doing this lab.</p>
-<p>In this HW, we will analyze how the processor
-core communicates with an accelerator. We tell you some
-specific things to experiment with, but you should do some reading from:</p>
-<ul class="simple">
-<li><p>This HW is highly realted to <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html">Xilinx Runtime (XRT) and Vitis System Optimization Tutorials</a></p></li>
-<li><p>Chapter 6, 7, 19, 20 of <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">UG1393</a></p></li>
-<li><p><a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html">Programming for Vitis HLS</a></p></li>
-</ul>
-<p>The following resources can be helpful for programming HLS and OpenCL host code:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/tree/2020.2">Vitis Accel Examples</a> and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2020.2">Vitis Tutorials</a></p></li>
-<li><p><a class="reference external" href="https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf">OpenCL 1.2 reference card</a></p></li>
-</ul>
-<p>Note that we are running on Linux. If you want to gain a deeper understanding of what’s going on under the hood and how the <em><strong>zocl</strong></em> driver supplied by Xilinx Runtime (XRT)
-manages DMA, refer to the following resources:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://elinux.org/images/4/49/20140429-dma.pdf">Mastering DMA and IOMMU APIs</a></p></li>
-<li><p><a class="reference external" href="https://events.static.linuxfound.org/images/stories/pdf/lceu2012_nazarwicz.pdf">Contiguous Memory Allocator</a></p></li>
-<li><p><a class="reference external" href="https://xilinx.github.io/XRT/2020.2/html/execution-model.html">XRT Execution</a></p></li>
-</ul>
-<hr class="docutils" />
 <ol>
-<li><p>Like we did in HW5, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code> first. Note that
-you need to adjust the <code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> if you are running
-on your local machine.</p></li>
-<li><p>We will create the CPU version’s project.</p>
-<ol>
-<li><p>Launch <code class="docutils literal notranslate"><span class="pre">vitis</span></code> and create application project as we did before.
-All the steps are identical, but when selecting Templates,
-select <em><strong>SW Development templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Empty Applications (C++)</strong></em>.</p></li>
-<li><p>Import following files to <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/cpu/Host.cpp</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
-</ul>
-</li>
-<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
-Click <em><strong>ARM v8 Linux g++ linker</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Libraries</strong></em>.
-Add <code class="docutils literal notranslate"><span class="pre">xilinxopencl</span></code> as shown below.</p>
-<div class="figure align-default" id="id1">
-<img alt="../_images/vitis_cpu_linker.png" src="../_images/vitis_cpu_linker.png" />
-<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Add linker flag</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
-Click <em><strong>ARM v8 Linux g++ compiler</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Optimization</strong></em>.
-Set to <strong>O3</strong>.</p></li>
-<li><p>Build the project. You will see <code class="docutils literal notranslate"><span class="pre">.elf</span></code> created in Debug folder.</p></li>
-</ol>
-</li>
-<li><p>Next, we will create FPGA version’s project.</p>
-<ol>
-<li><p>Right click the
-white space in the Project Explorer view, then <em><strong>New</strong></em>
-<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Application Project</strong></em>. Set the name of the project as
-<strong>hw6_fpga</strong>. When selecting Templates,
-select <em><strong>SW acceleration templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span>
-<em><strong>Empty Application</strong></em>.</p></li>
-<li><p>For the kernel <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.cpp</span></code></p></li>
-</ul>
-</li>
-<li><p>For the host <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/Host.cpp</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
-</ul>
-</li>
-<li><p>In kernel project, add <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> to the Hardware Functions.</p></li>
-<li><p>Select <em><strong>Hardware</strong></em> in Active build configuration on the
-upper right corner. Your project should look something like below.</p>
-<div class="figure align-default" id="vitis-fpga-setting">
-<img alt="../_images/vitis_fpga_setting.png" src="../_images/vitis_fpga_setting.png" />
-<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Add hardware function and set the build configuration to Hardware</span><a class="headerlink" href="#vitis-fpga-setting" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>In the Assistant view on the lower left corner, you will see
-<em><strong>Hardware</strong></em> is bolded as shown in <a class="reference internal" href="#vitis-fpga-setting"><span class="std std-numref">Fig. 6.2</span></a>.
-Right click it and build the project. It will take about 30 minutes.
-If you are run out of disk space, we recommend you to remove sd card image
-generated in HW5.</p></li>
-<li><p>Like we did in HW5, copy the related files in <code class="docutils literal notranslate"><span class="pre">package/sd_card</span></code> directory
-to Ultra96’s <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1/</span></code> and type <code class="docutils literal notranslate"><span class="pre">reboot</span></code>.
-Enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>.
-Next, <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file generated from CPU version.</p></li>
-</ol>
-</li>
 <li><p>Run CPU version on Ultra96, and report the latency.</p></li>
 <li><p>For FPGA version, copy in the <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file into the Ultra96 and run the code.
 Copy the Vitis Analyzer files to your computer and open it with Vitis Analyzer.
@@ -584,8 +489,7 @@ it should take less than a minute to complete.
 Copy only neccessary files and report the three latencies in the Vitis Analyzer.</p></li>
 <li><p>In the Vitis Analyzer, open the application timeline. Zoom in at the beginning of the kernel execution, and
 provide a screenshot in the write up.
-Based on the analyzer, suggest at least two ways of improving the performance of the FPGA code.</p></li>
-</ol>
+Based on the analyzer, suggest at least two ways of improving the performance of the FPGA code.</p>
  <!-- 1. How does the code in `Host.cpp` preserve dependencies between computations?
 <ol>
 <li><p>We will now investigate why we still don’t see communication-compute overlap.</p>
@@ -608,7 +512,7 @@ the interface that was generated. Describe how the host processor communicates w
      Look at Figure 18: Host to Kernel Dataflow
      of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf#page=78)
      ``` -->
-<ol>
+</li>
 <li><p>We will now modify the kernel code.</p>
 <ul>
 <li><p>In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:</p>
@@ -620,26 +524,14 @@ the interface that was generated. Describe how the host processor communicates w
 and click open.</p></li>
 </ul>
 </li>
-<li><p>Modify the HLS code to enable dataflow and achive II=1.
-Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
+<li><p>Partition the HLS code into Load-Compute-Store Pattern as can be seen in <a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">this code</a>
+and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md">this tutorial</a>.
+Enable dataflow with <code class="docutils literal notranslate"><span class="pre">HLS</span> <span class="pre">DATAFLOW</span></code> pragma and use <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>
+to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.</p></li>
+<li><p>Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
 Also, provide the screenshot of <em><strong>Performance &amp; Resource Estimates</strong></em> table in
-the Synthesis Summary Report. If you have <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code> blocks like the code shown in the hint below,
-you need to expand each block in the table to show that you achived II=1.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<ul class="simple">
-<li><p>Use <a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">this code</a>
-as a reference.</p></li>
-<li><p>You will need to use <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>.</p></li>
-<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md">This tutorial</a> is also helpful.</p></li>
-</ul>
-</div>
- <!-- - You will need to use `#pragma HLS DATAFLOW`.
- - Look into the warnings generated by Vitis HLS and determine what changes you need to make with `#pragma HLS INTERFACE`.
- - Refer to following resources for more examples on HLS:
-     - [pp4fpga](http://kastner.ucsd.edu/wp-content/uploads/2018/03/admin/pp4fpgas.pdf).
-     - [HLS Tiny Tutorials](https://github.com/Xilinx/HLS-Tiny-Tutorials) -->
-</li>
+the Synthesis Summary Report. Because you have Load, Compute, Store functions,
+expand each function in the table to show that you achived II=1.</p></li>
 <li><p>Rebuild the project with the dataflow-enabled kernel, copy the binaries and boot files, reboot and test.
 This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.</p></li>
 <li><p>Our initial FPGA host code uses an in-order command queue.
@@ -662,11 +554,11 @@ We expect you to see something like <a class="reference internal" href="#comp-co
 </div>
 </li>
 <li><p>Read about kernel and host code synchronization from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/host-code-opt/README.html#kernel-and-host-code-synchronization">here</a>. Add a barrier synchronization for every <em><strong>8 tasks</strong></em> to your host code.
-Only compile the host code, run it and provide a screenshot of the relevant section of vitis analyzer.</p></li>
+Build the project with the modified host code. Run it and provide a screenshot of the relevant section of vitis analyzer.</p></li>
 <li><p>Assign separate ports to the <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code>. In the Assistant view on the lower left corner,
 <em><strong>hw6_fpga_system_hw_link</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>Hardware</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>binary_container_1</strong></em>.
 Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
-This will take about 30 minutes to build. Report the latency. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
+This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
 Does assigning multiple ports on Ultra96 have any impact on your design?
 Save/Move the <code class="docutils literal notranslate"><span class="pre">hw6_fpga_system_hw_link/Hardware/binary_container_1.build</span></code> folder of the project to somewhere else before doing the next question.
 We will use the outputs from this question in the next part.</p>
@@ -692,13 +584,13 @@ of the matrix multiplication (1m) look like using Vivado (not
 Vivado HLS).  Vivado is part of the Vitis installation.</p>
 <ol>
 <li><p>Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
-flip-flop, and LUT) the implementation (1-q)
+flip-flop, and LUT) the implementation (1-(m))
 consumes. You can find this information in the <em><strong>Implementation</strong></em> tab on the
 left hand side. Click <em><strong>Report Utilization</strong></em> under <em><strong>Open Implemented Design</strong></em>.
 Launch Vivado using the following commands and open the
 project you saved/moved from the location <code class="docutils literal notranslate"><span class="pre">binary_container_1.build/link/vivado/vpl/prj/prj.xpr</span></code>. (4 lines)</p>
 <ul>
-<li><p>In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:</p>
+<li><p>In terminal, make sure you correctly sourced the settings, and open Vivado, with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vivado</span>
 </pre></div>
 </div>

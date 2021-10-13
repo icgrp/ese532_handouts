@@ -42,6 +42,8 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -383,6 +385,16 @@
    6.2.1. Obtaining and Running the Code
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-resources">
+   6.2.2. Useful Resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-vitis-project">
+   6.2.3. Creating Vitis Project
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -430,7 +442,109 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw6</span
         <span class="o">...</span>
 </pre></div>
 </div>
-<p>That’s it for the HW6’s setup!</p>
+</div>
+<div class="section" id="useful-resources">
+<h2><span class="section-number">6.2.2. </span>Useful Resources<a class="headerlink" href="#useful-resources" title="Permalink to this headline">¶</a></h2>
+<p>Following the previous HW, we will create Vitis project using Vitis IDE.
+<strong>Note that Makefiles are automatically generated when we build the project in GUI mode,
+and you are welcome to use Makefiles later in the project.</strong>
+In fact,
+many of Vitis tutorials on the web are using Makefile, which we
+highly recommend you to browse around while you are doing this lab.</p>
+<p>In this HW, we will analyze how the processor
+core communicates with an accelerator. We tell you some
+specific things to experiment with, but you should do some reading from:</p>
+<ul class="simple">
+<li><p>This HW is highly related to <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html">Xilinx Runtime (XRT) and Vitis System Optimization Tutorials</a></p></li>
+<li><p>Chapter 6, 7, 19, 20 of <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">UG1393</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html">Programming for Vitis HLS</a></p></li>
+</ul>
+<p>The following resources can be helpful for programming HLS and OpenCL host code:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/tree/2020.2">Vitis Accel Examples</a> and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2020.2">Vitis Tutorials</a></p></li>
+<li><p><a class="reference external" href="https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf">OpenCL 1.2 reference card</a></p></li>
+</ul>
+<p>Note that we are running on Linux. If you want to gain a deeper understanding of what’s going on under the hood and how the <em><strong>zocl</strong></em> driver supplied by Xilinx Runtime (XRT)
+manages DMA, refer to the following resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://elinux.org/images/4/49/20140429-dma.pdf">Mastering DMA and IOMMU APIs</a></p></li>
+<li><p><a class="reference external" href="https://events.static.linuxfound.org/images/stories/pdf/lceu2012_nazarwicz.pdf">Contiguous Memory Allocator</a></p></li>
+<li><p><a class="reference external" href="https://xilinx.github.io/XRT/2020.2/html/execution-model.html">XRT Execution</a></p></li>
+</ul>
+</div>
+<div class="section" id="creating-vitis-project">
+<h2><span class="section-number">6.2.3. </span>Creating Vitis Project<a class="headerlink" href="#creating-vitis-project" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Like we did in HW5, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code> first. Note that
+you need to adjust the <code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> if you are running
+on your local machine.</p></li>
+<li><p>We will create the CPU version’s project.</p>
+<ul>
+<li><p>Launch <code class="docutils literal notranslate"><span class="pre">vitis</span></code> and create application project as we did before.
+All the steps are identical, but when selecting Templates,
+select <em><strong>SW Development templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Empty Applications (C++)</strong></em>.</p></li>
+<li><p>Import following files to <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/cpu/Host.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
+</ul>
+</li>
+<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
+Click <em><strong>ARM v8 Linux g++ linker</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Libraries</strong></em>.
+Add <code class="docutils literal notranslate"><span class="pre">xilinxopencl</span></code> as shown below.</p>
+<div class="figure align-default" id="id1">
+<img alt="../_images/vitis_cpu_linker.png" src="../_images/vitis_cpu_linker.png" />
+<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Add linker flag</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
+Click <em><strong>ARM v8 Linux g++ compiler</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Optimization</strong></em>.
+Set to <strong>O3</strong>.</p></li>
+<li><p>Build the project. You will see <code class="docutils literal notranslate"><span class="pre">.elf</span></code> created in Debug folder.</p></li>
+</ul>
+</li>
+<li><p>Next, we will create FPGA version’s project.</p>
+<ul>
+<li><p>Right click the
+white space in the Project Explorer view, then <em><strong>New</strong></em>
+<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Application Project</strong></em>. Set the name of the project as
+<strong>hw6_fpga</strong>. When selecting Templates,
+select <em><strong>SW acceleration templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span>
+<em><strong>Empty Application</strong></em>.</p></li>
+<li><p>For the kernel <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.cpp</span></code></p></li>
+</ul>
+</li>
+<li><p>For the host <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/Host.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
+</ul>
+</li>
+<li><p>In kernel project, add <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> to the Hardware Functions.</p></li>
+<li><p>Select <em><strong>Hardware</strong></em> in Active build configuration on the
+upper right corner. Your project should look something like below.</p>
+<div class="figure align-default" id="vitis-fpga-setting">
+<img alt="../_images/vitis_fpga_setting.png" src="../_images/vitis_fpga_setting.png" />
+<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Add hardware function and set the build configuration to Hardware</span><a class="headerlink" href="#vitis-fpga-setting" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>In the Assistant view on the lower left corner, you will see
+<em><strong>Hardware</strong></em> is bolded as shown in <a class="reference internal" href="#vitis-fpga-setting"><span class="std std-numref">Fig. 6.2</span></a>.
+Right click it and build the project. It will take about 30 minutes.
+If you are run out of disk space, we recommend you to remove sd card image
+generated in HW5.</p></li>
+<li><p>Like we did in HW5, copy the related files in <code class="docutils literal notranslate"><span class="pre">package/sd_card</span></code> directory
+to Ultra96’s <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1/</span></code> and type <code class="docutils literal notranslate"><span class="pre">reboot</span></code>.
+Enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>.
+Next, <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file generated from CPU version.</p></li>
+</ul>
+</li>
+</ul>
 <!-- ## Environment Setup
 
 ### Setting up Ultra96 and Host Computer
