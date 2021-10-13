@@ -7,7 +7,7 @@
     tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 
-### Obtaining and Running the Code
+## Obtaining and Running the Code
 In this homework, we will first run a matrix multiplication function on the cpu and then run the same matrix multiplication
 function on the FPGA.
 
@@ -36,7 +36,89 @@ hw6/
         ...
 ```
 
-That's it for the HW6's setup!
+## Useful Resources
+Following the previous HW, we will create Vitis project using Vitis IDE.
+**Note that Makefiles are automatically generated when we build the project in GUI mode, 
+and you are welcome to use Makefiles later in the project.** 
+In fact,
+many of Vitis tutorials on the web are using Makefile, which we
+highly recommend you to browse around while you are doing this lab.
+
+In this HW, we will analyze how the processor
+core communicates with an accelerator. We tell you some
+specific things to experiment with, but you should do some reading from:
+- This HW is highly related to [Xilinx Runtime (XRT) and Vitis System Optimization Tutorials](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html)
+- Chapter 6, 7, 19, 20 of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf)
+- [Programming for Vitis HLS](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html)
+
+
+The following resources can be helpful for programming HLS and OpenCL host code:
+- [Vitis Accel Examples](https://github.com/Xilinx/Vitis_Accel_Examples/tree/2020.2) and [Vitis Tutorials](https://github.com/Xilinx/Vitis-Tutorials/tree/2020.2)
+- [OpenCL 1.2 reference card](https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf)
+
+
+Note that we are running on Linux. If you want to gain a deeper understanding of what's going on under the hood and how the ***zocl*** driver supplied by Xilinx Runtime (XRT)
+manages DMA, refer to the following resources:
+- [Mastering DMA and IOMMU APIs](https://elinux.org/images/4/49/20140429-dma.pdf)
+- [Contiguous Memory Allocator](https://events.static.linuxfound.org/images/stories/pdf/lceu2012_nazarwicz.pdf)
+- [XRT Execution](https://xilinx.github.io/XRT/2020.2/html/execution-model.html)
+
+## Creating Vitis Project
+- Like we did in HW5, `source sourceMe.sh` first. Note that
+you need to adjust the `sourceMe.sh` if you are running
+on your local machine. 
+- We will create the CPU version's project. 
+    - Launch `vitis` and create application project as we did before. 
+    All the steps are identical, but when selecting Templates, 
+    select ***SW Development templates*** $\rightarrow$ ***Empty Applications (C++)***.
+    - Import following files to `src`: 
+        - `common/*`
+        - `apps/mmult/cpu/Host.cpp`
+        - `apps/mmult/fpga/hls/MMult.h`
+    - Right click the project and select ***C/C++ Build Settings***.
+    Click ***ARM v8 Linux g++ linker*** $\rightarrow$ ***Libraries***.
+    Add `xilinxopencl` as shown below.
+        ```{figure} images/vitis_cpu_linker.png
+        Add linker flag
+        ```
+    - Right click the project and select ***C/C++ Build Settings***.
+    Click ***ARM v8 Linux g++ compiler*** $\rightarrow$ ***Optimization***.
+    Set to **O3**.
+    - Build the project. You will see `.elf` created in Debug folder.
+- Next, we will create FPGA version's project. 
+    - Right click the
+    white space in the Project Explorer view, then ***New*** 
+    $\rightarrow$ ***Application Project***. Set the name of the project as 
+    **hw6_fpga**. When selecting Templates,
+    select ***SW acceleration templates*** $\rightarrow$
+    ***Empty Application***.
+    - For the kernel `src`, import following files: 
+        - `apps/mmult/fpga/hls/MMult.h`
+        - `apps/mmult/fpga/hls/MMult.cpp`
+    - For the host `src`, import following files:
+        - `common/*`
+        - `apps/mmult/fpga/Host.cpp`
+        - `apps/mmult/fpga/hls/MMult.h`
+    - In kernel project, add `mmult_fpga` to the Hardware Functions.
+    - Select ***Hardware*** in Active build configuration on the
+    upper right corner. Your project should look something like below.
+        ```{figure} images/vitis_fpga_setting.png
+        ---
+        name: vitis_fpga_setting
+        ---
+        Add hardware function and set the build configuration to Hardware
+        ```
+    - In the Assistant view on the lower left corner, you will see
+    ***Hardware*** is bolded as shown in {numref}`vitis_fpga_setting`.
+    Right click it and build the project. It will take about 30 minutes. 
+    If you are run out of disk space, we recommend you to remove sd card image
+    generated in HW5.
+    - Like we did in HW5, copy the related files in `package/sd_card` directory
+    to Ultra96's `/mnt/sd-mmcblk0p1/` and type `reboot`.
+    Enable the ethernet connection using `ifconfig`.
+    Next, `scp` the `.elf` file generated from CPU version.
+
+
 
 <!-- ## Environment Setup
 
