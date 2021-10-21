@@ -410,33 +410,6 @@
    7.2.1. Obtaining and Running the Code
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review-burst-transfers-and-task-level-parallelism">
-   7.2.2. Review: Burst Transfers and Task-Level Parallelism
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#burst-transfer">
-     7.2.2.1. Burst Transfer
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-level-parallelism">
-     7.2.2.2. Task-Level Parallelism
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-systolic-array-to-matrix-multiply">
-   7.2.3. Using Systolic Array to Matrix Multiply
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reference">
-   7.2.4. Reference
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -458,9 +431,10 @@
 </style>
 <div class="section" id="obtaining-and-running-the-code">
 <h2><span class="section-number">7.2.1. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
-<p>In this homework, we will compare the matrix multiplication from previous HWs and
-the matrix multiplication implemented with systolic array.
-We will analyze the trade offs of the two design points.</p>
+<p>So far, we have accelerated a matrix multiplication kernel with
+straightforward mapping to hardware. In this
+assignment, we will look at two applications that require
+more effort, namely the compression pipeline from homeworks 2, 3, and 4.</p>
 <p>Pull in the latest changes using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span>
 <span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
@@ -470,43 +444,37 @@ We will analyze the trade offs of the two design points.</p>
 is in the <code class="docutils literal notranslate"><span class="pre">hw7</span></code> directory. The directory structure looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hw7</span><span class="o">/</span>
     <span class="n">sourceMe</span><span class="o">.</span><span class="n">sh</span>
-    <span class="n">mmult</span><span class="o">.</span><span class="n">cpp</span>
-    <span class="n">mmult</span><span class="o">.</span><span class="n">h</span>
-    <span class="n">sys_ary_mmult</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Compress</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Differentiate</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Scale</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Pipeline</span><span class="o">.</span><span class="n">h</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> will help you to source Xilinx tools</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mmult.cpp</span></code> is the matrix multiplication function from HW6
-of which element is <code class="docutils literal notranslate"><span class="pre">int</span></code> type</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sys_ary_mmult.cpp</span></code> is the matrix multiplication implemented
-with systolic array. It is slightly modified from
-<a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/systolic_array">Xilinx Accel Example</a>.</p></li>
-</ul>
-</div>
-<div class="section" id="review-burst-transfers-and-task-level-parallelism">
-<h2><span class="section-number">7.2.2. </span>Review: Burst Transfers and Task-Level Parallelism<a class="headerlink" href="#review-burst-transfers-and-task-level-parallelism" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="burst-transfer">
-<h3><span class="section-number">7.2.2.1. </span>Burst Transfer<a class="headerlink" href="#burst-transfer" title="Permalink to this headline">¶</a></h3>
-<p>In HW6, when you partition the matrix multiplication into
+<!-- ## Review: Burst Transfers and Task-Level Parallelism
+### Burst Transfer
+In HW6, when you dump matrix input data to `A_tmp` and `B_tmp`
+when you partition the matrix multiplication into
 Load-Compute-Store Pattern
-(example <a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">here</a>), you enabled
-<strong>burst transfer</strong>.</p>
-<p>The first access to the global memory is expensive while the
+(example [here](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp)), you enabled
+**burst transfer**.
+
+The first access to the global memory is expensive while the
 subsequent contiguous accesses are not. Therefore,
-in <code class="docutils literal notranslate"><span class="pre">Load</span></code> block, we copy a chunk of input to the local memory to compute,
-and similarly in <code class="docutils literal notranslate"><span class="pre">Store</span></code> block, we copy a chunk of output to global memory.
-Burst read/write is done with the pipelined loop in <code class="docutils literal notranslate"><span class="pre">Load</span></code> and <code class="docutils literal notranslate"><span class="pre">Store</span></code> blocks.</p>
-<p>The example of burst read is shown below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">readA</span><span class="p">:</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="c1">#pragma HLS PIPELINE</span>
-    	  <span class="n">localA</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">N</span> <span class="o">+</span> <span class="n">j</span><span class="p">];</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
+in `Load` block, we copy a chunk of input to the local memory to compute,
+and similarly in `Store` block, we copy a chunk of output to global memory.
+Burst read/write is done with the pipelined loop in `Load` and `Store` blocks.
+
+The example of burst read is shown below.
+```
+readA:
+    for (int i = 0; i < N; i++) {
+      for (int j = 0; j < N; j++) {
+#pragma HLS PIPELINE
+    	  localA[i][j] = A[i * N + j];
+      }
+    }
+``` -->
 <!-- 
 In this HW, we will analyze how the processor
 core communicates with an accelerator. We tell you some
@@ -515,62 +483,22 @@ specific things to experiment with, but you should do some reading from:
 - Chapter 6, 7, 19, 20 of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf)
 - [Programming for Vitis HLS](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html)
  -->
-</div>
-<div class="section" id="task-level-parallelism">
-<h3><span class="section-number">7.2.2.2. </span>Task-Level Parallelism<a class="headerlink" href="#task-level-parallelism" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">This example</a>
-from previous HW6 also enables task-level parallelism utilizing <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>.
-<a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/blob/master/cpp_kernels/dataflow_stream/src/adder.cpp">This adder example</a>
+<!-- ### Task-Level Parallelism
+[This example](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp)
+from previous HW6 also enables task-level parallelism utilizing `hls::stream`.
+[This adder example](https://github.com/Xilinx/Vitis_Accel_Examples/blob/master/cpp_kernels/dataflow_stream/src/adder.cpp)
 is also useful.
-Key recommendations on <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code> from
-<a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">Xilinx User Guide</a>
-are:</p>
-<ul class="simple">
-<li><p>Data should be transferred in the forward direction only
-avoiding feedback whenever possible.</p></li>
-<li><p>Each connection should have a single producer and a
-single consumer.</p></li>
-<li><p>Only the load and store functions should access
-the primary interface of the kernel</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="using-systolic-array-to-matrix-multiply">
-<h2><span class="section-number">7.2.3. </span>Using Systolic Array to Matrix Multiply<a class="headerlink" href="#using-systolic-array-to-matrix-multiply" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>In this HW, we will use systolic array to implement matrix multiplication.</p>
-<div class="figure align-default" id="sys-ary-0">
-<a class="reference internal image-reference" href="../_images/sys_ary_0.png"><img alt="../_images/sys_ary_0.png" src="../_images/sys_ary_0.png" style="height: 150px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Matrix Multiplication</span><a class="headerlink" href="#sys-ary-0" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="sys-ary-1">
-<a class="reference internal image-reference" href="../_images/sys_ary_1.png"><img alt="../_images/sys_ary_1.png" src="../_images/sys_ary_1.png" style="height: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Systolic Array, t=0</span><a class="headerlink" href="#sys-ary-1" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="sys-ary-2">
-<a class="reference internal image-reference" href="../_images/sys_ary_2.png"><img alt="../_images/sys_ary_2.png" src="../_images/sys_ary_2.png" style="height: 298px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7.3 </span><span class="caption-text">Systolic Array, t=1</span><a class="headerlink" href="#sys-ary-2" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="sys-ary-3">
-<a class="reference internal image-reference" href="../_images/sys_ary_3.png"><img alt="../_images/sys_ary_3.png" src="../_images/sys_ary_3.png" style="height: 263px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7.4 </span><span class="caption-text">Systolic Array, t=2</span><a class="headerlink" href="#sys-ary-3" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="sys-ary-4">
-<a class="reference internal image-reference" href="../_images/sys_ary_4.png"><img alt="../_images/sys_ary_4.png" src="../_images/sys_ary_4.png" style="height: 220px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7.5 </span><span class="caption-text">Systolic Array, t=3</span><a class="headerlink" href="#sys-ary-4" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="sys-ary-5">
-<img alt="../_images/sys_ary_5.png" src="../_images/sys_ary_5.png" />
-<p class="caption"><span class="caption-number">Fig. 7.6 </span><span class="caption-text">Systolic Array, matrix multiplication done</span><a class="headerlink" href="#sys-ary-5" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="reference">
-<h2><span class="section-number">7.2.4. </span>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf">https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf</a></p></li>
-</ul>
+Key recommendations on `hls::stream` from 
+[Xilinx User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf)
+are:
+- Data should be transferred in the forward direction only
+  avoiding feedback whenever possible.
+- Each connection should have a single producer and a 
+  single consumer.
+- Only the load and store functions should access 
+  the primary interface of the kernel -->
+<!-- ## Reference
+- <https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf> -->
 </div>
 </div>
 
