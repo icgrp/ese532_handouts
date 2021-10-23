@@ -3,4 +3,4 @@
 ```{admonition} Due
 Friday, October 29, 5:00 PM
 ```
-In this assignment, we will analyze two different design points in Vitis HLS.
+In this assignment, we will go deeper in restructuring C for Vitis HLS.
