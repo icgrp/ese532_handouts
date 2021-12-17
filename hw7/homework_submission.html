@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>7.3. Homework Submission &#8212; ESE532 Handouts Fall 2021</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -53,7 +53,10 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="7.2. Setup and Walk-through" href="walk_through.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -104,7 +107,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Homework Assignments
  </span>
@@ -459,8 +462,9 @@ Consequently, we need more bandwidth than the BRAM offers. Give two ways in
 which we could resolve this issue. (4 lines)</p></li>
 <li><p>Implement the function <code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code> that exploits <strong>data reuse</strong>.
 It loads the input pixels only once and sequentially.
-Verify your code using your test function. Include the
-<code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code> function in your report.</p></li>
+Verify your code using your test function. Include the test function’s output and the
+<code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code> function in your report. The test function’s output could be simply
+“TEST PASSED” depending on your implementation of testbench.</p></li>
 <li><p>Pipeline the loop body of your implementation with an II of 1. What is the
 latency(in cycles) that Vitis HLS predicts?</p>
    <!-- You can ignore whether Vitis HLS meets
@@ -481,7 +485,7 @@ answer. (3 lines)</p></li>
 that you modified based on the insights from the previous two questions. You
 don’t have to use the streams at this point. Include the code in your report.</p></li>
 <li><p>Pipeline the loop body of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>. Write a testbench to verify
-<code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>.
+<code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>. Include the testbench’s output in the report.
 What is the latency that Vitis HLS predicts? (1 line)</p>
 <!-- You can
 ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
@@ -500,8 +504,8 @@ You can have user-defined macro to seperate simulation code and synthesis code a
 </li>
 <li><p>Let’s continue with accelerating <code class="docutils literal notranslate"><span class="pre">Filter_vertical_HW</span></code>. We could store pixels that
 are used multiple times in a buffer that is mapped to a local memory. Assuming
-we still produce the output pixels in the same order, what is the smallest buffer
-that we can use? Motivate your answer. (3 lines)</p></li>
+we still produce the output pixels in the same order(the order we traversed in <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>),
+what is the smallest buffer that we can use? Motivate your answer. (3 lines)</p></li>
 <li><p>What is the optimal order for traversing the input data (column-wise or row-wise)
 with respect to FPGA on-chip memory usage? Assume that the input and output
 data are stored in a BRAM. Motivate your answer. (3 lines)</p>
@@ -513,7 +517,7 @@ usage and minimization.</p>
 </li>
 <li><p>Create a function <code class="docutils literal notranslate"><span class="pre">Filter_vertical_HW</span></code> that is a version of <code class="docutils literal notranslate"><span class="pre">Filter_vertical_SW</span></code>
 that you modified based on the insights from the previous two questions. You
-don’t have to use the streams yet. Include the code in your report.</p>
+don’t have to use the streams yet. Include the code and your testbench’s output in your report.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Remember (from HW 1) what can go wrong when you write outside
@@ -530,7 +534,7 @@ ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
 Verify that your test function works. Include the function in your report.</p></li>
 <li><p>Create a function <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> that connects both parts of the filter together. Store
 the intermediate results in a local array. Include <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> in your report. Use
-the default data movers.</p></li>
+the default data movers. Also include the testbench’s output in your report.</p></li>
 <li><p>What is the expected latency of <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code>? (1 line)</p></li>
 <li><p>We could replace the local array in <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> with a stream. Assume that the
 stream requires no resources for buffering. What impact do you expect that will
@@ -586,22 +590,15 @@ code. (1 line)</p></li>
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="walk_through.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">7.2. </span>Setup and Walk-through</p>
-            </div>
-        </a>
-    </div>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="walk_through.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7.2. </span>Setup and Walk-through</p>
+        </div>
+    </a>
 </div>
         
         </div>
@@ -622,8 +619,7 @@ code. (1 line)</p></li>
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
