@@ -77,19 +77,27 @@ for the sake of easy grading.
     Click ***Kernels & Compute Units*** to see only the *kernel execution time*.
     We will check these three latencies throughout this HW.
     Report the latencies.
-    1. In the previous step, you must have seen warnings regarding unaligned host pointer.
-    You will now allocate contiguous host memories. 
-    Take a look at Step 2 in [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
-    In `apps/mmult/fpga/HostAligned.cpp`, we kindly provide three TODOs for this step.
-        ```{hint}
-        As shown in the example link, you should only use the following flags when allocating memory 
-        using cl::Buffer: CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY, CL_MEM_READ_ONLY | CL_MEM_WRITE_ONLY. 
-        All other flag usage prevents contiguous memory allocation or behaves non-deterministically on the Ultra96 
-        (i.e. when using CL_MEM_USE_HOST_PTR).
-        ```
-    1. Build the project with the modified host code. Because only the host code is modified,
-    it should take less than a minute to complete.
-    Copy only neccessary files and report the three latencies in the Vitis Analyzer.
+         ```{note}
+         There are two types of platforms: datacenter and embedded. 
+         Ultra96, we are using in class, is an embedded platform.
+         In `host.cpp`, many [examples](https://github.com/Xilinx/Vitis_Accel_Examples/blob/2020.2/host/data_transfer/src/host.cpp)
+         on the web, targeting datacenter cards, use `aligned_allocator` to avoid warnings regarding *unaligned host pointer*.
+         Note that we use `enqueueMapBuffer`, and this approach is portable accross both datacenter and embedded platforms,
+         as explained in Step 2 of [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
+         ```
+        <!-- 1. In the previous step, you must have seen warnings regarding unaligned host pointer.
+        You will now allocate contiguous host memories. 
+        Take a look at Step 2 in [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
+        In `apps/mmult/fpga/HostAligned.cpp`, we kindly provide three TODOs for this step.
+            ```{hint}
+            As shown in the example link, you should only use the following flags when allocating memory 
+            using cl::Buffer: CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY, CL_MEM_READ_ONLY | CL_MEM_WRITE_ONLY. 
+            All other flag usage prevents contiguous memory allocation or behaves non-deterministically on the Ultra96 
+            (i.e. when using CL_MEM_USE_HOST_PTR).
+            ```
+        1. Build the project with the modified host code. Because only the host code is modified,
+        it should take less than a minute to complete.
+        Copy only neccessary files and report the three latencies in the Vitis Analyzer. -->
     1. In the Vitis Analyzer, open the application timeline. Zoom in at the beginning of the kernel execution, and
     provide a screenshot in the write up.
     Based on the analyzer, suggest at least two ways of improving the performance of the FPGA code.
@@ -174,7 +182,8 @@ for the sake of easy grading.
 
     1. Learn about how to use multiple compute units from 
     [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html) 
-    and apply it to your design. Use 2 `mmult_fpga` units. This can also be done in the Compute Unit Settings we visited in the previous question.    
+    and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
+    Use 2 `mmult_fpga` units. This can also be done in the Compute Unit Settings we visited in the previous question.    
     Rebuild the FPGA version, 
     copy the binaries and boot files, reboot and test. This will take about 30 minutes to build. Report the latencies. 
     Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. If you are run out of the FPGA resources, report it.

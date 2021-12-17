@@ -502,22 +502,30 @@ Click <em><strong>Profile Summary</strong></em>, and then <em><strong>Summary</s
 <em>Total application runtime</em> and <em>Total kernel runtime</em>.
 Click <em><strong>Kernels &amp; Compute Units</strong></em> to see only the <em>kernel execution time</em>.
 We will check these three latencies throughout this HW.
-Report the latencies.</p></li>
-<li><p>In the previous step, you must have seen warnings regarding unaligned host pointer.
-You will now allocate contiguous host memories.
-Take a look at Step 2 in <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md">this tutorial</a>.
-In <code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/HostAligned.cpp</span></code>, we kindly provide three TODOs for this step.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>As shown in the example link, you should only use the following flags when allocating memory
-using cl::Buffer: CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY, CL_MEM_READ_ONLY | CL_MEM_WRITE_ONLY.
-All other flag usage prevents contiguous memory allocation or behaves non-deterministically on the Ultra96
-(i.e. when using CL_MEM_USE_HOST_PTR).</p>
+Report the latencies.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are two types of platforms: datacenter and embedded.
+Ultra96, we are using in class, is an embedded platform.
+In <code class="docutils literal notranslate"><span class="pre">host.cpp</span></code>, many <a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/blob/2020.2/host/data_transfer/src/host.cpp">examples</a>
+on the web, targeting datacenter cards, use <code class="docutils literal notranslate"><span class="pre">aligned_allocator</span></code> to avoid warnings regarding <em>unaligned host pointer</em>.
+Note that we use <code class="docutils literal notranslate"><span class="pre">enqueueMapBuffer</span></code>, and this approach is portable accross both datacenter and embedded platforms,
+as explained in Step 2 of <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md">this tutorial</a>.</p>
 </div>
+ <!-- 1. In the previous step, you must have seen warnings regarding unaligned host pointer.
+ You will now allocate contiguous host memories. 
+ Take a look at Step 2 in [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
+ In `apps/mmult/fpga/HostAligned.cpp`, we kindly provide three TODOs for this step.
+     ```{hint}
+     As shown in the example link, you should only use the following flags when allocating memory 
+     using cl::Buffer: CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY, CL_MEM_READ_ONLY | CL_MEM_WRITE_ONLY. 
+     All other flag usage prevents contiguous memory allocation or behaves non-deterministically on the Ultra96 
+     (i.e. when using CL_MEM_USE_HOST_PTR).
+     ```
+ 1. Build the project with the modified host code. Because only the host code is modified,
+ it should take less than a minute to complete.
+ Copy only neccessary files and report the three latencies in the Vitis Analyzer. -->
 </li>
-<li><p>Build the project with the modified host code. Because only the host code is modified,
-it should take less than a minute to complete.
-Copy only neccessary files and report the three latencies in the Vitis Analyzer.</p></li>
 <li><p>In the Vitis Analyzer, open the application timeline. Zoom in at the beginning of the kernel execution, and
 provide a screenshot in the write up.
 Based on the analyzer, suggest at least two ways of improving the performance of the FPGA code.</p>
@@ -603,7 +611,8 @@ We will use the outputs from this question in the next part.</p>
 </li>
 <li><p>Learn about how to use multiple compute units from
 <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html">here</a>
-and apply it to your design. Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can also be done in the Compute Unit Settings we visited in the previous question.<br />
+and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
+Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can also be done in the Compute Unit Settings we visited in the previous question.<br />
 Rebuild the FPGA version,
 copy the binaries and boot files, reboot and test. This will take about 30 minutes to build. Report the latencies.
 Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. If you are run out of the FPGA resources, report it.</p></li>
