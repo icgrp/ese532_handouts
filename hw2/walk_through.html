@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Setup and Walk-through &#8212; ESE5320 Handouts Fall 2022</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,40 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.3. Homework Submission" href="homework_submission.html" />
-    <link rel="prev" title="2.1. Collaboration" href="collaboration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -62,7 +61,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -83,7 +97,7 @@
       <img src="../_static/penn_engineering.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      <h1 class="site-logo" id="site-title">ESE5320 Handouts Fall 2022</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -91,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
    Syllabus
@@ -115,7 +130,7 @@
   Homework Assignments
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../hw1/index.html">
    1. Remember C
@@ -163,306 +178,299 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   2. Profiling
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="collaboration.html">
-     2.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     2.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="homework_submission.html">
-     2.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw3/index.html">
-   3. Thread Parallel
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw3/collaboration.html">
-     3.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw3/walk_through.html">
-     3.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw3/homework_submission.html">
-     3.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw4/index.html">
-   4. SIMD
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw4/collaboration.html">
-     4.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw4/walk_through.html">
-     4.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw4/homework_submission.html">
-     4.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw5/index.html">
-   5. Accelerator
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/collaboration.html">
-     5.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/walk_through.html">
-     5.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/homework_submission.html">
-     5.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw6/index.html">
-   6. Accelerator Interface
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/collaboration.html">
-     6.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/walk_through.html">
-     6.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/homework_submission.html">
-     6.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw7/index.html">
-   7. Restructuring C for Accelerator and Zynq Transition
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/collaboration.html">
-     7.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/walk_through.html">
-     7.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/homework_submission.html">
-     7.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/hw2/walk_through.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw2/walk_through.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw2/walk_through.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
         </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw2/walk_through.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw2/walk_through.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/hw2/walk_through.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#profiling-tutorial">
-   2.2.1. Profiling Tutorial
+   Profiling Tutorial
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
-   2.2.2. Obtaining and Running the Code
+   Obtaining and Running the Code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#measuring-latency">
-   2.2.3. Measuring Latency
+   Measuring Latency
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#instrumentation-based-profiling-with-timers">
-     2.2.3.1. Instrumentation-based Profiling with Timers
+     Instrumentation-based Profiling with Timers
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#profiling-using-gnu-gprof">
-     2.2.3.2. Profiling using GNU gprof
+     Profiling using GNU gprof
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#performance-counter-statistics-using-perf">
-     2.2.3.3. Performance Counter Statistics using Perf
+     Performance Counter Statistics using Perf
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Setup and Walk-through</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#profiling-tutorial">
+   Profiling Tutorial
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
+   Obtaining and Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-latency">
+   Measuring Latency
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instrumentation-based-profiling-with-timers">
+     Instrumentation-based Profiling with Timers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#profiling-using-gnu-gprof">
+     Profiling using GNU gprof
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-counter-statistics-using-perf">
+     Performance Counter Statistics using Perf
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="setup-and-walk-through">
-<h1><span class="section-number">2.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="profiling-tutorial">
-<h2><span class="section-number">2.2.1. </span>Profiling Tutorial<a class="headerlink" href="#profiling-tutorial" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="setup-and-walk-through">
+<h1>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">#</a></h1>
+<section id="profiling-tutorial">
+<h2>Profiling Tutorial<a class="headerlink" href="#profiling-tutorial" title="Permalink to this headline">#</a></h2>
 <p>Profiling is the first step in making your programs faster.
 In this tutorial, we will learn how to measure latency and
 find the bottleneck in your program.</p>
-</div>
-<div class="section" id="obtaining-and-running-the-code">
-<h2><span class="section-number">2.2.2. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="obtaining-and-running-the-code">
+<h2>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">#</a></h2>
 <p>Login to Biglab and clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
 repository using the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">icgrp</span><span class="o">/</span><span class="n">ese532_code</span><span class="o">.</span><span class="n">git</span>
@@ -485,9 +493,9 @@ The code you will use for
 <span class="o">./</span><span class="n">rendering</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="measuring-latency">
-<h2><span class="section-number">2.2.3. </span>Measuring Latency<a class="headerlink" href="#measuring-latency" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="measuring-latency">
+<h2>Measuring Latency<a class="headerlink" href="#measuring-latency" title="Permalink to this headline">#</a></h2>
 <p>You can measure latency in many different ways—instrumenting the code vs sampling-based profiling,
 using system timer vs using hardware timer etc. (review these
 <a class="reference external" href="https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf">slides</a> and learn about clock sources <a class="reference external" href="http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/">here</a>). However, the
@@ -495,8 +503,8 @@ end goal is the same; which is to answer where is the bottleneck?</p>
 <p>In this tutorial, we will show you how you can use the system timer to
 measure latency in seconds for parts of your program. We’ll then demonstrate how you can use linux <code class="docutils literal notranslate"><span class="pre">gprof</span></code> to automatically instrument
 your code and get profiling information. Lastly, we’ll show how you can use linux <code class="docutils literal notranslate"><span class="pre">perf</span></code> tool to get <em><strong>performance counter</strong></em> statistics of your program.</p>
-<div class="section" id="instrumentation-based-profiling-with-timers">
-<span id="profiling-instrumentation"></span><h3><span class="section-number">2.2.3.1. </span>Instrumentation-based Profiling with Timers<a class="headerlink" href="#instrumentation-based-profiling-with-timers" title="Permalink to this headline">¶</a></h3>
+<section id="instrumentation-based-profiling-with-timers">
+<span id="profiling-instrumentation"></span><h3>Instrumentation-based Profiling with Timers<a class="headerlink" href="#instrumentation-based-profiling-with-timers" title="Permalink to this headline">#</a></h3>
 <p>In C++, you can use <code class="docutils literal notranslate"><span class="pre">std::chrono::high_resolution_clock::now()</span></code> from <code class="docutils literal notranslate"><span class="pre">&lt;chrono&gt;</span></code>.
 For example:</p>
 <div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">start_time</span><span class="p">,</span><span class="w"> </span><span class="n">end_time</span><span class="p">;</span><span class="w"></span>
@@ -512,7 +520,7 @@ For example:</p>
 <div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
 
-<span class="k">class</span> <span class="nc">stopwatch</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">stopwatch</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">total_time</span><span class="p">,</span><span class="w"> </span><span class="n">calls</span><span class="p">;</span><span class="w"></span>
@@ -633,9 +641,9 @@ optimization.</p>
 <p>For our assignments, the <code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> class we built
 here should suffice. If you would like to try out
 something fancier, check out <a class="reference external" href="https://github.com/google/benchmark">https://github.com/google/benchmark</a>!</p>
-</div>
-<div class="section" id="profiling-using-gnu-gprof">
-<span id="profiling-gprof"></span><h3><span class="section-number">2.2.3.2. </span>Profiling using GNU gprof<a class="headerlink" href="#profiling-using-gnu-gprof" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="profiling-using-gnu-gprof">
+<span id="profiling-gprof"></span><h3>Profiling using GNU gprof<a class="headerlink" href="#profiling-using-gnu-gprof" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">gprof</span></code> is a tool in the GNU toolchain that can automatically instrument
 every function in your code and give you the timing breakdown
 of your program.</p>
@@ -704,9 +712,9 @@ You will notice that the code that <code class="docutils literal notranslate"><s
 every 0.01 seconds. Hence, if your function runs faster than this
 sampling period, <code class="docutils literal notranslate"><span class="pre">gprof</span></code>’s results will be inaccurate. You can find out
 more about this from <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/Sampling-Error.html">here</a>. Also, refer to the <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/">manual</a> to find out about more command line options.</p>
-</div>
-<div class="section" id="performance-counter-statistics-using-perf">
-<span id="profiling-perf"></span><h3><span class="section-number">2.2.3.3. </span>Performance Counter Statistics using Perf<a class="headerlink" href="#performance-counter-statistics-using-perf" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="performance-counter-statistics-using-perf">
+<span id="profiling-perf"></span><h3>Performance Counter Statistics using Perf<a class="headerlink" href="#performance-counter-statistics-using-perf" title="Permalink to this headline">#</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Biglab doesn’t have perf. The following is for your reference
@@ -790,9 +798,9 @@ of individual function in <em><strong>cycles</strong></em> instead, you can just
 measured time with the clock frequency to figure out the cycles.
 Alternatively you could get the fraction of time spent by your function
 and use the total number of cycles from <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">stat</span></code>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -816,44 +824,34 @@ and use the total number of cycles from <code class="docutils literal notranslat
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="collaboration.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2.1. </span>Collaboration</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="homework_submission.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.3. </span>Homework Submission</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Department of Electrical and Systems Engineering<br/>
-        
-            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Department of Electrical and Systems Engineering<br/>
+  
+      &copy; Copyright 2022 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

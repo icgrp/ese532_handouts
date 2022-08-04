@@ -19,11 +19,14 @@ Following are some recommended resources for learning C:
 - {download}`deep C <pdfs/deep-c-cpp.pdf>`
 
 1. Write the C code to reproduce the contents of the stack and heap
-as shown in {numref}`pointer-question-1`. You can use any variable and pointer names with int type. For e.g. address `0x5C` is filled with `int x = 20;`. Note that the hex values shown below are not absolute and is
-just there as a guide. We expect location of heap and stack to be different.
-    ```{figure} images/memory_map_1.png
+as shown in {numref}`pointer-question-1`. You can use any variable and pointer names with int type. For e.g. address `0x5C` is filled with `int x = 20;`. 
+Note that the address values shown below are not absolute and is
+just there as a guide. <!-- We expect location of heap and stack to be different.  -->
+In your report, include the C code and screenshot of the terminal outputs
+that verify your solution.
+    ```{figure} images/memory_map_1_new.png
     ---
-    height: 300px
+    height: 400px
     name: pointer-question-1
     ---
     Memory space with stack and heap
@@ -31,8 +34,10 @@ just there as a guide. We expect location of heap and stack to be different.
     ```{hint}
      - Find out what causes things to go into stack vs heap in C. Find out how the stack and heap grow.
      - Use `printf` to print out the value and addresses and verify whether something went into the stack or heap. You can also use `printf` to figure out which direction the stack and heap are growing.
-     - Use the address values as a guide. For instance, for the addresses `0x34`, `0x38`, `0x3C`, why are the differences between the addresses 4 bytes? Compared to addresses, `0x40`, `0x48`, `0x50`, the differences there are 8 bytes---why is that? Do the contents in those addresses tell you something about it? Why are there arrows for some boxes and not for others (the arrows are also there just to guide you)?
-     - What data structure do the contents at `0x34`, `0x38`, and `0x3C` remind you of?
+     - Use the address values as a guide. For instance, for the addresses `0x24`, `0x28`, `0x2C`, why are the differences between the addresses 4 bytes? 
+     Compared to addresses, `0x40`, `0x48`, `0x50`, the differences there are 8 bytes---why is that? 
+     Do the contents in those addresses tell you something about it? Why are there arrows for some boxes and not for others (the arrows are also there just to guide you)?
+     - What data structure do the contents at `0x24`, `0x28`, and `0x2C` remind you of?
     ```
 
 2. The stack grows downward and the heap grows upwards
@@ -53,9 +58,13 @@ program under an OS vs when you are running in a bare-metal system.
     ```
 
 3. {numref}`pointer-question-2` shows the content of an 8 element int array on the stack.
-    1. Write the C code to allocate this array on the stack as shown in {numref}`Fig. {number}(a) <pointer-question-2>`, as a 2D array.
-    2. Building from (a), declare an array of pointers as shown in {numref}`Fig. {number}(b) <pointer-question-2>`, and use it to print out the contents of the 2D array.
-    3. Building from (b), declare a double pointer as shown in {numref}`Fig. {number}(c) <pointer-question-2>`, and use it to print out the contents of the 2D array.
+    1. `int a[2][4] = {{10, 20, 30, 40}, {50, 60, 70, 80}};` creates a
+    stack memory space shown in <!-- Write the C code to allocate this array on the stack as shown in  -->
+    {numref}`Fig. {number}(a) <pointer-question-2>`, as a 2D array. 
+    Declare an array of pointers as shown in {numref}`Fig. {number}(b) <pointer-question-2>`, and use it to print out the contents of the 2D array.
+    Include the C code and screenshot of the terminal outputs that verify your solution.    
+    2. Declare a double pointer as shown in {numref}`Fig. {number}(c) <pointer-question-2>`, and use it to print out the contents of the 2D array.
+    Include the C code and screenshot of the terminal outputs that verify your solution.
       ```{hint}
       A 2D array is not equivalent to a double pointer! Review
       [these slides](https://cs.brynmawr.edu/Courses/cs246/spring2014/Slides/16_2DArray_Pointers.pdf).
@@ -70,7 +79,8 @@ program under an OS vs when you are running in a bare-metal system.
 
 4. Considering the following code, give an expression to obtain
 the address of `b` that can be accessed via the third
-element of `x`. (1 line)
+element of `x`. <!--(1 line)-->
+    Include the C code and screenshot of the terminal outputs that verify your solution.
     ```C
     struct s2 {
       float a;
@@ -87,8 +97,9 @@ element of `x`. (1 line)
 
 5. The following array will be stored as a sequence of bits in
 memory.  We could also consider these bits as a sequence
-of bytes (`unsigned char`).  Show code that prints those
-bytes.   Avoid needless copying or losing information.
+of bytes (`unsigned char`).  <!-- Show code that prints those bytes. -->   Include the code that prints those bytes 
+and screenshot of the terminal outputs.
+Avoid needless copying or losing information.
 Note that an IEEE Double-precision floating-point value is
 stored in 64 bits.  You can see
 <https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/>
@@ -101,8 +112,8 @@ your solution is reporting.
     ```
 
 6. Put together code to print the address associated with each of the
-arrays, `a`, `b`, `c`, and `d`.
-Include the code and the results of running it and reporting the addresses.
+arrays, `a`, `b`, `c`, and `d`. <!-- Include the code and the results of running it and reporting the addresses. -->
+Include the code and screenshot of the terminal outputs.
     ```C
     void temp(int i) {
       int a[2];
@@ -127,7 +138,7 @@ Include the code and the results of running it and reporting the addresses.
 
     b[4]=13;
     ```
-    Many different things could happen.  Give multiple answers.  For each
+    Many different things could happen.  Give two answers.  For each
     identified case, what happens and why (2 lines max for each case).
 
 
@@ -168,8 +179,10 @@ Include the code and the results of running it and reporting the addresses.
         }
     }
     ```
-    Explain the results you get.  Why do the `char` and `unsigned char` sums differ
-    from the integer sums?  (2-3 lines each) Why does the computer produce the specific values
+    Explain the results you get.  
+    1. Why do the `char` and `unsigned char` sums differ
+    from the integer sums?  (2-3 lines each) 
+    2. Why does the computer produce the specific values
     that it does for each of the `char` and `unsigned char` sums? (1-3
     lines each)
 

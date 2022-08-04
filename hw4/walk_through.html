@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Setup and Walk-through &#8212; ESE5320 Handouts Fall 2022</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,40 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.3. Homework Submission" href="homework_submission.html" />
-    <link rel="prev" title="4.1. Collaboration" href="collaboration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -62,7 +61,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -83,7 +97,7 @@
       <img src="../_static/penn_engineering.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      <h1 class="site-logo" id="site-title">ESE5320 Handouts Fall 2022</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -91,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
    Syllabus
@@ -115,7 +130,7 @@
   Homework Assignments
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../hw1/index.html">
    1. Remember C
@@ -163,291 +178,234 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw2/index.html">
-   2. Profiling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw2/collaboration.html">
-     2.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw2/walk_through.html">
-     2.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw2/homework_submission.html">
-     2.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw3/index.html">
-   3. Thread Parallel
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw3/collaboration.html">
-     3.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw3/walk_through.html">
-     3.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw3/homework_submission.html">
-     3.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   4. SIMD
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="collaboration.html">
-     4.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     4.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="homework_submission.html">
-     4.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw5/index.html">
-   5. Accelerator
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/collaboration.html">
-     5.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/walk_through.html">
-     5.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/homework_submission.html">
-     5.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw6/index.html">
-   6. Accelerator Interface
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/collaboration.html">
-     6.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/walk_through.html">
-     6.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/homework_submission.html">
-     6.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw7/index.html">
-   7. Restructuring C for Accelerator and Zynq Transition
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/collaboration.html">
-     7.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/walk_through.html">
-     7.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/homework_submission.html">
-     7.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/hw4/walk_through.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw4/walk_through.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw4/walk_through.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
         </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw4/walk_through.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw4/walk_through.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/hw4/walk_through.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vectorization">
-   4.2.1. Vectorization
+   Vectorization
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#obtaining-the-code">
-   4.2.2. Obtaining the Code
+   Obtaining the Code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#environment-setup">
-   4.2.3. Environment Setup
+   Environment Setup
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-up-ultra96-and-host-computer">
-     4.2.3.1. Setting up Ultra96 and Host Computer
+     Setting up Ultra96 and Host Computer
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-on-the-fpga">
-     4.2.3.2. Run on the FPGA
+     Run on the FPGA
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#write-the-sd-card-image">
-       4.2.3.2.1. Write the SD Card Image
+       Write the SD Card Image
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-with-linux">
-       4.2.3.2.2. Boot the Ultra96 (Environment - Personal Computer with Linux)
+       Boot the Ultra96 (Environment - Personal Computer with Linux)
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
-       4.2.3.2.3. Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)
+       Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)
       </a>
      </li>
     </ul>
@@ -456,49 +414,143 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#running-the-code">
-   4.2.4. Running the Code
+   Running the Code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#working-with-neon">
-   4.2.5. Working with NEON
+   Working with NEON
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#basics">
-     4.2.5.1. Basics
+     Basics
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#coding-with-neon-intrinsics">
-     4.2.5.2. Coding with NEON Intrinsics
+     Coding with NEON Intrinsics
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#optimization">
-     4.2.5.3. Optimization:
+     Optimization:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#more-resources">
-     4.2.5.4. More Resources:
+     More Resources:
     </a>
    </li>
   </ul>
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Setup and Walk-through</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectorization">
+   Vectorization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-the-code">
+   Obtaining the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-ultra96-and-host-computer">
+     Setting up Ultra96 and Host Computer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-on-the-fpga">
+     Run on the FPGA
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#write-the-sd-card-image">
+       Write the SD Card Image
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-with-linux">
+       Boot the Ultra96 (Environment - Personal Computer with Linux)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
+       Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-code">
+   Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-neon">
+   Working with NEON
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics">
+     Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coding-with-neon-intrinsics">
+     Coding with NEON Intrinsics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization">
+     Optimization:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-resources">
+     More Resources:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="setup-and-walk-through">
-<h1><span class="section-number">4.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="setup-and-walk-through">
+<h1>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">#</a></h1>
 <style type="text/css">
     .table { margin-left:auto; margin-right:auto;}
     .table { width: 70%; }
@@ -506,21 +558,23 @@
     td {height:50px;text-align: center;}
     tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
-<div class="section" id="vectorization">
-<h2><span class="section-number">4.2.1. </span>Vectorization<a class="headerlink" href="#vectorization" title="Permalink to this headline">¶</a></h2>
+<section id="vectorization">
+<h2>Vectorization<a class="headerlink" href="#vectorization" title="Permalink to this headline">#</a></h2>
 <p>We will divide the computation into vectors that run on
 the NEON units in our ARM cores.
-<a class="reference internal" href="#cortex-a53"><span class="std std-numref">Fig. 4.1</span></a> shows the high level block diagram of
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">cortex-a53</span></code> shows the high level block diagram of
 the ARM core in Ultra96 board.</p>
-<div class="figure align-default" id="cortex-a53">
+<figure class="align-default" id="cortex-a53">
 <img alt="../_images/cortex-a53.png" src="../_images/cortex-a53.png" />
-<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">ARM Cortex A-53 Overview. Source: <a class="reference external" href="https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh">ANANDTECH</a></span><a class="headerlink" href="#cortex-a53" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">ARM Cortex A-53 Overview. Source: <a class="reference external" href="https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh">ANANDTECH</a></span><a class="headerlink" href="#cortex-a53" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The Ultra96 boards have ARM Cortex A-53 cores. It’s a
 2-way decode, in-order core with one 64-bit NEON SIMD unit,
-as shown in <a class="reference internal" href="#arm-core-table"><span class="std std-numref">Table 4.1</span></a>.</p>
+as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">arm-core-table</span></code>.</p>
 <table class="table" id="arm-core-table">
-<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">ARM Core, Source: <a class="reference external" href="https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3">A-53</a></span><a class="headerlink" href="#arm-core-table" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">ARM Core, Source: <a class="reference external" href="https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3">A-53</a></span><a class="headerlink" href="#arm-core-table" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -568,9 +622,9 @@ Units in our cores. An intrinsic behaves syntactically like a function,
 but the compiler translates it to a specific instruction that is inlined
 in the code. In the following sections, we will guide you through
 reading the NEON Programmer’s guide and learning to use these APIs.</p>
-</div>
-<div class="section" id="obtaining-the-code">
-<h2><span class="section-number">4.2.2. </span>Obtaining the Code<a class="headerlink" href="#obtaining-the-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="obtaining-the-code">
+<h2>Obtaining the Code<a class="headerlink" href="#obtaining-the-code" title="Permalink to this headline">#</a></h2>
 <p>In the previous homework, we dealt with a streaming application that
 compressed a video stream, and explored how to implement coarse-grain data-level parallelism
 and pipeline parallelism using <code class="docutils literal notranslate"><span class="pre">std::threads</span></code> to speedup the application. For this homework,
@@ -616,11 +670,11 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw4</span
 </li>
 <li><p>We will now copy the <code class="docutils literal notranslate"><span class="pre">hw4</span></code> directory into the Ultra96.</p></li>
 </ul>
-</div>
-<div class="section" id="environment-setup">
-<h2><span class="section-number">4.2.3. </span>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="setting-up-ultra96-and-host-computer">
-<h3><span class="section-number">4.2.3.1. </span>Setting up Ultra96 and Host Computer<a class="headerlink" href="#setting-up-ultra96-and-host-computer" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">#</a></h2>
+<section id="setting-up-ultra96-and-host-computer">
+<h3>Setting up Ultra96 and Host Computer<a class="headerlink" href="#setting-up-ultra96-and-host-computer" title="Permalink to this headline">#</a></h3>
 <p>We have provided you with:</p>
 <ul class="simple">
 <li><p>An Ultra96 board with a power cable and a JTAG USB cable</p>
@@ -638,15 +692,19 @@ and 2 should be in the “on” position.</p></li>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/sd_card_mode.jpg"><img alt="../_images/sd_card_mode.jpg" src="../_images/sd_card_mode.jpg" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>And also make sure you have properly connected the JTAG module as follows:</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/jtag.png"><img alt="../_images/jtag.png" src="../_images/jtag.png" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">JTAG module</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -654,16 +712,18 @@ and 2 should be in the “on” position.</p></li>
 <div><p>Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <a class="reference external" href="http://www.zedboard.org/product/ultra96-usb-jtaguart-pod">http://www.zedboard.org/product/ultra96-usb-jtaguart-pod</a></p>
 </div></blockquote>
 </div>
-<p>Your setup for this HW should look like <a class="reference internal" href="#ultra96-setup"><span class="std std-numref">Fig. 4.4</span></a>.</p>
-<div class="figure align-default" id="ultra96-setup">
+<p>Your setup for this HW should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p>
+<figure class="align-default" id="ultra96-setup">
 <img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" />
-<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="run-on-the-fpga">
-<h3><span class="section-number">4.2.3.2. </span>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="write-the-sd-card-image">
-<h4><span class="section-number">4.2.3.2.1. </span>Write the SD Card Image<a class="headerlink" href="#write-the-sd-card-image" title="Permalink to this headline">¶</a></h4>
+<figcaption>
+<p><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="run-on-the-fpga">
+<h3>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">#</a></h3>
+<section id="write-the-sd-card-image">
+<h4>Write the SD Card Image<a class="headerlink" href="#write-the-sd-card-image" title="Permalink to this headline">#</a></h4>
 <ul>
 <li><p>Download a sample SD card image for Ultra96 from
 <a class="reference external" href="https://www.element14.com/community/docs/DOC-95649/l/ultra96-v2">here</a>.</p>
@@ -691,13 +751,13 @@ and 2 should be in the “on” position.</p></li>
 </li>
 <li><p>Once you finish writing the image to the SD card, slide it into your Ultra96’s SD card slot.</p></li>
 </ul>
-</div>
-<div class="section" id="boot-the-ultra96-environment-personal-computer-with-linux">
-<h4><span class="section-number">4.2.3.2.2. </span>Boot the Ultra96 (Environment - Personal Computer with Linux)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-with-linux" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="boot-the-ultra96-environment-personal-computer-with-linux">
+<h4>Boot the Ultra96 (Environment - Personal Computer with Linux)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-with-linux" title="Permalink to this headline">#</a></h4>
 <ul>
 <li><p>The instructions here are for users running Linux on their personal computers. For Windows users, skim these through, and
 go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a>.</p></li>
-<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#ultra96-setup"><span class="std std-numref">Fig. 4.4</span></a>.</p></li>
+<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries into the Ultra96</p></li>
@@ -714,11 +774,13 @@ something different, like <code class="docutils literal notranslate"><span class
 of <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, use <code class="docutils literal notranslate"><span class="pre">CTRL-A</span> <span class="pre">Z</span> <span class="pre">q</span></code></p>
 </li>
 <li><p>After you have connected to the serial port, boot the board
-by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 5.8</span></a>.</p>
-<div class="figure align-default" id="boot">
+by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p>
+<figure class="align-default" id="boot">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
-<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </li>
 <li><p>Watch your serial console for boot messages. Following is what ours look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>�Xilinx Zynq MP First Stage Boot Loader
@@ -817,21 +879,23 @@ computer.</p></li>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
-<span id="boot-windows"></span><h4><span class="section-number">4.2.3.2.3. </span>Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
+<span id="boot-windows"></span><h4>Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows" title="Permalink to this headline">#</a></h4>
 <ul>
 <li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" />
-<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Find the port</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </li>
 <li><p>Download and install MobaXterm from <a class="reference external" href="https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip">here</a>.</p></li>
 <li><p>Start MobaXterm. Click <em><strong>Session</strong></em> in the left top corner and select <em><strong>Serial</strong></em>.
 Set the serial port as the one you found in the previous step and bps. In the example case,
 it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
-<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 5.8</span></a>.</p></li>
+<li><p>Boot the board by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p></li>
 <li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
 </pre></div>
@@ -839,35 +903,41 @@ it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
 </li>
 <li><p>Click plus sign to open up the local machine’s session(new tab).
 Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" />
-<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </li>
 <li><p>Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
 previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
 <code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(note that
 this is 24!) as follows:</p>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" />
-<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </li>
 <li><p>Your devices are now connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
-<div class="figure align-default" id="id6">
+<figure class="align-default" id="id6">
 <img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" />
-<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </li>
 <li><p>You can view the files of the Ultra96 on the left hand side.
 You can easily drag and drop files from/to the local machine to/from Ultra96.
 Drag and drop <code class="docutils literal notranslate"><span class="pre">hw4</span></code> folder on the left hand side to start this HW.</p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="running-the-code">
-<h2><span class="section-number">4.2.4. </span>Running the Code<a class="headerlink" href="#running-the-code" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="running-the-code">
+<h2>Running the Code<a class="headerlink" href="#running-the-code" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>There are 3 targets, which we will build <strong>in the Ultra96</strong>. You can build all of them by executing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>
 in the <code class="docutils literal notranslate"><span class="pre">hw4/assignment</span></code> directory. You can build separately by:</p>
@@ -887,13 +957,13 @@ your program’s output and the expected output.</p></li>
 four parts.</p></li>
 <li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">assignment/src</span></code> folder.</p></li>
 </ul>
-</div>
-<div class="section" id="working-with-neon">
-<h2><span class="section-number">4.2.5. </span>Working with NEON<a class="headerlink" href="#working-with-neon" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="working-with-neon">
+<h2>Working with NEON<a class="headerlink" href="#working-with-neon" title="Permalink to this headline">#</a></h2>
 <p>We are going to do some reading from the arm developer website articles and
 the NEON Programmer’s Guide in the following sections.</p>
-<div class="section" id="basics">
-<h3><span class="section-number">4.2.5.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+<section id="basics">
+<h3>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">#</a></h3>
 <p>Read <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/introducing-neon-for-armv8-a/single-page">Introducing Neon for Armv8-a</a> and answer the
 following questions. We have given you the answers, however make sure you
 do the reading! Knowing where to look in a programmer’s
@@ -967,9 +1037,9 @@ q0 is a scalar register of 128-bits.</p>
 <p>When the input and output vectors are 64-bit vectors, don’t use intrinsics with ‘q’ suffix.
 When the input and output vectors are 128-bit vectors, do use intrinsics with ‘q’ suffix.</p>
 </div>
-</div>
-<div class="section" id="coding-with-neon-intrinsics">
-<span id="coding-neon"></span><h3><span class="section-number">4.2.5.2. </span>Coding with NEON Intrinsics<a class="headerlink" href="#coding-with-neon-intrinsics" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="coding-with-neon-intrinsics">
+<span id="coding-neon"></span><h3>Coding with NEON Intrinsics<a class="headerlink" href="#coding-with-neon-intrinsics" title="Permalink to this headline">#</a></h3>
 <p>Read chapter four from the NEON Programmer’s Guide and answer the following questions.
 Use the <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">Neon Intrinsics Reference</a> website to find and understand any instruction.</p>
 <div class="admonition tip">
@@ -1024,9 +1094,9 @@ Use the <a class="reference external" href="https://developer.arm.com/architectu
 <p class="admonition-title">12. Which intrinsic should you use to store data from a uint8x16_t variable to a pointer?</p>
 <p><code class="docutils literal notranslate"><span class="pre">vst1q_u8</span></code></p>
 </div>
-</div>
-<div class="section" id="optimization">
-<h3><span class="section-number">4.2.5.3. </span>Optimization:<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="optimization">
+<h3>Optimization:<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Read section 2.1.10, 2.8, and chapter 5 from the NEON Programmer’s Guide.</p></li>
 <li><p>Watch the talk: <a class="reference external" href="https://youtu.be/ixuDntaSnHI">Taming ARMv8 NEON: from theory to benchmark results</a></p></li>
@@ -1035,16 +1105,16 @@ Use the <a class="reference external" href="https://developer.arm.com/architectu
 <li><p>Read (supplemental) <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a/neon-intrinsics-chromium-case-study/single-page">Neon Intrinsics Chromium Case Study</a></p></li>
 <li><p>Read (supplemental) <a class="reference external" href="http://www.cs.utexas.edu/~pingali/CS377P/2017sp/lectures/david-vectorization.pdf">Program Optimization through Loop Vectorization</a></p></li>
 </ul>
-</div>
-<div class="section" id="more-resources">
-<h3><span class="section-number">4.2.5.4. </span>More Resources:<a class="headerlink" href="#more-resources" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="more-resources">
+<h3>More Resources:<a class="headerlink" href="#more-resources" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://community.arm.com/developer/tools-software/oss-platforms/b/android-blog/posts/arm-neon-programming-quick-reference">NEON Quick reference guide</a></p></li>
 <li><p><a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">NEON Intrinsics Reference</a></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1068,44 +1138,34 @@ Use the <a class="reference external" href="https://developer.arm.com/architectu
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="collaboration.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4.1. </span>Collaboration</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="homework_submission.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.3. </span>Homework Submission</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Department of Electrical and Systems Engineering<br/>
-        
-            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Department of Electrical and Systems Engineering<br/>
+  
+      &copy; Copyright 2022 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

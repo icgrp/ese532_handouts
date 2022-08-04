@@ -43,7 +43,7 @@ to locate the bug in the code. Specifically, we are asking you to
 code and recompile. Once you have the correct code, tar your sources
 and Makefile and upload it to canvas.
 
-4. In your report, describe how you found the bug, how you changed the code, and show the message that should have been displayed.
+4. In your report, provide 1)how you changed the code, 2)Makefile, 3)the message that should have been displayed and 4)how you found the bug. <!-- describe how you found the bug, how you changed the code, and show the message that should have been displayed. -->
 
 5. How does GDB know where functions and data are located in
 the executable when you are debugging? (3 lines max.)
@@ -61,8 +61,8 @@ For example, when given the values 20, 5, 10 our list
 should end up sorted as “5, 10, 20“.
 In this case the `head` of the list is 5 and the "tail" is 20.
 In your report, put the implementation of `insert_in_order` function.
-Write a Makefile to build the program. Tar your sources and Makefile
-and upload it to canvas.
+Write a Makefile to build the program and add the screenshot of the outputs that verify your solution.
+Tar your sources and Makefile and upload it to canvas.
 
     ```{hint}
     The purpose of this problem is to help prepare you to write and debug C

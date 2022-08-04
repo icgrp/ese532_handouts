@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3.2. Setup and Walk-through &#8212; ESE532 Handouts Fall 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Setup and Walk-through &#8212; ESE5320 Handouts Fall 2022</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,40 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.3. Homework Submission" href="homework_submission.html" />
-    <link rel="prev" title="3.1. Collaboration" href="collaboration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -62,7 +61,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -83,7 +97,7 @@
       <img src="../_static/penn_engineering.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">ESE532 Handouts Fall 2021</h1>
+      <h1 class="site-logo" id="site-title">ESE5320 Handouts Fall 2022</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -91,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference external" href="https://www.seas.upenn.edu/~ese532/fall2021/fall2021.html">
    Syllabus
@@ -115,7 +130,7 @@
   Homework Assignments
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../hw1/index.html">
    1. Remember C
@@ -163,286 +178,229 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw2/index.html">
-   2. Profiling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw2/collaboration.html">
-     2.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw2/walk_through.html">
-     2.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw2/homework_submission.html">
-     2.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   3. Thread Parallel
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="collaboration.html">
-     3.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     3.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="homework_submission.html">
-     3.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw4/index.html">
-   4. SIMD
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw4/collaboration.html">
-     4.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw4/walk_through.html">
-     4.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw4/homework_submission.html">
-     4.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw5/index.html">
-   5. Accelerator
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/collaboration.html">
-     5.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/walk_through.html">
-     5.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw5/homework_submission.html">
-     5.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw6/index.html">
-   6. Accelerator Interface
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/collaboration.html">
-     6.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/walk_through.html">
-     6.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw6/homework_submission.html">
-     6.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw7/index.html">
-   7. Restructuring C for Accelerator and Zynq Transition
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/collaboration.html">
-     7.1. Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/walk_through.html">
-     7.2. Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/homework_submission.html">
-     7.3. Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/hw3/walk_through.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/icgrp/ese532_handouts"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw3/walk_through.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw3/walk_through.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
         </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts/issues/new?title=Issue%20on%20page%20%2Fhw3/walk_through.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/icgrp/ese532_handouts/edit/master/ese532_handouts/hw3/walk_through.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/hw3/walk_through.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linux-vs-bare-metal">
-   3.2.1. Linux vs Bare-Metal
+   Linux vs Bare-Metal
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
-   3.2.2. Obtaining and Running the Code
+   Obtaining and Running the Code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#working-with-threads">
-   3.2.3. Working with Threads
+   Working with Threads
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#basics">
-     3.2.3.1. Basics
+     Basics
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#coarse-grain">
-     3.2.3.2. Coarse-grain
+     Coarse-grain
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pipeline">
-     3.2.3.3. Pipeline
+     Pipeline
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#monitoring-processes-using-htop">
-     3.2.3.4. Monitoring Processes using
+     Monitoring Processes using
      <code class="docutils literal notranslate">
       <span class="pre">
        htop
@@ -454,25 +412,87 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Setup and Walk-through</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linux-vs-bare-metal">
+   Linux vs Bare-Metal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
+   Obtaining and Running the Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-threads">
+   Working with Threads
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics">
+     Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coarse-grain">
+     Coarse-grain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipeline">
+     Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monitoring-processes-using-htop">
+     Monitoring Processes using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       htop
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="setup-and-walk-through">
-<h1><span class="section-number">3.2. </span>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="linux-vs-bare-metal">
-<h2><span class="section-number">3.2.1. </span>Linux vs Bare-Metal<a class="headerlink" href="#linux-vs-bare-metal" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="topo">
+  <section class="tex2jax_ignore mathjax_ignore" id="setup-and-walk-through">
+<h1>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">#</a></h1>
+<section id="linux-vs-bare-metal">
+<h2>Linux vs Bare-Metal<a class="headerlink" href="#linux-vs-bare-metal" title="Permalink to this headline">#</a></h2>
+<figure class="align-default" id="topo">
 <a class="reference internal image-reference" href="../_images/topo.png"><img alt="../_images/topo.png" src="../_images/topo.png" style="height: 450px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">An 8-core machine with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">An 8-core machine with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>We will divide the computation into threads that run on different processors.
-<a class="reference internal" href="#topo"><span class="std std-numref">Fig. 3.1</span></a> shows a machine on Biglab. Some nodes in Biglab have 4 cores with
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">topo</span></code> shows a machine on Biglab. Some nodes in Biglab have 4 cores with
 2 hyper-threads each and others have 8 cores with 1 thread each.
 We will be running these threads on the Linux OS and hence, all the
 heavy lifting of sharing main memory global address is taken care of
@@ -511,9 +531,9 @@ use these APIs in the following sections, but if you would like to learn about
 <li><p><a class="reference external" href="https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/">Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is</a></p></li>
 </ul>
 <p>If you prefer a book, refer to <em><strong>C++ Concurrency in Action</strong></em> by Anthony D. Williams.</p>
-</div>
-<div class="section" id="obtaining-and-running-the-code">
-<h2><span class="section-number">3.2.2. </span>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="obtaining-and-running-the-code">
+<h2>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">#</a></h2>
 <p>In the previous homework, we dealt with a streaming application that
 compressed only one picture. For this homework, we will use the same
 application, except that it will take a video stream instead of a
@@ -584,11 +604,11 @@ cdc will produce.</p></li>
 four parts.</p></li>
 <li><p>You will mostly be working with the code in the rest of the folders.</p></li>
 </ul>
-</div>
-<div class="section" id="working-with-threads">
-<h2><span class="section-number">3.2.3. </span>Working with Threads<a class="headerlink" href="#working-with-threads" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="basics">
-<h3><span class="section-number">3.2.3.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="working-with-threads">
+<h2>Working with Threads<a class="headerlink" href="#working-with-threads" title="Permalink to this headline">#</a></h2>
+<section id="basics">
+<h3>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">#</a></h3>
 <p>Consider the following code:</p>
 <div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
@@ -773,7 +793,7 @@ specific core? Let’s learn how to do that.</p>
 works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
 machine, keep it in mind.</p></li>
-<li><p>Also note how in <a class="reference internal" href="#topo"><span class="std std-numref">Fig. 3.1</span></a> there are 2 hyper-threads
+<li><p>Also note how in <code class="xref std std-numref docutils literal notranslate"><span class="pre">topo</span></code> there are 2 hyper-threads
 per core. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
@@ -867,9 +887,9 @@ Hence, if you need to pass something by reference (as we see <code class="docuti
 <p>This concludes everything you need to know about <code class="docutils literal notranslate"><span class="pre">std::threads</span></code> to
 complete this homework. You can run the full walk-through by
 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">walkthrough</span></code> and <code class="docutils literal notranslate"><span class="pre">./walkthrough</span></code>.</p>
-</div>
-<div class="section" id="coarse-grain">
-<h3><span class="section-number">3.2.3.2. </span>Coarse-grain<a class="headerlink" href="#coarse-grain" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="coarse-grain">
+<h3>Coarse-grain<a class="headerlink" href="#coarse-grain" title="Permalink to this headline">#</a></h3>
 <p>The coarse-grain part of the homework shows you how you can process
 a data parallel function with threads. We show how you change the
 <code class="docutils literal notranslate"><span class="pre">Scale</span></code> function to process it with two threads:</p>
@@ -899,7 +919,7 @@ threads work on it:</p>
 <span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">ths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">ths</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">th</span> <span class="p">:</span><span class="w"> </span><span class="n">ths</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">th</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ths</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
@@ -910,9 +930,9 @@ threads work on it:</p>
 processes indices <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">270)</span></code> and the other processes <code class="docutils literal notranslate"><span class="pre">[270,</span> <span class="pre">540)</span></code>.
 If you wanted to use three threads, you can split the indices as <code class="docutils literal notranslate"><span class="pre">[0,180)</span></code>,
 <code class="docutils literal notranslate"><span class="pre">[180,</span> <span class="pre">360)</span></code> and <code class="docutils literal notranslate"><span class="pre">[360,</span> <span class="pre">540)</span></code> and invoke another thread and pin it to cpu 3.</p>
-</div>
-<div class="section" id="pipeline">
-<h3><span class="section-number">3.2.3.3. </span>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pipeline">
+<h3>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">#</a></h3>
 <p>The pipeline part of the homework shows you how you can orchestrate
 the launching of threads and achieve pipeline parallelism. Start reading
 from the main function, where we launch a process on cpu 0:</p>
@@ -983,20 +1003,22 @@ Remember that <code class="docutils literal notranslate"><span class="pre">stati
 is until the program stops executing. This is especially important
 since being able to use old data while new data is being produced
 is key to achieving the pipeline parallelism.</p>
-</div>
-<div class="section" id="monitoring-processes-using-htop">
-<h3><span class="section-number">3.2.3.4. </span>Monitoring Processes using <code class="docutils literal notranslate"><span class="pre">htop</span></code><a class="headerlink" href="#monitoring-processes-using-htop" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="monitoring-processes-using-htop">
+<h3>Monitoring Processes using <code class="docutils literal notranslate"><span class="pre">htop</span></code><a class="headerlink" href="#monitoring-processes-using-htop" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">htop</span></code> tool in Linux lets you monitor the processes running on your system.
 Since there can be multiple users in Biglab at a given time, you would
 want to monitor <code class="docutils literal notranslate"><span class="pre">htop</span></code> and see if the CPUs are looking idle; in which case
 you should do some profiling of you program and get some clean results.
 You can also use <code class="docutils literal notranslate"><span class="pre">htop</span></code> to see where your threads are pinned to.</p>
 <p>Once logged into Biglab, type <code class="docutils literal notranslate"><span class="pre">htop</span></code> in the terminal, and you’ll
-see a screen like <a class="reference internal" href="#htop-init"><span class="std std-numref">Fig. 3.2</span></a>:</p>
-<div class="figure align-default" id="htop-init">
+see a screen like <code class="xref std std-numref docutils literal notranslate"><span class="pre">htop-init</span></code>:</p>
+<figure class="align-default" id="htop-init">
 <img alt="../_images/htop-init.png" src="../_images/htop-init.png" />
-<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Initial <code class="docutils literal notranslate"><span class="pre">htop</span></code> window</span><a class="headerlink" href="#htop-init" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Initial <code class="docutils literal notranslate"><span class="pre">htop</span></code> window</span><a class="headerlink" href="#htop-init" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>This gives you an idea if the CPU are being utilized and if the machine
 is being used heavily.</p>
 <p>Let’s configure some of the view items. Press <strong>F2</strong> (<strong>Fn+F2</strong> in laptops) to enter the <strong>Setup</strong> screen. From the setup screen, select <strong>Display Options</strong> and check <strong>Tree view</strong>. This will let us see the threads we spawn. Also uncheck <strong>Count CPUs from 1 instead of 0</strong>, so that
@@ -1039,7 +1061,7 @@ and do <code class="docutils literal notranslate"><span class="pre">make</span> 
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// wait for threads to finish</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">th</span> <span class="p">:</span><span class="w"> </span><span class="n">threads</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&amp;</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">threads</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -1049,17 +1071,19 @@ and do <code class="docutils literal notranslate"><span class="pre">make</span> 
 the terminal with <code class="docutils literal notranslate"><span class="pre">htop</span></code>. Press <strong>F4</strong> (<strong>Fn+F4</strong> in laptops)
 and type <code class="docutils literal notranslate"><span class="pre">walkthrough</span></code> to filter our process. You’ll see the
 following:</p>
-<div class="figure align-default" id="htop-threads">
+<figure class="align-default" id="htop-threads">
 <img alt="../_images/htop-threads.png" src="../_images/htop-threads.png" />
-<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">htop</span></code> showing threads and cpu assignment</span><a class="headerlink" href="#htop-threads" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">htop</span></code> showing threads and cpu assignment</span><a class="headerlink" href="#htop-threads" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>You can see that we are able to see our threads and how they
 are mapped to different CPU IDs—1, 3, 5, 7—indicating that
 we want to use separate cores instead of hyper-threads in the
 same core.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1083,44 +1107,34 @@ same core.</p>
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="collaboration.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3.1. </span>Collaboration</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="homework_submission.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.3. </span>Homework Submission</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Department of Electrical and Systems Engineering<br/>
-        
-            &copy; Copyright 2021 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Department of Electrical and Systems Engineering<br/>
+  
+      &copy; Copyright 2022 Department of Electrical and Systems Engineering at the University of Pennsylvania.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
