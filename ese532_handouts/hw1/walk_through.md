@@ -18,7 +18,7 @@ Linux. Following are some resources if you need to brush up on Linux command lin
 - [Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 
 **Terminal**: For HW 1-4, we will use a command-line workflow. We will introduce some Xilinx
-specific GUI workflow in HW 5-7. You will need to be comfortable with using
+specific tool workflow in HW 5-7. You will need to be comfortable with using
 a terminal. We will be using a terminal to ssh into Biglab. Moreover, we will make use
 of the terminals in Detkin/Ketterer labs
 when in-person.
