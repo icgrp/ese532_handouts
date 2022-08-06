@@ -128,11 +128,11 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     and develop the following model for the runtime of this filter computation:
     ```{math}
     :label: perf-model
-    \begin{eqnarray}
-    T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory}
-                + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
-                + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
-    \end{eqnarray}
+    \begin{align}
+    T_{filter\_h\_measured\_avg} & = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory} \\
+                                 & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
+                                 & + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
+    \end{align}
     ```
     
     The real model is still more complicated than this, but this is a
@@ -192,7 +192,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{instr} = N_{non\_memory} + N_{memory}
         ```
         ```{math}
-        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}
+        \begin{align}
+        T_{filter\_h\_measured\_avg} & = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} \\
+                                     & + N_{memory} \times T_{cycle\_memory}
+        \end{align}
         ```
         where $T_{cycle} = 1$ and $N_{par} = 13$.
         ````
@@ -221,9 +224,11 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         N_{memory} = N_{fast\_mem} + N_{slow\_mem}
         ```
         ```{math}
-        T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle}
-                    + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
-                    + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
+        \begin{align}
+        T_{filter\_h\_measured\_avg} & = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle} \\
+                    		      & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
+                                     & + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
+        \end{align}
         ```
         where $T_{cycle} = 1$ and $N_{par} = 13$.
         ````
