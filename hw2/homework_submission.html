@@ -565,11 +565,11 @@ for each instruction:</p>
 <p>We will then group these instructions into three bins—<em>fast mem</em>, <em>slow mem</em> and <em>non-memory</em>,
 and develop the following model for the runtime of this filter computation:</p>
 <div class="math notranslate nohighlight" id="equation-perf-model">
-<span class="eqno">()<a class="headerlink" href="#equation-perf-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
-T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory}
-            + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
-            + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
-\end{eqnarray}\end{split}\]</div>
+<span class="eqno">()<a class="headerlink" href="#equation-perf-model" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+T_{filter\_h\_measured\_avg} &amp; = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory} \\
+                             &amp; + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
+                             &amp; + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
+\end{align}\end{split}\]</div>
 <p>The real model is still more complicated than this, but this is a
 first-order model that can start helping us reason about the performance of
 the computation including memory access.</p>
@@ -630,7 +630,10 @@ estimate the average latency (<span class="math notranslate nohighlight">\(T_{cy
 <div class="math notranslate nohighlight">
 \[N_{instr} = N_{non\_memory} + N_{memory}\]</div>
 <div class="math notranslate nohighlight">
-\[T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} + N_{memory} \times T_{cycle\_memory}\]</div>
+\[\begin{split}\begin{align}
+T_{filter\_h\_measured\_avg} &amp; = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} \\
+                             &amp; + N_{memory} \times T_{cycle\_memory}
+\end{align}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 13\)</span>.</p>
 </div>
 </li>
@@ -657,9 +660,11 @@ previous question. (3 lines)</p>
 <div class="math notranslate nohighlight">
 \[N_{memory} = N_{fast\_mem} + N_{slow\_mem}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}T_{filter\_h\_measured\_avg} = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle}
-            + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
-            + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\\end{split}\]</div>
+\[\begin{split}\begin{align}
+T_{filter\_h\_measured\_avg} &amp; = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle} \\
+            		      &amp; + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
+                             &amp; + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
+\end{align}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 13\)</span>.</p>
 </div>
 </li>
