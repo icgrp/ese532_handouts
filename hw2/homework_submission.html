@@ -436,9 +436,9 @@ lines for each of Scale, Filter, Differentiate, Compress).</p></li>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Functions</p></th>
-<th class="head"><p>Average Latency (<span class="math notranslate nohighlight">\(T_{measured\_avg}\)</span> ns)</p></th>
-<th class="head"><p>% of total latency</p></th>
-<th class="head"><p>Average Latency (<span class="math notranslate nohighlight">\(T_{measured\_avg}\)</span> cycles)</p></th>
+<th class="head"><p>Average Latency: <span class="math notranslate nohighlight">\(T_{measured\_avg}\)</span> (ns)</p></th>
+<th class="head"><p>% of Total Latency</p></th>
+<th class="head"><p>Average Latency: <span class="math notranslate nohighlight">\(T_{measured\_avg}\)</span> (cycles)</p></th>
 </tr>
 </thead>
 <tbody>
@@ -539,10 +539,10 @@ for each instruction:</p>
 <thead>
 <tr class="row-odd"><th class="head"><p>Assembly Instructions</p></th>
 <th class="head"><p>Annotation</p></th>
-<th class="head"><p>Number of function calls (<span class="math notranslate nohighlight">\(N\)</span>)</p></th>
-<th class="head"><p>Number of cycles per call (<span class="math notranslate nohighlight">\(T\)</span>)</p></th>
-<th class="head"><p>Number of instructions executed in parallel (<span class="math notranslate nohighlight">\(N_{par}\)</span>)</p></th>
-<th class="head"><p>Total number of cycles (<span class="math notranslate nohighlight">\(\frac{N}{N_{par}}\)</span> <span class="math notranslate nohighlight">\(\times\)</span> <span class="math notranslate nohighlight">\(T\)</span>)</p></th>
+<th class="head"><p>Number of function calls: <span class="math notranslate nohighlight">\(N\)</span></p></th>
+<th class="head"><p>Number of cycles per call: <span class="math notranslate nohighlight">\(T\)</span></p></th>
+<th class="head"><p>Number of instructions executed in parallel: <span class="math notranslate nohighlight">\(N_{par}\)</span></p></th>
+<th class="head"><p>Total number of cycles: <span class="math notranslate nohighlight">\(\frac{N}{N_{par}}\)</span> <span class="math notranslate nohighlight">\(\times\)</span> <span class="math notranslate nohighlight">\(T\)</span></p></th>
 </tr>
 </thead>
 <tbody>
@@ -778,7 +778,9 @@ redirecting the output in the command line, e.g. <code class="docutils literal n
 </li>
 <li><p>It is more efficient to not recompute the whole hash at every window.
 Convince yourself that the next hash computation can be expressed as:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> 
+			   <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>
+			   <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Develop a second, revised <code class="docutils literal notranslate"><span class="pre">cdc</span></code> function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.</p>
