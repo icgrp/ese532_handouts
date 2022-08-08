@@ -21,9 +21,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     :name: example-table-1
 
     * - Functions
-      - Average Latency ($T_{measured\_avg}$ ns)
-      - \% of total latency
-      - Average Latency ($T_{measured\_avg}$ cycles)
+      - Average Latency: $T_{measured\_avg}$ (ns)
+      - \% of Total Latency
+      - Average Latency: $T_{measured\_avg}$ (cycles)
     * - Scale
       -  
       -  
@@ -107,10 +107,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 
     * - Assembly Instructions
       - Annotation
-      - Number of function calls ($N$)
-      - Number of cycles per call ($T$)
-      - Number of instructions executed in parallel ($N_{par}$)
-      - Total number of cycles ($\frac{N}{N_{par}}$ $\times$ $T$)
+      - Number of function calls: $N$
+      - Number of cycles per call: $T$
+      - Number of instructions executed in parallel: $N_{par}$
+      - Total number of cycles: $\frac{N}{N_{par}}$ $\times$ $T$
     * - `add w0, w0, 1`
       - addition(s) for array indexing
       - 100
@@ -336,7 +336,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     2. It is more efficient to not recompute the whole hash at every window.
     Convince yourself that the next hash computation can be expressed as:
         ```Python
-        hash_func(input, pos+1) = hash_func(input, pos)*prime - input[pos]*pow(prime, win_size+1) + input[pos+win_size]*prime
+        hash_func(input, pos+1) = (hash_func(input, pos)*prime - 
+        			   input[pos]*pow(prime, win_size+1) +
+        			   input[pos+win_size]*prime)
         ```
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
     3. Time the two `cdc` implementations and compare.
