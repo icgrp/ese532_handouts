@@ -21,9 +21,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     :name: example-table-1
 
     * - Functions
-      - Average Latency: $T_{measured\_avg}$ (ns)
+      - Average Latency $T_{measured\_avg}$ (ns)
       - \% of Total Latency
-      - Average Latency: $T_{measured\_avg}$ (cycles)
+      - Average Latency $T_{measured\_avg}$ (cycles)
     * - Scale
       -  
       -  
@@ -56,7 +56,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         need to use `gprof` (refer to {ref}`profiling/gprof`
         in the profiling tutorial).
 
-    3. Report the latencies of 2a and 2b in cycles. Assume that each operation takes one clock cycle at 4.7 GHz.
+    3. Calculate and report the latencies of 2a in cycles. Assume a clock frequency of 4.7 GHz.
 
 3. **Analyze**
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
@@ -65,7 +65,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         of the body of the loop over `X`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`).
         
         Index computations are operations used to calculate the index
-        to be used with a pointer to get an element. For e.g. `4*i` in `x[4*i]` is an index computation.
+        to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation.
     3. Assuming that the operations in the DFG execute sequentially,
         count the total number of compute operations. Using this number, estimate the average latency in cycles of `Filter_horizontal`. Assume that each operation takes one clock cycle at 4.7 GHz.
 
