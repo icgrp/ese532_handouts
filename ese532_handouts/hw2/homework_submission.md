@@ -91,7 +91,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     7. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3f)
         in terms of compute operations. Assume that instructions can execute in the same cycle.
     8. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
-        bound for `LOOP3`. (4 lines)
+        bound for `LOOP3`, again only considering the operations outlined in (Part 3b). (4 lines)
 4. **Refine**
     
     As you hopefully noticed, our model of using a DFG and counting
