@@ -56,7 +56,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         need to use `gprof` (refer to {ref}`profiling/gprof`
         in the profiling tutorial).
 
-    3. Calculate and report the latencies of 2a in cycles. Assume a clock frequency of 4.7 GHz.
+    3. Calculate and report the latencies of (Part 2a) in cycles. Assume a clock frequency of 4.7 GHz.
 
 3. **Analyze**
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
@@ -84,7 +84,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     5. Use Amdahl's Law to determine the highest overall application
         speedup that one could achieve assuming you accelerate the one stage that
         you identified above.  You don't have to restrict yourself to this platform. (1 line)
-    6. Now assuming a platform that has unlimited resources and you are free 
+    6. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
         mathematical operations, draw a new DFG with the lowest critical path
         delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3b).
