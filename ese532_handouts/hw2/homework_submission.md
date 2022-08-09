@@ -96,7 +96,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     
     As you hopefully noticed, our model of using a DFG and counting
     compute operations did not estimate `Filter_horizontal` very accurately
-    in Part 3c.  Let's see whether we can improve it.
+    in (Part 3c).  Let's see whether we can improve it.
 
     First, we'll build a table similar to the following, which records the total number of cycles
     for each instruction:
@@ -146,7 +146,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         - Compiling your code with: `g++ -Wall -S -O2 -c Filter.c -o Filter.s`, and
         - Opening the generated `Filter.s` assembly file.
     
-        Which of these instructions are the compute operations you identified in 3c?
+        Which of these instructions are the compute operations you identified in (Part 3c)?
     2. Annotate each instruction with one of the descriptions below as appropriate, and
         add to {numref}`example-table-2`.  You will not be able to annotate some instructions.
         Don't worry, that is part of what the question is setting up.
