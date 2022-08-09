@@ -60,9 +60,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 
 3. **Analyze**
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
-    2. Assuming that `LOOP2`
+    2. Assuming that `LOOP3`
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
-        of the body of the loop over `X`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`).
+        of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`).
         
         Index computations are operations used to calculate the index
         to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation.
@@ -84,13 +84,12 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     5. Use Amdahl's Law to determine the highest overall application
         speedup that one could achieve assuming you accelerate the one stage that
         you identified above.  You don't have to restrict yourself to this platform. (1 line)
-    6. Assuming a platform that has unlimited resources and you are free 
+    6. Now assuming a platform that has unlimited resources and you are free 
         to exploit associativity for
-        mathematical operations, draw the DFG with the lowest critical path
-        delay for the same unrolled loop body (Part 3b) as before.
-    7. Determine the critical path length (i.e. assume instructions can
-        execute in the same cycle) of the same unrolled loop (Part 3f)
-        in terms of compute operations.
+        mathematical operations, draw a new DFG with the lowest critical path
+        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3b).
+    7. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3f)
+        in terms of compute operations. Assume that instructions can execute in the same cycle.
     8. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
         bound for the same loop body (Part 3b) as before. (4 lines)
 4. **Refine**
@@ -337,8 +336,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     Convince yourself that the next hash computation can be expressed as:
         ```Python
         hash_func(input, pos+1) = (hash_func(input, pos)*prime - 
-        			   input[pos]*pow(prime, win_size+1) +
-        			   input[pos+win_size]*prime)
+        			   ord(input[pos])*pow(prime, win_size+1) +
+        			   ord(input[pos+win_size])*prime)
         ```
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
     3. Time the two `cdc` implementations and compare.

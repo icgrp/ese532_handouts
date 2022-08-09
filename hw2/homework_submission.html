@@ -649,9 +649,9 @@ in the profiling tutorial).</p></li>
 <li><p><strong>Analyze</strong></p>
 <ol>
 <li><p>Which function from <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 2.1</span></a> has the highest latency? (1 line)</p></li>
-<li><p>Assuming that <code class="docutils literal notranslate"><span class="pre">LOOP2</span></code>
+<li><p>Assuming that <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>
 of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is unrolled completely, draw a Data Flow Graph (DFG)
-of the body of the loop over <code class="docutils literal notranslate"><span class="pre">X</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>).</p>
+of the body of the loop over <code class="docutils literal notranslate"><span class="pre">i</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>).</p>
 <p>Index computations are operations used to calculate the index
 to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation.</p>
 </li>
@@ -673,13 +673,12 @@ which one would you choose to obtain the best overall performance? (1 line)</p><
 <li><p>Use Amdahl’s Law to determine the highest overall application
 speedup that one could achieve assuming you accelerate the one stage that
 you identified above.  You don’t have to restrict yourself to this platform. (1 line)</p></li>
-<li><p>Assuming a platform that has unlimited resources and you are free
+<li><p>Now assuming a platform that has unlimited resources and you are free
 to exploit associativity for
-mathematical operations, draw the DFG with the lowest critical path
-delay for the same unrolled loop body (Part 3b) as before.</p></li>
-<li><p>Determine the critical path length (i.e. assume instructions can
-execute in the same cycle) of the same unrolled loop (Part 3f)
-in terms of compute operations.</p></li>
+mathematical operations, draw a new DFG with the lowest critical path
+delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3b).</p></li>
+<li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3f)
+in terms of compute operations. Assume that instructions can execute in the same cycle.</p></li>
 <li><p>Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
 bound for the same loop body (Part 3b) as before. (4 lines)</p></li>
 </ol>
@@ -943,8 +942,8 @@ redirecting the output in the command line, e.g. <code class="docutils literal n
 <li><p>It is more efficient to not recompute the whole hash at every window.
 Convince yourself that the next hash computation can be expressed as:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> 
-			   <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>
-			   <span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span><span class="p">)</span>
+			   <span class="nb">ord</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>
+			   <span class="nb">ord</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">])</span><span class="o">*</span><span class="n">prime</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Develop a second, revised <code class="docutils literal notranslate"><span class="pre">cdc</span></code> function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.</p>
