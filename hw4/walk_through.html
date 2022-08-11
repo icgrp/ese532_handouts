@@ -798,13 +798,13 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.</p>
 <ul>
 <li><p>On you local machine, clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
 repository using the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">icgrp</span><span class="o">/</span><span class="n">ese532_code</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/icgrp/ese532_code.git
 </pre></div>
 </div>
 <p>If you already have it cloned, pull in the latest changes
 using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">ese532_code</span><span class="o">/</span>
-<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ese532_code/
+git pull origin master
 </pre></div>
 </div>
 <p>The code you will use for <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a>
@@ -902,7 +902,7 @@ and 2 should be in the “on” position.</p></li>
 </ul>
 </li>
 <li><p>Then, unzip the file. The .gz file contains <code class="docutils literal notranslate"><span class="pre">sd_card.img</span></code> and <code class="docutils literal notranslate"><span class="pre">README.txt</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_vadd_2020_2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar -xvzf u96v2_sbc_vadd_2020_2.tar.gz
 </pre></div>
 </div>
 </li>
@@ -929,7 +929,7 @@ go to <a class="reference internal" href="#boot-windows"><span class="std std-re
 </ul>
 </li>
 <li><p>We will now open the serial console of the Ultra96. You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port. We are using <code class="docutils literal notranslate"><span class="pre">minicom</span></code> and following is the command we use for connecting to the serial port:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">minicom</span> <span class="o">-</span><span class="n">D</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo minicom -D /dev/ttyUSB1
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
@@ -997,14 +997,14 @@ SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
 </div>
 </li>
 <li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@u96v2-sbc-base-2020-2:~#
 </pre></div>
 </div>
 </li>
 <li><p>We will now enable ethernet connection between our Ultra96 and
 the host computer, such that we can copy files between
 the devices. Issue the following command in the serial console:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifconfig</span> <span class="n">eth0</span> <span class="mf">10.10.7.1</span> <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 <span class="m">10</span>.10.7.1 netmask <span class="m">255</span>.0.0.0
 </pre></div>
 </div>
 </li>
@@ -1037,8 +1037,25 @@ Now issue the following command:</p>
 <li><p>We have now assigned IP <code class="docutils literal notranslate"><span class="pre">10.10.7.1</span></code> to our Ultra96 and IP <code class="docutils literal notranslate"><span class="pre">10.10.7.2</span></code> to our USB ethernet device connected to our host computer.
 You can test the connection by doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.2</span></code> from the Ultra96 serial console, and doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.1</span></code> from the host
 computer.</p></li>
+<li><p>Unfortunatly, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file on your host computer .profile (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In .profile, add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 <span class="m">10</span>.10.7.1 netmask <span class="m">255</span>.0.0.0
+
+<span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
+<span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
+</pre></div>
+</div>
+<p>Then create another file (also not in your home directory), called .bashrc, and add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> .profile
+</pre></div>
+</div>
+<p>Next, copy these files over to to the Ultra96:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp .profile .bashrc root@10.10.7.1:/home/root/
+</pre></div>
+</div>
+<p>Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.</p>
+</li>
 <li><p>Let’s copy <code class="docutils literal notranslate"><span class="pre">hw4</span></code> directory to Ultra96:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">hw4</span> <span class="n">root</span><span class="o">@</span><span class="mf">10.10.7.1</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">root</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp -r hw4 root@10.10.7.1:/home/root/
 </pre></div>
 </div>
 </li>
@@ -1094,8 +1111,21 @@ this is 24!) as follows:</p>
 </figure>
 </li>
 <li><p>You can view the files of the Ultra96 on the left hand side.
-You can easily drag and drop files from/to the local machine to/from Ultra96.
-Drag and drop <code class="docutils literal notranslate"><span class="pre">hw4</span></code> folder on the left hand side to start this HW.</p></li>
+You can easily drag and drop files from/to the local machine to/from Ultra96.</p></li>
+<li><p>Unfortunatly, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file on your host computer .profile (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In .profile, add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 <span class="m">10</span>.10.7.1 netmask <span class="m">255</span>.0.0.0
+
+<span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
+<span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
+</pre></div>
+</div>
+<p>Then create another file (also not in your home directory), called .bashrc, and add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> .profile
+</pre></div>
+</div>
+<p>Next, drag and drop these files over to the Ultra96 in /home/root/. Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.</p>
+</li>
+<li><p>Drag and drop <code class="docutils literal notranslate"><span class="pre">hw4</span></code> folder on the left hand side to start this HW.</p></li>
 </ul>
 </section>
 </section>
