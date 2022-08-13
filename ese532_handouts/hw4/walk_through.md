@@ -65,12 +65,12 @@ vectorization with the compiler and hand-crafted NEON vector intrinsics.
 
 - On you local machine, clone the `ese532_code`
     repository using the following command:
-    ```
+    ``` bash
     git clone https://github.com/icgrp/ese532_code.git
     ```
     If you already have it cloned, pull in the latest changes
     using:
-    ```
+    ``` bash
     cd ese532_code/
     git pull origin master
     ```
@@ -145,13 +145,13 @@ Development Environment
 ### Run on the FPGA
 #### Write the SD Card Image
 - Download a sample SD card image for Ultra96 from
-[here](https://www.element14.com/community/docs/DOC-95649/l/ultra96-v2).
+[here](https://community.element14.com/products/devtools/avnetboardscommunity/w/boards/23079/ultra96-v2).
   - In the **Reference Designs** tab:
     - Click on the **Ultra96-V2 – Vitis PetaLinux Platform 2020+ Vector Add (Sharepoint site)** link.
     - Browse to **2020.2** -> **Vitis_PreBuilt_Example** -> **u96v2_sbc_vadd_2020_2.tar.gz**
     - Click on the download button
 - Then, unzip the file. The .gz file contains `sd_card.img` and `README.txt`.
-    ```
+    ``` bash
     tar -xvzf u96v2_sbc_vadd_2020_2.tar.gz
     ```
 - Write `sd_card.img` to your SD card.
@@ -168,7 +168,7 @@ Development Environment
     - the first terminal will be used to copy binaries into the Ultra96
     - the second terminal will be used to access the serial console of the Ultra96
 - We will now open the serial console of the Ultra96. You can use any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. We are using `minicom` and following is the command we use for connecting to the serial port:
-    ```
+    ``` bash
     sudo minicom -D /dev/ttyUSB1
     ```
     `/dev/ttyUSB1` is the port where the Ultra96 dumps all
@@ -233,13 +233,13 @@ by pressing the boot switch as shown in {numref}`boot`.
     [settings daemon] Forking. run with -n to prevent fork
     ```
 - Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
-    ```
+    ```bash
     root@u96v2-sbc-base-2020-2:~#
     ```
 - We will now enable ethernet connection between our Ultra96 and
     the host computer, such that we can copy files between
     the devices. Issue the following command in the serial console:
-    ```
+    ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
     ```
 - Now in your second console in the host computer, first
@@ -270,8 +270,25 @@ by pressing the boot switch as shown in {numref}`boot`.
 - We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
 You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
 computer.
-- Let's copy `hw4` directory to Ultra96:
+- Unfortunatly, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file on your host computer .profile (make sure you don't do this in your home directory, or else you may overwrite an existing one). In .profile, add the following:
+    ```bash
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+
+    alias ls="ls --color"
+    alias ll="ls -laF --color"
     ```
+    Then create another file (also not in your home directory), called .bashrc, and add the following:
+    ```bash
+    source .profile
+    ```
+    Next, copy these files over to to the Ultra96:
+    ``` bash
+    scp .profile .bashrc root@10.10.7.1:/home/root/
+    ```
+    Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+
+- Let's copy `hw4` directory to Ultra96:
+    ```bash
     scp -r hw4 root@10.10.7.1:/home/root/
     ```
 
@@ -309,7 +326,20 @@ computer.
     ```
 - You can view the files of the Ultra96 on the left hand side.
   You can easily drag and drop files from/to the local machine to/from Ultra96.
-  Drag and drop `hw4` folder on the left hand side to start this HW.
+
+- Unfortunatly, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file on your host computer .profile (make sure you don't do this in your home directory, or else you may overwrite an existing one). In .profile, add the following:
+    ```bash
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+
+    alias ls="ls --color"
+    alias ll="ls -laF --color"
+    ```
+    Then create another file (also not in your home directory), called .bashrc, and add the following:
+    ```bash
+    source .profile
+    ```
+    Next, drag and drop these files over to the Ultra96 in /home/root/. Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+- Drag and drop `hw4` folder on the left hand side to start this HW.
 
 ## Running the Code
 - There are 3 targets, which we will build **in the Ultra96**. You can build all of them by executing `make all`
