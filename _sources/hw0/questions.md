@@ -1,4 +1,4 @@
-# Diagnostic Assessments
+# Questions
 
 1. Below is a simple example of a linked list and a test program.
 This function
