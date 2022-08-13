@@ -1,4 +1,4 @@
-# SIMD
+# HW4 -- SIMD
 
 ```{admonition} Due
 Friday, October 1, 5:00 PM

@@ -54,7 +54,7 @@ the executable when you are debugging? (3 lines max.)
     you can get it to display.
     - {download}`gccintro <pdfs/gccintro.pdf>`
 
-6. Below is a simple example of a linked list and a test program.
+<!-- 6. Below is a simple example of a linked list and a test program.
 Your job is to complete `insert_in_order` function. This function
 should add the new element into the linked list in ascending order.
 For example, when given the values 20, 5, 10 our list
@@ -149,4 +149,4 @@ Tar your sources and Makefile and upload it to canvas.
     
       return 0;
     }    
-    ```
+    ``` -->

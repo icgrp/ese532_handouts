@@ -6,8 +6,12 @@ parts:
       title: Syllabus
     - file: writeup_guidelines
   - caption: Homework Assignments
-    numbered: True
+    numbered: False
     chapters:
+    - file: hw0/index
+      sections:
+        - file: hw0/diagnostic
+        - file: hw0/homework_submission
     - file: hw1/index
       sections:
         - file: hw1/collaboration

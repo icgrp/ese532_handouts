@@ -14,8 +14,9 @@ Even if a certain question is just a “step”, please include it in your repor
         2. Remove a breakpoint.
         3. Inspect a variable value.
         4. Step through program execution without a breakpoint.
-2. **C** -- answer the questions about C pointers, compilers, and executables from the [C Refresher](c_refresher) section.
-3. **Debug** -- answer the questions about debugging an application and linked list from the 
+2. **C** -- answer the questions about C pointers, compilers, and executables 
+from the [C Refresher](c_refresher) section.
+3. **Debug** -- answer the questions about debugging an application from the 
 [Debug an Application](debug_app) section.
 
 <!-- 1. Provide the correct output from the terminal.
@@ -26,7 +27,7 @@ Even if a certain question is just a “step”, please include it in your repor
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
-  - two tarballs from the [Debug an Application](debug_app) section.
+  - one tarball from the [Debug an Application](debug_app) section.
     ````{admonition} Quick linux commands for tar files
     :class: dropdown, tip
     ```

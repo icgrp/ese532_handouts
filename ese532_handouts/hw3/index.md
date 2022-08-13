@@ -1,4 +1,4 @@
-# Thread Parallel
+# HW3 -- Thread Parallel
 
 ```{admonition} Due
 Friday, September 24, 5:00 PM EDT

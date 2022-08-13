@@ -1,4 +1,4 @@
-# Restructuring C for Accelerator and Zynq Transition
+# HW7 -- Restructuring C for Accelerator and Zynq Transition
 
 ```{admonition} Due
 Friday, October 29, 5:00 PM
