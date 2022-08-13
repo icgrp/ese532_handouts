@@ -10,7 +10,7 @@ parts:
     chapters:
     - file: hw0/index
       sections:
-        - file: hw0/diagnostic
+        - file: hw0/questions
         - file: hw0/homework_submission
     - file: hw1/index
       sections:
