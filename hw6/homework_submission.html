@@ -245,6 +245,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../hw3/u96v2_setup.html">
+     Ultra96 Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../hw3/walk_through.html">
      Setup and Walk-through
     </a>
@@ -744,17 +749,17 @@ This will take about 30 minutes to build. Report the latencies. Provide a screen
 Find out <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html">how to use an out-of-order command queue</a>
 to get overlap between communication and computation. Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
 Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
-We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 32</span></a> or <a class="reference internal" href="#comp-comm-overlap-2"><span class="std std-numref">Fig. 33</span></a>.</p>
+We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 43</span></a> or <a class="reference internal" href="#comp-comm-overlap-2"><span class="std std-numref">Fig. 44</span></a>.</p>
 <figure class="align-default" id="comp-comm-overlap">
 <img alt="../_images/comp_comm_overlap.png" src="../_images/comp_comm_overlap.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 32 </span><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 43 </span><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="comp-comm-overlap-2">
 <img alt="../_images/comp_comm_overlap_2.png" src="../_images/comp_comm_overlap_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 33 </span><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>

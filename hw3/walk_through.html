@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Homework Submission" href="homework_submission.html" />
-    <link rel="prev" title="Collaboration" href="collaboration.html" />
+    <link rel="prev" title="Ultra96 Setup" href="u96v2_setup.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -242,6 +242,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="collaboration.html">
      Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="u96v2_setup.html">
+     Ultra96 Setup
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -555,11 +560,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linux-vs-bare-metal">
-   Linux vs Bare-Metal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
    Obtaining and Running the Code
   </a>
@@ -616,11 +616,6 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linux-vs-bare-metal">
-   Linux vs Bare-Metal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#obtaining-and-running-the-code">
    Obtaining and Running the Code
   </a>
@@ -669,68 +664,20 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="setup-and-walk-through">
 <h1>Setup and Walk-through<a class="headerlink" href="#setup-and-walk-through" title="Permalink to this headline">#</a></h1>
-<section id="linux-vs-bare-metal">
-<h2>Linux vs Bare-Metal<a class="headerlink" href="#linux-vs-bare-metal" title="Permalink to this headline">#</a></h2>
-<figure class="align-default" id="topo">
-<a class="reference internal image-reference" href="../_images/topo.png"><img alt="../_images/topo.png" src="../_images/topo.png" style="height: 450px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">An 8-core machine with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>We will divide the computation into threads that run on different processors.
-<a class="reference internal" href="#topo"><span class="std std-numref">Fig. 3</span></a> shows a machine on Biglab. Some nodes in Biglab have 4 cores with
-2 hyper-threads each and others have 8 cores with 1 thread each.
-We will be running these threads on the Linux OS and hence, all the
-heavy lifting of sharing main memory global address is taken care of
-by the OS.</p>
-<p>However, in a bare-metal system:</p>
-<ul class="simple">
-<li><p>we would have to map the main memory (DRAM) into the address spaces of each processors.
-Only then can the processors distribute and coordinate the work (which
-involves communicating pointers to shared memory areas and synchronization).</p></li>
-<li><p>in order to share data, the processors in the bare-metal system must
-agree on the location and organization of the data.</p></li>
-<li><p>we must make sure that the processors respect each other’s private memory areas.
-We can do that in a bare-metal system by mapping private code and data of
-individual processors at different locations.</p></li>
-<li><p>Sharing DRAM is complicated by the fact that DRAM is cached in L1 and L2 caches.
-Data that one processor attempts to write to DRAM may not have been written to
-shared DRAM yet, but instead remain in the private L1 cache of the processor.
-When another processor reads the same memory location, it may observe an old
-value.  Fortunately, our x86 processors (and the ARM on the Zynq we will later
-use) have a Snoop Control Unit, which bypasses data directly between processors
-as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.</p></li>
-</ul>
-<p>Another problem that we face when we communicate via shared memory is that
-the reading processor should not start reading the memory until the writing
-processor has completed writing the data.  In other words, we need a form
-of synchronization between the cores.  Design of synchronization functions
-is a rather complex subject, which is dealt with in other courses such as
-CIS 471 or CIS 505. In this assignment, we will use the APIs of <code class="docutils literal notranslate"><span class="pre">std::thread</span></code>
-to accomplish synchronization between cores. We will show you exactly how to
-use these APIs in the following sections, but if you would like to learn about
-<code class="docutils literal notranslate"><span class="pre">std::threads</span></code>, here are some useful links:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/">Concurrency in C++</a></p></li>
-<li><p><a class="reference external" href="https://eli.thegreenplace.net/2016/c11-threads-affinity-and-hyperthreading/">C++11 threads, affinity and hyperthreading</a></p></li>
-<li><p><a class="reference external" href="https://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php">C++ threads tutorial</a></p></li>
-<li><p><a class="reference external" href="https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/">Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is</a></p></li>
-</ul>
-<p>If you prefer a book, refer to <em><strong>C++ Concurrency in Action</strong></em> by Anthony D. Williams.</p>
-</section>
 <section id="obtaining-and-running-the-code">
 <h2>Obtaining and Running the Code<a class="headerlink" href="#obtaining-and-running-the-code" title="Permalink to this headline">#</a></h2>
 <p>In the previous homework, we dealt with a streaming application that
 compressed only one picture. For this homework, we will use the same
 application, except that it will take a video stream instead of a
-single picture.</p>
-<p>We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
-shared by multiple users—meaning your processes are not the only
+single picture. You can run <a class="reference internal" href="#"><span class="doc std std-doc">Walk-through</span></a> on the host computer.
+<strong>But note that you need to run the code for <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a> on the Ultra96.</strong></p>
+<!-- We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
+shared by multiple users---meaning your processes are not the only
 ones running on a core. Hence, you might not see full performance scaling
 as you use more cores. Detkin machines should give you dedicated access
-to the cores.</p>
+to the cores. -->
 <ul>
-<li><p>Login to Biglab and clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
+<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">ese532_code</span></code>
 repository using the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">icgrp</span><span class="o">/</span><span class="n">ese532_code</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -911,7 +858,8 @@ thread to finish at the point of the program
 where it’s called.</p></li>
 <li><p>we are running on the <code class="docutils literal notranslate"><span class="pre">main</span></code> thread by default.</p></li>
 </ul>
-<p>We have multiple cores in Biglab. By default,
+<p>Your computer must have multiple cores.
+By default,
 the linux scheduler will schedule our threads into one of these
 cores. What if we know what we are doing and want full
 control over assigning a specific thread to run on a
@@ -974,27 +922,37 @@ specific core? Let’s learn how to do that.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<ul>
+<ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> APIs we have given you, only
 works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
 machine, keep it in mind.</p></li>
-<li><p>Also note how in <a class="reference internal" href="#topo"><span class="std std-numref">Fig. 3</span></a> there are 2 hyper-threads
+<li><p>Also note how in <a class="reference internal" href="#topo"><span class="std std-numref">Fig. 13</span></a> there are 2 hyper-threads
 per core. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
 you should pin the threads to either 0 and 2, or 1 and 3.
 This will ensure that each thread is run on a separate core.
 Otherwise, multiple threads on the same core will share resources
-and may affect performance. To see the CPU topology in Biglab,
-use the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/home1/e/ese532/software/usr/bin/:$PATH
-lstopo
-</pre></div>
-</div>
-</li>
+and may affect performance.
+To see the CPU topology in your PC,
+do <code class="docutils literal notranslate"><span class="pre">lstopo</span></code>.</p></li>
 </ul>
 </div>
+<!-- 
+To see the CPU topology in Biglab,
+use the following commands:
+  ```
+  export PATH=/home1/e/ese532/software/usr/bin/:$PATH
+  lstopo
+  ```
+-->
+<figure class="align-default" id="topo">
+<img alt="../_images/topo_pc.png" src="../_images/topo_pc.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">An 8-core machine with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <hr class="docutils" />
 <p>Last thing we need to know is how to pass function and their
 arguments to threads? Modifying our example:</p>
@@ -1193,16 +1151,19 @@ is key to achieving the pipeline parallelism.</p>
 <section id="monitoring-processes-using-htop">
 <h3>Monitoring Processes using <code class="docutils literal notranslate"><span class="pre">htop</span></code><a class="headerlink" href="#monitoring-processes-using-htop" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">htop</span></code> tool in Linux lets you monitor the processes running on your system.
-Since there can be multiple users in Biglab at a given time, you would
-want to monitor <code class="docutils literal notranslate"><span class="pre">htop</span></code> and see if the CPUs are looking idle; in which case
+If you type <code class="docutils literal notranslate"><span class="pre">htop</span></code> in the terminal, you’ll
+see a screen like <a class="reference internal" href="#htop-init"><span class="std std-numref">Fig. 14</span></a>:</p>
+<!-- Since there can be multiple users in Biglab at a given time, you would
+want to monitor `htop` and see if the CPUs are looking idle; in which case
 you should do some profiling of you program and get some clean results.
-You can also use <code class="docutils literal notranslate"><span class="pre">htop</span></code> to see where your threads are pinned to.</p>
-<p>Once logged into Biglab, type <code class="docutils literal notranslate"><span class="pre">htop</span></code> in the terminal, and you’ll
-see a screen like <a class="reference internal" href="#htop-init"><span class="std std-numref">Fig. 4</span></a>:</p>
+You can also use `htop` to see where your threads are pinned to.
+
+Once logged into Biglab, type `htop` in the terminal, and you'll
+see a screen like {numref}`htop-init`: -->
 <figure class="align-default" id="htop-init">
 <img alt="../_images/htop-init.png" src="../_images/htop-init.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Initial <code class="docutils literal notranslate"><span class="pre">htop</span></code> window</span><a class="headerlink" href="#htop-init" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Initial <code class="docutils literal notranslate"><span class="pre">htop</span></code> window</span><a class="headerlink" href="#htop-init" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>This gives you an idea if the CPU are being utilized and if the machine
@@ -1260,13 +1221,25 @@ following:</p>
 <figure class="align-default" id="htop-threads">
 <img alt="../_images/htop-threads.png" src="../_images/htop-threads.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">htop</span></code> showing threads and cpu assignment</span><a class="headerlink" href="#htop-threads" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">htop</span></code> showing threads and cpu assignment</span><a class="headerlink" href="#htop-threads" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>You can see that we are able to see our threads and how they
 are mapped to different CPU IDs—1, 3, 5, 7—indicating that
 we want to use separate cores instead of hyper-threads in the
 same core.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you run the code on the Ultra96, you cannot use the fancy user interface of <code class="docutils literal notranslate"><span class="pre">htop</span></code>.
+You can you the built-in <code class="docutils literal notranslate"><span class="pre">top</span></code> instead. You can also monitor the core usage in <code class="docutils literal notranslate"><span class="pre">top</span></code> by
+pressing <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<figure class="align-default" id="top">
+<img alt="../_images/top.png" src="../_images/top.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">top</span></code> on Ultra96 showing core usage</span><a class="headerlink" href="#top" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 </section>
@@ -1298,11 +1271,11 @@ same core.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="collaboration.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="u96v2_setup.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Collaboration</p>
+            <p class="prev-next-title">Ultra96 Setup</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="homework_submission.html" title="next page">
