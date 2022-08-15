@@ -1,66 +1,18 @@
 # Setup and Walk-through
-## Linux vs Bare-Metal
-```{figure} images/topo.png
----
-height: 450px
-name: topo
----
-An 8-core machine with 2 hyper-threads
-```
-We will divide the computation into threads that run on different processors.
-{numref}`topo` shows a machine on Biglab. Some nodes in Biglab have 4 cores with
-2 hyper-threads each and others have 8 cores with 1 thread each.
-We will be running these threads on the Linux OS and hence, all the
-heavy lifting of sharing main memory global address is taken care of
-by the OS. 
-
-However, in a bare-metal system:
-- we would have to map the main memory (DRAM) into the address spaces of each processors.
-    Only then can the processors distribute and coordinate the work (which
-    involves communicating pointers to shared memory areas and synchronization).
-- in order to share data, the processors in the bare-metal system must
-    agree on the location and organization of the data.
-- we must make sure that the processors respect each other's private memory areas.
-    We can do that in a bare-metal system by mapping private code and data of
-    individual processors at different locations.
-- Sharing DRAM is complicated by the fact that DRAM is cached in L1 and L2 caches.
-    Data that one processor attempts to write to DRAM may not have been written to
-    shared DRAM yet, but instead remain in the private L1 cache of the processor.
-    When another processor reads the same memory location, it may observe an old
-    value.  Fortunately, our x86 processors (and the ARM on the Zynq we will later
-    use) have a Snoop Control Unit, which bypasses data directly between processors
-    as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.
-
-
-Another problem that we face when we communicate via shared memory is that
-the reading processor should not start reading the memory until the writing
-processor has completed writing the data.  In other words, we need a form
-of synchronization between the cores.  Design of synchronization functions
-is a rather complex subject, which is dealt with in other courses such as
-CIS 471 or CIS 505. In this assignment, we will use the APIs of `std::thread`
-to accomplish synchronization between cores. We will show you exactly how to
-use these APIs in the following sections, but if you would like to learn about
-`std::threads`, here are some useful links:
-- [Concurrency in C++](https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/)
-- [C++11 threads, affinity and hyperthreading](https://eli.thegreenplace.net/2016/c11-threads-affinity-and-hyperthreading/)
-- [C++ threads tutorial](https://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php)
-- [Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is](https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/)
-
-If you prefer a book, refer to ***C++ Concurrency in Action*** by Anthony D. Williams.
-
 ## Obtaining and Running the Code
 In the previous homework, we dealt with a streaming application that
 compressed only one picture. For this homework, we will use the same
 application, except that it will take a video stream instead of a
-single picture.
+single picture. You can run [Walk-through](walk_through) on the host computer.
+**But note that you need to run the code for [homework submission](homework_submission) on the Ultra96.**
 
-We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
+<!-- We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
 shared by multiple users---meaning your processes are not the only
 ones running on a core. Hence, you might not see full performance scaling
 as you use more cores. Detkin machines should give you dedicated access
-to the cores.
+to the cores. -->
 
-- Login to Biglab and clone the `ese532_code`
+- Clone the `ese532_code`
     repository using the following command:
     ```
     git clone https://github.com/icgrp/ese532_code.git
@@ -238,7 +190,8 @@ From the above, we learned:
     where it's called.
 - we are running on the `main` thread by default.
 
-We have multiple cores in Biglab. By default,
+Your computer must have multiple cores.
+By default,
 the linux scheduler will schedule our threads into one of these
 cores. What if we know what we are doing and want full
 control over assigning a specific thread to run on a
@@ -312,13 +265,25 @@ you want to run a thread on core 0 and one on core 1,
 you should pin the threads to either 0 and 2, or 1 and 3.
 This will ensure that each thread is run on a separate core.
 Otherwise, multiple threads on the same core will share resources
-and may affect performance. To see the CPU topology in Biglab,
+and may affect performance.
+To see the CPU topology in your PC,
+do `lstopo`.
+````
+<!-- 
+To see the CPU topology in Biglab,
 use the following commands:
   ```
   export PATH=/home1/e/ese532/software/usr/bin/:$PATH
   lstopo
   ```
-````
+-->
+```{figure} images/topo_pc.png
+---
+name: topo
+---
+An 8-core machine with 2 hyper-threads
+``` 
+
 
 ---
 Last thing we need to know is how to pass function and their
@@ -513,13 +478,15 @@ is key to achieving the pipeline parallelism.
 
 ### Monitoring Processes using `htop`
 `htop` tool in Linux lets you monitor the processes running on your system.
-Since there can be multiple users in Biglab at a given time, you would
+If you type `htop` in the terminal, you'll
+see a screen like {numref}`htop-init`:
+<!-- Since there can be multiple users in Biglab at a given time, you would
 want to monitor `htop` and see if the CPUs are looking idle; in which case
 you should do some profiling of you program and get some clean results.
 You can also use `htop` to see where your threads are pinned to.
 
 Once logged into Biglab, type `htop` in the terminal, and you'll
-see a screen like {numref}`htop-init`:
+see a screen like {numref}`htop-init`: -->
 ```{figure} images/htop-init.png
 ---
 name: htop-init
@@ -590,3 +557,19 @@ You can see that we are able to see our threads and how they
 are mapped to different CPU IDs---1, 3, 5, 7---indicating that
 we want to use separate cores instead of hyper-threads in the
 same core.
+
+````{note}
+When you run the code on the Ultra96, you cannot use the fancy user interface of `htop`.
+You can you the built-in `top` instead. You can also monitor the core usage in `top` by
+pressing `1`.
+
+  ```{figure} images/top.png
+  ---
+  name: top
+  ---
+  `top` on Ultra96 showing core usage
+  ```
+
+
+````
+

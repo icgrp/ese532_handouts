@@ -11,8 +11,13 @@ Your writeup should include your answers to the following questions:
 
 1. **Baseline**
     
-    Get the source code and run the `baseline` project as shown in
+    Get the source code and run the `baseline` project on the Ultra96 as shown in
     {doc}`walk_through`.
+    Copy `hw3` directory to Ultra96:
+    ```bash
+    scp -r hw3 root@10.10.7.1:/home/root/
+    ```
+
     1. Determine the throughput of `baseline` in pictures per
         second.  This is your baseline. We use `-O2` for the baseline, so you
         should keep using -O2 for the rest of the homework. Ignore overhead 
@@ -41,6 +46,7 @@ Your writeup should include your answers to the following questions:
         that you considered parallelizable in the previous question.  Provide
         the relevant sections of code in your report.
     4. Measure the throughput of your parallel implementation.
+        <!-- 
         ```{hint}
         - Use htop to make sure you measure a clean run where your threads
         get mostly exclusive access to cores on the machine; if the
@@ -50,10 +56,11 @@ Your writeup should include your answers to the following questions:
 		- This applies to all of your parallel timing measurements in this
         assignment. 
         ```
+         -->
     5. Validate your results.  Make sure that your parallel
         version produces the same answers as the original serial
         version.  Explain how you validated your results; report any
-        discrepancies in your final implementation.  (3--5 lines)
+        discrepancies in your final implementation.  (1 line)
     6. Compare your measurement with your ideal, expected speedup. (1 line)
     7. If your speedup is different from ideal, expected, what
         effects are likely to be responsible for the difference? (1-3 lines)
@@ -70,7 +77,8 @@ Your writeup should include your answers to the following questions:
         implementation on 2 cores in
         pictures per second. (1 lines)
     2. What is the best performance that one could theoretically
-        achieve with a pipelined mapping of the streaming application on 2 cores over the single x86 core solution?
+        achieve with a pipelined mapping of the streaming application on 2 cores over 
+        the single core solution?
         (1 line)
         ```{hint}
         Where is the bottleneck? How does pipelining help in
@@ -93,7 +101,7 @@ Your writeup should include your answers to the following questions:
         pipeline tasks. Include the sections of the code that you modified
         in your report.
     7. Validate your results.  Report on how you validated
-        and any discrepancies. (1--3 lines)
+        and any discrepancies. (1 line)
     8. Report the throughput of your new application in pictures per
             second.  (1--2 lines)
     9. Let's investigate the performance if we incorporate the optimized
@@ -116,14 +124,15 @@ Your writeup should include your answers to the following questions:
 4. **CDC Parallel**
     
     Building on techniques and observations from previous parts,
-    create a data-parallel implementation of your CDC function from homework 2 that uses four x86 cores to achieve
+    create a data-parallel implementation of your CDC function from homework 2 
+    that uses four cores of ARM A53 to achieve
     parallelism speedup. The starter code can be found in `hw3/assignment/cdc_parallel`.
     1. What is the best performance that one could theoretically
         achieve with a data-parallel mapping of CDC on 4 cores over the
-        single x86 core solution?
+        single core solution?
         (1 line)
     2. Describe the data-parallel mapping that achieves the best performance.
-        Try to achieve the best speedup over the single x86 core solution.
+        Try to achieve the best speedup over the single core solution.
     3. Implement your design and include your code  in your report.
         ```{hint}
         - Use the techniques shown in the walk-through!
