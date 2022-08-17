@@ -303,7 +303,7 @@ computer.
 - You can view the files of the Ultra96 on the left hand side.
   You can easily drag and drop files from/to the local machine to/from Ultra96.
 
-- Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file on your host computer `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
+- Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
 
