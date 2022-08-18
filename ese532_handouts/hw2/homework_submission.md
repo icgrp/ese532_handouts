@@ -96,7 +96,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     
     As you hopefully noticed, our model of using a DFG and counting
     compute operations did not estimate `Filter_horizontal` very accurately
-    in (Part 3c).  We will now construct a better model by examining the assembly code of `Filter_Horizontal`. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (`Filter_O2.s`). The code pertaining to `Filter_horizontal` are on lines 14-50. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
+    in (Part 3c).  We will now construct a better model by examining the assembly code of `Filter_Horizontal`. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (`Filter_O2.s`). The code pertaining to `Filter_horizontal` is on lines 14-50. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
     ```{hint}
     Here are some links which can help you get up to speed with ARM Assembly.
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
@@ -148,9 +148,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         7. increment of a loop variable
         8. comparison of a loop variable to a loop limit
         9. branch to top of a loop
-
-        Which of these instructions are the compute operations you identified in (Part 3c) (2 lines)?
-        You can use your C code to infer the annotations for the instructions.
+        
+        You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?
     4.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.
 
     5. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 3 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
