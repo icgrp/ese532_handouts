@@ -678,7 +678,7 @@ in the profiling tutorial).</p></li>
 <li><p>Which function from <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a> has the highest latency? (1 line)</p></li>
 <li><p>Assuming that <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>
 of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is unrolled completely, draw a Data Flow Graph (DFG)
-of the body of the loop over <code class="docutils literal notranslate"><span class="pre">i</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>).</p>
+of the body of the loop over <code class="docutils literal notranslate"><span class="pre">i</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>). Consider <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> in isolation, ignoring the other loops.</p>
 <p>Index computations are operations used to calculate the index
 to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation.</p>
 </li>

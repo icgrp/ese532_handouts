@@ -62,7 +62,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
     2. Assuming that `LOOP3`
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
-        of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`).
+        of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Consider `LOOP3` in isolation, ignoring the other loops.
         
         Index computations are operations used to calculate the index
         to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation.
