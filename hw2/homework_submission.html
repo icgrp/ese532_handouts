@@ -806,7 +806,7 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}}  \times T_{cycle\_n
 <li><p>Consider the memory instructions in <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 2</span></a>. For each instruction, record <em>approximatly</em> what fraction of the number of its executions will be slow (1 or 2 lines per memory instruction).</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>Think about which loads will be from new memory locations, vs. locations which will have already been read from during the function’s invocation, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.</p>
+<p>Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function’s execution, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.</p>
 </div>
 <p>With these fractions, calculate the total number of slow executions of memory instructions (<span class="math notranslate nohighlight">\(N_{slow\_mem}\)</span>), and the total number of fast executions of memory instructions (<span class="math notranslate nohighlight">\(N_{fast\_mem}\)</span>) (2 lines).</p>
 </li>
