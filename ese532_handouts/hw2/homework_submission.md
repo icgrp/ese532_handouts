@@ -181,7 +181,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.
     7. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximatly* what fraction of the number of its executions will be slow (1 or 2 lines per memory instruction).
         ```{hint}
-        Think about which loads will be from new memory locations, vs. locations which will have already been read from during the function's invocation, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.
+        Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function's execution, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.
         ```
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
     8. Assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle, and that 3 can happen in parellel. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
