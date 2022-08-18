@@ -184,7 +184,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         Think about which loads will be from new memory locations, vs. locations which will have already been read from during the function's invocation, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.
         ```
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
-    8. Assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that the fast memory-instruction-executions take 1 cycle, and that 3 can happen in parellel. Also assume that the slow memory-instruction-executions take $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
+    8. Assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle, and that 3 can happen in parellel. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
         ````{note}
         Refining from (Part 4e), this gives us the model for the runtime of this filter computation:
         ```{math}
