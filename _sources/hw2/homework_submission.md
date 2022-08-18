@@ -62,10 +62,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
     2. Assuming that `LOOP3`
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
-        of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Consider `LOOP3` in isolation, ignoring the other loops.
-        
-        Index computations are operations used to calculate the index
-        to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation.
+        of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, consider `LOOP3` in isolation, ignoring the other loops.
     3. Assuming that the operations in the DFG execute sequentially,
         count the total number of compute operations. Using this number, estimate the average latency in cycles of `Filter_horizontal`. Assume that each operation takes one clock cycle at 4.7 GHz.
 
