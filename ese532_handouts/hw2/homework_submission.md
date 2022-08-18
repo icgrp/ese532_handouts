@@ -96,39 +96,34 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     
     As you hopefully noticed, our model of using a DFG and counting
     compute operations did not estimate `Filter_horizontal` very accurately
-    in (Part 3c).  Let's see whether we can improve it.
+    in (Part 3c).  We will now construct a better model by examining the assembly code of `Filter_Horizontal`. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (`Filter_O2.s`). The code pertaining to `Filter_horizontal` are on lines 14-50. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
+    ```{hint}
+    Here are some links which can help you get up to speed with ARM Assembly.
+    - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
+    - [Registers](https://developer.arm.com/documentation/102374/0100/Registers-in-AArch64---general-purpose-registers)
+    - [Addressing Modes](https://developer.arm.com/documentation/ddi0406/c/Application-Level-Architecture/Instruction-Details/Memory-accesses?lang=en)
+    ```
 
-    First, we'll build a table similar to the following, which records the total number of cycles
-    for each instruction:
+    To develop our new model, we will begin by building a table similar to the following, which records the total number of executions for each instruction in the program:
     ```{list-table} Example Table
     :header-rows: 1
     :name: example-table-2
 
     * - Assembly Instructions
       - Annotation
-      - Number of function calls: $N$
-      - Number of cycles per call: $T$
-      - Number of instructions executed in parallel: $N_{par}$
-      - Total number of cycles: $\frac{N}{N_{par}}$ $\times$ $T$
+      - Number of executions: $N$
     * - `add w0, w0, 1`
       - addition(s) for array indexing
       - 100
-      - 1
-      - 13
-      - 8
     * - ...
       - ...
       - ...
-      - ...
-      - ...
-      - ...
     ```
-    We will then group these instructions into three bins---*fast mem*, *slow mem* and *non-memory*,
-    and develop the following model for the runtime of this filter computation:
+    We will then group these executions into three sets: executions of non-memory instructions, fast executions of memory instructions, and slow executions of memory instructions. We will then use these to develop the following model for the runtime of `Filter_horizontal`:
     ```{math}
     :label: perf-model
     \begin{align}
-    T_{filter\_h\_measured\_avg} & = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle\_non\_memory} \\
+    T_{filter\_h\_measured} & = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_non\_mem} \\
                                  & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
                                  & + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
     \end{align}
@@ -138,36 +133,27 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     first-order model that can start helping us reason about the performance of
     the computation including memory access.
 
-    1. Make a table like {numref}`example-table-2` and add all the instructions
-    in the loop body (not the instructions
-    that setup the loop, but the instruction that are executed on each trip
-    through the loop) of the innermost loop. (Do not assume that it is unrolled this time.)
-    You can see the instructions by:
-        - Compiling your code with: `g++ -Wall -S -O2 -c Filter.c -o Filter.s`, and
-        - Opening the generated `Filter.s` assembly file.
-    
-        Which of these instructions are the compute operations you identified in (Part 3c)?
-    2. Annotate each instruction with one of the descriptions below as appropriate, and
-        add to {numref}`example-table-2`.  You will not be able to annotate some instructions.
-        Don't worry, that is part of what the question is setting up.
-        1. multiplication for array indexing
-        2. addition(s) for array indexing
-        3. multiplication of coefficient with input
-        4. addition to Sum
-        5. reads from arrays
-        6. increment of loop variable
-        7. comparison of loop variable to loop limit
-        8. branch to top of loop
+    1. We have profiled `Filter_Horizontal` for you on the Ultra96 and have measured the runtime to be 5.24131 seconds. Assuming that the CPU is running at 1.2GHz, calculate the runtime of `Filter_Horizontal` in cycles ($T_{filter\_h\_measured}$) (1 line).
 
+    2. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52). Don't add the setup instructions that we annotated for you to the table, however examining them will help you understand the rest of the code.
+    
+    3. Annotate each instruction with an appropriate description such as one of those listed below, and
+        add to {numref}`example-table-2`. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed. 
+        1. addition(s) for array indexing
+        2. multiplication of coefficient with input
+        3. addition to Sum
+        4. shift to Sum
+        5. reads from arrays
+        6. writes to array
+        7. increment of a loop variable
+        8. comparison of a loop variable to a loop limit
+        9. branch to top of a loop
+
+        Which of these instructions are the compute operations you identified in (Part 3c) (2 lines)?
         You can use your C code to infer the annotations for the instructions.
-    3. After identifying the called-out instructions above, there
-        are additional assembly instructions.  What type of instructions are
-        these?  What do these assembly instructions do? Provide a 1 line (or less) description for each type of instruction identified, and use them to annotate the additional instructions in your table.
-    4. Fill in the rest of the table by determining the number of function
-        calls
-        for each instruction. Assume that one instruction completes per
-        cycle. Also assume that 13 instructions are executed at the same time. Using your table, estimate the latency ($T_{filter\_h\_analytical}$) of the function
-        in cycles. (1 line)
+    4.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.
+
+    5. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 3 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
         ````{note}
         The model here is:
         
@@ -175,62 +161,45 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{par}} \times T_{cycle}
         ```
 
-        where $T_{cycle} = 1$ and $N_{par} = 13$.
+        where $T_{cycle} = 1$ and $N_{par} = 3$.
         ````
-    5. Now assume that only the non-memory instructions identified in 
-        {numref}`example-table-2` complete in one cycle, and also assume that the multiple execution of instructions ($N_{par} = 13$) only applies to non-memory instructions,
-        estimate the average latency ($T_{cycle\_memory}$) in cycles of the memory operations. (3 lines)
-        ```{hint}
-        Use the measured latency of `Filter_horizontal` from
-        {numref}`example-table-1` and solve for $T_{cycle\_memory}$.
-
-        ```
+        Notice that our simple model doesn't work very well, and so $T_{filter\_h\_analytical}$ is very different from $T_{filter\_h\_measured}$.
+    6. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
         ````{note}
-        Refining from 4d, the model here is:
+        Refining from (Part 4d), the model here is:
         ```{math}
-        N_{instr} = N_{non\_memory} + N_{memory}
+        N_{instr} = N_{non\_mem} + N_{mem}
         ```
         ```{math}
         \begin{align}
-        T_{filter\_h\_measured\_avg} & = \frac{N_{non\_memory}}{N_{par}}  \times T_{cycle} \\
-                                     & + N_{memory} \times T_{cycle\_memory}
+        T_{filter\_h\_measured} & = \frac{N_{non\_mem}}{N_{par}}  \times T_{cycle\_non\_mem} \\
+                                     & + N_{mem} \times T_{cycle\_mem}
         \end{align}
         ```
-        where $T_{cycle} = 1$ and $N_{par} = 13$.
+        where $T_{cycle\_non\_mem} = 1$ and $N_{par} = 3$.
         ````
-    6. For the identified memory operations, how many of these loads and store cycles are to
-        memory locations ***not*** loaded  during this invocation
-        of `Filter_horizontal`)?
-
+        Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.
+    7. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximatly* what fraction of the number of its executions will be slow (1 or 2 lines per memory instruction).
         ```{hint}
-        You are finding out $N_{slow\_mem}$ of equation {eq}`perf-model`
+        Think about which loads will be from new memory locations, vs. locations which will have already been read from during the function's invocation, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.
         ```
-        
-        Add a column to your instruction table and identify the fraction of time
-        the specified instruction is to a new memory location not previously
-        encountered during a call to the function.
-    7. Assuming memory locations that have already been loaded
-        during a call to this function  (Part 4f)
-        also take a single cycle and multiple execution of instructions ($N_{par} = 13$) also applies to them, what is the average number of
-        cycles ($T_{cycle\_slow\_mem}$) for the remaining loads?
-        
-        This will require you to use the fraction you added to the table in the
-        previous question. (3 lines)
-
+        With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
+    8. Assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that the fast memory-instruction-executions take 1 cycle, and that 3 can happen in parellel. Also assume that the slow memory-instruction-executions take $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
         ````{note}
-        Refining from 4e, this gives us the model for the runtime of this filter computation:
+        Refining from (Part 4e), this gives us the model for the runtime of this filter computation:
         ```{math}
-        N_{memory} = N_{fast\_mem} + N_{slow\_mem}
+        N_{mem} = N_{fast\_mem} + N_{slow\_mem}
         ```
         ```{math}
         \begin{align}
-        T_{filter\_h\_measured\_avg} & = \frac{N_{non\_memory}}{N_{par}} \times T_{cycle} \\
-                    		      & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle} \\
+        T_{filter\_h\_measured} & = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_non\_mem} \\
+                    		      & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
                                      & + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
         \end{align}
         ```
-        where $T_{cycle} = 1$ and $N_{par} = 13$.
+        where $T_{cycle\_fast\_mem} = T_{cycle\_non\_mem} = 1$ and $N_{par} = 3$.
         ````
+        Now our model gives us the correct runtime of the function, and gives us more insight into the benifits of caching, and the consequences of a cache miss.
 4. **Coding**
     1. Implement the `hash_func` and `cdc` functions from the following Python code in C/C++. You can find the starter code at `hw2/cdc/cdc.cpp`. You are free to use C/C++ standard library data structures
     as you see fit. 
