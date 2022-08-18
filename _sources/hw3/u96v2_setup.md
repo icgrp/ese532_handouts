@@ -82,7 +82,7 @@ If you have enough disk space, try installing Linux OS(e.g. Ubuntu) along with y
 We have provided you with:
 - An Ultra96 board with a power cable and a JTAG USB cable
   - Please check SW3 as the Note below. 
-    1 shuold be in the "off" position, 
+    1 should be in the "off" position, 
     and 2 should be in the "on" position.
 - 2 USB-ethernet adapters
 - 1 ethernet cable

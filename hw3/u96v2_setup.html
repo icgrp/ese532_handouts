@@ -750,7 +750,7 @@ If you have enough disk space, try installing Linux OS(e.g. Ubuntu) along with y
 <li><p>An Ultra96 board with a power cable and a JTAG USB cable</p>
 <ul>
 <li><p>Please check SW3 as the Note below.
-1 shuold be in the “off” position,
+1 should be in the “off” position,
 and 2 should be in the “on” position.</p></li>
 </ul>
 </li>
@@ -782,7 +782,7 @@ and 2 should be in the “on” position.</p></li>
 <div><p>Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <a class="reference external" href="https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf">https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf</a></p>
 </div></blockquote>
 </div>
-<p>Your setup for this HW should look like <a class="reference internal" href="../hw4/walk_through.html#ultra96-setup"><span class="std std-numref">Fig. 20</span></a>.</p>
+<p>Your setup for this HW should look like <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" />
 <figcaption>
@@ -821,8 +821,8 @@ and 2 should be in the “on” position.</p></li>
 <h4>Boot the Ultra96 (Environment - Personal Computer with Linux)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-with-linux" title="Permalink to this headline">#</a></h4>
 <ul>
 <li><p>The instructions here are for users running Linux on their personal computers. For Windows users, skim these through, and
-go to <a class="reference internal" href="../hw4/walk_through.html#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a>.</p></li>
-<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="../hw4/walk_through.html#ultra96-setup"><span class="std std-numref">Fig. 20</span></a>.</p></li>
+go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a>.</p></li>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries into the Ultra96</p></li>
@@ -843,7 +843,7 @@ something different, like <code class="docutils literal notranslate"><span class
 </figure>
 </li>
 <li><p>After you have connected to the serial port, boot the board
-by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 35</span></a>.</p>
+by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 27</span></a>.</p>
 <figure class="align-default" id="boot">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
@@ -976,7 +976,7 @@ computer.</p></li>
 <li><p>Start MobaXterm. Click <em><strong>Session</strong></em> in the left top corner and select <em><strong>Serial</strong></em>.
 Set the serial port as the one you found in the previous step and bps. In the example case,
 it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
-<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 35</span></a>.</p></li>
+<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="../hw5/walk_through.html#boot"><span class="std std-numref">Fig. 27</span></a>.</p></li>
 <li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
 </pre></div>
