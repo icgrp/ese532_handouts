@@ -713,7 +713,7 @@ bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</sp
 <li><p><strong>Refine</strong></p>
 <p>As you hopefully noticed, our model of using a DFG and counting
 compute operations did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately
-in (Part 3c).  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (<code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> are on lines 14-50. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
+in (Part 3c).  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (<code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Here are some links which can help you get up to speed with ARM Assembly.</p>
@@ -774,8 +774,7 @@ add to <a class="reference internal" href="#example-table-2"><span class="std st
 <li><p>comparison of a loop variable to a loop limit</p></li>
 <li><p>branch to top of a loop</p></li>
 </ol>
-<p>Which of these instructions are the compute operations you identified in (Part 3c) (2 lines)?
-You can use your C code to infer the annotations for the instructions.</p>
+<p>You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?</p>
 </li>
 <li><p>Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.</p></li>
 <li><p>Calculate the total number of instruction executions (<span class="math notranslate nohighlight">\(N_{instr}\)</span>) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 3 instructions can be executed in parellel (<span class="math notranslate nohighlight">\(N_{par}\)</span>), calculate the runtime of the function (<span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span>) in cycles (1 line).</p>
