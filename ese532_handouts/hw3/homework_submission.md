@@ -111,7 +111,7 @@ Your writeup should include your answers to the following questions:
         2 processors). Assume the 2 cores can pipeline the process perfectly. The remaining
         $25\%$ is other traffic that we protect with an error correction code
         (ECC) running on a dedicated hardware unit that adds $10\%$
-        overhead in size.  The hardware ECC unit processes $200$ MB/s.
+        overhead in size.  The hardware ECC unit can process $30$ MB/s.
         The output of the ECC unit and compression pipeline are 
         output to a single $2$-Gigabit/s Ethernet port.
         1. Draw a streaming dataflow diagram for the network server.
