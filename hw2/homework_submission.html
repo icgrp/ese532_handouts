@@ -670,7 +670,7 @@ optimization (we will explore optimization levels more in HW4).</p>
 <li><p>Report the percentage of time each function (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>) takes in your program. For this, you will
 need to use <code class="docutils literal notranslate"><span class="pre">gprof</span></code> (refer to <a class="reference internal" href="walk_through.html#profiling-gprof"><span class="std std-ref">Profiling using GNU gprof</span></a>
 in the profiling tutorial).</p></li>
-<li><p>Calculate and report the latencies of (Part 2a) in cycles. Assume a clock frequency of 4.7 GHz.</p></li>
+<li><p>Calculate and report the latencies of (Part 2a) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Assume a clock frequency of 4.7 GHz.</p></li>
 </ol>
 </li>
 <li><p><strong>Analyze</strong></p>
@@ -680,7 +680,7 @@ in the profiling tutorial).</p></li>
 of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is unrolled completely, draw a Data Flow Graph (DFG)
 of the body of the loop over <code class="docutils literal notranslate"><span class="pre">i</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation. When drawing the DFG, consider <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> in isolation, ignoring the other loops.</p></li>
 <li><p>Assuming that the operations in the DFG execute sequentially,
-count the total number of compute operations. Using this number, estimate the average latency in cycles of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>. Assume that each operation takes one clock cycle at 4.7 GHz.</p>
+count the <em>total</em> number of compute operations involved in the execution of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> (consider how many times the compute operations in the DFG will run, when taking the other loops into account). Assuming that each operation takes one clock, estimate the average latency in cycles of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>This should be a simple calculation, and it won’t necessarily match what you found in <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>; we’ll be working on that
@@ -695,7 +695,7 @@ that when we look at the assembly code.</p>
 (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>)
 which one would you choose to obtain the best overall performance? (1 line)</p></li>
 <li><p>Use Amdahl’s Law to determine the highest overall application
-speedup that one could achieve assuming you accelerate the one stage that
+speedup that one could possibly achieve assuming you accelerate the one stage that
 you identified above.  You don’t have to restrict yourself to this platform. (1 line)</p></li>
 <li><p>Assuming a platform that has unlimited resources, and you are free
 to exploit associativity for
@@ -709,8 +709,7 @@ bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</sp
 </li>
 <li><p><strong>Refine</strong></p>
 <p>As you hopefully noticed, our model of using a DFG and counting
-compute operations did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately
-in (Part 3c).  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (<code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
+compute operations in (Part 3c) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Here are some links which can help you get up to speed with ARM Assembly.</p>
@@ -757,7 +756,7 @@ first-order model that can start helping us reason about the performance of
 the computation including memory access.</p>
 <ol>
 <li><p>We have profiled <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code> for you on the Ultra96 and have measured the runtime to be 5.24131 seconds. Assuming that the CPU is running at 1.2GHz, calculate the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code> in cycles (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>) (1 line).</p></li>
-<li><p>Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 2</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52). Don’t add the setup instructions that we annotated for you to the table, however examining them will help you understand the rest of the code.</p></li>
+<li><p>Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 2</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p></li>
 <li><p>Annotate each instruction with an appropriate description such as one of those listed below, and
 add to <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 2</span></a>. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed.</p>
 <ol class="simple">

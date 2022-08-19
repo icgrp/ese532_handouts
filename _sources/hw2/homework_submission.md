@@ -56,7 +56,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         need to use `gprof` (refer to {ref}`profiling/gprof`
         in the profiling tutorial).
 
-    3. Calculate and report the latencies of (Part 2a) in cycles. Assume a clock frequency of 4.7 GHz.
+    3. Calculate and report the latencies of (Part 2a) in cycles and add it to {numref}`example-table-1`. Assume a clock frequency of 4.7 GHz.
 
 3. **Analyze**
     1. Which function from {numref}`example-table-1` has the highest latency? (1 line)
@@ -64,7 +64,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
         of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, consider `LOOP3` in isolation, ignoring the other loops.
     3. Assuming that the operations in the DFG execute sequentially,
-        count the total number of compute operations. Using this number, estimate the average latency in cycles of `Filter_horizontal`. Assume that each operation takes one clock cycle at 4.7 GHz.
+        count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the other loops into account). Assuming that each operation takes one clock, estimate the average latency in cycles of `Filter_horizontal`.
 
         ```{hint}
         This should be a simple calculation, and it won't necessarily match what you found in {numref}`example-table-1`; we'll be working on that
@@ -79,7 +79,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`)
         which one would you choose to obtain the best overall performance? (1 line)
     5. Use Amdahl's Law to determine the highest overall application
-        speedup that one could achieve assuming you accelerate the one stage that
+        speedup that one could possibly achieve assuming you accelerate the one stage that
         you identified above.  You don't have to restrict yourself to this platform. (1 line)
     6. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
@@ -92,8 +92,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 4. **Refine**
     
     As you hopefully noticed, our model of using a DFG and counting
-    compute operations did not estimate `Filter_horizontal` very accurately
-    in (Part 3c).  We will now construct a better model by examining the assembly code of `Filter_Horizontal`. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96 (`Filter_O2.s`). The code pertaining to `Filter_horizontal` is on lines 14-50. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
+    compute operations in (Part 3c) did not estimate `Filter_horizontal` very accurately.  We will now construct a better model by examining the assembly code of `Filter_Horizontal`. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: `Filter_O2.s`. The code pertaining to `Filter_horizontal` is on lines 14-50 of `Filter_O2.s`. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
     ```{hint}
     Here are some links which can help you get up to speed with ARM Assembly.
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
@@ -132,7 +131,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 
     1. We have profiled `Filter_Horizontal` for you on the Ultra96 and have measured the runtime to be 5.24131 seconds. Assuming that the CPU is running at 1.2GHz, calculate the runtime of `Filter_Horizontal` in cycles ($T_{filter\_h\_measured}$) (1 line).
 
-    2. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52). Don't add the setup instructions that we annotated for you to the table, however examining them will help you understand the rest of the code.
+    2. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52 of `Filter_O2.s`). Don't add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.
     
     3. Annotate each instruction with an appropriate description such as one of those listed below, and
         add to {numref}`example-table-2`. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed. 
