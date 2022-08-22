@@ -11,16 +11,16 @@ your turn-in will not be graded.
 
 ## Deliverables
 1. **Linked List** -- The filename has to be `linked_list.c`, 
-and it should contain the linked list code in [Diagnostic](diagnostic).
+and it should contain the linked list code in [Questions](questions).
 2. **Array Sum** -- The filename has to be `array_sum.c`, 
-and it should contain the array_sum code in [Diagnostic](diagnostic).
+and it should contain the array_sum code in [Questions](questions).
 
 Please upload a `YOUR_PENNID.tgz` that contains 
-`linked_list.c` and `array_sum.c` in canvas. 
+`linked_list.c` and `array_sum.c` to the diagnostic assessment assignment in canvas. 
 If your Penn ID is `dopark`, then it should be `dopark.tgz`.
 For those who do are in the waitlist, please send `YOUR_PENNID.tgz` to
 dopark@seas.upenn.edu with the email titled with "ESE5320 Diagnostic". 
-TA will send the reply once received the email.
+TA will send the reply once the email is received.
 
 ````{admonition} Quick linux commands for tar files
 :class: dropdown, tip
