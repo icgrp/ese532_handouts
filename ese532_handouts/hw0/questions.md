@@ -92,7 +92,7 @@ complete `insert_in_order` function.
 
 2. Please complete the main function to use other helper functions
 to read `len` numbers from `filename`.
-It computes the prefix array result and prints them out.
+It should then compute the prefix array results and print them out.
 Include declaration and creation of all variables and data structures needed.
 Copy the code below in `arraysum.c`. 
 
