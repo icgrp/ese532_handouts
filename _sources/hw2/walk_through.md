@@ -228,7 +228,7 @@ Each sample counts as 0.01 seconds.
 ...
 ```
 You can see that here `gprof` is able to pick out the most computationally intensive task (note that `pixel_in_triangle` is used by
-`rasterization2`), however it otherwise differs rather significantly from when we previously instrumented the code with timers. This is because of how `gprof` estimates time spent in a function. It samples the cpu's program counter every 0.01 seconds, and from that determines which function it is inside, and for how long. Because the functions in this particular benchmark run so quickly relative to the sampling rate, `gprof` cannot adequately estimate their runtimes. To help alleviate this, you will notice that the code that actually profiled looks like as follows:
+`rasterization2`), however it otherwise differs rather significantly from when we previously instrumented the code with timers. This is because of how `gprof` estimates time spent in a function. It samples the cpu's program counter every 0.01 seconds, and from that determines which function it is inside, and for how long. Because the functions in this particular benchmark run so quickly relative to the sampling rate, `gprof` cannot adequately estimate their runtimes. To help alleviate this, you will notice that the code that was actually profiled looks like as follows:
 
 ```
 TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
