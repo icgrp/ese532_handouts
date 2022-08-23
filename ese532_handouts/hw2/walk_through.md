@@ -256,7 +256,7 @@ TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
   }
 ```
 We ran each function 100 times so as to get more sample hits within each function, which helps to some degree, however in this case there is still a great deal of inaccuracy. You can learn more about sampling errors with `gprof` [here](https://sourceware.org/binutils/docs/gprof/Sampling-Error.html).
-Also, be sure to refer to the [manual](https://sourceware.org/binutils/docs/gprof/) to find out about more command line options, and how to [interpret `gprof's` output](https://sourceware.org/binutils/docs/gprof/Output.html). When working through the homework, you should find that the functions' runtimes are long enough that gprof should work reasonably well without the need for adding loops like in the example above.
+Also, be sure to refer to the [manual](https://sourceware.org/binutils/docs/gprof/) to find out about more command line options, and how to [interpret gprof's output](https://sourceware.org/binutils/docs/gprof/Output.html). When working through the homework, you should find that the functions' runtimes are long enough that gprof should work reasonably well without the need for adding loops like in the example above.
 
 (profiling/perf)=
 ### Performance Counter Statistics using Perf
