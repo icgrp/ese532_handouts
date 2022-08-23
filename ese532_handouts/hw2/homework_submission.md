@@ -64,7 +64,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
         of the body of the loop over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, consider `LOOP3` in isolation, ignoring the other loops.
     3. Assuming that the operations in the DFG execute sequentially,
-        count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the other loops into account). Assuming that each operation takes one clock, estimate the average latency in cycles of `Filter_horizontal`.
+        count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the other loops into account). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles.
 
         ```{hint}
         This should be a simple calculation, and it won't necessarily match what you found in {numref}`example-table-1`; we'll be working on that
