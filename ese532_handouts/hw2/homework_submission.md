@@ -97,7 +97,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     Here are some links which can help you get up to speed with ARM Assembly.
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
     - [Registers](https://developer.arm.com/documentation/102374/0100/Registers-in-AArch64---general-purpose-registers)
-    - [Loads](https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
+    - [Loads](https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Load-instruction-format)
     - [Addressing Modes](https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
     ```
 
