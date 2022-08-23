@@ -51,10 +51,12 @@ end_time = std::chrono::high_resolution_clock::now();
 auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time-start_time).count();   
 std::cout << "elapsed time: " << elapsed << " ns." << std::endl;
 ```
-Note that we need nanoseconds resolution. Combining with a little bit of C++ syntax, we can create a class called
-`stopwatch` as follows:
+Note that we need nanoseconds resolution. Combining what we have with a little bit of C++ syntax, we can create a class called
+`stopwatch` in `stopwatch.h` like so:
 ```CPP
-#include <cstdint>
+#ifndef STOPWATCH_H_
+#define STOPWATCH_H_
+
 #include <chrono>
 
 class stopwatch
@@ -90,10 +92,13 @@ class stopwatch
       return (total_time / calls);
     };
 };
+#endif
 ```
 You can then use this class in `src/sw/rendering_sw.cpp` as follows:
 ```CPP
+#include <cstdint>
 #include <iostream>
+#include "stopwatch.h"
 
 // processing NUM_3D_TRI 3D triangles
 stopwatch time_projection;
