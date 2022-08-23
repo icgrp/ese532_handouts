@@ -98,8 +98,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
     - [Registers](https://developer.arm.com/documentation/102374/0100/Registers-in-AArch64---general-purpose-registers)
     - [Addressing Modes](https://developer.arm.com/documentation/ddi0406/c/Application-Level-Architecture/Instruction-Details/Memory-accesses?lang=en)
-    - [Loads] (https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
-    - [Load/Store Addressing] (https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
+    - [Loads](https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
+    - [Load/Store Addressing](https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
     ```
 
     To develop our new model, we will begin by building a table similar to the following, which records the total number of executions for each instruction in the program:
