@@ -876,9 +876,8 @@ Each sample counts as 0.01 seconds.
 ...
 </pre></div>
 </div>
-<p>You can see that <code class="docutils literal notranslate"><span class="pre">gprof</span></code>’s result agrees with our results from the manual instrumentation with timers (note that <code class="docutils literal notranslate"><span class="pre">pixel_in_triangle</span></code> is used by
-<code class="docutils literal notranslate"><span class="pre">rasterization2</span></code>).
-You will notice that the code that <code class="docutils literal notranslate"><span class="pre">gprof</span></code> profiled looks like as follows:</p>
+<p>You can see that here <code class="docutils literal notranslate"><span class="pre">gprof</span></code> is able to pick out the most computationally intensive task (note that <code class="docutils literal notranslate"><span class="pre">pixel_in_triangle</span></code> is used by
+<code class="docutils literal notranslate"><span class="pre">rasterization2</span></code>), however it otherwise differs rather significantly from when we previously instrumented the code with timers. This is because of how <code class="docutils literal notranslate"><span class="pre">gprof</span></code> estimates time spent in a function. It samples the cpu’s program counter every 0.01 seconds, and from that determines which function it is inside, and for how long. Because the functions in this particular benchmark run so quickly relative to the sampling rate, <code class="docutils literal notranslate"><span class="pre">gprof</span></code> cannot adequately estimate their runtimes. To help alleviate this, you will notice that the code that actually profiled looks like as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TRIANGLES</span><span class="p">:</span> <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_3D_TRI</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
   <span class="p">{</span>
     <span class="o">//</span> <span class="n">five</span> <span class="n">stages</span> <span class="k">for</span> <span class="n">processing</span> <span class="n">each</span> <span class="mi">3</span><span class="n">D</span> <span class="n">triangle</span>
@@ -904,10 +903,8 @@ You will notice that the code that <code class="docutils literal notranslate"><s
   <span class="p">}</span>
 </pre></div>
 </div>
-<p>We ran each function 100 times because <code class="docutils literal notranslate"><span class="pre">gprof</span></code> samples a timing value
-every 0.01 seconds. Hence, if your function runs faster than this
-sampling period, <code class="docutils literal notranslate"><span class="pre">gprof</span></code>’s results will be inaccurate. You can find out
-more about this from <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/Sampling-Error.html">here</a>. Also, refer to the <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/">manual</a> to find out about more command line options.</p>
+<p>We ran each function 100 times so as to get more sample hits within each function, which helps to some degree, however in this case there is still a great deal of inaccuracy. You can learn more about sampling errors with <code class="docutils literal notranslate"><span class="pre">gprof</span></code> <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/Sampling-Error.html">here</a>.
+Also, be sure to refer to the <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/">manual</a> to find out about more command line options, and how to <a class="reference external" href="https://sourceware.org/binutils/docs/gprof/Output.html">interpret <code class="docutils literal notranslate"><span class="pre">gprof's</span></code> output</a>. When working through the homework, you should find that the functions’ runtimes are long enough that gprof should work reasonably well without the need for adding loops like in the example above.</p>
 </section>
 <section id="performance-counter-statistics-using-perf">
 <span id="profiling-perf"></span><h3>Performance Counter Statistics using Perf<a class="headerlink" href="#performance-counter-statistics-using-perf" title="Permalink to this headline">#</a></h3>
