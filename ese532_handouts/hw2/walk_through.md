@@ -227,9 +227,9 @@ Each sample counts as 0.01 seconds.
   0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z15check_clockwise11Triangle_2D
 ...
 ```
-You can see that `gprof`'s result agrees with our results from the manual instrumentation with timers (note that `pixel_in_triangle` is used by
-`rasterization2`).
-You will notice that the code that `gprof` profiled looks like as follows:
+You can see that here `gprof` is able to pick out the most computationally intensive task (note that `pixel_in_triangle` is used by
+`rasterization2`), however it otherwise differs rather significantly from when we previously instrumented the code with timers. This is because of how `gprof` estimates time spent in a function. It samples the cpu's program counter every 0.01 seconds, and from that determines which function it is inside, and for how long. Because the functions in this particular benchmark run so quickly relative to the sampling rate, `gprof` cannot adequately estimate their runtimes. To help alleviate this, you will notice that the code that actually profiled looks like as follows:
+
 ```
 TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
   {
@@ -255,10 +255,8 @@ TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
     }
   }
 ```
-We ran each function 100 times because `gprof` samples a timing value
-every 0.01 seconds. Hence, if your function runs faster than this
-sampling period, `gprof`'s results will be inaccurate. You can find out
-more about this from [here](https://sourceware.org/binutils/docs/gprof/Sampling-Error.html). Also, refer to the [manual](https://sourceware.org/binutils/docs/gprof/) to find out about more command line options. 
+We ran each function 100 times so as to get more sample hits within each function, which helps to some degree, however in this case there is still a great deal of inaccuracy. You can learn more about sampling errors with `gprof` [here](https://sourceware.org/binutils/docs/gprof/Sampling-Error.html).
+Also, be sure to refer to the [manual](https://sourceware.org/binutils/docs/gprof/) to find out about more command line options, and how to [interpret `gprof's` output](https://sourceware.org/binutils/docs/gprof/Output.html). When working through the homework, you should find that the functions' runtimes are long enough that gprof should work reasonably well without the need for adding loops like in the example above.
 
 (profiling/perf)=
 ### Performance Counter Statistics using Perf
