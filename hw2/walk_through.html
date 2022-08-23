@@ -706,9 +706,11 @@ For example:</p>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;elapsed time: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ns.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that we need nanoseconds resolution. Combining with a little bit of C++ syntax, we can create a class called
-<code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> as follows:</p>
-<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+<p>Note that we need nanoseconds resolution. Combining what we have with a little bit of C++ syntax, we can create a class called
+<code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> in <code class="docutils literal notranslate"><span class="pre">stopwatch.h</span></code> like so:</p>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef STOPWATCH_H_</span>
+<span class="cp">#define STOPWATCH_H_</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">stopwatch</span><span class="w"></span>
@@ -744,10 +746,13 @@ For example:</p>
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">total_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">calls</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="p">};</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
+<span class="cp">#endif</span>
 </pre></div>
 </div>
 <p>You can then use this class in <code class="docutils literal notranslate"><span class="pre">src/sw/rendering_sw.cpp</span></code> as follows:</p>
-<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stopwatch.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// processing NUM_3D_TRI 3D triangles</span>
 <span class="n">stopwatch</span><span class="w"> </span><span class="n">time_projection</span><span class="p">;</span><span class="w"></span>
