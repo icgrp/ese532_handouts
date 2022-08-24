@@ -141,3 +141,25 @@ Copy the code below in `arraysum.c`.
         return(0);
     }
     ```
+    When you have `test.txt` as below,
+    ```
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    ```
+    the output of `./a.out 5 test.txt` should be
+    ```
+    (base) $./a.out 5 test.txt 
+    1
+    3
+    6
+    10
+    15
+    ```
