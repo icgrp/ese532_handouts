@@ -121,7 +121,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     :label: perf-model
     \begin{align}
     T_{filter\_h\_measured} & = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_non\_mem} \\
-                                 & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
+                                 & + N_{fast\_mem} \times  T_{cycle\_fast\_mem} \\
                                  & + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
     \end{align}
     ```
@@ -149,7 +149,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?
     4.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.
 
-    5. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 3 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
+    5. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
         ````{note}
         The model here is:
         
@@ -157,10 +157,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{par}} \times T_{cycle}
         ```
 
-        where $T_{cycle} = 1$ and $N_{par} = 3$.
+        where $T_{cycle} = 1$ and $N_{par} = 2$.
         ````
         Notice that our simple model doesn't work very well, and so $T_{filter\_h\_analytical}$ is very different from $T_{filter\_h\_measured}$.
-    6. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
+    6. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
         ````{note}
         Refining from (Part 4d), the model here is:
         ```{math}
@@ -172,15 +172,15 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
                                      & + N_{mem} \times T_{cycle\_mem}
         \end{align}
         ```
-        where $T_{cycle\_non\_mem} = 1$ and $N_{par} = 3$.
+        where $T_{cycle\_non\_mem} = 1$ and $N_{par} = 2$.
         ````
         Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.
-    7. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximatly* what fraction of the number of its executions will be slow (1 or 2 lines per memory instruction).
+    7. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximately* what fraction of its executions will be slow (1 or 2 lines per memory instruction).
         ```{hint}
         Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function's execution, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.
         ```
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
-    8. Assume that each non-memory instruction takes 1 cycle to execute, and that 3 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle, and that 3 can happen in parellel. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
+    8. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
         ````{note}
         Refining from (Part 4e), this gives us the model for the runtime of this filter computation:
         ```{math}
@@ -189,13 +189,13 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         ```{math}
         \begin{align}
         T_{filter\_h\_measured} & = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_non\_mem} \\
-                    		      & + \frac{N_{fast\_mem}}{N_{par}} \times  T_{cycle\_fast\_mem} \\
+                                  & + N_{fast\_mem} \times  T_{cycle\_fast\_mem} \\
                                      & + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
         \end{align}
         ```
-        where $T_{cycle\_fast\_mem} = T_{cycle\_non\_mem} = 1$ and $N_{par} = 3$.
+        where $T_{cycle\_fast\_mem} = T_{cycle\_non\_mem} = 1$ and $N_{par} = 2$.
         ````
-        Now our model gives us the correct runtime of the function, and gives us more insight into the benifits of caching, and the consequences of a cache miss.
+        Now our model gives us the correct runtime of the function, and gives us more insight into the benefits of caching, and the consequences of a cache miss.
 4. **Coding**
     1. Implement the `hash_func` and `cdc` functions from the following Python code in C/C++. You can find the starter code at `hw2/cdc/cdc.cpp`. You are free to use C/C++ standard library data structures
     as you see fit. 
@@ -301,8 +301,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     Convince yourself that the next hash computation can be expressed as:
         ```Python
         hash_func(input, pos+1) = (hash_func(input, pos)*prime - 
-        			   ord(input[pos])*pow(prime, win_size+1) +
-        			   ord(input[pos+win_size])*prime)
+                       ord(input[pos])*pow(prime, win_size+1) +
+                       ord(input[pos+win_size])*prime)
         ```
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
     3. Time the two `cdc` implementations and compare.
