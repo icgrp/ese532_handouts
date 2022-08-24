@@ -4,8 +4,7 @@
 Friday, September 23, 5:00 PM EDT
 ```
 In this assignment, we will map the application from homework 2 on 
-the quad-core ARM A53 of Ultra96 v2.
-<!-- multiple x86 cores of Biglab.  -->
+the quad-core ARM A53 of Ultra96 v2. <!-- multiple x86 cores of Biglab.  -->
 We will explore different
 parallel implementations and analyze their impact on performance.
 

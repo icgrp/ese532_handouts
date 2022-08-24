@@ -32,10 +32,10 @@ we will divide the computation into threads that run on different cores.
 2 hyper-threads each and others have 8 cores with 1 thread each.
 We will be running these threads on the Linux OS and hence, all the
 heavy lifting of sharing main memory global address is taken care of
-by the OS.  -->
+by the OS.
 Because we will be running multiple threads on the Linux OS, 
 all the heavy lifting of sharing main memory global address is taken care of
-by the OS.
+by the OS. -->
 
 <!-- However, in a bare-metal system:
 - we would have to map the main memory (DRAM) into the address spaces of each processor.
