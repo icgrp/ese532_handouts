@@ -229,6 +229,6 @@ that function using `break program.c:12` and <u>**continue to the breakpoint**</
 ---
 This concludes a basic introduction to debugging using gdb.
 Following are some resources that you may find helpful:
-- <http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html>
 - [GDB documentation](https://sourceware.org/gdb/current/onlinedocs/gdb/)
 - {download}`gccintro <pdfs/gccintro.pdf>`
+<!-- - <http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html> -->

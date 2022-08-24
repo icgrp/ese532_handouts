@@ -1,5 +1,8 @@
 # Collaboration
-In this assignment, you work with partners that we assigned.  You can find
+HW1 is an individual assignment. Please take this assignment as
+an opportunity to refresh your knowledge about C/C++. 
+
+<!-- In this assignment, you work with partners that we assigned.  You can find
 the assignment on Canvas in the *Partners* map under the
 *Files* section.  In the event that
 the partner assignment does not work out (e.g., your assigned partner
@@ -34,7 +37,7 @@ students.  In fact, we encourage you to share any difficulties that you have wit
 the software and general solutions or workarounds for them on Piazza.  However, ***you are
 not allowed to share the results*** (e.g. output files, numbers, graphs) that you obtain
 using the software outside of the pair working together on the assignment.  Moreover,
-***final results should be analyzed and conclusions should be drawn individually***.
+***final results should be analyzed and conclusions should be drawn individually***. -->
 
 ```{warning}
 All students must follow the [Code of Academic Integrity](https://catalog.upenn.edu/pennbook/code-of-academic-integrity/).

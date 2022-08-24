@@ -40,23 +40,6 @@ that verify your solution.
      - What data structure do the contents at `0x24`, `0x28`, and `0x2C` remind you of?
     ```
 
-2. The stack grows downward and the heap grows upwards
-(with GCC compiler and x86 architecture we are using in Biglab).
-What happens when stack and heap memory space collide? (4-5 lines)
-Your answer should include what happens when you are running your
-program under an OS vs when you are running in a bare-metal system.
-    ```{hint}
-    Think of what guarantees you get in an OS vs guarantees you don't get in a
-    bare-metal system.
-
-     A bare-metal system will not have virtual guards on memory regions
-     and typically omits checks for bounds on stacks and heaps.
-    
-    Later in the course when we'll use the Ultra96, we may need to
-    increase our stack/heap size in the linker script
-    to get the correct output in our program!
-    ```
-
 3. {numref}`pointer-question-2` shows the content of an 8 element int array on the stack.
     1. `int a[2][4] = {{10, 20, 30, 40}, {50, 60, 70, 80}};` creates a
     stack memory space shown in <!-- Write the C code to allocate this array on the stack as shown in  -->
@@ -218,3 +201,21 @@ identify three reasons this could occur and at least one way to resolve each.
 
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html>
+
+
+<!-- 2. The stack grows downward and the heap grows upwards
+(with GCC compiler and x86 architecture we are using in Biglab).
+What happens when stack and heap memory space collide? (4-5 lines)
+Your answer should include what happens when you are running your
+program under an OS vs when you are running in a bare-metal system.
+    ```{hint}
+    Think of what guarantees you get in an OS vs guarantees you don't get in a
+    bare-metal system.
+
+     A bare-metal system will not have virtual guards on memory regions
+     and typically omits checks for bounds on stacks and heaps.
+    
+    Later in the course when we'll use the Ultra96, we may need to
+    increase our stack/heap size in the linker script
+    to get the correct output in our program!
+    ``` -->

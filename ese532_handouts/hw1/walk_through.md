@@ -8,14 +8,15 @@ you can compile your code. After the add/drop period, we will provide
 each of you with a Ultra96 board, which will be used in the subsequent assignments.
 
 **OS**: You can use any OS---Mac/Linux/Windows, however, keep in mind that
-Xilinx only supports Linux and Windows (you can use
-[this video tutorial](https://www.youtube.com/watch?v=HaOWfmCAyCE) to run
-Linux on a virtualization software; n.b.; video was made using a previous
-version of the Xilinx Software; you should install Vitis 2020.2).
+Xilinx Vitis, which will be introduced in HW 5, only supports Linux
+(you can use Linux on virtualization software or partition the disk for dual boot Linux/your OS).
 Our instructions are written for Linux and assumes you have basic proficiency in
 Linux. Following are some resources if you need to brush up on Linux command line:
 - [Introduction to the GNU/Linux and UNIX command line](https://bootlin.com/blog/command-line/)
 - [Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
+  <!-- [this video tutorial](https://www.youtube.com/watch?v=HaOWfmCAyCE) to run
+  Linux on a virtualization software; n.b.; video was made using a previous
+  version of the Xilinx Software; you should install Vitis 2020.2). -->
 
 **Terminal**: For HW 1-4, we will use a command-line workflow. We will introduce some Xilinx
 specific tool workflow in HW 5-7. You will need to be comfortable with using

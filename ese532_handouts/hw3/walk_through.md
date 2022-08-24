@@ -190,7 +190,6 @@ From the above, we learned:
     where it's called.
 - we are running on the `main` thread by default.
 
-Your computer must have multiple cores.
 By default,
 the linux scheduler will schedule our threads into one of these
 cores. What if we know what we are doing and want full
