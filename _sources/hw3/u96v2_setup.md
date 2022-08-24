@@ -1,6 +1,6 @@
 # Ultra96 Setup
 
-## Linux vs Bare-Metal
+## AMD-Xilinx Zynq Architecture
 ```{figure} images/zynq-eg-block.png
 ---
 height: 550px
@@ -37,7 +37,7 @@ Because we will be running multiple threads on the Linux OS,
 all the heavy lifting of sharing main memory global address is taken care of
 by the OS.
 
-However, in a bare-metal system:
+<!-- However, in a bare-metal system:
 - we would have to map the main memory (DRAM) into the address spaces of each processor.
     Only then can the processors distribute and coordinate the work (which
     involves communicating pointers to shared memory areas and synchronization).
@@ -51,8 +51,6 @@ However, in a bare-metal system:
     shared DRAM yet, but instead remain in the private L1 cache of the processor.
     When another processor reads the same memory location, it may observe an old
     value. Fortunately, 
-    <!-- our x86 processors (and the ARM on the Zynq we will later
-    use) have  -->
     the ARM on the Zynq a Snoop Control Unit, which bypasses data directly between processors
     as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.
 
@@ -71,7 +69,7 @@ use these APIs in the following sections, but if you would like to learn about
 - [C++ threads tutorial](https://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php)
 - [Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is](https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/)
 
-If you prefer a book, refer to ***C++ Concurrency in Action*** by Anthony D. Williams.
+If you prefer a book, refer to ***C++ Concurrency in Action*** by Anthony D. Williams. -->
 
 
 ## Environment Setup
@@ -262,7 +260,7 @@ computer.
     ```bash
     source .profile
     ```
-    Next, copy these files over to to the Ultra96:
+    Next, copy these files over to the Ultra96:
     ``` bash
     scp .profile .bashrc root@10.10.7.1:/home/root/
     ```

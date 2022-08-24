@@ -142,6 +142,11 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../hw0/collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../hw0/questions.html">
      Questions
     </a>
@@ -558,8 +563,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linux-vs-bare-metal">
-   Linux vs Bare-Metal
+  <a class="reference internal nav-link" href="#amd-xilinx-zynq-architecture">
+   AMD-Xilinx Zynq Architecture
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -616,8 +621,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linux-vs-bare-metal">
-   Linux vs Bare-Metal
+  <a class="reference internal nav-link" href="#amd-xilinx-zynq-architecture">
+   AMD-Xilinx Zynq Architecture
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -666,8 +671,8 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="ultra96-setup">
 <h1>Ultra96 Setup<a class="headerlink" href="#ultra96-setup" title="Permalink to this headline">#</a></h1>
-<section id="linux-vs-bare-metal">
-<h2>Linux vs Bare-Metal<a class="headerlink" href="#linux-vs-bare-metal" title="Permalink to this headline">#</a></h2>
+<section id="amd-xilinx-zynq-architecture">
+<h2>AMD-Xilinx Zynq Architecture<a class="headerlink" href="#amd-xilinx-zynq-architecture" title="Permalink to this headline">#</a></h2>
 <figure class="align-default" id="zynq">
 <a class="reference internal image-reference" href="../_images/zynq-eg-block.png"><img alt="../_images/zynq-eg-block.png" src="../_images/zynq-eg-block.png" style="height: 550px;" /></a>
 <figcaption>
@@ -701,43 +706,39 @@ by the OS.  -->
 <p>Because we will be running multiple threads on the Linux OS,
 all the heavy lifting of sharing main memory global address is taken care of
 by the OS.</p>
-<p>However, in a bare-metal system:</p>
-<ul>
-<li><p>we would have to map the main memory (DRAM) into the address spaces of each processor.
-Only then can the processors distribute and coordinate the work (which
-involves communicating pointers to shared memory areas and synchronization).</p></li>
-<li><p>in order to share data, the processors in the bare-metal system must
-agree on the location and organization of the data.</p></li>
-<li><p>we must make sure that the processors respect each other’s private memory areas.
-We can do that in a bare-metal system by mapping private code and data of
-individual processors at different locations.</p></li>
-<li><p>Sharing DRAM is complicated by the fact that DRAM is cached in L1 and L2 caches.
-Data that one processor attempts to write to DRAM may not have been written to
-shared DRAM yet, but instead remain in the private L1 cache of the processor.
-When another processor reads the same memory location, it may observe an old
-value. Fortunately,</p>
-  <!-- our x86 processors (and the ARM on the Zynq we will later
-  use) have  -->
-<p>the ARM on the Zynq a Snoop Control Unit, which bypasses data directly between processors
-as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.</p>
-</li>
-</ul>
-<p>Another problem that we face when we communicate via shared memory is that
+<!-- However, in a bare-metal system:
+- we would have to map the main memory (DRAM) into the address spaces of each processor.
+    Only then can the processors distribute and coordinate the work (which
+    involves communicating pointers to shared memory areas and synchronization).
+- in order to share data, the processors in the bare-metal system must
+    agree on the location and organization of the data.
+- we must make sure that the processors respect each other's private memory areas.
+    We can do that in a bare-metal system by mapping private code and data of
+    individual processors at different locations.
+- Sharing DRAM is complicated by the fact that DRAM is cached in L1 and L2 caches.
+    Data that one processor attempts to write to DRAM may not have been written to
+    shared DRAM yet, but instead remain in the private L1 cache of the processor.
+    When another processor reads the same memory location, it may observe an old
+    value. Fortunately, 
+    the ARM on the Zynq a Snoop Control Unit, which bypasses data directly between processors
+    as needed to maintain a consistent view of the DRAM. Therefore, this is no concern.
+
+
+Another problem that we face when we communicate via shared memory is that
 the reading processor should not start reading the memory until the writing
 processor has completed writing the data.  In other words, we need a form
 of synchronization between the cores.  Design of synchronization functions
 is a rather complex subject, which is dealt with in other courses such as
-CIS 471 or CIS 505. In this assignment, we will use the APIs of <code class="docutils literal notranslate"><span class="pre">std::thread</span></code>
+CIS 471 or CIS 505. In this assignment, we will use the APIs of `std::thread`
 to accomplish synchronization between cores. We will show you exactly how to
 use these APIs in the following sections, but if you would like to learn about
-<code class="docutils literal notranslate"><span class="pre">std::threads</span></code>, here are some useful links:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/">Concurrency in C++</a></p></li>
-<li><p><a class="reference external" href="https://eli.thegreenplace.net/2016/c11-threads-affinity-and-hyperthreading/">C++11 threads, affinity and hyperthreading</a></p></li>
-<li><p><a class="reference external" href="https://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php">C++ threads tutorial</a></p></li>
-<li><p><a class="reference external" href="https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/">Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is</a></p></li>
-</ul>
-<p>If you prefer a book, refer to <em><strong>C++ Concurrency in Action</strong></em> by Anthony D. Williams.</p>
+`std::threads`, here are some useful links:
+- [Concurrency in C++](https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/)
+- [C++11 threads, affinity and hyperthreading](https://eli.thegreenplace.net/2016/c11-threads-affinity-and-hyperthreading/)
+- [C++ threads tutorial](https://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php)
+- [Measuring Mutexes, Spinlocks and how Bad the Linux Scheduler Really is](https://probablydance.com/2019/12/30/measuring-mutexes-spinlocks-and-how-bad-the-linux-scheduler-really-is/)
+
+If you prefer a book, refer to ***C++ Concurrency in Action*** by Anthony D. Williams. -->
 </section>
 <section id="environment-setup">
 <h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">#</a></h2>
@@ -953,7 +954,7 @@ computer.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> .profile
 </pre></div>
 </div>
-<p>Next, copy these files over to to the Ultra96:</p>
+<p>Next, copy these files over to the Ultra96:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp .profile .bashrc root@10.10.7.1:/home/root/
 </pre></div>
 </div>
