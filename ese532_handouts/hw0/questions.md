@@ -131,7 +131,7 @@ Copy the code below in `arraysum.c`.
     }
 
     int main(int argc, char **argv) {
-        if (argc<2) {
+        if (argc<3) {
             fprintf(stderr,"Usage: arraysum len filename\n");
             exit(1);
         }
