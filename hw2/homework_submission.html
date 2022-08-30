@@ -506,22 +506,53 @@ optimization (we will explore optimization levels more in HW4).</p>
 <li><p>Report the percentage of time each function (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>) takes in your program. For this, you will
 need to use <code class="docutils literal notranslate"><span class="pre">gprof</span></code> (refer to <a class="reference internal" href="walk_through.html#profiling-gprof"><span class="std std-ref">Profiling using GNU gprof</span></a>
 in the profiling tutorial).</p></li>
-<li><p>Calculate and report the latencies of (Part 2a) in cycles and add it to <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-1</span></code>. Assume a clock frequency of 4.7 GHz.</p></li>
+<li><p>Calculate and report the latencies of (Part 2a) in cycles and add it to <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-1</span></code>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command.</p></li>
 </ol>
 </li>
 <li><p><strong>Analyze</strong></p>
+<p>In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Since you don’t have access to one in this homework, we have profiled the application on it for you, and have provided you with the results:</p>
+<table class="table" id="ultra96-profile">
+<caption><span class="caption-text">Ultra96 Profiling Data</span><a class="headerlink" href="#ultra96-profile" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Functions</p></th>
+<th class="head"><p>Average Latency (ns)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scale</p></td>
+<td><p>8.42684e+08</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filter_horizontal</p></td>
+<td><p>5.24131e+09</p></td>
+</tr>
+<tr class="row-even"><td><p>Filter_vertical</p></td>
+<td><p>5.29961e+09</p></td>
+</tr>
+<tr class="row-odd"><td><p>Differentiate</p></td>
+<td><p>1.63245e+09</p></td>
+</tr>
+<tr class="row-even"><td><p>Compress</p></td>
+<td><p>5.36313e+09</p></td>
+</tr>
+</tbody>
+</table>
 <ol>
-<li><p>Which function from <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-1</span></code> has the highest latency? (1 line)</p></li>
+<li><p>Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96_profile</span></code> with the average latency of each function in cycles.</p></li>
+<li><p>Which function from <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96_profile</span></code> has the highest latency? (1 line)</p></li>
 <li><p>Assuming that <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>
 of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is unrolled completely, draw a Data Flow Graph (DFG)
-of the body of the loop over <code class="docutils literal notranslate"><span class="pre">i</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation. When drawing the DFG, consider <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> in isolation, ignoring the other loops.</p></li>
+of the body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> over <code class="docutils literal notranslate"><span class="pre">i</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation. When drawing the DFG, consider <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> in isolation, ignoring the other loops.</p></li>
 <li><p>Assuming that the operations in the DFG execute sequentially,
-count the <em>total</em> number of compute operations involved in the execution of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> (consider how many times the compute operations in the DFG will run, when taking the other loops into account). Assuming that each operation takes one clock, estimate the average latency of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles.</p>
+count the <em>total</em> number of compute operations involved in the execution of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> (consider how many times the compute operations in the DFG will run, when taking the other loops into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line).</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>This should be a simple calculation, and it won’t necessarily match what you found in <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-1</span></code>; we’ll be working on that
+<p>This should be a simple calculation, and it won’t necessarily match what you found in (Part 3a); we’ll be working on that
 in subsequent questions.</p>
-<p>Just like 3b, we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
+<p>Just like (Part 3c), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
 Hence, you are asked to not estimate the impact of the parts that
 contribute little to runtime. We’ll get a better picture of
 that when we look at the assembly code.</p>
@@ -536,16 +567,16 @@ you identified above.  You don’t have to restrict yourself to this platform. (
 <li><p>Assuming a platform that has unlimited resources, and you are free
 to exploit associativity for
 mathematical operations, draw a new DFG with the lowest critical path
-delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3b).</p></li>
-<li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3f)
+delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3c).</p></li>
+<li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3g)
 in terms of compute operations. Assume that instructions can execute in the same cycle.</p></li>
 <li><p>Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
-bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3b). (4 lines)</p></li>
+bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3c). (4 lines)</p></li>
 </ol>
 </li>
 <li><p><strong>Refine</strong></p>
 <p>As you hopefully noticed, our model of using a DFG and counting
-compute operations in (Part 3c) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
+compute operations in (Part 3d) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Here are some links which can help you get up to speed with ARM Assembly.</p>
@@ -592,7 +623,7 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_no
 first-order model that can start helping us reason about the performance of
 the computation including memory access.</p>
 <ol>
-<li><p>We have profiled <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code> for you on the Ultra96 and have measured the runtime to be 5.24131 seconds. Assuming that the CPU is running at 1.2GHz, calculate the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code> in cycles (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>) (1 line).</p></li>
+<li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
 <li><p>Make a table like <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-2</span></code> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p></li>
 <li><p>Annotate each instruction with an appropriate description such as one of those listed below, and
 add to <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-2</span></code>. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed.</p>
@@ -638,7 +669,7 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}}  \times T_{cycle\_n
 <li><p>Consider the memory instructions in <code class="xref std std-numref docutils literal notranslate"><span class="pre">example-table-2</span></code>. For each instruction, record <em>approximately</em> what fraction of its executions will be slow (1 or 2 lines per memory instruction).</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function’s execution, and thus will be fast due to caching. Will the writes be fast or slow? It will help to look at the C code.</p>
+<p>Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function’s execution, and thus will be fast due to caching. Will the writes be fast or slow? Note: The Ultra96 uses a write-back cache policy. For these questions it will help to look at the C code.</p>
 </div>
 <p>With these fractions, calculate the total number of slow executions of memory instructions (<span class="math notranslate nohighlight">\(N_{slow\_mem}\)</span>), and the total number of fast executions of memory instructions (<span class="math notranslate nohighlight">\(N_{fast\_mem}\)</span>) (2 lines).</p>
 </li>
