@@ -7,7 +7,7 @@ fulfill homework and project assignments.
 %  hand, 
 We hope they provide more clarity regarding our expectations.
 
-In addition to the guidelines below, we have provided an example of what we consider a well-formatted submission <http://www.seas.upenn.edu/~ese532/fall2018/handouts/writeup_example.pdf>.
+In addition to the guidelines below, we have provided an example of what we consider a well-formatted submission <http://www.seas.upenn.edu/~ese5320/fall2018/handouts/writeup_example.pdf>.
 
 - Handwritten documents and figures are not accepted.  This includes
     electronic representations (e.g., scan, photograph) of handwritten documents and figures.
