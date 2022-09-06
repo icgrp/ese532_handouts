@@ -106,13 +106,13 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         mathematical operations, draw a new DFG with the lowest critical path
         delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3c).
     8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3g)
-        in terms of compute operations. Assume that instructions can execute in the same cycle.
+        in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
     9. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
         bound for `LOOP3`, again only considering the operations outlined in (Part 3c). (4 lines)
 4. **Refine**
     
     As you hopefully noticed, our model of using a DFG and counting
-    compute operations in (Part 3d) did not estimate `Filter_horizontal` very accurately.  We will now construct a better model by examining the assembly code of `Filter_Horizontal`. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: `Filter_O2.s`. The code pertaining to `Filter_horizontal` is on lines 14-50 of `Filter_O2.s`. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
+    compute operations in (Part 3d) did not estimate `Filter_horizontal` very accurately.  We will now construct a better model by examining the assembly code of `Filter_horizontal`. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: `Filter_O2.s`. The code pertaining to `Filter_horizontal` is on lines 14-50 of `Filter_O2.s`. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
     ```{hint}
     Here are some links which can help you get up to speed with ARM Assembly.
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
@@ -147,10 +147,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     ```
     
     The real model is still more complicated than this, but this is a
-    first-order model that can start helping us reason about the performance of
+    first-order model that can help us start reasoning about the performance of
     the computation including memory access.
 
-    1. Record the runtime of `Filter_Horizontal` in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as ($T_{filter\_h\_measured}$).
+    1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as ($T_{filter\_h\_measured}$).
 
     2. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52 of `Filter_O2.s`). Don't add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.
     
@@ -313,7 +313,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         ```
         ```{tip}
         - To verify, you can first create a text file with the output, e.g. `golden.txt`
-        - You can then write the output of your program to another text file buy
+        - You can then write the output of your program to another text file by
         redirecting the output in the command line, e.g. `./cdc > out.txt`
         - You can then use `diff` which will show differences in values if any, e.g. `diff out.txt golden.txt`
         ```
@@ -327,7 +327,6 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
     3. Time the two `cdc` implementations and compare.
         ```{tip}
-        - Work together with your partner!
         - Read the following resources to gain more context about the code:
           <br> Content-Defined Chunking (Rabin Fingerprint)
           - https://moinakg.wordpress.com/tag/rabin-fingerprint/
