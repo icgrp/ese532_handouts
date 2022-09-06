@@ -81,10 +81,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     1. Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to {numref}`ultra96_profile` with the average latency of each function in cycles.
     2. Which function from {numref}`ultra96_profile` has the highest latency? (1 line)
     3. Assuming that `LOOP3`
-        of `Filter_horizontal` is unrolled completely, draw a Data Flow Graph (DFG)
-        of the body of `LOOP3` over `i`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, consider `LOOP3` in isolation, ignoring the other loops.
+        of `Filter_horizontal` is unrolled completely into the body of `LOOP2`. Draw a Data Flow Graph (DFG)
+        of the operations that are performed in the body of `LOOP2`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, only consider the *body* of`LOOP2` (not any of the looping).
     4. Assuming that the operations in the DFG execute sequentially,
-        count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the other loops into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles (1 line).
+        count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles (1 line).
 
         ```{hint}
         This should be a simple calculation, and it won't necessarily match what you found in (Part 3a); we'll be working on that
