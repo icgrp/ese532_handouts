@@ -80,9 +80,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     ```
     1. Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to {numref}`ultra96_profile` with the average latency of each function in cycles.
     2. Which function from {numref}`ultra96_profile` has the highest latency? (1 line)
-    3. Assuming that `LOOP3`
+    3. Assume that `LOOP3`
         of `Filter_horizontal` is unrolled completely into the body of `LOOP2`. Draw a Data Flow Graph (DFG)
-        of the operations that are performed in the body of `LOOP2`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, only consider the *body* of`LOOP2` (not any of the looping).
+        of the operations that are performed in the body of `LOOP2`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, only consider the *body* of `LOOP2` (not any of the looping).
     4. Assuming that the operations in the DFG execute sequentially,
         count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles (1 line).
 
@@ -197,7 +197,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.
     7. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximately* what fraction of its executions will be slow (1 or 2 lines per memory instruction).
         ```{hint}
-        Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function's execution, and thus will be fast due to caching. Will the writes be fast or slow? Note: The Ultra96 uses a write-back cache policy. For these questions it will help to look at the C code.
+        Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function's execution, and thus will be fast due to caching. Assume that writes will be slow.
         ```
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
     8. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
