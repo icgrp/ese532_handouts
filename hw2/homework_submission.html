@@ -597,14 +597,14 @@ to exploit associativity for
 mathematical operations, draw a new DFG with the lowest critical path
 delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3c).</p></li>
 <li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3g)
-in terms of compute operations. Assume that instructions can execute in the same cycle.</p></li>
+in terms of compute operations. Assume that any number of instructions can execute in the same cycle.</p></li>
 <li><p>Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
 bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3c). (4 lines)</p></li>
 </ol>
 </li>
 <li><p><strong>Refine</strong></p>
 <p>As you hopefully noticed, our model of using a DFG and counting
-compute operations in (Part 3d) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code>. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
+compute operations in (Part 3d) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Here are some links which can help you get up to speed with ARM Assembly.</p>
@@ -648,10 +648,10 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_no
                              &amp; + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
 \end{align}\end{split}\]</div>
 <p>The real model is still more complicated than this, but this is a
-first-order model that can start helping us reason about the performance of
+first-order model that can help us start reasoning about the performance of
 the computation including memory access.</p>
 <ol>
-<li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_Horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
+<li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
 <li><p>Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p></li>
 <li><p>Annotate each instruction with an appropriate description such as one of those listed below, and
 add to <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a>. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed.</p>
@@ -819,7 +819,7 @@ as you see fit.</p>
 <p class="admonition-title">Tip</p>
 <ul class="simple">
 <li><p>To verify, you can first create a text file with the output, e.g. <code class="docutils literal notranslate"><span class="pre">golden.txt</span></code></p></li>
-<li><p>You can then write the output of your program to another text file buy
+<li><p>You can then write the output of your program to another text file by
 redirecting the output in the command line, e.g. <code class="docutils literal notranslate"><span class="pre">./cdc</span> <span class="pre">&gt;</span> <span class="pre">out.txt</span></code></p></li>
 <li><p>You can then use <code class="docutils literal notranslate"><span class="pre">diff</span></code> which will show differences in values if any, e.g. <code class="docutils literal notranslate"><span class="pre">diff</span> <span class="pre">out.txt</span> <span class="pre">golden.txt</span></code></p></li>
 </ul>
@@ -838,7 +838,6 @@ Convince yourself that the next hash computation can be expressed as:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <ul class="simple">
-<li><p>Work together with your partner!</p></li>
 <li><p>Read the following resources to gain more context about the code:
 <br> Content-Defined Chunking (Rabin Fingerprint)</p>
 <ul>
