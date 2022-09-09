@@ -1,7 +1,7 @@
 # HW2 -- Profiling
 
 ```{admonition} Due
-Friday, September 17, 5:00 PM EDT
+Friday, September 16, 5:00 PM EDT
 ```
 In this assignment, we will profile an application on a
 x86 core in Biglab.
