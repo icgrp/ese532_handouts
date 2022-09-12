@@ -27,12 +27,12 @@ parts:
         - file: hw2/collaboration
         - file: hw2/walk_through
         - file: hw2/homework_submission
-    # - file: hw3/index
-    #   sections:
-    #     - file: hw3/collaboration
-    #     - file: hw3/u96v2_setup
-    #     - file: hw3/walk_through
-    #     - file: hw3/homework_submission
+    - file: hw3/index
+      sections:
+        - file: hw3/collaboration
+        - file: hw3/u96v2_setup
+        - file: hw3/walk_through
+        - file: hw3/homework_submission
     # - file: hw4/index
     #   sections:
     #     - file: hw4/collaboration
