@@ -272,7 +272,7 @@ computer.
     ```{figure} images/win_eth_0.jpg
     Find the port
     ```
-- Download and install MobaXterm from [here](https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip).
+- Download and install MobaXterm from [here](https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip). In Detkin/Ketterer machines, use the portable version since you don't have a permission to install the software.
 - Start MobaXterm. Click ***Session*** in the left top corner and select ***Serial***.
   Set the serial port as the one you found in the previous step and bps. In the example case,
   it's COM4 and 115200. Click ***OK***.

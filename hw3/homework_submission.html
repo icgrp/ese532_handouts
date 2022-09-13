@@ -524,7 +524,8 @@ questions. (1 line)</p></li>
 picture on core 0 and the other half on core 1, a form of
 coarse-grain, data-level parallelism.
 The initial implementation can be found in <code class="docutils literal notranslate"><span class="pre">hw3/assignment/coarse_grain</span></code>.
-We have parallelized <code class="docutils literal notranslate"><span class="pre">Scale</span></code> already for you.</p>
+We have parallelized <code class="docutils literal notranslate"><span class="pre">Scale</span></code> already for you. Note that there is no hyper-thread on ARM,
+so the core indices of <strong>0 and 1</strong> are used for <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> to access two different physical cores.</p>
 <ol>
 <li><p>Can we parallelize all streaming functions in our application, i.e.
 <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>,

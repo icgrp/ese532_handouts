@@ -482,11 +482,11 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#monitoring-processes-using-htop">
+    <a class="reference internal nav-link" href="#monitoring-processes-using-top">
      Monitoring Processes using
      <code class="docutils literal notranslate">
       <span class="pre">
-       htop
+       top
       </span>
      </code>
     </a>
@@ -538,11 +538,11 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#monitoring-processes-using-htop">
+    <a class="reference internal nav-link" href="#monitoring-processes-using-top">
      Monitoring Processes using
      <code class="docutils literal notranslate">
       <span class="pre">
-       htop
+       top
       </span>
      </code>
     </a>
@@ -827,7 +827,7 @@ machine, keep it in mind.</p></li>
 per core. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
-you should pin the threads to either 0 and 2, or 1 and 3.
+you should pin the threads to either <strong>0 and 2</strong>, or <strong>1 and 3</strong>.
 This will ensure that each thread is run on a separate core.
 Otherwise, multiple threads on the same core will share resources
 and may affect performance.
@@ -1043,99 +1043,116 @@ Remember that <code class="docutils literal notranslate"><span class="pre">stati
 is until the program stops executing. This is especially important
 since being able to use old data while new data is being produced
 is key to achieving the pipeline parallelism.</p>
-</section>
-<section id="monitoring-processes-using-htop">
-<h3>Monitoring Processes using <code class="docutils literal notranslate"><span class="pre">htop</span></code><a class="headerlink" href="#monitoring-processes-using-htop" title="Permalink to this headline">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">htop</span></code> tool in Linux lets you monitor the processes running on your system.
-If you type <code class="docutils literal notranslate"><span class="pre">htop</span></code> in the terminal, you’ll
-see a screen like <a class="reference internal" href="#htop-init"><span class="std std-numref">Fig. 14</span></a>:</p>
-<!-- Since there can be multiple users in Biglab at a given time, you would
-want to monitor `htop` and see if the CPUs are looking idle; in which case
-you should do some profiling of you program and get some clean results.
-You can also use `htop` to see where your threads are pinned to.
+<!-- ### Monitoring Processes using `htop`
+`htop` tool in Linux lets you monitor the processes running on your system.
+If you type `htop` in the terminal, you'll
+see a screen like {numref}`htop-init`:
+ -->
+<!--     Since there can be multiple users in Biglab at a given time, you would
+    want to monitor `htop` and see if the CPUs are looking idle; in which case
+    you should do some profiling of you program and get some clean results.
+    You can also use `htop` to see where your threads are pinned to.
 
-Once logged into Biglab, type `htop` in the terminal, and you'll
-see a screen like {numref}`htop-init`: -->
-<figure class="align-default" id="htop-init">
-<img alt="../_images/htop-init.png" src="../_images/htop-init.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Initial <code class="docutils literal notranslate"><span class="pre">htop</span></code> window</span><a class="headerlink" href="#htop-init" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>This gives you an idea if the CPU are being utilized and if the machine
-is being used heavily.</p>
-<p>Let’s configure some of the view items. Press <strong>F2</strong> (<strong>Fn+F2</strong> in laptops) to enter the <strong>Setup</strong> screen. From the setup screen, select <strong>Display Options</strong> and check <strong>Tree view</strong>. This will let us see the threads we spawn. Also uncheck <strong>Count CPUs from 1 instead of 0</strong>, so that
+    Once logged into Biglab, type `htop` in the terminal, and you'll
+    see a screen like {numref}`htop-init`: -->
+<!--
+```{figure} images/htop-init.png
+---
+name: htop-init
+---
+Initial `htop` window
+```
+This gives you an idea if the CPU are being utilized and if the machine
+is being used heavily.
+
+Let's configure some of the view items. Press **F2** (**Fn+F2** in laptops) to enter the **Setup** screen. From the setup screen, select **Display Options** and check **Tree view**. This will let us see the threads we spawn. Also uncheck **Count CPUs from 1 instead of 0**, so that
 we are referring to the same indexing in this walk-through. Now from the
-same setup screen, select <strong>Columns</strong> and select <strong>PROCESSOR</strong> from the
-<strong>Available Columns</strong>. This is will let us see the CPU ID of the thread.’
-Press <strong>Esc</strong> to get back to the main <code class="docutils literal notranslate"><span class="pre">htop</span></code> window.</p>
-<p>While keeping <code class="docutils literal notranslate"><span class="pre">htop</span></code> open in one terminal, open a different terminal
-to your Biglab node and compile the following code by pasting it your <code class="docutils literal notranslate"><span class="pre">Walkthrough.cpp</span></code>
-and do <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">walkthrough</span> <span class="pre">&amp;&amp;</span> <span class="pre">./walkthrough</span></code>.</p>
-<div class="highlight-CPP notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Utilities.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span><span class="cp"></span>
+same setup screen, select **Columns** and select **PROCESSOR** from the
+**Available Columns**. This is will let us see the CPU ID of the thread.'
+Press **Esc** to get back to the main `htop` window.
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;From thread id:&quot;</span><span class="w"></span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span><span class="w"></span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; a+b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+While keeping `htop` open in one terminal, open a different terminal
+to your Biglab node and compile the following code by pasting it your `Walkthrough.cpp`
+and do `make walkthrough && ./walkthrough`.
+```CPP
+#include <iostream>
+#include <thread>
+#include "Utilities.h"
+#include <unistd.h>
+#include <array>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// pin main thread to cpu 0</span>
-<span class="w">    </span><span class="n">pin_main_thread_to_cpu0</span><span class="p">();</span><span class="w"></span>
+void my_function(int a, int b) {
+    int c = a + b;
+    std::cout << "From thread id:"
+            << std::this_thread::get_id()
+            << " a+b=" << c << std::endl;
+    sleep(60);
+}
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span>
+int main() {
+    // pin main thread to cpu 0
+    pin_main_thread_to_cpu0();
 
-<span class="w">    </span><span class="c1">// create an array of threads</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threads</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span>
-<span class="w">    </span><span class="c1">// spawn some threads and pin them to specific cpus</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_function</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="n">pin_thread_to_cpu</span><span class="p">(</span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+    int a = 2;
+    int b = 3;
+    
 
-<span class="w">    </span><span class="c1">// wait for threads to finish</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&amp;</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">threads</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<p>The program waits for a minute. During this time, go back to
-the terminal with <code class="docutils literal notranslate"><span class="pre">htop</span></code>. Press <strong>F4</strong> (<strong>Fn+F4</strong> in laptops)
-and type <code class="docutils literal notranslate"><span class="pre">walkthrough</span></code> to filter our process. You’ll see the
-following:</p>
-<figure class="align-default" id="htop-threads">
-<img alt="../_images/htop-threads.png" src="../_images/htop-threads.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">htop</span></code> showing threads and cpu assignment</span><a class="headerlink" href="#htop-threads" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>You can see that we are able to see our threads and how they
-are mapped to different CPU IDs—1, 3, 5, 7—indicating that
+    // create an array of threads
+    std::array<std::thread, 4> threads;
+    
+    // spawn some threads and pin them to specific cpus
+    for(int i = 0; i < 4; i++) {
+      threads[i] = std::thread(&my_function, a, b);
+      pin_thread_to_cpu(threads[i], 2*i+1); 
+    }
+
+    // wait for threads to finish
+    for(std::thread& th : threads) {
+      th.join();
+    }
+}
+```
+The program waits for a minute. During this time, go back to
+the terminal with `htop`. Press **F4** (**Fn+F4** in laptops)
+and type `walkthrough` to filter our process. You'll see the
+following:
+```{figure} images/htop-threads.png
+---
+name: htop-threads
+---
+`htop` showing threads and cpu assignment
+```
+You can see that we are able to see our threads and how they
+are mapped to different CPU IDs---1, 3, 5, 7---indicating that
 we want to use separate cores instead of hyper-threads in the
-same core.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When you run the code on the Ultra96, you cannot use the fancy user interface of <code class="docutils literal notranslate"><span class="pre">htop</span></code>.
-You can you the built-in <code class="docutils literal notranslate"><span class="pre">top</span></code> instead. You can also monitor the core usage in <code class="docutils literal notranslate"><span class="pre">top</span></code> by
-pressing <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+same core.
+
+````{note}
+When you run the code on the Ultra96, you cannot use the fancy user interface of `htop`.
+You can you the built-in `top` instead. You can also monitor the core usage in `top` by
+pressing `1`.
+
+  ```{figure} images/top.png
+  ---
+  name: top
+  ---
+  `top` on Ultra96 showing core usage
+  ```
+
+
+````
+-->
+</section>
+<section id="monitoring-processes-using-top">
+<h3>Monitoring Processes using <code class="docutils literal notranslate"><span class="pre">top</span></code><a class="headerlink" href="#monitoring-processes-using-top" title="Permalink to this headline">#</a></h3>
+<p>When you run the code on the Ultra96, you can use <code class="docutils literal notranslate"><span class="pre">top</span></code> to monitor the processes running on your system.
+You can monitor the core usage in <code class="docutils literal notranslate"><span class="pre">top</span></code> by pressing <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 <figure class="align-default" id="top">
 <img alt="../_images/top.png" src="../_images/top.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">top</span></code> on Ultra96 showing core usage</span><a class="headerlink" href="#top" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">top</span></code> on Ultra96 showing core usage</span><a class="headerlink" href="#top" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-</div>
 </section>
 </section>
 </section>
