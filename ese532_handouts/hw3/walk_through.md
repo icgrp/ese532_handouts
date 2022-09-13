@@ -261,7 +261,7 @@ machine, keep it in mind.
 per core. The `cpu_num` argument in `pin_thread_to_cpu` refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
-you should pin the threads to either 0 and 2, or 1 and 3.
+you should pin the threads to either **0 and 2**, or **1 and 3**.
 This will ensure that each thread is run on a separate core.
 Otherwise, multiple threads on the same core will share resources
 and may affect performance.
@@ -475,17 +475,21 @@ is until the program stops executing. This is especially important
 since being able to use old data while new data is being produced
 is key to achieving the pipeline parallelism.
 
-### Monitoring Processes using `htop`
+
+<!-- ### Monitoring Processes using `htop`
 `htop` tool in Linux lets you monitor the processes running on your system.
 If you type `htop` in the terminal, you'll
 see a screen like {numref}`htop-init`:
-<!-- Since there can be multiple users in Biglab at a given time, you would
-want to monitor `htop` and see if the CPUs are looking idle; in which case
-you should do some profiling of you program and get some clean results.
-You can also use `htop` to see where your threads are pinned to.
+ -->
+<!--     Since there can be multiple users in Biglab at a given time, you would
+    want to monitor `htop` and see if the CPUs are looking idle; in which case
+    you should do some profiling of you program and get some clean results.
+    You can also use `htop` to see where your threads are pinned to.
 
-Once logged into Biglab, type `htop` in the terminal, and you'll
-see a screen like {numref}`htop-init`: -->
+    Once logged into Biglab, type `htop` in the terminal, and you'll
+    see a screen like {numref}`htop-init`: -->
+
+<!--
 ```{figure} images/htop-init.png
 ---
 name: htop-init
@@ -571,4 +575,15 @@ pressing `1`.
 
 
 ````
+-->
 
+### Monitoring Processes using `top`
+When you run the code on the Ultra96, you can use `top` to monitor the processes running on your system.
+You can monitor the core usage in `top` by pressing `1`.
+
+```{figure} images/top.png
+---
+name: top
+---
+`top` on Ultra96 showing core usage
+```

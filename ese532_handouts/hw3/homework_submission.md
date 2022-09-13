@@ -28,9 +28,10 @@ Your writeup should include your answers to the following questions:
     
     We will parallelize the application by processing half of each
     picture on core 0 and the other half on core 1, a form of
-    coarse-grain, data-level parallelism. 
+    coarse-grain, data-level parallelism.
     The initial implementation can be found in `hw3/assignment/coarse_grain`.
-    We have parallelized `Scale` already for you.
+    We have parallelized `Scale` already for you. Note that there is no hyper-thread on ARM,
+    so the core indices of **0 and 1** are used for `pin_thread_to_cpu` to access two different physical cores.
     1. Can we parallelize all streaming functions in our application, i.e.
         `Filter_horizontal`, `Filter_vertical`, `Differentiate`,
         and `Compress` in the same way as `Scale`?  Motivate your
