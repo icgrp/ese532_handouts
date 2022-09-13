@@ -258,7 +258,7 @@ works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
 machine, keep it in mind.
 - Also note how in {numref}`topo` there are 2 hyper-threads
-per core. The `cpu_num` argument in `pin_thread_to_cpu` refers to
+per core on x86 processors. The `cpu_num` argument in `pin_thread_to_cpu` refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
 you should pin the threads to either **0 and 2**, or **1 and 3**.
@@ -267,6 +267,10 @@ Otherwise, multiple threads on the same core will share resources
 and may affect performance.
 To see the CPU topology in your PC,
 do `lstopo`.
+- In [homework submission](homework_submission), you need to run the code on
+Ultra96's ARM. Note that there is no hyper-thread on ARM, 
+so the core indices of **0 and 1** are used for `pin_thread_to_cpu` 
+to access two different physical cores.
 ````
 <!-- 
 To see the CPU topology in Biglab,
@@ -280,7 +284,7 @@ use the following commands:
 ---
 name: topo
 ---
-An 8-core machine with 2 hyper-threads
+An 8-core x86 processor with 2 hyper-threads 
 ``` 
 
 
