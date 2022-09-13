@@ -824,7 +824,7 @@ works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
 machine, keep it in mind.</p></li>
 <li><p>Also note how in <a class="reference internal" href="#topo"><span class="std std-numref">Fig. 13</span></a> there are 2 hyper-threads
-per core. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
+per core on x86 processors. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
 you should pin the threads to either <strong>0 and 2</strong>, or <strong>1 and 3</strong>.
@@ -833,6 +833,10 @@ Otherwise, multiple threads on the same core will share resources
 and may affect performance.
 To see the CPU topology in your PC,
 do <code class="docutils literal notranslate"><span class="pre">lstopo</span></code>.</p></li>
+<li><p>In <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a>, you need to run the code on
+Ultra96’s ARM. Note that there is no hyper-thread on ARM,
+so the core indices of <strong>0 and 1</strong> are used for <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code>
+to access two different physical cores.</p></li>
 </ul>
 </div>
 <!-- 
@@ -846,7 +850,7 @@ use the following commands:
 <figure class="align-default" id="topo">
 <img alt="../_images/topo_pc.png" src="../_images/topo_pc.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">An 8-core machine with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">An 8-core x86 processor with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <hr class="docutils" />

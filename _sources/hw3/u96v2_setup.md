@@ -74,8 +74,6 @@ If you prefer a book, refer to ***C++ Concurrency in Action*** by Anthony D. Wil
 
 ## Environment Setup
 ### Setting up Ultra96 and Host Computer
-**Starting this lab, we strongly suggest that you use Linux OS.**
-If you have enough disk space, try installing Linux OS(e.g. Ubuntu) along with your original OS and dual-boot.
 
 We have provided you with:
 - An Ultra96 board with a power cable and a JTAG USB cable
