@@ -33,11 +33,11 @@ parts:
         - file: hw3/u96v2_setup
         - file: hw3/walk_through
         - file: hw3/homework_submission
-    - file: hw4/index
-      sections:
-        - file: hw4/collaboration
-        - file: hw4/walk_through
-        - file: hw4/homework_submission
+    # - file: hw4/index
+    #   sections:
+    #     - file: hw4/collaboration
+    #     - file: hw4/walk_through
+    #     - file: hw4/homework_submission
     # - file: hw5/index
     #   sections:
     #     - file: hw5/collaboration
