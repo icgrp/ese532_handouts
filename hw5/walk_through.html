@@ -756,8 +756,8 @@ utilized in `Host.cpp` -->
     1. Hover over an API call to find out long it took.
  -->
 <p>We are now going to start working on the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a> where we will follow a bottom-up approach and optimize
-our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end.
-Scroll to <span class="xref std std-ref">vitis_hls</span> to learn about how to use Vitis HLS.</p>
+our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. <!-- Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS. -->
+<a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS">This tutorial</a> will give you a basic idea on Vitis HLS.</p>
 <p>Once you have 3i completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>,
 proceed <a class="reference internal" href="#vitis"><span class="std std-ref">Building the code</span></a>.</p>
 <hr class="docutils" />
@@ -836,7 +836,7 @@ Vitis flow consists of <strong>1)compiling the host code, 2)generating kernel ob
 You can take a look at the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> we provide, and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> will execute all these steps.
 Because we already generated <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file, the command to generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file is commented out.</p>
 <ul>
-<li><p>cp <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file to HW5 directory.</p></li>
+<li><p>Make sure that <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> exists in HW5 directory.</p></li>
 <li><p>Source settings to be able to run vitis:
 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.</p>
 <p><strong>If you work locally</strong>, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis
@@ -892,12 +892,15 @@ files that we are interested in:</p>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
-<p>We suggest you to copy files above to your local machine and proceed.
+<p>If you are working in Detkin/Ketterer machines, we suggest you to copy files above to your
+local machine and proceed.
 If your laptop is Linux, you can use <code class="docutils literal notranslate"><span class="pre">scp</span></code> and if you are using
 Windows you can use programs like <a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a>.
 When you are building for the first time, we will write the
 <code class="docutils literal notranslate"><span class="pre">package/sd_card.img</span></code> image to our SD card.</p>
 <ul class="simple">
+<li><p>If another image is already written on your SD card(from HW3/HW4), delete the partitions.
+On Linux, you can do this from <em>Disks</em> application.</p></li>
 <li><p>Write <code class="docutils literal notranslate"><span class="pre">sd_card.img</span></code> to your SD card.</p>
 <ul>
 <li><p>In Ubuntu 20.04, you can use <code class="docutils literal notranslate"><span class="pre">Startup</span> <span class="pre">Disk</span> <span class="pre">Creator</span></code>.</p></li>
@@ -916,7 +919,7 @@ When you are building for the first time, we will write the
     - the second partition contains the Linux rootfs. This will not change. -->
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We will only have to write our SD card image once.
+<p>We will only have to write our SD card image <strong>once</strong>.
 When we recompile our code, the files that will need to be
 updated are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
@@ -929,17 +932,17 @@ updated are:</p>
 <p>We will copy those files to the running board using <code class="docutils literal notranslate"><span class="pre">scp</span></code>.
 We will then reboot the board, which will load the updated
 boot files. The boot files contain the bitstream, which
-reconfigures the <em><strong>Programmable Logic</strong></em> of the Ultra96. Hence,
+reconfigures the <strong>Programmable Logic</strong> of the Ultra96. Hence,
 we need a reboot. If you copy the files, but don’t do a reboot,
 you will see that your program throws an error.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If your Ultra96 is connected to a different machine from the one where
-you are running Vitis (e.g., you are running Vitis on a detkin machine,
+you are running Vitis (e.g., you are running Vitis on a Detkin machine,
 but your Ultra96 is connected to your laptop), you will need to first
-copy the files from the Vitis machine to the Ultra96-host machine and
-then copy them from the Ultra96-host to the Ultra96.</p>
+copy the files from the Vitis machine(Detkin machine) to the Ultra96-host machine(your laptop) and
+then copy them from the Ultra96-host(your laptop) to the Ultra96.</p>
 </div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -984,7 +987,7 @@ Vitis Analayzer in your host computer to view the trace by doing:</p>
 </pre></div>
 </div>
 </li>
-<li><p>When you modify your HLS code, that will cause the hardware to
+<li><p>As stated in the note above, when you modify your HLS code, that will cause the hardware to
 change, and hence the following files(regenerated) will need to be copied to
 the <code class="docutils literal notranslate"><span class="pre">/media/sd-mmcblk0p1</span></code> directory</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>

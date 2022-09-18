@@ -14,7 +14,7 @@ Your writeup should include your answers to the following questions:
 </style>
 
 1. **Initial CPU implementation and HLS Kernel**
-    1. You must have the old SD card image you used for HW4. Just like we did in HW4, boot the Ultra96,
+    1. You must have the old SD card image you used for HW3/HW4. Just like we did in HW3/HW4, boot the Ultra96,
        connect your local machine and the Ultra96, and then copy files in unders the `hw5/hls/` to your Ultra96. 
        Find the latency of the matrix multiplier (mmult kernel) using `stopwatch` class in
         `hw5/hls/Testbench.cpp`. Use `-O3` and report it in ms. This is our baseline. (1 line)
@@ -146,7 +146,7 @@ Your writeup should include your answers to the following questions:
         `ese532_code/hw5` directory and select OK.
         Save your design and quit Vitis HLS. Open a terminal and go to your `ese532_code/hw5` directory.
         Run by following the instruction in {ref}`vitis` section.
-        Commit the Vitis Analyzer files in your repo. We will use it in the next section.
+<!--         Commit the Vitis Analyzer files in your repo. We will use it in the next section. -->
 
 4. **Vitis Analyzer**
     
