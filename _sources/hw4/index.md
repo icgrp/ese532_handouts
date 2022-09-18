@@ -1,7 +1,7 @@
 # HW4 -- SIMD
 
 ```{admonition} Due
-Friday, October 1, 5:00 PM
+Friday, September 30, 5:00 PM
 ```
 In this assignment, we will accelerate the streaming application from last homework using the ARM NEON vector processor.
 

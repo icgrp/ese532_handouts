@@ -4,7 +4,7 @@ In this assignment, you work with partners that we assigned. You can find the pa
 as possible.  Partners may share code and results and discuss analysis, but
 each writeup should be prepared independently.  Outside the assigned groups,
 only sharing of tool knowledge is allowed.  See the course policies on the course
-web page <http://www.seas.upenn.edu/~ese532> for full details of
+web page <http://www.seas.upenn.edu/~ese5320> for full details of
 our policies for this course.
 
 
@@ -13,6 +13,6 @@ All students must follow the [Code of Academic Integrity](https://catalog.upenn.
 Infringement of the code can have ***severe consequences*** for you and your partner, such as ***failing the course
 or cancellation of your student visa*** if you are an international student, so please
 familiarize yourself with them.  See the course policies on the course
-web page <http://www.seas.upenn.edu/~ese532> for full details of
+web page <http://www.seas.upenn.edu/~ese5320> for full details of
 our policies for this course.
 ```

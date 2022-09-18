@@ -509,29 +509,31 @@ Your writeup should include your answers to the following questions:</p>
 </style>
 <ol>
 <li><p><strong>Initial CPU implementation and HLS Kernel</strong></p>
-<ol class="simple">
+<ol>
 <li><p>You must have the old SD card image you used for HW4. Just like we did in HW4, boot the Ultra96,
 connect your local machine and the Ultra96, and then copy files in unders the <code class="docutils literal notranslate"><span class="pre">hw5/hls/</span></code> to your Ultra96.
 Find the latency of the matrix multiplier (mmult kernel) using <code class="docutils literal notranslate"><span class="pre">stopwatch</span></code> class in
 <code class="docutils literal notranslate"><span class="pre">hw5/hls/Testbench.cpp</span></code>. Use <code class="docutils literal notranslate"><span class="pre">-O3</span></code> and report it in ms. This is our baseline. (1 line)</p></li>
 <li><p>Now move to Detkin/Ketter Linux machine(or your local machine if you installed Vitis).
 We will now simulate the matrix multiplier in Vitis HLS.</p>
-<ul class="simple">
+<ul>
 <li><p>First, cd to the HW5 directory that you git cloned, and source settings to be able to run vitis_hls.
-<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.
-If you work locally, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis installation directory.</p></li>
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.</p>
+<p><strong>If you work locally</strong>, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis installation directory.</p>
+<p>(e.g.: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/tools/Xilinx/Vitis/2020.2/settings64.sh</span></code>)</p>
+<p>You can add line like this above the <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LM_LICENSE_FILE=...</span></code> line in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
+</li>
 <li><p>Start Vitis HLS by <code class="docutils literal notranslate"><span class="pre">vitis_hls</span> <span class="pre">&amp;</span></code> in the terminal. You should now see the IDE.</p></li>
 <li><p>Create a new project and add <code class="docutils literal notranslate"><span class="pre">hw5/hls/MatrixMultiplication.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">hw5/hls/MatrixMultiplication.h</span></code> as source files.</p></li>
 <li><p>Specify <code class="docutils literal notranslate"><span class="pre">mmult</span></code> as top function.</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">hw5/hls/Testbench.cpp</span></code> as TestBench files.</p></li>
-<li><p>Select the <code class="docutils literal notranslate"><span class="pre">xczu3eg-sbva484-1-e</span></code> in the device
-selection. Use a <em><strong>8ns</strong></em>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">xczu3eg-sbva484-1-i</span></code> in the device
+selection. Use a <em><strong>10ns</strong></em>
 clock, and select <em><strong>Vitis Kernel Flow Target</strong></em> for the Flow Target.
 Click Finish.</p></li>
 <li><p>Right-click on <em><strong>solution1</strong></em> and select
 <em><strong>Solution Settings</strong></em>.</p></li>
-<li><p>In the <em><strong>General</strong></em> tab, click on <em><strong>Add</strong></em>.</p></li>
-<li><p>Select <em><strong>config_compile</strong></em> command and set
+<li><p>In the <em><strong>General</strong></em> tab, select <em><strong>config_compile</strong></em> command and set
 <em><strong>pipeline_loops</strong></em> to <em><strong>0</strong></em>. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
 since we are going to do it ourselves.</p></li>
 <li><p><em><strong>Run C simulation</strong></em> by right-clicking on the project on the <em><strong>Explorer</strong></em> view, and verify that the test
@@ -545,7 +547,7 @@ verify that the code is correct? (3 lines)
 components for the project, you will need to develop your own
 testbenches.  Our testbenches can serve as an example and
 template for you.)</p></li>
-<li><p>Synthesize the matrix multiplier in Vitis HLS.<br />
+<li><p>Synthesize the matrix multiplier in Vitis HLS.
 Analyze the <em><strong>Synthesis Report</strong></em> by expanding the <em><strong>solution1</strong></em> tab in the <em><strong>Explorer</strong></em> view, browsing to <em><strong>syn/report</strong></em> and opening the <code class="docutils literal notranslate"><span class="pre">.rpt</span></code> file.
 What is the expected latency of the hardware accelerator in ms? (1 line)</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
@@ -567,7 +569,7 @@ worse than the software implementation. (3 lines)</p></li>
 <ol>
 <li><p>Go back to the <em><strong>Synthesis perspective</strong></em>, and unroll the
 loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code> 2 times using an <code class="docutils literal notranslate"><span class="pre">unroll</span></code>
-pragma (See <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hlspragmas.html#ariaid-title25">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
+pragma (See <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
 reduce the latency of the entire loop evaluation (all
 iterations) compared to the original (non-unrolled)
 loop.  (3-4 lines).</p>
@@ -587,20 +589,18 @@ computational resources (<code class="docutils literal notranslate"><span class=
 which one(s) are shared by  multiple operations? (1 line)</p></li>
 <li><p>Unroll the loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code>
 completely, and
-synthesize the design again.
-You may notice that the estimated clock period in the <em><strong>Synthesis Report</strong></em> is shown in red. What does this mean? (3 lines)</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Due to
-variation among Vitis HLS versions, sometimes it works and
-nothing is flagged.  The intent of this question is to
-illustrate things you may encounter and (with the following
-questions) show you how to address them.  If it’s not
-flagged in red, just report the estimated clock period.</p>
-</div>
+synthesize the design again. Report the expected latency.</p>
+ <!-- ```{note}
+     Due to
+     variation among Vitis HLS versions, sometimes it works and
+     nothing is flagged.  The intent of this question is to
+     illustrate things you may encounter and (with the following
+     questions) show you how to address them.  If it's not
+     flagged in red, just report the estimated clock period.
+ ``` -->
+ <!-- 1. Change the clock period to 20ns, and
+      synthesize it again. What is the expected latency of the new accelerator in ms? (1 line) -->
 </li>
-<li><p>Change the clock period to 20ns, and
-synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does this implementation consume? (4 lines)</p></li>
 <li><p>You may have noticed that all floating-point additions are
@@ -622,10 +622,11 @@ How many copies of the each design can you fit in the resources available in Ult
 <ol class="simple">
 <li><p>Remove the unroll pragma, and pipeline the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 loop with the minimal initiation
-interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma.  Restore the
-clock period to 8ns.  Synthesize the design again.  Report the
-initiation interval that the design achieved. (You may find the timing is
-still not met. It does not matter, we will fix it later.) (1 line)</p></li>
+interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma.<br />
+Synthesize the design again.  Report the
+initiation interval that the design achieved. (1 line)
+<!-- (You may find the timing is
+     still not met. It does not matter, we will fix it later.)  --></p></li>
 <li><p>Draw a schematic for the data path of <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 and show how it is connected to the memories.  You can find the
 variables that are mapped onto memories in the <em><strong>Resource Profile</strong></em> view of the
@@ -651,7 +652,7 @@ that the RTL is functionally identical to the C code.</p></li>
 <em><strong>Format</strong></em>. Select output location to be your
 <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory and select OK.
 Save your design and quit Vitis HLS. Open a terminal and go to your <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory.
-Run by following the instruction in <a class="reference internal" href="walk_through.html#vitis"><span class="std std-ref">Creating Vitis Project</span></a> section.
+Run by following the instruction in <a class="reference internal" href="walk_through.html#vitis"><span class="std std-ref">Building the code</span></a> section.
 Commit the Vitis Analyzer files in your repo. We will use it in the next section.</p></li>
 </ol>
 </li>
@@ -663,7 +664,7 @@ Commit the Vitis Analyzer files in your repo. We will use it in the next section
  or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
  ``` -->
 <ol>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">vitis_analyzer</span> <span class="pre">./xclbin.run_summary</span></code> to open Vitis Analyzer.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">vitis_analyzer</span> <span class="pre">./mmult.xclbin.run_summary</span></code> to open Vitis Analyzer.</p></li>
 <li><p>Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.</p></li>
 <li><p>Take a screenshot of the <em><strong>Application Timeline</strong></em>. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can’t fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
 Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.</p>

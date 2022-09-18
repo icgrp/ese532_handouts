@@ -470,13 +470,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-vitis-hls">
-     Using Vitis HLS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-vitis-project">
-     Creating Vitis Project
+    <a class="reference internal nav-link" href="#building-the-code">
+     Building the code
     </a>
    </li>
   </ul>
@@ -504,11 +499,6 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boot-the-ultra96">
        Boot the Ultra96
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#boot-the-ultra96-for-windows-users-only">
-       Boot the Ultra96 (for Windows users only)
       </a>
      </li>
     </ul>
@@ -555,13 +545,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-vitis-hls">
-     Using Vitis HLS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-vitis-project">
-     Creating Vitis Project
+    <a class="reference internal nav-link" href="#building-the-code">
+     Building the code
     </a>
    </li>
   </ul>
@@ -589,11 +574,6 @@ title="Print to PDF"
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#boot-the-ultra96">
        Boot the Ultra96
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#boot-the-ultra96-for-windows-users-only">
-       Boot the Ultra96 (for Windows users only)
       </a>
      </li>
     </ul>
@@ -672,35 +652,21 @@ below to install Vitis (the tutorials install SDSoC and you should not install t
 <p>Note that Vitis is fully supported in Linux OS only.
 Follow the instructions below to install Vitis on your linux machine:</p>
 <ol>
-<li><p>Download
-<em><strong>Xilinx Unified Installer 2020.2: Linux Self Extracting Web Installer</strong></em> in
-<a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vitis/2020-2.html">here</a>. Create an account with Xilinx if you don’t have one.</p></li>
-<li><p>Open a terminal and use the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">Xilinx_Unified_2020</span><span class="mf">.2_1118_1232</span><span class="n">_Lin64</span><span class="o">.</span><span class="n">bin</span>
-</pre></div>
-</div>
-</li>
-<li><p>Extract the installer:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">Xilinx_Unified_2020</span><span class="mf">.2_1118_1232</span><span class="n">_Lin64</span><span class="o">.</span><span class="n">bin</span> <span class="o">--</span><span class="n">noexec</span> <span class="o">--</span><span class="n">target</span> <span class="o">./</span><span class="n">xilinx</span><span class="o">-</span><span class="n">installer</span>
-</pre></div>
-</div>
-</li>
-<li><p>Login with your Xilinx account:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">xsetup</span> <span class="o">-</span><span class="n">b</span> <span class="n">AuthTokenGen</span>
-</pre></div>
-</div>
-<p>Type the email you have registered for xilinx and press enter.
-Type the password and press enter - the command from step 4 completes with <code class="docutils literal notranslate"><span class="pre">Saved</span> <span class="pre">authentication</span> <span class="pre">token</span> <span class="pre">file</span> <span class="pre">successfully</span></code>.</p>
-</li>
-<li><p>Save the attached <a class="reference download internal" download="" href="../_downloads/c4d61b6e5cc5af72d7c4fdac5f9f720e/ese532_install_config.txt"><code class="xref download docutils literal notranslate"><span class="pre">ese532_install_config.txt</span></code></a> and add your preferred installation location in the <code class="docutils literal notranslate"><span class="pre">Destination</span></code> field. The default location is <code class="docutils literal notranslate"><span class="pre">/opt/Xilinx</span></code>.</p></li>
-<li><p>Start the installation with the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">xsetup</span> <span class="o">-</span><span class="n">b</span> <span class="n">Install</span> <span class="o">-</span><span class="n">a</span> <span class="n">XilinxEULA</span><span class="p">,</span><span class="mi">3</span><span class="n">rdPartyEULA</span><span class="p">,</span><span class="n">WebTalkTerms</span> <span class="o">-</span><span class="n">c</span> <span class="n">ese532_install_config</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
+<li><p>Go to <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html">this link</a> and
+select <em><strong>2020.2</strong></em>. Then, download
+<em><strong>Xilinx Unified Installer 2020.2: Linux Self Extracting Web Installer</strong></em>. Create an account with Xilinx if you don’t have one.</p></li>
+<li><p>We found <a class="reference external" href="https://youtu.be/debP5oI28l8">this video</a> useful to install Vitis.</p></li>
+<li><p>When selecting devices, selecting Zynq UltraScale+ MPSoC should be enough for this class.</p>
+<figure class="align-default" id="ese5320-vitis-devices">
+<img alt="../_images/ese5320_vitis_devices.png" src="../_images/ese5320_vitis_devices.png" />
+<figcaption>
+<p><span class="caption-text">Selecting devices when installing Vitis</span><a class="headerlink" href="#ese5320-vitis-devices" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The full installation will take about 30 min - 1 hour.</p>
 </li>
 <li><p>Open the file <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> in your terminal and add the following line. This is the license for using Vitis:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LM_LICENSE_FILE</span><span class="o">=</span><span class="s2">&quot;2100@potato.cis.upenn.edu;1709@potato.cis.upenn.edu;1717@potato.cis.upenn.edu;27010@potato.cis.upenn.edu;27009@potato.cis.upenn.edu&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LM_LICENSE_FILE</span><span class="o">=</span><span class="s2">&quot;2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu&quot;</span>
 </pre></div>
 </div>
 <p>Do <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashrc</span></code> to update the terminal environment
@@ -710,6 +676,15 @@ with this variable.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libtinfo</span><span class="o">-</span><span class="n">dev</span>
 <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libtinfo</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libtinfo</span><span class="o">.</span><span class="n">so</span><span class="mf">.5</span>
+</pre></div>
+</div>
+</li>
+<li><p>As of January 1st 2022, there needs a patch. Download <em><strong>y2k22_patch-1.2.zip</strong></em> in <a class="reference external" href="https://support.xilinx.com/s/article/76960?language=en_US">this link</a>.
+Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs.</p></li>
+<li><p>Get the Ultra96 platform from <a class="reference external" href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2/">here</a>.
+Scroll down and click <strong>Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)</strong>.
+Click <strong>2020.2</strong><span class="math notranslate nohighlight">\(\rightarrow\)</span><strong>Vitis_Platform</strong>. Download <strong>u96v2_sbc_vitis_2020_2.tar.gz</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_vitis_2020_2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 </li>
@@ -740,10 +715,12 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw5</span
         <span class="n">MatrixMultiplication</span><span class="o">.</span><span class="n">cpp</span>
         <span class="n">Testbench</span><span class="o">.</span><span class="n">cpp</span>
     <span class="n">Host</span><span class="o">.</span><span class="n">cpp</span>
+    <span class="n">Makefile</span>
+    <span class="n">u96_v2</span><span class="o">.</span><span class="n">cfg</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> will help you to source Xilins tools</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> will help you to source Xilinx tools</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> defines the options necessary for Vitis Analyzer.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">common</span></code> folder has header files and helper functions.</p></li>
 <li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">hls</span></code> folder. The
@@ -751,12 +728,14 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw5</span
 to a hardware function (known as a kernel in Vitis). The <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> file has
 the “driver” code that transfers the data to the fpga, runs the kernel,
 fetches back the result from the kernel and then verifies it for correctness.</p></li>
-<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel">this</a> to learn about the syntax of the code in <code class="docutils literal notranslate"><span class="pre">hls/MatrixMultiplication.cpp</span></code>.</p></li>
-<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program">this</a> to learn about how the hardware function is
-utilized in <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code></p></li>
+<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis">this tutorial</a> to get an idea of how the Vitis flow works.
+Note that there are <em>Data Center Platform</em> and <em>Embedded Platform</em>. Our ultra96 board belongs to <em>Embedded Platform</em>.</p></li>
 <li><p>Read <a class="reference external" href="https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html">this</a> to learn about simple memory allocation and OpenCL execution.</p></li>
-<li><p>Read <a class="reference external" href="https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html">this</a> to learn about aligned memory allocation with OpenCL.</p></li>
 </ul>
+<!-- - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
+- Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
+utilized in `Host.cpp` -->
+<!-- - Read [this](https://developer.xilinx.com/en/articles/example-3-aligned-memory-allocation-with-opencl.html) to learn about aligned memory allocation with OpenCL. -->
 <!-- - Run the matrix multiplication on the cpu by doing:
     ```
     # compile
@@ -778,38 +757,41 @@ utilized in <code class="docutils literal notranslate"><span class="pre">Host.cp
  -->
 <p>We are now going to start working on the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a> where we will follow a bottom-up approach and optimize
 our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end.
-Scroll to <a class="reference internal" href="#vitis-hls"><span class="std std-ref">Using Vitis HLS</span></a> to learn about how to use Vitis HLS.</p>
+Scroll to <span class="xref std std-ref">vitis_hls</span> to learn about how to use Vitis HLS.</p>
 <p>Once you have 3i completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>,
-proceed <a class="reference internal" href="#vitis"><span class="std std-ref">Creating Vitis Project</span></a>.</p>
+proceed <a class="reference internal" href="#vitis"><span class="std std-ref">Building the code</span></a>.</p>
 <hr class="docutils" />
-</section>
-<section id="using-vitis-hls">
-<span id="vitis-hls"></span><h3>Using Vitis HLS<a class="headerlink" href="#using-vitis-hls" title="Permalink to this headline">#</a></h3>
-<p>Creating a new project in Vitis HLS is explained <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project">here</a>.
+<!-- (vitis_hls)=
+### Using Vitis HLS
+Creating a new project in Vitis HLS is explained [here](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/new_project.md#1-creating-a-vitis-hls-project).
 Make sure you enter the top-level function during the creation of the
 project (although you can also change it later). The top-level function is
 the function that will be called by the part of your application that runs
 in software.  Vitis HLS needs it for synthesis.  You can also indicate
 which files you want to create.  It is wise to add a testbench file too,
-while you are creating the project.</p>
-<p>We have provided a testbench in Vitis HLS to debug the hardware.
+while you are creating the project.
+
+We have provided a testbench in Vitis HLS to debug the hardware.
 The requirements for testbenches are not any different from other
 software applications written in C.  Similar to them, testbenches
-have a <code class="docutils literal notranslate"><span class="pre">main</span></code> function that is invoked.  To the main function you can
+have a `main` function that is invoked.  To the main function you can
 add any functionality needed to test your function.  That includes calling
 the top function that you would like to test.  When the testbench is
 satisfied that the function is correct, it should return 0.  Otherwise, it
-should return another value.</p>
-<p>You can run the testbench by selecting <em><strong>Project</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Run C Simulation</strong></em> from the menu.  A window should pop up.  The default settings of the dialog
-should be fine.  You can dismiss the dialog by pressing <em><strong>OK</strong></em>.  You
-can see in the <em><strong>Console</strong></em> whether your test has passed.  If your test
+should return another value.
+
+You can run the testbench by selecting ***Project*** $\rightarrow$ ***Run C Simulation*** from the menu.  A window should pop up.  The default settings of the dialog
+should be fine.  You can dismiss the dialog by pressing ***OK***.  You
+can see in the ***Console*** whether your test has passed.  If your test
 fails, you can run the test in debug mode.  This can be done by repeating
 the same procedure, except that you should check the box in front of
-<em><strong>Launch Debugger</strong></em> this time before you dismiss the dialog.  This
-will take you to the <em><strong>Debug</strong></em> perspective, where you can set breakpoints and use the step into/step over buttons to debug.  You can go back to the original perspective by pressing the <em><strong>Synthesis</strong></em> button in the top, right corner.</p>
-<p>To rebuild the code, you should go back to Synthesis mode, and click <em><strong>Run C Simulation</strong></em> again to rebuild the code.</p>
-<p>Once you are satisfied with your code, you can run <em><strong>Solution</strong></em>
-<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Run C Synthesis</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Active Solution</strong></em> from the menu
+***Launch Debugger*** this time before you dismiss the dialog.  This
+will take you to the ***Debug*** perspective, where you can set breakpoints and use the step into/step over buttons to debug.  You can go back to the original perspective by pressing the ***Synthesis*** button in the top, right corner.  
+
+To rebuild the code, you should go back to Synthesis mode, and click ***Run C Simulation*** again to rebuild the code.
+
+Once you are satisfied with your code, you can run ***Solution***
+$\rightarrow$ ***Run C Synthesis*** $\rightarrow$ ***Active Solution*** from the menu
 to synthesize your design.  You can also verify the synthesized version of
 your accelerator in your testbench.  If you choose to do so, Vitis HLS
 will run your accelerator in a simulator, so this method is called C/RTL
@@ -818,11 +800,14 @@ realtime execution, so this method may not be
 practical for every testbench.  It avoids needing to run low
 level-placement and routing and will give you more visibility into the
 behavior of your design.  Anyway, you can start it by choosing
-<em><strong>Solution</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Run C/RTL Cosimulation</strong></em> from the menu.</p>
-<p>The hardware implementation that Vitis HLS selects can be controlled
-by including pragmas, e.g. <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">HLS</span> <span class="pre">inline</span></code>, in your code.
-The different pragmas that you can use in your functions are listed in <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/hls_pragmas.html#okr1504034364623">Vitis HLS User Guide</a>.</p>
-<p>When you have obtained a satisfying hardware description in Vitis HLS, you will <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel">Export Vitis Kernel</a>, i.e. a Xilinx object file (.xo).</p>
+***Solution*** $\rightarrow$ ***Run C/RTL Cosimulation*** from the menu.
+
+The hardware implementation that Vitis HLS selects can be controlled
+by including pragmas, e.g. `#pragma HLS inline`, in your code.
+The different pragmas that you can use in your functions are listed in [Vitis HLS User Guide](https://docs.xilinx.com/r/en-US/ug1399-vitis-hls/HLS-Pragmas).
+
+When you have obtained a satisfying hardware description in Vitis HLS, you will [Export Vitis Kernel](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md#export-the-vitis-kernel), i.e. a Xilinx object file (.xo).
+ -->
 <!-- We will then [use this object file/kernel](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis_HLS/using_the_kernel.md) and link it together in our existing Vitis application. -->
 <!-- ```{note}
 We are using the GUI mode of Vitis HLS so that we can see the HLS schedule.
@@ -844,76 +829,21 @@ So collaborate with your partner if you are unable to use the GUI in AWS or try
 to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
 ``` -->
 </section>
-<section id="creating-vitis-project">
-<span id="vitis"></span><h3>Creating Vitis Project<a class="headerlink" href="#creating-vitis-project" title="Permalink to this headline">#</a></h3>
-<p>Make sure you have 3i completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>.</p>
+<section id="building-the-code">
+<span id="vitis"></span><h3>Building the code<a class="headerlink" href="#building-the-code" title="Permalink to this headline">#</a></h3>
+<p>Make sure you have 3i completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>.
+Vitis flow consists of <strong>1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.</strong>
+You can take a look at the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> we provide, and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> will execute all these steps.
+Because we already generated <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file, the command to generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file is commented out.</p>
 <ul>
-<li><p>First, cd to the HW5 directory and source settings to be able to run vitis:
-<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>. If you work locally, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis
-installation directory.</p></li>
-<li><p>Start Vitis by <code class="docutils literal notranslate"><span class="pre">vitis</span> <span class="pre">&amp;</span></code> in the terminal. You should now see the IDE.</p></li>
-<li><p>Select Workspace as you want and click <em><strong>Launch</strong></em>.</p></li>
-<li><p>Select <em><strong>Create Application Project</strong></em>.</p></li>
-<li><p>You will see Ultra96 platform as shown below. Click <em><strong>Next</strong></em>.</p>
-<figure class="align-default" id="id1">
-<img alt="../_images/vitis_ultra96_platform.png" src="../_images/vitis_ultra96_platform.png" />
-<figcaption>
-<p><span class="caption-text">Select Ultra96 platform</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
+<li><p>cp <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file to HW5 directory.</p></li>
+<li><p>Source settings to be able to run vitis:
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.</p>
+<p><strong>If you work locally</strong>, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis
+installation directory and do <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PLATFORM_REPO_PATHS=/PATH/TO/U96_V2_PLATFORM</span></code>.</p>
 </li>
-<li><p>Set project name as you want. e.g. hw5_vitis. Then, click <em><strong>Next</strong></em>.</p></li>
-<li><p>You will see Sysroot path, Root FS, and Kernel Image are already set.
-Click <em><strong>Next</strong></em>.</p>
-<figure class="align-default" id="id2">
-<img alt="../_images/vitis_domain.png" src="../_images/vitis_domain.png" />
-<figcaption>
-<p><span class="caption-text">Application settings should have been already set</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>We will create our own application. So, select Empty Application
-and click <em><strong>Finish</strong></em>. The Vitis IDE creates the project and opens the Design perspective.</p></li>
-<li><p>In the Project Explorer view, you will see <em><strong>hw5_vitis [Petalinux]</strong></em>.
-This is where the host code should be placed. Right-click the <em><strong>src</strong></em> folder
-under <em><strong>hw5_vitis [Petalinux]</strong></em>, and select <em><strong>Import Sources</strong></em>.</p></li>
-<li><p>Check all the utility codes in <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5/common</span></code> and
-click <em><strong>Finish</strong></em>.</p></li>
-<li><p>Right-click the <em><strong>src</strong></em> folder again, and similarly import <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code>
-in <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5/</span></code>.</p></li>
-<li><p>This time, you want to add the kernel you just generated with Vitis HLS.
-You will see <em><strong>hw5_vitis_kernels</strong></em> in the Project Explorer.
-Right-click the <em><strong>src</strong></em> folder under
-<em><strong>hw5_vitis_kernels</strong></em>, and select <em><strong>Import Sources</strong></em>. Similarly,
-add <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> to kernel’s src folder and click <em><strong>Finish</strong></em>. You now
-have the host application, <code class="docutils literal notranslate"><span class="pre">host.cpp</span></code>, and the Vitis HLS kernel,
-<code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code>, in the project.
-Click <em><strong>Next</strong></em>.</p>
-<figure class="align-default" id="id3">
-<img alt="../_images/vitis_import_src.jpg" src="../_images/vitis_import_src.jpg" />
-<figcaption>
-<p><span class="caption-text">Import source files</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>Double-click kernel project in the Project Exploer to open up
-the Hardware Kernel Project Settings.</p></li>
-<li><p>In the Hardware Functions section of the Project Settings view, select
-<em><strong>Add Hardware Functions</strong></em>.</p></li>
-<li><p>You will see mmult function in the <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code>. Select mmult function
-and click <em><strong>OK</strong></em>.</p>
-<figure class="align-default" id="id4">
-<img alt="../_images/vitis_hw_xo.jpg" src="../_images/vitis_hw_xo.jpg" />
-<figcaption>
-<p><span class="caption-text">Add hardware function</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>You will see Active build configuration on the upper right corner.
-Set it to <em><strong>Hardware</strong></em>.</p></li>
-<li><p>In the Assistant view on the lower-left corner, you will see <em><strong>Hardware</strong></em>
-is selected. Right-click <em><strong>Hardware</strong></em> and click <em><strong>build</strong></em>. This process will
-take &gt;20 minutes depending on your kernel design.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> to generate .xclbin file and bootable image.
+This process will take &gt;20 minutes depending on your kernel design.</p></li>
 </ul>
 </section>
 </section>
@@ -938,8 +868,7 @@ on AWS or Biglab (shown later) and then later copy the binaries
 to your personal computer, copy them into the board and finally run them on the board.
  -->
 <!-- In the end,  -->
-<p>Your setup should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code>.
-We will be using this setup for the rest of the semester.</p>
+<p>Your setup should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code> like we did in HW3 and HW4.</p>
 <!-- You can also use Windows PCs in Detkin/Ketterer. -->
 <figure class="align-default" id="ultra96-setup-hw5">
 <a class="reference internal image-reference" href="../_images/env_setup1.jpg"><img alt="../_images/env_setup1.jpg" src="../_images/env_setup1.jpg" style="height: 300px;" /></a>
@@ -952,15 +881,15 @@ We will be using this setup for the rest of the semester.</p>
 <h3>Run on the FPGA<a class="headerlink" href="#run-on-the-fpga" title="Permalink to this headline">#</a></h3>
 <section id="write-the-sd-card-image-one-time-setup">
 <h4>Write the SD Card Image (one time setup)<a class="headerlink" href="#write-the-sd-card-image-one-time-setup" title="Permalink to this headline">#</a></h4>
-<p>Once the build has completed in <a class="reference internal" href="#vitis"><span class="std std-ref">Creating Vitis Project</span></a> section, you will see a generated <code class="docutils literal notranslate"><span class="pre">package</span></code> directory. e.g. <code class="docutils literal notranslate"><span class="pre">hw5_vitis_system/Hardware/package</span></code>.
+<p>Once the build has completed in <a class="reference internal" href="#vitis"><span class="std std-ref">Building the code</span></a> section, you will see a generated <code class="docutils literal notranslate"><span class="pre">package</span></code> directory. e.g. <code class="docutils literal notranslate"><span class="pre">hw5/package</span></code>.
 The package directory contains the following
 files that we are interested in:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">.</span><span class="n">img</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">scr</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">ub</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">hw5_vitis</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">host</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
 <p>We suggest you to copy files above to your local machine and proceed.
@@ -993,8 +922,8 @@ updated are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">scr</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">ub</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">hw5_vitis</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">host</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
 <p>We will copy those files to the running board using <code class="docutils literal notranslate"><span class="pre">scp</span></code>.
@@ -1019,117 +948,25 @@ then copy them from the Ultra96-host to the Ultra96.</p>
 </section>
 <section id="boot-the-ultra96">
 <h4>Boot the Ultra96<a class="headerlink" href="#boot-the-ultra96" title="Permalink to this headline">#</a></h4>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Please make sure you have set the board in SD card mode as follows:</p>
-<figure class="align-default" id="id5">
-<a class="reference internal image-reference" href="../_images/sd_card_mode1.jpg"><img alt="../_images/sd_card_mode1.jpg" src="../_images/sd_card_mode1.jpg" style="height: 300px;" /></a>
-<figcaption>
-<p><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>If you are receiving the boards disassembled,
-make sure you have properly connected the JTAG module as follows:</p>
-<figure class="align-default" id="id6">
-<a class="reference internal image-reference" href="../_images/jtag1.png"><img alt="../_images/jtag1.png" src="../_images/jtag1.png" style="height: 300px;" /></a>
-<figcaption>
-<p><span class="caption-text">JTAG module</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</div>
 <ul>
-<li><p>From now on, the setup is really similar to the one in HW4.
-But this time, we have something to run on FPGA’s programmable logic!</p></li>
-<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code>.</p></li>
-<li><p>We will use two terminals on our host computer:</p>
-<ul class="simple">
-<li><p>the first terminal will be used to copy binaries into the Ultra96</p></li>
-<li><p>the second terminal will be used to access the serial console of the Ultra96</p></li>
-</ul>
-</li>
-<li><p>We will now open the serial console of the Ultra96. You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port. We are using <code class="docutils literal notranslate"><span class="pre">minicom</span></code> and following is the command we use for connecting to the serial port:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">minicom</span> <span class="o">-</span><span class="n">D</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
-the console output. If you are on Windows, this will be
-something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>. When you want to get out
-of <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, use <code class="docutils literal notranslate"><span class="pre">CTRL-A</span> <span class="pre">Z</span> <span class="pre">q</span></code></p>
-</li>
-<li><p>After you have connected to the serial port, boot the board
-by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p>
-<figure class="align-default" id="boot">
-<a class="reference internal image-reference" href="../_images/boot1.png"><img alt="../_images/boot1.png" src="../_images/boot1.png" style="height: 300px;" /></a>
-<figcaption>
-<p><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>Watch your serial console for boot messages.</p></li>
-<li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
-</pre></div>
-</div>
-</li>
-<li><p>We will now enable ethernet connection between our Ultra96 and
-the host computer, such that we can copy files between
-the devices. Issue the following command in the serial console:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifconfig</span> <span class="n">eth0</span> <span class="mf">10.10.7.1</span> <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
-</pre></div>
-</div>
-</li>
-<li><p>Now in your second console in the host computer, first
-find out the name that has been assigned to the USB-ethernet
-device by issuing <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enx000ec6c4b500</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
-        <span class="n">inet</span> <span class="mf">10.10.7.2</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>  <span class="n">broadcast</span> <span class="mf">10.255.255.255</span>
-        <span class="n">ether</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">e</span><span class="p">:</span><span class="n">c6</span><span class="p">:</span><span class="n">c4</span><span class="p">:</span><span class="n">b5</span><span class="p">:</span><span class="mi">00</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">213</span>  <span class="nb">bytes</span> <span class="mi">32750</span> <span class="p">(</span><span class="mf">32.7</span> <span class="n">KB</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
-        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">249</span>  <span class="nb">bytes</span> <span class="mi">25958</span> <span class="p">(</span><span class="mf">25.9</span> <span class="n">KB</span><span class="p">)</span>
-        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
-<span class="n">lo</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">73</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">LOOPBACK</span><span class="p">,</span><span class="n">RUNNING</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">65536</span>
-        <span class="n">inet</span> <span class="mf">127.0.0.1</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
-        <span class="n">inet6</span> <span class="p">::</span><span class="mi">1</span>  <span class="n">prefixlen</span> <span class="mi">128</span>  <span class="n">scopeid</span> <span class="mh">0x10</span><span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>
-        <span class="n">loop</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Local</span> <span class="n">Loopback</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">570887</span>  <span class="nb">bytes</span> <span class="mi">920673672</span> <span class="p">(</span><span class="mf">920.6</span> <span class="n">MB</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
-        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">570887</span>  <span class="nb">bytes</span> <span class="mi">920673672</span> <span class="p">(</span><span class="mf">920.6</span> <span class="n">MB</span><span class="p">)</span>
-        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
-</pre></div>
-</div>
-<p>In our case, the USB-ethernet device is <code class="docutils literal notranslate"><span class="pre">enx000ec6c4b500</span></code>.
-Now issue the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ifconfig</span> <span class="n">enx000ec6c4b500</span> <span class="mf">10.10.7.2</span> <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
-</pre></div>
-</div>
-</li>
-<li><p>We have now assigned IP <code class="docutils literal notranslate"><span class="pre">10.10.7.1</span></code> to our Ultra96 and IP <code class="docutils literal notranslate"><span class="pre">10.10.7.2</span></code> to our USB ethernet device connected to our host computer.
-You can test the connection by doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.2</span></code> from the Ultra96 serial console, and doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.1</span></code> from the host
-computer.</p></li>
-<li><p>If you haven’t already done so, you can now use scp to copy files from
-package/ to /mnt/sd-mmcblk0p1/ on the Ultra96.</p></li>
+<li><p>Boot the ultra96 as we did in HW3 and HW4. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p></li>
 <li><p>On the serial console, you can now run your code as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
 <span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
-<span class="o">./</span><span class="n">hw5_vitis</span> <span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
+<span class="o">./</span><span class="n">host</span> <span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
-<p>You should see the following output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span><span class="c1"># ./hw5_vitis binary_container_1.xclbin</span>
-<span class="n">Loading</span><span class="p">:</span> <span class="s1">&#39;binary_container_1.xclbin&#39;</span>
-<span class="n">TEST</span> <span class="n">PASSED</span>
+<p>You should see the log message that the xclbin file is being loaded.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span><span class="p">:</span> <span class="s1">&#39;mmult.xclbin&#39;</span>
+</pre></div>
+</div>
+<p>In the last line of the log message, you should see the testing message.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TEST</span> <span class="n">PASSED</span>
 </pre></div>
 </div>
 </li>
-<li><p>Let’s copy another file. Copy the <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file from your computer to the <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1</span></code> directory of the Ultra96 as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">xrt</span><span class="o">.</span><span class="n">ini</span> <span class="n">root</span><span class="o">@</span><span class="mf">10.10.7.1</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span><span class="o">/</span>
-</pre></div>
-</div>
-<p>The default password of the device is <code class="docutils literal notranslate"><span class="pre">root</span></code> (you can setup ssh keys so that you don’t have to type the passwords all the time).</p>
-</li>
-<li><p>Now re-run the program as before. You should now see the generated files:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
+<li><p>You should see the generated files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
 <span class="n">profile_summary</span><span class="o">.</span><span class="n">csv</span>
 <span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
@@ -1137,130 +974,34 @@ package/ to /mnt/sd-mmcblk0p1/ on the Ultra96.</p></li>
 </li>
 <li><p>Copy these files to your computer by issuing the following command. Modify the command with the username of your computer and
 the directory you want to put the files in.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span> <span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span> <span class="n">profile_summary</span><span class="o">.</span><span class="n">csv</span> <span class="n">lilbirb</span><span class="o">@</span><span class="mf">10.10.7.2</span><span class="p">:</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">lilbirb</span><span class="o">/</span><span class="n">research</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span> <span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span> <span class="n">profile_summary</span><span class="o">.</span><span class="n">csv</span> <span class="n">YOURNAME</span><span class="o">@</span><span class="mf">10.10.7.2</span><span class="p">:</span><span class="o">/</span><span class="n">YOUR_DIR</span><span class="o">/</span>
 </pre></div>
 </div>
 </li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If your Ultra96 is connected to a different machine from the one where
-you are running Vitis (e.g., you are running Vitis on a detkin machine,
-but your Ultra96 is connected to your laptop), you will need to first
-copy the files the Ultra96-host machine as above, then copy from the Ultra96-host machine
-to the Vitis machine.</p>
-</div>
-<ul>
-<li><p>You can now use Vitis Analayzer in your host computer to view the trace by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_analyzer</span> <span class="o">./</span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
+<li><p>If you are using Detkin/Ketterer machines, copy these files to Detkin/Ketterer machines and run
+Vitis Analayzer in your host computer to view the trace by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_analyzer</span> <span class="o">./</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
 </pre></div>
 </div>
 </li>
 <li><p>When you modify your HLS code, that will cause the hardware to
-change, and hence the following files will need to be copied to
-the <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1</span></code> directory</p>
+change, and hence the following files(regenerated) will need to be copied to
+the <code class="docutils literal notranslate"><span class="pre">/media/sd-mmcblk0p1</span></code> directory</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">scr</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">ub</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">hw5_vitis</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">host</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
 <p>After you copy these files, type <code class="docutils literal notranslate"><span class="pre">reboot</span></code> in the serial
-console and that will reprogram the device.
-Note that everytime you reboot the device, you will
-need to issue the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
-<span class="n">ifconfig</span> <span class="n">eth0</span> <span class="mf">10.10.7.1</span> <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
-</pre></div>
-</div>
-<p>You can put these commands in your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> of the Ultra96 (use <code class="docutils literal notranslate"><span class="pre">vim</span></code> to edit this file in Ultra96), so that
-you don’t have to type it all the time.</p>
+console and that will reprogram the device.</p>
 </li>
 <li><p>When you only modify your host code, you don’t have to copy any of the files mentioned above and only neeed to copy the
-OpenCL host binary, which is <code class="docutils literal notranslate"><span class="pre">hw5_vitis</span></code> in this example. You also don’t need to reboot the device in that case.</p></li>
+OpenCL host binary, which is <code class="docutils literal notranslate"><span class="pre">host</span></code> in this example. You also don’t need to reboot the device in that case.</p></li>
 </ul>
 <p>This concludes a top-down walk-through of the steps involved
 in running a hardware function on the Ultra96.</p>
-</section>
-<section id="boot-the-ultra96-for-windows-users-only">
-<h4>Boot the Ultra96 (for Windows users only)<a class="headerlink" href="#boot-the-ultra96-for-windows-users-only" title="Permalink to this headline">#</a></h4>
-<ul>
-<li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
-<figure class="align-default" id="id7">
-<img alt="../_images/win_eth_01.jpg" src="../_images/win_eth_01.jpg" />
-<figcaption>
-<p><span class="caption-text">Find the port</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>Download and install MobaXterm from <a class="reference external" href="https://download.mobatek.net/2042020100805218/MobaXterm_Installer_v20.4.zip">here</a>.</p></li>
-<li><p>Start MobaXterm. Click <em><strong>Session</strong></em> in the left top corner and select <em><strong>Serial</strong></em>.
-Set the serial port as the one you found in the previous step and bps. In the example case,
-it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
-<li><p>Boot the board by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p></li>
-<li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
-</pre></div>
-</div>
-</li>
-<li><p>In the local machine’s session, type ifconfig and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
-<figure class="align-default" id="id8">
-<img alt="../_images/win_eth_11.jpg" src="../_images/win_eth_11.jpg" />
-<figcaption>
-<p><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>Assign your Ultra96 an ip address on the same subnet as the USB-ethernet, e.g. from the
-previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
-<code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(<strong>note that
-this is 24!</strong>) as follows:</p>
-<figure class="align-default" id="id9">
-<img alt="../_images/win_eth_21.jpg" src="../_images/win_eth_21.jpg" />
-<figcaption>
-<p><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>Your devices are not connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
-<figure class="align-default" id="id10">
-<img alt="../_images/win_eth_31.jpg" src="../_images/win_eth_31.jpg" />
-<figcaption>
-<p><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>If you haven’t already done so, you can now use WinSCP to copy files from
-BOOT to /mnt/sd-mmcblk0p1 on the Ultra96.</p></li>
-<li><p>On the serial console, you can now run your code as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
-<span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
-<span class="o">./</span><span class="n">hw5_vitis</span> <span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span>
-</pre></div>
-</div>
-<p>You should see the following output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span><span class="c1"># ./hw5_vitis binary_container_1.xclbin</span>
-<span class="n">Loading</span><span class="p">:</span> <span class="s1">&#39;binary_container_1.xclbin&#39;</span>
-<span class="n">TEST</span> <span class="n">PASSED</span>
-</pre></div>
-</div>
-</li>
-<li><p>You can see that you can view the files of the Ultra96 on the left hand side.
-You can easily drag and drop files from/to the local machine to/from Ultra96.
-Copy <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file from your computer to the <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1</span></code> directory
-of the Ultra96.</p></li>
-<li><p>Now re-run the program as before. You should now see the generated files:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binary_container_1</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
-<span class="n">profile_summary</span><span class="o">.</span><span class="n">csv</span>
-<span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span>
-</pre></div>
-</div>
-</li>
-<li><p>Copy these files back to your local machine and analyze with Vitis Analyzer.</p>
-<!-- If you installed Vitis on Windows, launch Vitis first and ***Xilinx*** $\rightarrow$ ***Vitis Shell*** to launch the shell. Then `vitis_analyer` to launch vitis_analyzer. -->
-</li>
-</ul>
 </section>
 </section>
 </section>
@@ -1272,8 +1013,8 @@ of the Ultra96.</p></li>
 - <https://github.com/aws/aws-fpga/blob/master/Vitis/docs/Setup_AWS_CLI_and_S3_Bucket.md>
  -->
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/master/Getting_Started">https://github.com/Xilinx/Vitis-Tutorials/tree/master/Getting_Started</a></p></li>
-<li><p><a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/vitis_hls_analysis/using_the_kernel.html">https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/vitis_hls_analysis/using_the_kernel.html</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis">https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS">https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS</a></p></li>
 </ul>
 <!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
  -->
