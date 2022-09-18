@@ -161,8 +161,9 @@ utilized in `Host.cpp` -->
     1. Hover over an API call to find out long it took.
  -->
 We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize 
-our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. 
-Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS.
+our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. <!-- Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS. -->
+[This tutorial](<https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS>
+) will give you a basic idea on Vitis HLS.
 
 Once you have 3i completed from the {doc}`homework_submission`,
 proceed {ref}`vitis`.
@@ -246,7 +247,7 @@ Make sure you have 3i completed from the {doc}`homework_submission`.
 Vitis flow consists of **1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.**
 You can take a look at the `Makefile` we provide, and `make all` will execute all these steps.
 Because we already generated `mmult.xo` file, the command to generate `.xo` file is commented out.
-- cp `mmult.xo` file to HW5 directory.
+- Make sure that `mmult.xo` exists in HW5 directory.
 - Source settings to be able to run vitis:
   `source sourceMe.sh`. 
   
@@ -300,12 +301,15 @@ package/sd_card/image.ub
 package/sd_card/host
 package/sd_card/mmult.xclbin
 ```
-We suggest you to copy files above to your local machine and proceed.
+If you are working in Detkin/Ketterer machines, we suggest you to copy files above to your 
+local machine and proceed.
 If your laptop is Linux, you can use `scp` and if you are using
 Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
 When you are building for the first time, we will write the
 `package/sd_card.img` image to our SD card.
 
+- If another image is already written on your SD card(from HW3/HW4), delete the partitions.
+  On Linux, you can do this from *Disks* application.
 - Write `sd_card.img` to your SD card.
     - In Ubuntu 20.04, you can use `Startup Disk Creator`.
     - You can also use [Rufus](https://rufus.ie/) or
@@ -321,7 +325,7 @@ When you are building for the first time, we will write the
     - the second partition contains the Linux rootfs. This will not change. -->
 
 ````{note}
-We will only have to write our SD card image once.
+We will only have to write our SD card image **once**.
 When we recompile our code, the files that will need to be
 updated are:
 ```
@@ -334,17 +338,17 @@ package/sd_card/mmult.xclbin
 We will copy those files to the running board using `scp`.
 We will then reboot the board, which will load the updated
 boot files. The boot files contain the bitstream, which
-reconfigures the ***Programmable Logic*** of the Ultra96. Hence,
+reconfigures the **Programmable Logic** of the Ultra96. Hence,
 we need a reboot. If you copy the files, but don't do a reboot,
 you will see that your program throws an error.
 ````
 
 ````{note}
   If your Ultra96 is connected to a different machine from the one where
-  you are running Vitis (e.g., you are running Vitis on a detkin machine,
+  you are running Vitis (e.g., you are running Vitis on a Detkin machine,
   but your Ultra96 is connected to your laptop), you will need to first
-  copy the files from the Vitis machine to the Ultra96-host machine and
-  then copy them from the Ultra96-host to the Ultra96.
+  copy the files from the Vitis machine(Detkin machine) to the Ultra96-host machine(your laptop) and
+  then copy them from the Ultra96-host(your laptop) to the Ultra96.
 ````
 
 ```{caution}
@@ -383,7 +387,7 @@ Vitis Analayzer in your host computer to view the trace by doing:
     ```
     vitis_analyzer ./mmult.xclbin.run_summary
     ```
-- When you modify your HLS code, that will cause the hardware to
+- As stated in the note above, when you modify your HLS code, that will cause the hardware to
 change, and hence the following files(regenerated) will need to be copied to
 the `/media/sd-mmcblk0p1` directory
     ```
