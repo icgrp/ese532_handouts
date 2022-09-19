@@ -301,7 +301,7 @@ computer.
 
 - Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
-    ifconfig eth0 put-your-ip-address-here netmask 255.0.0.0
+    ifconfig eth0 put-your-ip-address-here netmask 255.255.0.0
 
     alias ls="ls --color"
     alias ll="ls -laF --color"

@@ -904,7 +904,7 @@ this is 24!) as follows:</p>
 <li><p>You can view the files of the Ultra96 on the left hand side.
 You can easily drag and drop files from/to the local machine to/from Ultra96.</p></li>
 <li><p>Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file <strong>on your host computer</strong> <code class="docutils literal notranslate"><span class="pre">.profile</span></code> (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In <code class="docutils literal notranslate"><span class="pre">.profile</span></code>, add the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 put-your-ip-address-here netmask <span class="m">255</span>.0.0.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig eth0 put-your-ip-address-here netmask <span class="m">255</span>.255.0.0
 
 <span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
 <span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
