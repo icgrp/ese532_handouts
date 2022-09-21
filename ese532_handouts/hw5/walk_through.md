@@ -254,7 +254,8 @@ Because we already generated `mmult.xo` file, the command to generate `.xo` file
   **If you work locally**, source `settings64.sh` in vitis
   installation directory and do `export PLATFORM_REPO_PATHS=/PATH/TO/U96_V2_PLATFORM`.
 - `make all` to generate .xclbin file and bootable image.
-  This process will take >20 minutes depending on your kernel design.
+  This process will take >20 minutes depending on your kernel design. 
+  Make sure that you have enough space in your user directory so that the image file does not exceed the quota.
 
 ## Environment Setup
 ### Setting up Ultra96 and Host Computer
@@ -302,11 +303,12 @@ package/sd_card/host
 package/sd_card/mmult.xclbin
 ```
 If you are working in Detkin/Ketterer machines, we suggest you to copy files above to your 
-local machine and proceed.
-If your laptop is Linux, you can use `scp` and if you are using
+local machine and proceed. You can plug in USB disk to the Detkin/Ketterer machines and copy the
+generated `package` directory over to your laptop. You can also use `scp` or WinSCP.
+<!-- If your laptop is Linux, you can use `scp` and if you are using
 Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
 When you are building for the first time, we will write the
-`package/sd_card.img` image to our SD card.
+`package/sd_card.img` image to our SD card. -->
 
 - If another image is already written on your SD card(from HW3/HW4), delete the partitions.
   On Linux, you can do this from *Disks* application.
