@@ -54,6 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="Collaboration" href="collaboration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -130,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
   Homework Assignments
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../hw0/index.html">
    Diagnostic Assessment
@@ -286,6 +288,33 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../hw4/homework_submission.html">
+     Homework Submission
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   HW5 – Accelerator
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="collaboration.html">
+     Collaboration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Setup and Walk-through
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="homework_submission.html">
      Homework Submission
     </a>
    </li>
@@ -687,7 +716,7 @@ select <em><strong>2020.2</strong></em>. Then, download
 <figure class="align-default" id="ese5320-vitis-devices">
 <img alt="../_images/ese5320_vitis_devices.png" src="../_images/ese5320_vitis_devices.png" />
 <figcaption>
-<p><span class="caption-text">Selecting devices when installing Vitis</span><a class="headerlink" href="#ese5320-vitis-devices" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Selecting devices when installing Vitis</span><a class="headerlink" href="#ese5320-vitis-devices" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The full installation will take about 30 min - 1 hour.</p>
@@ -870,7 +899,8 @@ Because we already generated <code class="docutils literal notranslate"><span cl
 installation directory and do <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PLATFORM_REPO_PATHS=/PATH/TO/U96_V2_PLATFORM</span></code>.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> to generate .xclbin file and bootable image.
-This process will take &gt;20 minutes depending on your kernel design.</p></li>
+This process will take &gt;20 minutes depending on your kernel design.
+Make sure that you have enough space in your user directory so that the image file does not exceed the quota.</p></li>
 </ul>
 </section>
 </section>
@@ -895,12 +925,12 @@ on AWS or Biglab (shown later) and then later copy the binaries
 to your personal computer, copy them into the board and finally run them on the board.
  -->
 <!-- In the end,  -->
-<p>Your setup should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code> like we did in HW3 and HW4.</p>
+<p>Your setup should look like <a class="reference internal" href="#ultra96-setup-hw5"><span class="std std-numref">Fig. 19</span></a> like we did in HW3 and HW4.</p>
 <!-- You can also use Windows PCs in Detkin/Ketterer. -->
 <figure class="align-default" id="ultra96-setup-hw5">
 <a class="reference internal image-reference" href="../_images/env_setup1.jpg"><img alt="../_images/env_setup1.jpg" src="../_images/env_setup1.jpg" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup-hw5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup-hw5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -920,11 +950,12 @@ files that we are interested in:</p>
 </pre></div>
 </div>
 <p>If you are working in Detkin/Ketterer machines, we suggest you to copy files above to your
-local machine and proceed.
-If your laptop is Linux, you can use <code class="docutils literal notranslate"><span class="pre">scp</span></code> and if you are using
-Windows you can use programs like <a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a>.
+local machine and proceed. You can plug in USB disk to the Detkin/Ketterer machines and copy the
+generated <code class="docutils literal notranslate"><span class="pre">package</span></code> directory over to your laptop. You can also use <code class="docutils literal notranslate"><span class="pre">scp</span></code> or WinSCP.</p>
+<!-- If your laptop is Linux, you can use `scp` and if you are using
+Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
 When you are building for the first time, we will write the
-<code class="docutils literal notranslate"><span class="pre">package/sd_card.img</span></code> image to our SD card.</p>
+`package/sd_card.img` image to our SD card. -->
 <ul class="simple">
 <li><p>If another image is already written on your SD card(from HW3/HW4), delete the partitions.
 On Linux, you can do this from <em>Disks</em> application.</p></li>
@@ -1080,6 +1111,20 @@ in running a hardware function on the Ultra96.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="collaboration.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Collaboration</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="homework_submission.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework Submission</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
