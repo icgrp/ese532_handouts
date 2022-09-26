@@ -729,7 +729,7 @@ How many copies of the each design can you fit in the resources available in Ult
 </ol>
 </li>
 <li><p><strong>HLS Kernel Optimization: Pipelining</strong></p>
-<ol class="simple">
+<ol>
 <li><p>Remove the unroll pragma, and pipeline the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 loop with the minimal initiation
 interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma.<br />
@@ -752,7 +752,9 @@ each of the arrays with a picture that shows how the elements of
 these arrays are accessed by one iteration of the pipelined loop.</p></li>
 <li><p>Partition the buffers according to your description in the
 previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=231">Section of the Vitis HLS User Guide</a>
-for examples of array partitioning pragma). Synthesize the design and report the expected latency in ms. Provide the modified <code class="docutils literal notranslate"><span class="pre">mmult</span></code> code in your report.</p></li>
+for examples of array partitioning pragma).
+Also, pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop.
+Synthesize the design and report the expected latency in ms. Provide the modified <code class="docutils literal notranslate"><span class="pre">mmult</span></code> code in your report.</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does this implementation consume? (4 lines)</p></li>
 <li><p>Pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop also with an II of
@@ -762,12 +764,11 @@ that the RTL is functionally identical to the C code.</p></li>
 <em><strong>Format</strong></em>. Select output location to be your
 <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory and select OK.
 Save your design and quit Vitis HLS. Open a terminal and go to your <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory.
-Run by following the instruction in <a class="reference internal" href="walk_through.html#vitis"><span class="std std-ref">Building the code</span></a> section.</p></li>
-</ol>
+Run by following the instruction in <a class="reference internal" href="walk_through.html#vitis"><span class="std std-ref">Building the code</span></a> section.</p>
+ <!--         Commit the Vitis Analyzer files in your repo. We will use it in the next section. -->
 </li>
 </ol>
-<!--         Commit the Vitis Analyzer files in your repo. We will use it in the next section. -->
-<ol>
+</li>
 <li><p><strong>Vitis Analyzer</strong></p>
 <p>We will now use Vitis Analyzer to analyze the trace of our matrix multiplication on the FPGA.</p>
  <!-- ```{note}

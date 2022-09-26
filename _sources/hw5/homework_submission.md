@@ -135,7 +135,9 @@ Your writeup should include your answers to the following questions:
             these arrays are accessed by one iteration of the pipelined loop.
     1. Partition the buffers according to your description in the
             previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=231) 
-            for examples of array partitioning pragma). Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.
+            for examples of array partitioning pragma).
+            Also, pipeline the `Init_loop_j` loop. 
+            Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
     1. Pipeline the `Init_loop_j` loop also with an II of
@@ -146,7 +148,7 @@ Your writeup should include your answers to the following questions:
         `ese532_code/hw5` directory and select OK.
         Save your design and quit Vitis HLS. Open a terminal and go to your `ese532_code/hw5` directory.
         Run by following the instruction in {ref}`vitis` section.
-<!--         Commit the Vitis Analyzer files in your repo. We will use it in the next section. -->
+        <!--         Commit the Vitis Analyzer files in your repo. We will use it in the next section. -->
 
 4. **Vitis Analyzer**
     
