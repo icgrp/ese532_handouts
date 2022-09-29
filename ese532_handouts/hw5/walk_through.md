@@ -87,11 +87,12 @@ select ***2020.2***. Then, download
     Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs.
 
 1. Get the Ultra96 platform from [here](https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2/).
-   Scroll down and click **Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)**.
+   Scroll down and click **Reference Designs** tab. Then, click **Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)**.
    Click **2020.2**$\rightarrow$**Vitis_Platform**. Download **u96v2_sbc_vitis_2020_2.tar.gz**.
     ```
     tar -xvzf u96v2_sbc_vitis_2020_2.tar.gz
     ```
+    Locate the extracted folder to wherever you want.
 
 (software_code)=
 ### Obtaining and Running the Code
@@ -134,7 +135,7 @@ hw5/
     fetches back the result from the kernel and then verifies it for correctness.
 - Read [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis) to get an idea of how the Vitis flow works.
   Note that there are *Data Center Platform* and *Embedded Platform*. Our ultra96 board belongs to *Embedded Platform*.
-- Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution.
+<!-- - Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution. -->
 <!-- - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
 - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
 utilized in `Host.cpp` -->
@@ -247,15 +248,25 @@ Make sure you have 3i completed from the {doc}`homework_submission`.
 Vitis flow consists of **1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.**
 You can take a look at the `Makefile` we provide, and `make all` will execute all these steps.
 Because we already generated `mmult.xo` file, the command to generate `.xo` file is commented out.
+Note that when we generate xclbin file, Vitis calls Vivado to perform logic synthesis, placement, and routing that we mentioned previously. 
 - Make sure that `mmult.xo` exists in HW5 directory.
 - Source settings to be able to run vitis:
   `source sourceMe.sh`. 
   
   **If you work locally**, source `settings64.sh` in vitis
   installation directory and do `export PLATFORM_REPO_PATHS=/PATH/TO/U96_V2_PLATFORM`.
+  
+  (e.g. `export PLATFORM_REPO_PATHS=/home/user/ese5320/u96v2_sbc_base`)
 - `make all` to generate .xclbin file and bootable image.
   This process will take >20 minutes depending on your kernel design. 
-  Make sure that you have enough space in your user directory so that the image file does not exceed the quota.
+  If you are working in Detkin/Ketterer, make sure that you have enough space in your user directory so that the image file does not exceed the quota.
+    ```{note}
+    In `u96_v2.cfg`, we commented out the profiling block.
+    As mentioned in [here](https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/profile-Options),
+    we can monitor data ports with Vitis Analyzer when the profiling is enabled. But it costs additional resources on the FPGA that makes
+    the compilation longer, and we commented out for this assignment.
+    ```
+
 
 ## Environment Setup
 ### Setting up Ultra96 and Host Computer
