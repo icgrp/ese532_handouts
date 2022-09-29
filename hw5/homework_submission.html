@@ -638,7 +638,7 @@ We will now simulate the matrix multiplier in Vitis HLS.</p>
 <li><p>Specify <code class="docutils literal notranslate"><span class="pre">mmult</span></code> as top function.</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">hw5/hls/Testbench.cpp</span></code> as TestBench files.</p></li>
 <li><p>Select the <code class="docutils literal notranslate"><span class="pre">xczu3eg-sbva484-1-i</span></code> in the device
-selection. Use a <em><strong>10ns</strong></em>
+selection. Use a <em><strong>150MHz</strong></em>
 clock, and select <em><strong>Vitis Kernel Flow Target</strong></em> for the Flow Target.
 Click Finish.</p></li>
 <li><p>Right-click on <em><strong>solution1</strong></em> and select
@@ -652,7 +652,7 @@ report.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We set the clock as 100MHz(10ns), but you can increase/decrease the clock.
+<p>We set the clock as 150MHz(6.7ns), but you can increase/decrease the clock.
 The target clock you set in HLS is just a target, but it provides optimization and feedback.</p>
 </div>
 </li>
@@ -697,10 +697,12 @@ worse than the software implementation. (3 lines)</p></li>
 <ol>
 <li><p>Go back to the <em><strong>Synthesis perspective</strong></em>, and unroll the
 loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code> 2 times using an <code class="docutils literal notranslate"><span class="pre">unroll</span></code>
-pragma (See <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
-reduce the latency of the entire loop evaluation (all
-iterations) compared to the original (non-unrolled)
-loop.  (3-4 lines).</p>
+pragma (See <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule.
+Does the latency of the entire loop change? Explain the latency discrepancy from the original (non-unrolled).</p>
+ <!-- Explain how the schedule for the unrolled loop is able to
+ reduce the latency of the entire loop evaluation (all
+ iterations) compared to the original (non-unrolled)
+ loop.  (3-4 lines). -->
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>What characteristic of the original code prevented
@@ -717,7 +719,8 @@ computational resources (<code class="docutils literal notranslate"><span class=
 which one(s) are shared by  multiple operations? (1 line)</p></li>
 <li><p>Unroll the loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code>
 completely, and
-synthesize the design again. Report the expected latency.</p>
+synthesize the design again. You may notice that the estimated clock period in the <em><strong>Synthesis perspective</strong></em> is shown in red.
+What does this mean? (3 lines)</p>
  <!-- ```{note}
      Due to
      variation among Vitis HLS versions, sometimes it works and
@@ -726,9 +729,9 @@ synthesize the design again. Report the expected latency.</p>
      questions) show you how to address them.  If it's not
      flagged in red, just report the estimated clock period.
  ``` -->
- <!-- 1. Change the clock period to 20ns, and
-      synthesize it again. What is the expected latency of the new accelerator in ms? (1 line) -->
 </li>
+<li><p>Change the clock to <em><strong>100MHz</strong></em>, and
+synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does this implementation consume? (4 lines)</p></li>
 <li><p>You may have noticed that all floating-point additions are
@@ -736,7 +739,7 @@ scheduled in series.  What does this imply about floating-point
 additions? (2 lines)</p></li>
 <li><p>We want to multiply two streams of matrices with each other.  We
 can fill the FPGA with copies of one of the accelerators from question
-1d or 2d.  Which
+1d(original, 150MHz) or 2e(unrolled, 100MHz).  Which
 accelerator would you choose for the highest throughput?</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -750,9 +753,9 @@ How many copies of the each design can you fit in the resources available in Ult
 <ol>
 <li><p>Remove the unroll pragma, and pipeline the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 loop with the minimal initiation
-interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma.<br />
+interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma. Restore the clock to <em><strong>150Hz</strong></em>.
 Synthesize the design again.  Report the
-initiation interval that the design achieved. (1 line)
+initiation interval for the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code> that the design achieved. (1 line)
 <!-- (You may find the timing is
      still not met. It does not matter, we will fix it later.)  --></p></li>
 <li><p>Draw a schematic for the data path of <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
