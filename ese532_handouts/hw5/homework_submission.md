@@ -33,7 +33,7 @@ Your writeup should include your answers to the following questions:
         - Specify `mmult` as top function.
         - Add `hw5/hls/Testbench.cpp` as TestBench files.
         - Select the `xczu3eg-sbva484-1-i` in the device
-            selection. Use a ***10ns***
+            selection. Use a ***150MHz***
             clock, and select ***Vitis Kernel Flow Target*** for the Flow Target.
             Click Finish.
         - Right-click on ***solution1*** and select
@@ -45,7 +45,7 @@ Your writeup should include your answers to the following questions:
             passes in the console.  Include the console output in your
             report.
         ```{note}
-        We set the clock as 100MHz(10ns), but you can increase/decrease the clock.
+        We set the clock as 150MHz(6.7ns), but you can increase/decrease the clock.
         The target clock you set in HLS is just a target, but it provides optimization and feedback.
         ```
     1. Look at the testbench.  How does the testbench
@@ -82,10 +82,12 @@ Your writeup should include your answers to the following questions:
 2. **HLS Kernel Optimization: Loop Unrolling**
     1. Go back to the ***Synthesis perspective***, and unroll the
         loop with label `Main_loop_k` 2 times using an `unroll`
-        pragma (See [this](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll) for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
+        pragma (See [this](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll) for an example of unroll pragma). Synthesize the code and look again at the schedule. 
+        Does the latency of the entire loop change? Explain the latency discrepancy from the original (non-unrolled).
+        <!-- Explain how the schedule for the unrolled loop is able to
         reduce the latency of the entire loop evaluation (all
         iterations) compared to the original (non-unrolled)
-        loop.  (3-4 lines).
+        loop.  (3-4 lines). -->
         ```{hint}
         What characteristic of the original code prevented
         this optimization? and why is the unrolled loop able to exploit
@@ -100,7 +102,8 @@ Your writeup should include your answers to the following questions:
             which one(s) are shared by  multiple operations? (1 line)
     1. Unroll the loop with label `Main_loop_k`
         completely, and
-        synthesize the design again. Report the expected latency.
+        synthesize the design again. You may notice that the estimated clock period in the ***Synthesis perspective*** is shown in red.
+        What does this mean? (3 lines)
         <!-- ```{note}
             Due to
             variation among Vitis HLS versions, sometimes it works and
@@ -109,8 +112,8 @@ Your writeup should include your answers to the following questions:
             questions) show you how to address them.  If it's not
             flagged in red, just report the estimated clock period.
         ``` -->
-        <!-- 1. Change the clock period to 20ns, and
-             synthesize it again. What is the expected latency of the new accelerator in ms? (1 line) -->
+    1. Change the clock to ***100MHz***, and
+             synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
     1. You may have noticed that all floating-point additions are
@@ -118,7 +121,7 @@ Your writeup should include your answers to the following questions:
             additions? (2 lines)
     1. We want to multiply two streams of matrices with each other.  We
             can fill the FPGA with copies of one of the accelerators from question
-            1d or 2d.  Which
+            1d(original, 150MHz) or 2e(unrolled, 100MHz).  Which
             accelerator would you choose for the highest throughput?
         ```{hint}
          We are just asking for a Resource Bound analysis here.
@@ -128,9 +131,9 @@ Your writeup should include your answers to the following questions:
 3. **HLS Kernel Optimization: Pipelining**
     1. Remove the unroll pragma, and pipeline the `Main_loop_j`
             loop with the minimal initiation
-            interval (II) of 1 using the `pipeline` pragma.  
+            interval (II) of 1 using the `pipeline` pragma. Restore the clock to ***150Hz***.
             Synthesize the design again.  Report the
-            initiation interval that the design achieved. (1 line)
+            initiation interval for the `Main_loop_j` that the design achieved. (1 line)
             <!-- (You may find the timing is
             still not met. It does not matter, we will fix it later.)  -->
     1. Draw a schematic for the data path of `Main_loop_j`
