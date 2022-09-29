@@ -53,12 +53,21 @@ Your writeup should include your answers to the following questions:
     1. Synthesize the matrix multiplier in Vitis HLS.
        Analyze the ***Synthesis Report*** by expanding the ***solution1*** tab in the ***Explorer*** view, browsing to ***syn/report*** and opening the `.rpt` file.
         What is the expected latency of the hardware accelerator in ms? (1 line)
+        ```{note}
+        This is "High Level" synthesis. This is the process of translating your C source code to RTL.
+        Logic synthesis that transforms RTL-specified design into a gate-level representation
+        is done on Vivado. Note that the numbers you got from 1-d,e are all estimates!
+        ```
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does the implementation consume? (4 lines)
     1. Analyze how the computations are scheduled in time.  You can
             see this information in the ***Schedule Viewer*** of the
             ***Analysis*** perspective.  How many cycles does a
             multiplication take? (1 line)
+        ```{note}
+        In the ***Schedule Viewer***, you will see ***Operation\Control Step***.
+        Scroll down to the loop you are interested in and click the operation to view the schedule of the operation. 
+        ```
     1. Make a schematic drawing of the hardware implementation
             consisting of the data path and state machine similar to Figure 2
             of the [Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=9).
@@ -69,7 +78,7 @@ Your writeup should include your answers to the following questions:
 2. **HLS Kernel Optimization: Loop Unrolling**
     1. Go back to the ***Synthesis perspective***, and unroll the
         loop with label `Main_loop_k` 2 times using an `unroll`
-        pragma (See [this](https://docs.xilinx.com/r/en-US/ug1399-vitis-hls/pragma-HLS-unroll) for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
+        pragma (See [this](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll) for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
         reduce the latency of the entire loop evaluation (all
         iterations) compared to the original (non-unrolled)
         loop.  (3-4 lines).
@@ -124,7 +133,7 @@ Your writeup should include your answers to the following questions:
             and show how it is connected to the memories.  You can find the
             variables that are mapped onto memories in the ***Resource Profile*** view of the
             ***Analysis*** perspective.
-    1. Assuming a continuous flow of input data, how many data words
+    1. Assuming a continuous flow of input data, how many data
             does the pipelined loop need per clock cycle from `Buffer_1`?
             (1 line)
     1. Considering what you found in the two previous questions, why does
@@ -134,7 +143,7 @@ Your writeup should include your answers to the following questions:
             each of the arrays with a picture that shows how the elements of
             these arrays are accessed by one iteration of the pipelined loop.
     1. Partition the buffers according to your description in the
-            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=231) 
+            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf#page=275) 
             for examples of array partitioning pragma).
             Also, pipeline the `Init_loop_j` loop. 
             Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.

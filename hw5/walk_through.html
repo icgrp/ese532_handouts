@@ -792,11 +792,12 @@ with this variable.</p>
 <li><p>As of January 1st 2022, there needs a patch. Download <em><strong>y2k22_patch-1.2.zip</strong></em> in <a class="reference external" href="https://support.xilinx.com/s/article/76960?language=en_US">this link</a>.
 Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs.</p></li>
 <li><p>Get the Ultra96 platform from <a class="reference external" href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2/">here</a>.
-Scroll down and click <strong>Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)</strong>.
+Scroll down and click <strong>Reference Designs</strong> tab. Then, click <strong>Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)</strong>.
 Click <strong>2020.2</strong><span class="math notranslate nohighlight">\(\rightarrow\)</span><strong>Vitis_Platform</strong>. Download <strong>u96v2_sbc_vitis_2020_2.tar.gz</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_vitis_2020_2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
+<p>Locate the extracted folder to wherever you want.</p>
 </li>
 </ol>
 </section>
@@ -840,8 +841,8 @@ the “driver” code that transfers the data to the fpga, runs the kernel,
 fetches back the result from the kernel and then verifies it for correctness.</p></li>
 <li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis">this tutorial</a> to get an idea of how the Vitis flow works.
 Note that there are <em>Data Center Platform</em> and <em>Embedded Platform</em>. Our ultra96 board belongs to <em>Embedded Platform</em>.</p></li>
-<li><p>Read <a class="reference external" href="https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html">this</a> to learn about simple memory allocation and OpenCL execution.</p></li>
 </ul>
+<!-- - Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution. -->
 <!-- - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
 - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
 utilized in `Host.cpp` -->
@@ -944,17 +945,27 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 <p>Make sure you have 3i completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>.
 Vitis flow consists of <strong>1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.</strong>
 You can take a look at the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> we provide, and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> will execute all these steps.
-Because we already generated <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file, the command to generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file is commented out.</p>
+Because we already generated <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file, the command to generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file is commented out.
+Note that when we generate xclbin file, Vitis calls Vivado to perform logic synthesis, placement, and routing that we mentioned previously.</p>
 <ul>
 <li><p>Make sure that <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> exists in HW5 directory.</p></li>
 <li><p>Source settings to be able to run vitis:
 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.</p>
 <p><strong>If you work locally</strong>, source <code class="docutils literal notranslate"><span class="pre">settings64.sh</span></code> in vitis
 installation directory and do <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PLATFORM_REPO_PATHS=/PATH/TO/U96_V2_PLATFORM</span></code>.</p>
+<p>(e.g. <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PLATFORM_REPO_PATHS=/home/user/ese5320/u96v2_sbc_base</span></code>)</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> to generate .xclbin file and bootable image.
 This process will take &gt;20 minutes depending on your kernel design.
-Make sure that you have enough space in your user directory so that the image file does not exceed the quota.</p></li>
+If you are working in Detkin/Ketterer, make sure that you have enough space in your user directory so that the image file does not exceed the quota.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">u96_v2.cfg</span></code>, we commented out the profiling block.
+As mentioned in <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/profile-Options">here</a>,
+we can monitor data ports with Vitis Analyzer when the profiling is enabled. But it costs additional resources on the FPGA that makes
+the compilation longer, and we commented out for this assignment.</p>
+</div>
+</li>
 </ul>
 </section>
 </section>

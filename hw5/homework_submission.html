@@ -659,13 +659,26 @@ testbenches.  Our testbenches can serve as an example and
 template for you.)</p></li>
 <li><p>Synthesize the matrix multiplier in Vitis HLS.
 Analyze the <em><strong>Synthesis Report</strong></em> by expanding the <em><strong>solution1</strong></em> tab in the <em><strong>Explorer</strong></em> view, browsing to <em><strong>syn/report</strong></em> and opening the <code class="docutils literal notranslate"><span class="pre">.rpt</span></code> file.
-What is the expected latency of the hardware accelerator in ms? (1 line)</p></li>
+What is the expected latency of the hardware accelerator in ms? (1 line)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is “High Level” synthesis. This is the process of translating your C source code to RTL.
+Logic synthesis that transforms RTL-specified design into a gate-level representation
+is done on Vivado. Note that the numbers you got from 1-d,e are all estimates!</p>
+</div>
+</li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does the implementation consume? (4 lines)</p></li>
 <li><p>Analyze how the computations are scheduled in time.  You can
 see this information in the <em><strong>Schedule Viewer</strong></em> of the
 <em><strong>Analysis</strong></em> perspective.  How many cycles does a
-multiplication take? (1 line)</p></li>
+multiplication take? (1 line)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the <em><strong>Schedule Viewer</strong></em>, you will see <em><strong>Operation\Control Step</strong></em>.
+Scroll down to the loop you are interested in and click the operation to view the schedule of the operation.</p>
+</div>
+</li>
 <li><p>Make a schematic drawing of the hardware implementation
 consisting of the data path and state machine similar to Figure 2
 of the <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=9">Vitis HLS User Guide</a>.
@@ -679,7 +692,7 @@ worse than the software implementation. (3 lines)</p></li>
 <ol>
 <li><p>Go back to the <em><strong>Synthesis perspective</strong></em>, and unroll the
 loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code> 2 times using an <code class="docutils literal notranslate"><span class="pre">unroll</span></code>
-pragma (See <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
+pragma (See <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule. Explain how the schedule for the unrolled loop is able to
 reduce the latency of the entire loop evaluation (all
 iterations) compared to the original (non-unrolled)
 loop.  (3-4 lines).</p>
@@ -741,7 +754,7 @@ initiation interval that the design achieved. (1 line)
 and show how it is connected to the memories.  You can find the
 variables that are mapped onto memories in the <em><strong>Resource Profile</strong></em> view of the
 <em><strong>Analysis</strong></em> perspective.</p></li>
-<li><p>Assuming a continuous flow of input data, how many data words
+<li><p>Assuming a continuous flow of input data, how many data
 does the pipelined loop need per clock cycle from <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code>?
 (1 line)</p></li>
 <li><p>Considering what you found in the two previous questions, why does
@@ -751,7 +764,7 @@ achieve a better performance.  Illustrate the best way to partition
 each of the arrays with a picture that shows how the elements of
 these arrays are accessed by one iteration of the pipelined loop.</p></li>
 <li><p>Partition the buffers according to your description in the
-previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=231">Section of the Vitis HLS User Guide</a>
+previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf#page=275">Section of the Vitis HLS User Guide</a>
 for examples of array partitioning pragma).
 Also, pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop.
 Synthesize the design and report the expected latency in ms. Provide the modified <code class="docutils literal notranslate"><span class="pre">mmult</span></code> code in your report.</p></li>
