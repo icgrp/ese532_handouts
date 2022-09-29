@@ -246,9 +246,19 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 ### Building the code
 Make sure you have 3i completed from the {doc}`homework_submission`.
 Vitis flow consists of **1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.**
-You can take a look at the `Makefile` we provide, and `make all` will execute all these steps.
-Because we already generated `mmult.xo` file, the command to generate `.xo` file is commented out.
-Note that when we generate xclbin file, Vitis calls Vivado to perform logic synthesis, placement, and routing that we mentioned previously. 
+If you take a look at the Makefile, `make all` will execute steps specified above.
+
+Because we already generated `mmult.xo` file, the command to generate Xilinx object file(`.xo`) is commented out.
+Vitis compiler(`v++`) performs this step with `--copmile` flag. You can use `-c` for short.
+You can also generate `.xo` file directly using Vitis HLS like we just did. FYI, you can create `.xo` file from RTL code too(obviously).
+
+Next step, which is usually called "linking" step, calls Vivado to perform
+logic synthesis, placement, and routing to generate a FPGA binary container file(`.xclbin`, Yes, this file encapsulates the bitstream that's necessary to program the FPGA).
+Vitis compiler(`v++`) performs this step with `--linking` or `-l` for short.
+
+The last step is called "packaging" step and is done with `--package` or `-p` for short.
+This step packages your design and define various files required for booting/configuring the device.
+
 - Make sure that `mmult.xo` exists in HW5 directory.
 - Source settings to be able to run vitis:
   `source sourceMe.sh`. 
@@ -266,7 +276,12 @@ Note that when we generate xclbin file, Vitis calls Vivado to perform logic synt
     we can monitor data ports with Vitis Analyzer when the profiling is enabled. But it costs additional resources on the FPGA that makes
     the compilation longer, and we commented out for this assignment.
     ```
-
+    ```{note}
+    You may want to speedup the hardware later in your project. 
+    To increase the clock frequency, you need to include a flag like `--clock.defaultFreqHz 200000000` when you do linking (`v++ --link`).
+    If you search these useful information on the web, please make sure that it's applicable to the embedded platform.
+    As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belong to the embedded platform.
+    ```
 
 ## Environment Setup
 ### Setting up Ultra96 and Host Computer
@@ -425,6 +440,7 @@ in running a hardware function on the Ultra96.
 - <https://www.ni-sp.com/setting-up-access-to-the-nice-dcv-license-in-ec2/>
 - <https://github.com/aws/aws-fpga/blob/master/Vitis/docs/Setup_AWS_CLI_and_S3_Bucket.md>
  -->
+- <https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration> 
 - <https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis>
 - <https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS>
 <!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
