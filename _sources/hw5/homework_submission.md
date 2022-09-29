@@ -44,6 +44,10 @@ Your writeup should include your answers to the following questions:
         - ***Run C simulation*** by right-clicking on the project on the ***Explorer*** view, and verify that the test
             passes in the console.  Include the console output in your
             report.
+        ```{note}
+        We set the clock as 100MHz(10ns), but you can increase/decrease the clock.
+        The target clock you set in HLS is just a target, but it provides optimization and feedback.
+        ```
     1. Look at the testbench.  How does the testbench
         verify that the code is correct? (3 lines)
         (We provide you a testbench here.  As you develop your own
