@@ -43,13 +43,13 @@ parts:
         - file: hw5/collaboration
         - file: hw5/walk_through
         - file: hw5/homework_submission
-    - file: hw6/index
-      sections:
-        - file: hw6/collaboration
-        - file: hw6/walk_through
-        - file: hw6/homework_submission
-    - file: hw7/index
-      sections:
-        - file: hw7/collaboration
-        - file: hw7/walk_through
-        - file: hw7/homework_submission
+    # - file: hw6/index
+    #   sections:
+    #     - file: hw6/collaboration
+    #     - file: hw6/walk_through
+    #     - file: hw6/homework_submission
+    # - file: hw7/index
+    #   sections:
+    #     - file: hw7/collaboration
+    #     - file: hw7/walk_through
+    #     - file: hw7/homework_submission
