@@ -249,14 +249,16 @@ Vitis flow consists of **1)compiling the host code, 2)generating kernel object(.
 If you take a look at the Makefile, `make all` will execute steps specified above.
 
 Because we already generated `mmult.xo` file, the command to generate Xilinx object file(`.xo`) is commented out.
-Vitis compiler(`v++`) performs this step with `--copmile` flag. You can use `-c` for short.
-You can also generate `.xo` file directly using Vitis HLS like we just did. FYI, you can create `.xo` file from RTL code too(obviously).
+Vitis compiler(`v++`) performs this step with `--copmile` flag, or `-c` for short.
+You can also generate `.xo` file directly using Vitis HLS like we just did. 
+FYI, you can create `.xo` file from RTL code, too (obviously).
 
 Next step, which is usually called "linking" step, calls Vivado to perform
 logic synthesis, placement, and routing to generate a FPGA binary container file(`.xclbin`, Yes, this file encapsulates the bitstream that's necessary to program the FPGA).
-Vitis compiler(`v++`) performs this step with `--linking` or `-l` for short.
+Vitis compiler(`v++`) performs this step with `--link`, or `-l` for short.
+This step is the most time-consuming part in FPGA development on Vitis, and for this lab, it should take >20 minutes.
 
-The last step is called "packaging" step and is done with `--package` or `-p` for short.
+The last step is called "packaging" step and is done with `--package`, or `-p` for short.
 This step packages your design and define various files required for booting/configuring the device.
 
 - Make sure that `mmult.xo` exists in HW5 directory.
@@ -281,7 +283,8 @@ This step packages your design and define various files required for booting/con
     And you need to include a flag like `--clock.defaultFreqHz 200000000` when you do linking (`v++ --link`).
     Without the flag, the tool uses the default clock frequency for Ultra96, which is 150MHz.
 
-    If you search useful information on the web like this, please make sure that it's applicable to the embedded platform.
+    If you go through [Vitis User Guide](https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis) 
+    for useful flags/options, please make sure that they are applicable to the embedded platform.
     As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belongs to the embedded platform.
     ```
 
@@ -407,6 +410,8 @@ Make sure you don't hot plug/unplug the SD card. This can potentially corrupt th
     profile_summary.csv
     timeline_trace.csv
     ```
+    To generate these files, you need to have `xrt.ini` in the same directory that you run `./host mmult.xclbin` on.
+    If you uncomment the profiling block in `u96_v2.cfg` when you build for `.xclbin`, you will be able to get additional information in these `*.csv` files.
 - Copy these files to your computer by issuing the following command. Modify the command with the username of your computer and
     the directory you want to put the files in.
     ```

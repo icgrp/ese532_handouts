@@ -946,12 +946,14 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 Vitis flow consists of <strong>1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.</strong>
 If you take a look at the Makefile, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> will execute steps specified above.</p>
 <p>Because we already generated <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file, the command to generate Xilinx object file(<code class="docutils literal notranslate"><span class="pre">.xo</span></code>) is commented out.
-Vitis compiler(<code class="docutils literal notranslate"><span class="pre">v++</span></code>) performs this step with <code class="docutils literal notranslate"><span class="pre">--copmile</span></code> flag. You can use <code class="docutils literal notranslate"><span class="pre">-c</span></code> for short.
-You can also generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file directly using Vitis HLS like we just did. FYI, you can create <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file from RTL code too(obviously).</p>
+Vitis compiler(<code class="docutils literal notranslate"><span class="pre">v++</span></code>) performs this step with <code class="docutils literal notranslate"><span class="pre">--copmile</span></code> flag, or <code class="docutils literal notranslate"><span class="pre">-c</span></code> for short.
+You can also generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file directly using Vitis HLS like we just did.
+FYI, you can create <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file from RTL code, too (obviously).</p>
 <p>Next step, which is usually called “linking” step, calls Vivado to perform
 logic synthesis, placement, and routing to generate a FPGA binary container file(<code class="docutils literal notranslate"><span class="pre">.xclbin</span></code>, Yes, this file encapsulates the bitstream that’s necessary to program the FPGA).
-Vitis compiler(<code class="docutils literal notranslate"><span class="pre">v++</span></code>) performs this step with <code class="docutils literal notranslate"><span class="pre">--linking</span></code> or <code class="docutils literal notranslate"><span class="pre">-l</span></code> for short.</p>
-<p>The last step is called “packaging” step and is done with <code class="docutils literal notranslate"><span class="pre">--package</span></code> or <code class="docutils literal notranslate"><span class="pre">-p</span></code> for short.
+Vitis compiler(<code class="docutils literal notranslate"><span class="pre">v++</span></code>) performs this step with <code class="docutils literal notranslate"><span class="pre">--link</span></code>, or <code class="docutils literal notranslate"><span class="pre">-l</span></code> for short.
+This step is the most time-consuming part in FPGA development on Vitis, and for this lab, it should take &gt;20 minutes.</p>
+<p>The last step is called “packaging” step and is done with <code class="docutils literal notranslate"><span class="pre">--package</span></code>, or <code class="docutils literal notranslate"><span class="pre">-p</span></code> for short.
 This step packages your design and define various files required for booting/configuring the device.</p>
 <ul>
 <li><p>Make sure that <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> exists in HW5 directory.</p></li>
@@ -976,7 +978,8 @@ the compilation longer, and we commented out for this assignment.</p>
 <p>To increase the clock frequency, you first need to generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file targeting 200MHz(for example) in Vitis HLS.
 And you need to include a flag like <code class="docutils literal notranslate"><span class="pre">--clock.defaultFreqHz</span> <span class="pre">200000000</span></code> when you do linking (<code class="docutils literal notranslate"><span class="pre">v++</span> <span class="pre">--link</span></code>).
 Without the flag, the tool uses the default clock frequency for Ultra96, which is 150MHz.</p>
-<p>If you search useful information on the web like this, please make sure that it’s applicable to the embedded platform.
+<p>If you go through <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis">Vitis User Guide</a>
+for useful flags/options, please make sure that they are applicable to the embedded platform.
 As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belongs to the embedded platform.</p>
 </div>
 </li>
@@ -1111,6 +1114,8 @@ then copy them from the Ultra96-host(your laptop) to the Ultra96.</p>
 <span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
+<p>To generate these files, you need to have <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> in the same directory that you run <code class="docutils literal notranslate"><span class="pre">./host</span> <span class="pre">mmult.xclbin</span></code> on.
+If you uncomment the profiling block in <code class="docutils literal notranslate"><span class="pre">u96_v2.cfg</span></code> when you build for <code class="docutils literal notranslate"><span class="pre">.xclbin</span></code>, you will be able to get additional information in these <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> files.</p>
 </li>
 <li><p>Copy these files to your computer by issuing the following command. Modify the command with the username of your computer and
 the directory you want to put the files in.</p>
