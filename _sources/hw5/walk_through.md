@@ -277,12 +277,12 @@ This step packages your design and define various files required for booting/con
     the compilation longer, and we commented out for this assignment.
     ```
     ```{note}
-    You may want to speedup the hardware later in your project. 
     To increase the clock frequency, you first need to generate `.xo` file targeting 200MHz(for example) in Vitis HLS.
     And you need to include a flag like `--clock.defaultFreqHz 200000000` when you do linking (`v++ --link`).
     Without the flag, the tool uses the default clock frequency for Ultra96, which is 150MHz.
-    If you search these useful information on the web, please make sure that it's applicable to the embedded platform.
-    As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belong to the embedded platform.
+
+    If you search useful information on the web like this, please make sure that it's applicable to the embedded platform.
+    As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belongs to the embedded platform.
     ```
 
 ## Environment Setup

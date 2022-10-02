@@ -816,13 +816,14 @@ Keep the trace in Vitis Analyzer open, we will use the numbers from it in the ne
 <div class="math notranslate nohighlight" id="equation-accelerator-model">
 <span class="eqno">(2)<a class="headerlink" href="#equation-accelerator-model" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+T_{transfer}+T_{fpga}\]</div>
 <p>Let <span class="math notranslate nohighlight">\(T_{seq}\)</span> be the time for an operation (such as the matrix multiply) on the ARM that your found in 1a
-and <span class="math notranslate nohighlight">\(T_{fpga}\)</span> be the time for the operation on the FPGA that you found in 4d.</p>
+and <span class="math notranslate nohighlight">\(T_{fpga}\)</span> be the time for the operation on the FPGA that you found in 4b.</p>
 <p>Let <span class="math notranslate nohighlight">\(S_{fpga}=\frac{T_{seq}}{T_{fpga}}\)</span> or <span class="math notranslate nohighlight">\(T_{fpga}=\frac{T_{seq}}{S_{fpga}}\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(T_{setup}\)</span> is the time to setup the operation and <span class="math notranslate nohighlight">\(T_{transfer}\)</span> is the time to move the data for the operation to the FPGA and back.</p>
+<p><span class="math notranslate nohighlight">\(T_{setup}\)</span> is the time to setup the operation and <span class="math notranslate nohighlight">\(T_{transfer}\)</span> is the time to move the data for the operation to the FPGA and back.
+Include all operations like “create context”, “create program with binary”, etc in <span class="math notranslate nohighlight">\(T_{setup}\)</span>.</p>
 <ol>
 <li><p>What is <span class="math notranslate nohighlight">\(S_{fpga}\)</span> for the matrix-multiply operation above?</p></li>
-<li><p>Find <span class="math notranslate nohighlight">\(T_{setup}\)</span> using the trace in 4f.</p></li>
-<li><p>Find <span class="math notranslate nohighlight">\(T_{transfer}\)</span> using the trace in 4f.</p></li>
+<li><p>Find <span class="math notranslate nohighlight">\(T_{setup}\)</span> using the trace in 4c.</p></li>
+<li><p>Find <span class="math notranslate nohighlight">\(T_{transfer}\)</span> using the trace in 4c.</p></li>
 <li><p>Using <span class="math notranslate nohighlight">\(S_{fpga}\)</span>, <span class="math notranslate nohighlight">\(T_{setup}\)</span>, and <span class="math notranslate nohighlight">\(T_{transfer}\)</span> from the above, how
 large would <span class="math notranslate nohighlight">\(T_{seq}\)</span> need to be to get an actual overall speedup?</p>
 <div class="admonition hint">
