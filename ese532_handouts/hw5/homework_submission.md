@@ -150,7 +150,7 @@ Your writeup should include your answers to the following questions:
             each of the arrays with a picture that shows how the elements of
             these arrays are accessed by one iteration of the pipelined loop.
     1. Partition the buffers according to your description in the
-            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf#page=275) 
+            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-array_partition) 
             for examples of array partitioning pragma).
             Also, pipeline the `Init_loop_j` loop. 
             Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.
