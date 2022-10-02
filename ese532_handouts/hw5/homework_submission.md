@@ -193,15 +193,16 @@ Your writeup should include your answers to the following questions:
     T_{accel} = T_{setup}+T_{transfer}+T_{fpga}
     ```
     Let $T_{seq}$ be the time for an operation (such as the matrix multiply) on the ARM that your found in 1a
-    and $T_{fpga}$ be the time for the operation on the FPGA that you found in 4d.
+    and $T_{fpga}$ be the time for the operation on the FPGA that you found in 4b.
     
     Let $S_{fpga}=\frac{T_{seq}}{T_{fpga}}$ or $T_{fpga}=\frac{T_{seq}}{S_{fpga}}$.
     
     $T_{setup}$ is the time to setup the operation and $T_{transfer}$ is the time to move the data for the operation to the FPGA and back.
+    Include all operations like "create context", "create program with binary", etc in $T_{setup}$.
 
     1. What is $S_{fpga}$ for the matrix-multiply operation above?
-    2. Find $T_{setup}$ using the trace in 4f.
-    3. Find $T_{transfer}$ using the trace in 4f.
+    2. Find $T_{setup}$ using the trace in 4c.
+    3. Find $T_{transfer}$ using the trace in 4c.
     4. Using $S_{fpga}$, $T_{setup}$, and $T_{transfer}$ from the above, how
     large would $T_{seq}$ need to be to get an actual overall speedup?
         ````{hint}
