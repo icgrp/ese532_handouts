@@ -54,8 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HW7 – Restructuring C for Accelerator and Zynq Transition" href="../hw7/index.html" />
-    <link rel="prev" title="Setup and Walk-through" href="walk_through.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -132,7 +130,7 @@ const thebe_selector_output = ".output, .cell_output"
   Homework Assignments
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../hw0/index.html">
    Diagnostic Assessment
@@ -315,60 +313,6 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../hw5/homework_submission.html">
-     Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   HW6 – Accelerator Interface
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="collaboration.html">
-     Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="walk_through.html">
-     Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Homework Submission
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../hw7/index.html">
-   HW7 – Restructuring C for Accelerator and Zynq Transition
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/collaboration.html">
-     Collaboration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/walk_through.html">
-     Setup and Walk-through
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../hw7/homework_submission.html">
      Homework Submission
     </a>
    </li>
@@ -754,17 +698,17 @@ This will take about 30 minutes to build. Report the latencies. Provide a screen
 Find out <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html">how to use an out-of-order command queue</a>
 to get overlap between communication and computation. Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
 Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
-We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 23</span></a> or <a class="reference internal" href="#comp-comm-overlap-2"><span class="std std-numref">Fig. 24</span></a>.</p>
+We expect you to see something like <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap</span></code> or <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap_2</span></code>.</p>
 <figure class="align-default" id="comp-comm-overlap">
 <img alt="../_images/comp_comm_overlap.png" src="../_images/comp_comm_overlap.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="comp-comm-overlap-2">
 <img alt="../_images/comp_comm_overlap_2.png" src="../_images/comp_comm_overlap_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -879,20 +823,6 @@ device in your report.</p></li>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="walk_through.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Setup and Walk-through</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="../hw7/index.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">HW7 – Restructuring C for Accelerator and Zynq Transition</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
