@@ -95,7 +95,8 @@ Your writeup should include your answers to the following questions:
         process.  How does the code assure the program runs correctly
         to completion on all data?  (4--6 lines)
     5. Review the provided code.  Explain how you can adjust the
-        `PIPELINE_PAR` parameter (in `Filter.cpp`) to maximize throughput. (2--3 lines)
+        `PIPELINE_PAR` parameter (in `Filter.cpp`) to maximize throughput. 
+        Don't experimentally find a better `PIPELINE_PAR` but find it analytically. (2--3 lines)
     6. Adapt the implementation by changing the parameter
         `PIPELINE_PAR` to optimize the pipeline task or
         implement your own mapping to optimize the 
@@ -120,7 +121,7 @@ Your writeup should include your answers to the following questions:
         2. What is the maximum throughput that the server can achieve? (10 lines)
         3. Where is the bottleneck? (1 line)
         4. How much smaller do we have to make the kernel (`FILTER_LENGTH`) of
-            `Filter` to move the bottleneck? (7 lines)
+            `Filter` to move the bottleneck? Don't experimentally find a `FILTER_LENGTH` but find it analytically. (7 lines)
 
 4. **CDC Parallel**
     

@@ -676,7 +676,8 @@ the <code class="docutils literal notranslate"><span class="pre">Scale</span></c
 process.  How does the code assure the program runs correctly
 to completion on all data?  (4–6 lines)</p></li>
 <li><p>Review the provided code.  Explain how you can adjust the
-<code class="docutils literal notranslate"><span class="pre">PIPELINE_PAR</span></code> parameter (in <code class="docutils literal notranslate"><span class="pre">Filter.cpp</span></code>) to maximize throughput. (2–3 lines)</p></li>
+<code class="docutils literal notranslate"><span class="pre">PIPELINE_PAR</span></code> parameter (in <code class="docutils literal notranslate"><span class="pre">Filter.cpp</span></code>) to maximize throughput.
+Don’t experimentally find a better <code class="docutils literal notranslate"><span class="pre">PIPELINE_PAR</span></code> but find it analytically. (2–3 lines)</p></li>
 <li><p>Adapt the implementation by changing the parameter
 <code class="docutils literal notranslate"><span class="pre">PIPELINE_PAR</span></code> to optimize the pipeline task or
 implement your own mapping to optimize the
@@ -702,7 +703,7 @@ Indicate throughput and data transfer ratios where applicable.</p></li>
 <li><p>What is the maximum throughput that the server can achieve? (10 lines)</p></li>
 <li><p>Where is the bottleneck? (1 line)</p></li>
 <li><p>How much smaller do we have to make the kernel (<code class="docutils literal notranslate"><span class="pre">FILTER_LENGTH</span></code>) of
-<code class="docutils literal notranslate"><span class="pre">Filter</span></code> to move the bottleneck? (7 lines)</p></li>
+<code class="docutils literal notranslate"><span class="pre">Filter</span></code> to move the bottleneck? Don’t experimentally find a <code class="docutils literal notranslate"><span class="pre">FILTER_LENGTH</span></code> but find it analytically. (7 lines)</p></li>
 </ol>
 </li>
 </ol>
