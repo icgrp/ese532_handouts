@@ -129,6 +129,7 @@ Your writeup should include your answers to the following questions:
     create a data-parallel implementation of your CDC function from homework 2 
     that uses four cores of ARM A53 to achieve
     parallelism speedup. The starter code can be found in `hw3/assignment/cdc_parallel`.
+    If you do not see the speedup with four cores, please increase the size of the .txt file.
     1. What is the best performance that one could theoretically
         achieve with a data-parallel mapping of CDC on 4 cores over the
         single core solution?
