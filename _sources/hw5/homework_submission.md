@@ -131,7 +131,7 @@ Your writeup should include your answers to the following questions:
 3. **HLS Kernel Optimization: Pipelining**
     1. Remove the unroll pragma, and pipeline the `Main_loop_j`
             loop with the minimal initiation
-            interval (II) of 1 using the `pipeline` pragma. Restore the clock to ***150Hz***.
+            interval (II) of 1 using the `pipeline` pragma. Restore the clock to ***150MHz***.
             Synthesize the design again.  Report the
             initiation interval for the `Main_loop_j` that the design achieved. (1 line)
             <!-- (You may find the timing is
