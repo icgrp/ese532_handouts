@@ -624,6 +624,8 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw6</span
                     <span class="n">MMult</span><span class="o">.</span><span class="n">h</span>
                     <span class="n">testbench</span><span class="o">.</span><span class="n">cpp</span>
                 <span class="n">Host</span><span class="o">.</span><span class="n">cpp</span>
+                <span class="n">design</span><span class="o">.</span><span class="n">cfg</span>
+                <span class="n">package</span><span class="o">.</span><span class="n">cfg</span>
                 <span class="n">xrt</span><span class="o">.</span><span class="n">ini</span>
             <span class="n">sourceMe</span><span class="o">.</span><span class="n">sh</span>
     <span class="n">common</span><span class="o">/</span>
@@ -633,12 +635,12 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw6</span
 </section>
 <section id="useful-resources">
 <h2>Useful Resources<a class="headerlink" href="#useful-resources" title="Permalink to this headline">#</a></h2>
-<p>Following the previous HW, we will create Vitis project using Vitis IDE.
-<strong>Note that Makefiles are automatically generated when we build the project in GUI mode,
-and you are welcome to use Makefiles later in the project.</strong>
+<!-- Following the previous HW, we will create Vitis project using Vitis IDE.
+**Note that Makefiles are automatically generated when we build the project in GUI mode, 
+and you are welcome to use Makefiles later in the project.** 
 In fact,
 many of Vitis tutorials on the web are using Makefile, which we
-highly recommend you to browse around while you are doing this lab.</p>
+highly recommend you to browse around while you are doing this lab. -->
 <p>In this HW, we will analyze how the processor
 core communicates with an accelerator. We tell you some
 specific things to experiment with, but you should do some reading from:</p>
@@ -718,7 +720,7 @@ on your local machine. To build the cpu version of mmult, run <code class="docut
 -->
 <ul class="simple">
 <li><p>Like we did in HW5, copy the related files in <code class="docutils literal notranslate"><span class="pre">package/sd_card</span></code> directory
-to Ultra96’s <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1/</span></code> and type <code class="docutils literal notranslate"><span class="pre">reboot</span></code>.
+to Ultra96’s <code class="docutils literal notranslate"><span class="pre">/media/sd-mmcblk0p1/</span></code> and type <code class="docutils literal notranslate"><span class="pre">reboot</span></code>.
 Enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>.
 Next, <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file generated from CPU version.</p></li>
 </ul>

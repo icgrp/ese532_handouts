@@ -30,6 +30,8 @@ hw6/
                     MMult.h
                     testbench.cpp
                 Host.cpp
+                design.cfg
+                package.cfg
                 xrt.ini
             sourceMe.sh
     common/
@@ -37,12 +39,12 @@ hw6/
 ```
 
 ## Useful Resources
-Following the previous HW, we will create Vitis project using Vitis IDE.
+<!-- Following the previous HW, we will create Vitis project using Vitis IDE.
 **Note that Makefiles are automatically generated when we build the project in GUI mode, 
 and you are welcome to use Makefiles later in the project.** 
 In fact,
 many of Vitis tutorials on the web are using Makefile, which we
-highly recommend you to browse around while you are doing this lab.
+highly recommend you to browse around while you are doing this lab. -->
 
 In this HW, we will analyze how the processor
 core communicates with an accelerator. We tell you some
@@ -117,7 +119,7 @@ on your local machine. To build the cpu version of mmult, run `make cpu`. To bui
     generated in HW5.
 -->
 - Like we did in HW5, copy the related files in `package/sd_card` directory
-to Ultra96's `/mnt/sd-mmcblk0p1/` and type `reboot`.
+to Ultra96's `/media/sd-mmcblk0p1/` and type `reboot`.
 Enable the ethernet connection using `ifconfig`.
 Next, `scp` the `.elf` file generated from CPU version.
 

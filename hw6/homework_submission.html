@@ -645,8 +645,8 @@ for the sake of easy grading.</p>
 <li><p><strong>Accelerator Interface</strong></p>
 <ol>
 <li><p>Run CPU version on Ultra96, and report the latency.</p></li>
-<li><p>For FPGA version, copy in the <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> file into the Ultra96 and run the code.
-Copy the Vitis Analyzer files to your computer and open it with Vitis Analyzer.
+<li><p>For FPGA version, run the code,
+copy the Vitis Analyzer files to your computer and open them with Vitis Analyzer.
 Click <em><strong>Profile Summary</strong></em>, and then <em><strong>Summary</strong></em> to see
 <em>Total application runtime</em> and <em>Total kernel runtime</em>.
 Click <em><strong>Kernels &amp; Compute Units</strong></em> to see only the <em>kernel execution time</em>.
@@ -686,7 +686,7 @@ Based on the analyzer, suggest at least two ways of improving the performance of
 </pre></div>
 </div>
 </li>
-<li><p>Click on <em><strong>open project</strong></em> and browse to the your build generated directory: <code class="docutils literal notranslate"><span class="pre">hw6_fpga_kernels/Hardware/build/mmult_fpga/mmult_fpga/mmult_fpga</span></code>
+<li><p>Click on <em><strong>open project</strong></em> and browse to the your build generated directory: <code class="docutils literal notranslate"><span class="pre">hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga</span></code>
 and click open.</p></li>
 <li><p>From the <em><strong>Explorer</strong></em> tab, open <em><strong>solution</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>syn</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>report</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>mmult_fpga_csynth.rpt</strong></em>.</p></li>
 <li><p>Browse to the <em><strong>Interface</strong></em> section and examine
@@ -707,7 +707,7 @@ the interface that was generated. Describe how the host processor communicates w
 </pre></div>
 </div>
 </li>
-<li><p>Click on <em><strong>open project</strong></em> and browse to the your build generated directory: <code class="docutils literal notranslate"><span class="pre">hw6_fpga_kernels/Hardware/build/mmult_fpga/mmult_fpga/mmult_fpga</span></code>
+<li><p>Click on <em><strong>open project</strong></em> and browse to the your build generated directory: <code class="docutils literal notranslate"><span class="pre">hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga</span></code>
 and click open.</p></li>
 </ul>
 </li>
@@ -718,7 +718,7 @@ to pass data between Load, Compute, Store functions. Make additional changes to 
 <li><p>Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
 Also, provide the screenshot of <em><strong>Performance &amp; Resource Estimates</strong></em> table in
 the Synthesis Summary Report. Because you have Load, Compute, Store functions,
-expand each function in the table to show that you achived II=1.</p></li>
+expand each function in the table to show that you achieved II=1.</p></li>
 <li><p>Rebuild the project with the dataflow-enabled kernel, copy the binaries and boot files, reboot and test.
 This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.</p></li>
 <li><p>Our initial FPGA host code uses an in-order command queue.
@@ -749,7 +749,7 @@ We expect you to see something like <a class="reference internal" href="#comp-co
 Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
 This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
 Does assigning multiple ports on Ultra96 have any impact on your design?
-Save/Move the <code class="docutils literal notranslate"><span class="pre">hw6_fpga_system_hw_link/Hardware/binary_container_1.build</span></code> folder of the project to somewhere else before doing the next question.
+Save/Move the <code class="docutils literal notranslate"><span class="pre">hw6/apps/mmult/_x</span></code> folder of the project to somewhere else before doing the next question.
 We will use the outputs from this question in the next part.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -762,9 +762,9 @@ We will use the outputs from this question in the next part.</p>
 <li><p>Learn about how to use multiple compute units from
 <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html">here</a>
 and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
-Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can also be done in the Compute Unit Settings we visited in the previous question.<br />
+Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can be done by modifying <code class="docutils literal notranslate"><span class="pre">design.cfg</span></code>.<br />
 Rebuild the FPGA version,
-copy the binaries and boot files, reboot and test. This will take about 30 minutes to build. Report the latencies.
+copy the binaries and boot files, reboot and test. This will take about &gt;30 minutes to build. Report the latencies.
 Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. If you are run out of the FPGA resources, report it.</p></li>
 </ol>
 </li>
@@ -778,7 +778,7 @@ flip-flop, and LUT) the implementation (Part 1k)
 consumes. You can find this information in the <em><strong>Implementation</strong></em> tab on the
 left hand side. Click <em><strong>Report Utilization</strong></em> under <em><strong>Open Implemented Design</strong></em>.
 Launch Vivado using the following commands and open the
-project you saved/moved from the location <code class="docutils literal notranslate"><span class="pre">binary_container_1.build/link/vivado/vpl/prj/prj.xpr</span></code>. (4 lines)</p>
+project you saved/moved from the location <code class="docutils literal notranslate"><span class="pre">hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.xpr</span></code>. (4 lines)</p>
 <ul>
 <li><p>In terminal, make sure you correctly sourced the settings, and open Vivado, with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vivado</span>
