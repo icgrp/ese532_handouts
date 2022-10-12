@@ -116,10 +116,10 @@ on your local machine. To build the cpu version of mmult, run `make cpu`. To bui
     If you are run out of disk space, we recommend you to remove sd card image
     generated in HW5.
 -->
-    - Like we did in HW5, copy the related files in `package/sd_card` directory
-    to Ultra96's `/mnt/sd-mmcblk0p1/` and type `reboot`.
-    Enable the ethernet connection using `ifconfig`.
-    Next, `scp` the `.elf` file generated from CPU version.
+- Like we did in HW5, copy the related files in `package/sd_card` directory
+to Ultra96's `/mnt/sd-mmcblk0p1/` and type `reboot`.
+Enable the ethernet connection using `ifconfig`.
+Next, `scp` the `.elf` file generated from CPU version.
 
 
 
