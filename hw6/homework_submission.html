@@ -652,16 +652,15 @@ Click <em><strong>Profile Summary</strong></em>, and then <em><strong>Summary</s
 Click <em><strong>Kernels &amp; Compute Units</strong></em> to see only the <em>kernel execution time</em>.
 We will check these three latencies throughout this HW.
 Report the latencies.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There are two types of platforms: datacenter and embedded.
-Ultra96, we are using in class, is an embedded platform.
-In <code class="docutils literal notranslate"><span class="pre">host.cpp</span></code>, many <a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/blob/2020.2/host/data_transfer/src/host.cpp">examples</a>
-on the web, targeting datacenter cards, use <code class="docutils literal notranslate"><span class="pre">aligned_allocator</span></code> to avoid warnings regarding <em>unaligned host pointer</em>.
-Note that we use <code class="docutils literal notranslate"><span class="pre">enqueueMapBuffer</span></code>, and this approach is portable accross both datacenter and embedded platforms,
-as explained in Step 2 of <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md">this tutorial</a>.</p>
-</div>
- <!-- 1. In the previous step, you must have seen warnings regarding unaligned host pointer.
+  <!--```{note}
+  There are two types of platforms: datacenter and embedded. 
+  Ultra96, we are using in class, is an embedded platform.
+  In `host.cpp`, many [examples](https://github.com/Xilinx/Vitis_Accel_Examples/blob/2020.2/host/data_transfer/src/host.cpp)
+  on the web, targeting datacenter cards, use `aligned_allocator` to avoid warnings regarding *unaligned host pointer*.
+  Note that we use `enqueueMapBuffer`, and this approach is portable accross both datacenter and embedded platforms,
+  as explained in Step 2 of [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
+  ```
+ 1. In the previous step, you must have seen warnings regarding unaligned host pointer.
  You will now allocate contiguous host memories. 
  Take a look at Step 2 in [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
  In `apps/mmult/fpga/HostAligned.cpp`, we kindly provide three TODOs for this step.
@@ -771,11 +770,11 @@ Provide a screenshot of the relevant section of Application Trace from Vitis Ana
 </li>
 <li><p><strong>Analyze Implementation</strong></p>
 <p>In this question, we will investigate what the FPGA implementation
-of the matrix multiplication (1m) look like using Vivado (not
+of the matrix multiplication (Part 1k) look like using Vivado (not
 Vivado HLS).  Vivado is part of the Vitis installation.</p>
 <ol>
 <li><p>Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
-flip-flop, and LUT) the implementation (1-(m))
+flip-flop, and LUT) the implementation (Part 1k)
 consumes. You can find this information in the <em><strong>Implementation</strong></em> tab on the
 left hand side. Click <em><strong>Report Utilization</strong></em> under <em><strong>Open Implemented Design</strong></em>.
 Launch Vivado using the following commands and open the

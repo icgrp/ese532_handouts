@@ -77,7 +77,7 @@ for the sake of easy grading.
     Click ***Kernels & Compute Units*** to see only the *kernel execution time*.
     We will check these three latencies throughout this HW.
     Report the latencies.
-         ```{note}
+         <!--```{note}
          There are two types of platforms: datacenter and embedded. 
          Ultra96, we are using in class, is an embedded platform.
          In `host.cpp`, many [examples](https://github.com/Xilinx/Vitis_Accel_Examples/blob/2020.2/host/data_transfer/src/host.cpp)
@@ -85,7 +85,7 @@ for the sake of easy grading.
          Note that we use `enqueueMapBuffer`, and this approach is portable accross both datacenter and embedded platforms,
          as explained in Step 2 of [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
          ```
-        <!-- 1. In the previous step, you must have seen warnings regarding unaligned host pointer.
+        1. In the previous step, you must have seen warnings regarding unaligned host pointer.
         You will now allocate contiguous host memories. 
         Take a look at Step 2 in [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md).
         In `apps/mmult/fpga/HostAligned.cpp`, we kindly provide three TODOs for this step.
@@ -188,11 +188,11 @@ for the sake of easy grading.
 1. **Analyze Implementation**
 
     In this question, we will investigate what the FPGA implementation
-        of the matrix multiplication (1m) look like using Vivado (not
+        of the matrix multiplication (Part 1k) look like using Vivado (not
         Vivado HLS).  Vivado is part of the Vitis installation.
     
     1. Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
-    flip-flop, and LUT) the implementation (1-(m))
+    flip-flop, and LUT) the implementation (Part 1k)
     consumes. You can find this information in the ***Implementation*** tab on the
     left hand side. Click ***Report Utilization*** under ***Open Implemented Design***.
     Launch Vivado using the following commands and open the
