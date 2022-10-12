@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Homework Submission" href="homework_submission.html" />
@@ -665,81 +663,65 @@ manages DMA, refer to the following resources:</p>
 </section>
 <section id="creating-vitis-project">
 <h2>Creating Vitis Project<a class="headerlink" href="#creating-vitis-project" title="Permalink to this headline">#</a></h2>
-<ul>
+<ul class="simple">
 <li><p>Like we did in HW5, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code> first. Note that
 you need to adjust the <code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> if you are running
 on your local machine.</p></li>
-<li><p>We will create the CPU version’s project.</p>
-<ul>
-<li><p>Launch <code class="docutils literal notranslate"><span class="pre">vitis</span></code> and create application project as we did before.
-All the steps are identical, but when selecting Templates,
-select <em><strong>SW Development templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Empty Applications (C++)</strong></em>.</p></li>
-<li><p>Import following files to <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/cpu/Host.cpp</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
 </ul>
-</li>
-<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
-Click <em><strong>ARM v8 Linux g++ linker</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Libraries</strong></em>.
-Add <code class="docutils literal notranslate"><span class="pre">xilinxopencl</span></code> as shown below.</p>
-<figure class="align-default" id="id1">
-<img alt="../_images/vitis_cpu_linker.png" src="../_images/vitis_cpu_linker.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Add linker flag</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>Right click the project and select <em><strong>C/C++ Build Settings</strong></em>.
-Click <em><strong>ARM v8 Linux g++ compiler</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Optimization</strong></em>.
-Set to <strong>O3</strong>.</p></li>
-<li><p>Build the project. You will see <code class="docutils literal notranslate"><span class="pre">.elf</span></code> created in Debug folder.</p></li>
-</ul>
-</li>
-<li><p>Next, we will create FPGA version’s project.</p>
-<ul>
-<li><p>Right click the
-white space in the Project Explorer view, then <em><strong>New</strong></em>
-<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em><strong>Application Project</strong></em>. Set the name of the project as
-<strong>hw6_fpga</strong>. When selecting Templates,
-select <em><strong>SW acceleration templates</strong></em> <span class="math notranslate nohighlight">\(\rightarrow\)</span>
-<em><strong>Empty Application</strong></em>.</p></li>
-<li><p>For the kernel <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.cpp</span></code></p></li>
-</ul>
-</li>
-<li><p>For the host <code class="docutils literal notranslate"><span class="pre">src</span></code>, import following files:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">common/*</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/Host.cpp</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apps/mmult/fpga/hls/MMult.h</span></code></p></li>
-</ul>
-</li>
-<li><p>In kernel project, add <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> to the Hardware Functions.</p></li>
-<li><p>Select <em><strong>Hardware</strong></em> in Active build configuration on the
-upper right corner. Your project should look something like below.</p>
-<figure class="align-default" id="vitis-fpga-setting">
-<img alt="../_images/vitis_fpga_setting.png" src="../_images/vitis_fpga_setting.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Add hardware function and set the build configuration to Hardware</span><a class="headerlink" href="#vitis-fpga-setting" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-<li><p>In the Assistant view on the lower left corner, you will see
-<em><strong>Hardware</strong></em> is bolded as shown in <a class="reference internal" href="#vitis-fpga-setting"><span class="std std-numref">Fig. 22</span></a>.
-Right click it and build the project. It will take about 30 minutes.
-If you are run out of disk space, we recommend you to remove sd card image
-generated in HW5.</p></li>
-<li><p>Like we did in HW5, copy the related files in <code class="docutils literal notranslate"><span class="pre">package/sd_card</span></code> directory
-to Ultra96’s <code class="docutils literal notranslate"><span class="pre">/mnt/sd-mmcblk0p1/</span></code> and type <code class="docutils literal notranslate"><span class="pre">reboot</span></code>.
-Enable the ethernet connection using <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>.
-Next, <code class="docutils literal notranslate"><span class="pre">scp</span></code> the <code class="docutils literal notranslate"><span class="pre">.elf</span></code> file generated from CPU version.</p></li>
-</ul>
-</li>
-</ul>
+<!--
+- We will create the CPU version's project. 
+    - Launch `vitis` and create application project as we did before. 
+    All the steps are identical, but when selecting Templates, 
+    select ***SW Development templates*** $\rightarrow$ ***Empty Applications (C++)***.
+    - Import following files to `src`: 
+        - `common/*`
+        - `apps/mmult/cpu/Host.cpp`
+        - `apps/mmult/fpga/hls/MMult.h`
+    - Right click the project and select ***C/C++ Build Settings***.
+    Click ***ARM v8 Linux g++ linker*** $\rightarrow$ ***Libraries***.
+    Add `xilinxopencl` as shown below.
+        ```{figure} images/vitis_cpu_linker.png
+        Add linker flag
+        ```
+    - Right click the project and select ***C/C++ Build Settings***.
+    Click ***ARM v8 Linux g++ compiler*** $\rightarrow$ ***Optimization***.
+    Set to **O3**.
+    - Build the project. You will see `.elf` created in Debug folder.
+- Next, we will create FPGA version's project. 
+    - Right click the
+    white space in the Project Explorer view, then ***New*** 
+    $\rightarrow$ ***Application Project***. Set the name of the project as 
+    **hw6_fpga**. When selecting Templates,
+    select ***SW acceleration templates*** $\rightarrow$
+    ***Empty Application***.
+    - For the kernel `src`, import following files: 
+        - `apps/mmult/fpga/hls/MMult.h`
+        - `apps/mmult/fpga/hls/MMult.cpp`
+    - For the host `src`, import following files:
+        - `common/*`
+        - `apps/mmult/fpga/Host.cpp`
+        - `apps/mmult/fpga/hls/MMult.h`
+    - In kernel project, add `mmult_fpga` to the Hardware Functions.
+    - Select ***Hardware*** in Active build configuration on the
+    upper right corner. Your project should look something like below.
+        ```{figure} images/vitis_fpga_setting.png
+        ---
+        name: vitis_fpga_setting
+        ---
+        Add hardware function and set the build configuration to Hardware
+        ```
+    - In the Assistant view on the lower left corner, you will see
+    ***Hardware*** is bolded as shown in {numref}`vitis_fpga_setting`.
+    Right click it and build the project. It will take about 30 minutes. 
+    If you are run out of disk space, we recommend you to remove sd card image
+    generated in HW5.
+-->
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Like we did in HW5, copy the related files in `package/sd_card` directory
+to Ultra96&#39;s `/mnt/sd-mmcblk0p1/` and type `reboot`.
+Enable the ethernet connection using `ifconfig`.
+Next, `scp` the `.elf` file generated from CPU version.
+</pre></div>
+</div>
 <!-- ## Environment Setup
 
 ### Setting up Ultra96 and Host Computer
