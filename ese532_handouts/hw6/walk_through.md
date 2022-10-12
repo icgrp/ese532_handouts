@@ -67,7 +67,8 @@ manages DMA, refer to the following resources:
 ## Creating Vitis Project
 - Like we did in HW5, `source sourceMe.sh` first. Note that
 you need to adjust the `sourceMe.sh` if you are running
-on your local machine. 
+on your local machine.
+<!--
 - We will create the CPU version's project. 
     - Launch `vitis` and create application project as we did before. 
     All the steps are identical, but when selecting Templates, 
@@ -114,6 +115,7 @@ on your local machine.
     Right click it and build the project. It will take about 30 minutes. 
     If you are run out of disk space, we recommend you to remove sd card image
     generated in HW5.
+-->
     - Like we did in HW5, copy the related files in `package/sd_card` directory
     to Ultra96's `/mnt/sd-mmcblk0p1/` and type `reboot`.
     Enable the ethernet connection using `ifconfig`.
