@@ -745,8 +745,6 @@ We expect you to see something like <a class="reference internal" href="#comp-co
 </pre></div>
 </div>
 </li>
-<li><p>Read about kernel and host code synchronization from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/host-code-opt/README.html#kernel-and-host-code-synchronization">here</a>. Add a barrier synchronization for every <em><strong>8 tasks</strong></em> to your host code.
-Build the project with the modified host code. Run it and provide a screenshot of the relevant section of vitis analyzer.</p></li>
 <li><p>Assign separate ports to the <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code>. In the Assistant view on the lower left corner,
 <em><strong>hw6_fpga_system_hw_link</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>Hardware</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>binary_container_1</strong></em>.
 Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
@@ -758,12 +756,12 @@ We will use the outputs from this question in the next part.</p>
 <p class="admonition-title">Hint</p>
 <ul class="simple">
 <li><p>Learn about how to add multiple ports from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html">here</a></p></li>
-<li><p>Read this <a class="reference external" href="https://ieeexplore.ieee.org/document/8977835/">paper</a> to find out how to efficiently use the ports on Ultra96.</p></li>
+<li><p>Read this <a class="reference external" href="https://ieeexplore.ieee.org/document/8977835/">paper</a> to find out how to efficiently use the ports on Ultra96 (optional).</p></li>
 </ul>
 </div>
 </li>
 <li><p>Learn about how to use multiple compute units from
-<a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html">here</a>
+<a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html">here</a>
 and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
 Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can also be done in the Compute Unit Settings we visited in the previous question.<br />
 Rebuild the FPGA version,
