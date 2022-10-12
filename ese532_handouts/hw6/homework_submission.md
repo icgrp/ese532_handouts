@@ -70,8 +70,8 @@ for the sake of easy grading.
 1. **Accelerator Interface**
 
     1. Run CPU version on Ultra96, and report the latency.
-    1. For FPGA version, copy in the `xrt.ini` file into the Ultra96 and run the code.
-    Copy the Vitis Analyzer files to your computer and open it with Vitis Analyzer.
+    1. For FPGA version, run the code,
+    copy the Vitis Analyzer files to your computer and open them with Vitis Analyzer.
     Click ***Profile Summary***, and then ***Summary*** to see
     *Total application runtime* and *Total kernel runtime*.
     Click ***Kernels & Compute Units*** to see only the *kernel execution time*.
@@ -109,7 +109,7 @@ for the sake of easy grading.
                 ```
                 vitis_hls
                 ```
-            - Click on ***open project*** and browse to the your build generated directory: `hw6_fpga_kernels/Hardware/build/mmult_fpga/mmult_fpga/mmult_fpga`
+            - Click on ***open project*** and browse to the your build generated directory: `hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga`
             and click open.
             - From the ***Explorer*** tab, open ***solution***$\rightarrow$***syn***$\rightarrow$***report***$\rightarrow$***mmult_fpga_csynth.rpt***.
             - Browse to the ***Interface*** section and examine
@@ -126,7 +126,7 @@ for the sake of easy grading.
             ```
             vitis_hls
             ```
-        - Click on ***open project*** and browse to the your build generated directory: `hw6_fpga_kernels/Hardware/build/mmult_fpga/mmult_fpga/mmult_fpga`
+        - Click on ***open project*** and browse to the your build generated directory: `hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga`
         and click open.
 
     1. Partition the HLS code into Load-Compute-Store Pattern as can be seen in [this code](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp) 
@@ -137,7 +137,7 @@ for the sake of easy grading.
     1. Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
     Also, provide the screenshot of ***Performance & Resource Estimates*** table in
     the Synthesis Summary Report. Because you have Load, Compute, Store functions,
-    expand each function in the table to show that you achived II=1.
+    expand each function in the table to show that you achieved II=1.
 
     1. Rebuild the project with the dataflow-enabled kernel, copy the binaries and boot files, reboot and test. 
     This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
@@ -170,7 +170,7 @@ for the sake of easy grading.
     Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
     This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. 
     Does assigning multiple ports on Ultra96 have any impact on your design?
-    Save/Move the `hw6_fpga_system_hw_link/Hardware/binary_container_1.build` folder of the project to somewhere else before doing the next question. 
+    Save/Move the `hw6/apps/mmult/_x` folder of the project to somewhere else before doing the next question. 
     We will use the outputs from this question in the next part.
         ```{hint}
         - Learn about how to add multiple ports from [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html)
@@ -180,9 +180,9 @@ for the sake of easy grading.
     1. Learn about how to use multiple compute units from 
     [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html) 
     and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
-    Use 2 `mmult_fpga` units. This can also be done in the Compute Unit Settings we visited in the previous question.    
+    Use 2 `mmult_fpga` units. This can be done by modifying `design.cfg`.    
     Rebuild the FPGA version, 
-    copy the binaries and boot files, reboot and test. This will take about 30 minutes to build. Report the latencies. 
+    copy the binaries and boot files, reboot and test. This will take about >30 minutes to build. Report the latencies. 
     Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. If you are run out of the FPGA resources, report it.
     
 1. **Analyze Implementation**
@@ -196,7 +196,7 @@ for the sake of easy grading.
     consumes. You can find this information in the ***Implementation*** tab on the
     left hand side. Click ***Report Utilization*** under ***Open Implemented Design***.
     Launch Vivado using the following commands and open the
-    project you saved/moved from the location `binary_container_1.build/link/vivado/vpl/prj/prj.xpr`. (4 lines)
+    project you saved/moved from the location `hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.xpr`. (4 lines)
         - In terminal, make sure you correctly sourced the settings, and open Vivado, with:
             ```
             vivado
