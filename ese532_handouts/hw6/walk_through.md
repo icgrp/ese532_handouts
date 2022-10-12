@@ -67,7 +67,7 @@ manages DMA, refer to the following resources:
 ## Building HW6
 - Like we did in HW5, `source sourceMe.sh` first. Note that
 you need to adjust the `sourceMe.sh` if you are running
-on your local machine. To build the cpu version of mmult, run `make cpu`. To build the FPGA kernel, run `make fpga`. To build the host code, and create the files you need to copy over to the ultra96, run 'make host'.
+on your local machine. To build the cpu version of mmult, run `make cpu`. To build the FPGA kernel, run `make fpga`. To build the host code, and create the files you need to copy over to the ultra96, run `make host`.
 <!--
 - We will create the CPU version's project. 
     - Launch `vitis` and create application project as we did before. 
