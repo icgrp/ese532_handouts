@@ -47,14 +47,15 @@ highly recommend you to browse around while you are doing this lab.
 In this HW, we will analyze how the processor
 core communicates with an accelerator. We tell you some
 specific things to experiment with, but you should do some reading from:
-- This HW is highly related to [Xilinx Runtime (XRT) and Vitis System Optimization Tutorials](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/README.html)
+- This HW is highly related to this [Vitis Hoste Code Optimization Tutorial](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/README.html)
 - Chapter 6, 7, 19, 20 of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf)
-- [Programming for Vitis HLS](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/vitis_hls_coding_styles.html)
+- [Programming for Vitis HLS](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/Vitis-HLS-Coding-Styles)
 
 
 The following resources can be helpful for programming HLS and OpenCL host code:
 - [Vitis Accel Examples](https://github.com/Xilinx/Vitis_Accel_Examples/tree/2020.2) and [Vitis Tutorials](https://github.com/Xilinx/Vitis-Tutorials/tree/2020.2)
 - [OpenCL 1.2 reference card](https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf)
+- [OpenCL Northeastern slides](https://ece.northeastern.edu/groups/nucar/Analogic/)
 
 
 Note that we are running on Linux. If you want to gain a deeper understanding of what's going on under the hood and how the ***zocl*** driver supplied by Xilinx Runtime (XRT)

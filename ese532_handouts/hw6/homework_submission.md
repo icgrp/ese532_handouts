@@ -165,9 +165,6 @@ for the sake of easy grading.
         platforminfo $PLATFORM_REPO_PATHS/u96v2_sbc_base.xpfm
         ```
 
-    1. Read about kernel and host code synchronization from [here](https://xilinx.github.io/Vitis-Tutorials/2020-1/docs/host-code-opt/README.html#kernel-and-host-code-synchronization). Add a barrier synchronization for every ***8 tasks*** to your host code. 
-    Build the project with the modified host code. Run it and provide a screenshot of the relevant section of vitis analyzer.
-
     1. Assign separate ports to the `mmult_fpga`. In the Assistant view on the lower left corner, 
     ***hw6_fpga_system_hw_link***$\rightarrow$***Hardware***$\rightarrow$***binary_container_1***. 
     Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
@@ -177,11 +174,11 @@ for the sake of easy grading.
     We will use the outputs from this question in the next part.
         ```{hint}
         - Learn about how to add multiple ports from [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html)
-        - Read this [paper](https://ieeexplore.ieee.org/document/8977835/) to find out how to efficiently use the ports on Ultra96.
+        - Read this [paper](https://ieeexplore.ieee.org/document/8977835/) to find out how to efficiently use the ports on Ultra96 (optional).
         ```
 
     1. Learn about how to use multiple compute units from 
-    [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html) 
+    [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/02-using-multiple-cu/README.html) 
     and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
     Use 2 `mmult_fpga` units. This can also be done in the Compute Unit Settings we visited in the previous question.    
     Rebuild the FPGA version, 
