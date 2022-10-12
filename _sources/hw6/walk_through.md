@@ -64,10 +64,10 @@ manages DMA, refer to the following resources:
 - [Contiguous Memory Allocator](https://events.static.linuxfound.org/images/stories/pdf/lceu2012_nazarwicz.pdf)
 - [XRT Execution](https://xilinx.github.io/XRT/2020.2/html/execution-model.html)
 
-## Creating Vitis Project
+## Building HW6
 - Like we did in HW5, `source sourceMe.sh` first. Note that
 you need to adjust the `sourceMe.sh` if you are running
-on your local machine.
+on your local machine. To build the cpu version of mmult, run `make cpu`. To build the FPGA kernel, run `make fpga`. To build the host code, and create the files you need to copy over to the ultra96, run 'make host'.
 <!--
 - We will create the CPU version's project. 
     - Launch `vitis` and create application project as we did before. 
