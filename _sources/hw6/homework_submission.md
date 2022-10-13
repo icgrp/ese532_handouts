@@ -173,7 +173,7 @@ for the sake of easy grading.
     Save/Move the `hw6/apps/mmult/_x` folder of the project to somewhere else before doing the next question. 
     We will use the outputs from this question in the next part.
         ```{hint}
-        - Learn about how to add multiple ports from [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html)
+        - Learn about how to add multiple ports from [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html)
         - Read this [paper](https://ieeexplore.ieee.org/document/8977835/) to find out how to efficiently use the ports on Ultra96 (optional).
         ```
 
