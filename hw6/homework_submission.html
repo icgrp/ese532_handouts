@@ -744,9 +744,7 @@ We expect you to see something like <a class="reference internal" href="#comp-co
 </pre></div>
 </div>
 </li>
-<li><p>Assign separate ports to the <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code>. In the Assistant view on the lower left corner,
-<em><strong>hw6_fpga_system_hw_link</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>Hardware</strong></em><span class="math notranslate nohighlight">\(\rightarrow\)</span><em><strong>binary_container_1</strong></em>.
-Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
+<li><p>Assign separate ports to the <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code>, then rebuild and run the kernel.
 This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
 Does assigning multiple ports on Ultra96 have any impact on your design?
 Save/Move the <code class="docutils literal notranslate"><span class="pre">hw6/apps/mmult/_x</span></code> folder of the project to somewhere else before doing the next question.
@@ -755,6 +753,7 @@ We will use the outputs from this question in the next part.</p>
 <p class="admonition-title">Hint</p>
 <ul class="simple">
 <li><p>Learn about how to add multiple ports from <a class="reference external" href="https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html">here</a></p></li>
+<li><p>Under hw6/apps/mmult/fpga there is a file called design.cfg. In that file you will need to add the commands to map the kernel arguments to the ports under the <code class="docutils literal notranslate"><span class="pre">[connectivity]</span></code> section. You can find the commands in the tutorial linked above. You can use the memory ports available from part i. There is no need to create a separate connectivity.cfg file and modify the Makefile.</p></li>
 <li><p>Read this <a class="reference external" href="https://ieeexplore.ieee.org/document/8977835/">paper</a> to find out how to efficiently use the ports on Ultra96 (optional).</p></li>
 </ul>
 </div>

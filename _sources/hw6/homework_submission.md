@@ -165,16 +165,16 @@ for the sake of easy grading.
         platforminfo $PLATFORM_REPO_PATHS/u96v2_sbc_base.xpfm
         ```
 
-    1. Assign separate ports to the `mmult_fpga`. In the Assistant view on the lower left corner, 
-    ***hw6_fpga_system_hw_link***$\rightarrow$***Hardware***$\rightarrow$***binary_container_1***. 
-    Open Binary Container Settings, and in Compute Unit Settings, you can assign the ports.
+    1. Assign separate ports to the `mmult_fpga`, then rebuild and run the kernel.
     This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. 
     Does assigning multiple ports on Ultra96 have any impact on your design?
     Save/Move the `hw6/apps/mmult/_x` folder of the project to somewhere else before doing the next question. 
     We will use the outputs from this question in the next part.
         ```{hint}
         - Learn about how to add multiple ports from [here](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Feature_Tutorials/01-mult-ddr-banks/README.html)
+        - Under hw6/apps/mmult/fpga there is a file called design.cfg. In that file you will need to add the commands to map the kernel arguments to the ports under the `[connectivity]` section. You can find the commands in the tutorial linked above. You can use the memory ports available from part i. There is no need to create a separate connectivity.cfg file and modify the Makefile.
         - Read this [paper](https://ieeexplore.ieee.org/document/8977835/) to find out how to efficiently use the ports on Ultra96 (optional).
+
         ```
 
     1. Learn about how to use multiple compute units from 
