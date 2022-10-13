@@ -668,7 +668,7 @@ manages DMA, refer to the following resources:</p>
 <ul class="simple">
 <li><p>Like we did in HW5, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code> first. Note that
 you need to adjust the <code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> if you are running
-on your local machine. To build the cpu version of mmult, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">cpu</span></code>. To build the FPGA kernel, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fpga</span></code>. To build the host code, and create the files you need to copy over to the ultra96, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">host</span></code>.</p></li>
+on your local machine. To build the cpu version of mmult, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">cpu</span></code>, which produces the <code class="docutils literal notranslate"><span class="pre">mmult_cpu</span></code> executable. To build the FPGA kernel and the host code, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fpga</span></code> (this will take &gt;30min). This will create the files that you need to copy over to the ultra96 in <code class="docutils literal notranslate"><span class="pre">package/sd_card/</span></code>. To <em>only</em> build/rebuild the host code, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">host</span></code>.</p></li>
 </ul>
 <!--
 - We will create the CPU version's project. 
