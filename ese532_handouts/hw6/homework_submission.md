@@ -184,6 +184,8 @@ for the sake of easy grading.
     Rebuild the FPGA version, 
     copy the binaries and boot files, reboot and test. This will take about >30 minutes to build (While this is building, you can work on Part 2: Analyze Implementation). Report the latencies. 
     Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. If you are run out of the FPGA resources, report it.
+
+    1. Put your latency results from the CPU version in part a, and your FPGA implementations in parts b, g, j, and k into a table, and show the speedup relative to the CPU version.
     
 1. **Analyze Implementation**
 
