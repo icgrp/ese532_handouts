@@ -136,7 +136,8 @@ for the sake of easy grading.
    1. What is the latency of `Filter_HW` that Vitis HLS predicts? Make sure you verify your
       code. (1 line)
    1. For the last step, export your `Filter_HW` as `.xo` file and build `.xclbin` file as we
-      did in HW5 and HW6. Create a host code and include test function as we did in HW5's host code.
+      did in previous HWs. Create a host code and include other functions like scale, differentiate, and compress
+      so that they run on ARM core. Run Filter function on FPGA.
       Include the kernel execution time from Vitis Analyzer and 
       your host code in the report.
 
