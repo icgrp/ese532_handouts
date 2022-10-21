@@ -605,8 +605,11 @@ title="Print to PDF"
 <p>Your writeup should follow <a class="reference internal" href="../writeup_guidelines.html"><span class="doc std std-doc">the writeup guidelines</span></a>.
 Your writeup should include your answers to the questions below. Even if a certain
 is just a “step”, please include it in your report and leave the bullet blank
-for the sake of easy grading.
-<strong>Note that the last part of this assignment could take longer than the previous parts.</strong></p>
+for the sake of easy grading.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the last part of this assignment could take longer than the previous parts.</p>
+</div>
 <style type="text/css">
     ol { list-style-type: decimal; }
     ol ol { list-style-type: lower-alpha; }
@@ -734,7 +737,7 @@ ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
 </li>
 <li><p><strong>hls::stream</strong></p>
 <ol>
-<li><p>Write a verification function for <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code>, similar to the one in question 1a.
+<li><p>Write a verification function for <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code>.
 Verify that your test function works. Include the test function in your report.</p></li>
 <li><p>Create a function <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> that connects both parts of the filter together. Store
 the intermediate results in a local array. Include <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> in your report. Use
@@ -764,18 +767,24 @@ code. (1 line)</p></li>
 <li><p><strong>Moving on HW</strong></p>
 <ol>
 <li><p>Partition the <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> in a Load-Compute-Store pattern as we did in HW6.(<a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Step-1-Partition-the-Code-into-a-Load-Compute-Store-Pattern">Partition the Code into a Load-Compute-Store pattern</a>)
-Verify the code and include the code in the report.</p></li>
+Verify the code and include the final code in the report.</p></li>
 <li><p>Export your <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> as <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file and build <code class="docutils literal notranslate"><span class="pre">.xclbin</span></code> file as we
 did in HW5. Create a host code and include other functions like scale, differentiate, and compress
 so that they run on ARM core. Run Filter function on FPGA. Use the same <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code> as input data and
-<code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> to verify the output.
+<code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> from HW3 to verify the output.
 Use <code class="docutils literal notranslate"><span class="pre">O2</span></code> as the optimization level for the host code compile.
 Include the host code in the report.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Refer to <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and the host code we used for the previous HWs.
 Collect the data before transferring to Filter kernel, and collect the data back
-after the kernel computation to feed in to the next stage, compress.</p>
+after the kernel computation to feed in to the next stage, compress.
+You want to enable out-of-order queue to overlap communication and computation.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Don’t worry too much about the performance for now. In this question, we just want you to
+integrate the HW kernel with other application running on CPU.</p>
 </div>
 </li>
 <li><p>Report the application latency to process 200 frames.

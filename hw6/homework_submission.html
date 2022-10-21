@@ -739,10 +739,14 @@ the interface that was generated. Describe how the host processor communicates w
 and click open.</p></li>
 </ul>
 </li>
-<li><p>Partition the HLS code into Load-Compute-Store Pattern as can be seen in <a class="reference external" href="https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp">this code</a>
-and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md">this tutorial</a>.
+<li><p>Partition the HLS code into Load-Compute-Store Pattern as can be seen in <a class="reference external" href="https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/dataflow_stream">this example</a></p></li>
+</ol>
+ <!-- DJP: I think compute_add example is better -->
+ <!-- [this code](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp) -->
+<p>and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md">this tutorial</a>.
 Enable dataflow with <code class="docutils literal notranslate"><span class="pre">HLS</span> <span class="pre">DATAFLOW</span></code> pragma and use <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>
-to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.</p></li>
+to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.</p>
+<ol>
 <li><p>Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
 Also, provide the screenshot of <em><strong>Performance &amp; Resource Estimates</strong></em> table in
 the Synthesis Summary Report. Because you have Load, Compute, Store functions,
@@ -750,8 +754,9 @@ expand each function in the table to show that you achieved II=1.</p></li>
 <li><p>Rebuild the project with the dataflow-enabled kernel, copy the binaries and boot files, reboot and test.
 This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.</p></li>
 <li><p>Our initial FPGA host code uses an in-order command queue.
-Find out <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html">how to use an out-of-order command queue</a>
-to get overlap between communication and computation. Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
+Find out how to use an out-of-order command queue
+to get <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation">overlap between communication and computation</a>.
+Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
 Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
 We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 21</span></a> or <a class="reference internal" href="#comp-comm-overlap-2"><span class="std std-numref">Fig. 22</span></a>.</p>
 <figure class="align-default" id="comp-comm-overlap">
