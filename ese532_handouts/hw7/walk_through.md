@@ -10,8 +10,8 @@
 ## Obtaining and Running the Code
 So far, we have accelerated a matrix multiplication kernel with 
 straightforward mapping to hardware. In this
-assignment, we will look at two applications that require 
-more effort, namely the compression pipeline from homeworks 2, 3, and 4. 
+assignment, we will restructure the Filter function in the compression pipeline
+from HW 2, 3, and 4.
 
 Pull in the latest changes using:
 ```
