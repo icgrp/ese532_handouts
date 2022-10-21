@@ -605,7 +605,8 @@ title="Print to PDF"
 <p>Your writeup should follow <a class="reference internal" href="../writeup_guidelines.html"><span class="doc std std-doc">the writeup guidelines</span></a>.
 Your writeup should include your answers to the questions below. Even if a certain
 is just a “step”, please include it in your report and leave the bullet blank
-for the sake of easy grading.</p>
+for the sake of easy grading.
+<strong>Note that the last part of this assignment could take longer than the previous parts.</strong></p>
 <style type="text/css">
     ol { list-style-type: decimal; }
     ol ol { list-style-type: lower-alpha; }
@@ -614,49 +615,47 @@ for the sake of easy grading.</p>
     td {height:50px;text-align: center;}
     tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
+<!-- 1. **Accelerating the Differentiate**
+   1. Create a new Vitis HLS project and add the provided source files.
+      Use a clock `xczu3eg-sbva484-1-i` in the device selection. Use a **150 MHz** clock, 
+      and select the **Vitis Kernel Flow Target** for the Flow Target.
+      Write a testbench that invokes the hardware implementation
+      that you will write later, `Differentiate_HW`. You can use the testbench from HW5 as
+      a reference. The testbench should compare the result of `Differentiate_SW` and 
+      `Differentiate_HW` and exit your program with a value
+      of 1 if the output is not correct.
+      The input of the functions can be arbitrary values.
+      Verify that your test function works. Include the
+      testbench in your report.
+   1. How many times does `Differentiate_SW` load each pixel on average(ignoring the edge)? (1 line)
+   1. Can we use streaming in `Differentiate_SW` to handle arbitrary large frames?
+      Assume that we do not change the code except for adding pragmas and changing
+      the dimensions of the data. Motivate your answer. (1 line)
+   1. We could store pixels that are used multiple times in a buffer that is mapped to
+      a local memory. Assuming we still produce the output pixels in the same order,
+      what is the smallest buffer that we can use? Motivate your answer. (3 lines) -->
+   <!-- 1. In some iterations, we must write a value to the local memory and read multiple
+      values. An array is typically mapped on a BRAM, which has only two ports.
+      Consequently, we need more bandwidth than the BRAM offers. Give two ways in
+      which we could resolve this issue. (4 lines) -->
+   <!-- 1. Implement the function `Differentiate_HW` that exploits **data reuse**. 
+      It loads the input pixels only once and sequentially. 
+      Verify your code using your test function. Include the test function's output and the
+      `Differentiate_HW` function in your report. The test function's output could be simply
+      "TEST PASSED" depending on your implementation of testbench.
+   1. Pipeline the loop body of your implementation with an II of 1. What is the
+      latency(in cycles) that Vitis HLS predicts?  -->
+   <!-- You can ignore whether Vitis HLS meets
+         the clock period or not for now. -->
+   <!-- 1. On a microprocessor, branches are generally undesirable because they introduce
+      delays when they are predicted wrong. Why is this not a problem in a HW accelerator? -->
 <ol>
-<li><p><strong>Accelerating the Differentiate</strong></p>
+<li><p><strong>Accelerating the Filter horizontal</strong></p>
 <ol>
 <li><p>Create a new Vitis HLS project and add the provided source files.
 Use a clock <code class="docutils literal notranslate"><span class="pre">xczu3eg-sbva484-1-i</span></code> in the device selection. Use a <strong>150 MHz</strong> clock,
-and select the <strong>Vitis Kernel Flow Target</strong> for the Flow Target.
-Write a testbench that invokes the hardware implementation
-that you will write later, <code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code>. You can use the testbench from HW5 as
-a reference. The testbench should compare the result of <code class="docutils literal notranslate"><span class="pre">Differentiate_SW</span></code> and
-<code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code> and exit your program with a value
-of 1 if the output is not correct.
-The input of the functions can be arbitrary values.
-Verify that your test function works. Include the
-testbench in your report.</p></li>
-<li><p>How many times does <code class="docutils literal notranslate"><span class="pre">Differentiate_SW</span></code> load each pixel on average(ignoring the edge)? (1 line)</p></li>
-<li><p>Can we use streaming in <code class="docutils literal notranslate"><span class="pre">Differentiate_SW</span></code> to handle arbitrary large frames?
-Assume that we do not change the code except for adding pragmas and changing
-the dimensions of the data. Motivate your answer. (1 line)</p></li>
-<li><p>We could store pixels that are used multiple times in a buffer that is mapped to
-a local memory. Assuming we still produce the output pixels in the same order,
-what is the smallest buffer that we can use? Motivate your answer. (3 lines)</p>
-<!-- 1. In some iterations, we must write a value to the local memory and read multiple
-   values. An array is typically mapped on a BRAM, which has only two ports.
-   Consequently, we need more bandwidth than the BRAM offers. Give two ways in
-   which we could resolve this issue. (4 lines) -->
-</li>
-<li><p>Implement the function <code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code> that exploits <strong>data reuse</strong>.
-It loads the input pixels only once and sequentially.
-Verify your code using your test function. Include the test function’s output and the
-<code class="docutils literal notranslate"><span class="pre">Differentiate_HW</span></code> function in your report. The test function’s output could be simply
-“TEST PASSED” depending on your implementation of testbench.</p></li>
-<li><p>Pipeline the loop body of your implementation with an II of 1. What is the
-latency(in cycles) that Vitis HLS predicts?</p>
-   <!-- You can ignore whether Vitis HLS meets
-   the clock period or not for now. -->
-</li>
-<li><p>On a microprocessor, branches are generally undesirable because they introduce
-delays when they are predicted wrong. Why is this not a problem in a HW accelerator?</p></li>
-</ol>
-</li>
-<li><p><strong>Accelerating the Filter horizontal</strong></p>
-<ol>
-<li><p>Does <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> offer any opportunitiy for data reuse?
+and select the <strong>Vitis Kernel Flow Target</strong> for the Flow Target.</p></li>
+<li><p>Does <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> offer any opportunity for data reuse?
 What is the smallest buffer that we can use? (3 lines)</p></li>
 <li><p>What is the optimal order for traversing the input data (column-wise or row-wise)?
 Assume that the input and output are stored in a BRAM. Motivate your
@@ -666,6 +665,12 @@ that you modified based on the insights from the previous two questions. You
 don’t have to use the streams at this point. Include the code in your report.</p></li>
 <li><p>Pipeline the loop body of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>. Write a testbench to verify
 <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>.
+Similar to the one we used in HW5, the testbench should compare the result of
+<code class="docutils literal notranslate"><span class="pre">Filter_horizontal_SW</span></code> and <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code> and exit your program with a value
+of 1 if the output is not correct.
+If the output is correct, the testbench can simply print out “TEST PASSED”.
+The input of the functions can be arbitrary values.
+Verify that your test function works. Include the testbench in your report.
 What is the latency(in cycles) that Vitis HLS predicts? (1 line)</p>
 <!-- You can
 ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
@@ -682,16 +687,15 @@ You can create multiple Solutions in Vitis HLS for convenience.</p>
 You can have user-defined macro to seperate simulation code and synthesis code as shown in
 <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/Dynamic-Memory-Usage">HLS user guide</a>.</p>
 </div>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Try to achieve latency of &lt;130000 cycles for <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>.</p>
-</div>
+   <!-- ```{hint}
+   Try to achieve latency of <130000 cycles for `Filter_horizontal_HW`.
+   ``` -->
 </li>
 </ol>
 </li>
 <li><p><strong>Accelerating the Filter vertical</strong></p>
 <ol>
-<li><p>Does <code class="docutils literal notranslate"><span class="pre">Filter_vertical_HW</span></code> offer any opportunity for data reuse?
+<li><p>Does <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> offer any opportunity for data reuse?
 What is the smallest buffer that we can use? (3 lines)</p>
 <!-- Let’s continue with accelerating `Filter_vertical_HW`. 
 We could store pixels that
@@ -702,11 +706,10 @@ what is the smallest buffer that we can use? Motivate your answer. (3 lines) -->
 <li><p>What is the optimal order for traversing the input data (column-wise or row-wise)
 with respect to FPGA on-chip memory usage? Assume that the input and output
 data are stored in a BRAM. Motivate your answer. (3 lines)</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>We are not worrying about streaming, yet – just think about on-chip BRAM
-usage and minimization.</p>
-</div>
+   <!-- ```{hint}
+   We are not worrying about streaming, yet – just think about on-chip BRAM
+   usage and minimization.
+   ``` -->
 </li>
 <li><p>Create a function <code class="docutils literal notranslate"><span class="pre">Filter_vertical_HW</span></code> that is a version of <code class="docutils literal notranslate"><span class="pre">Filter_vertical_SW</span></code>
 that you modified based on the insights from the previous two questions. You
@@ -723,14 +726,13 @@ don’t have to use the streams yet. Include the code in your report.</p>
 What is the latency(in cycles) that Vitis HLS predicts? (1 line)</p>
 <!-- You can
 ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Try to achieve latency of &lt;130000 cycles for <code class="docutils literal notranslate"><span class="pre">Filter_vertical_HW</span></code>.</p>
-</div>
+   <!-- ```{hint}
+   Try to achieve latency of <130000 cycles for `Filter_vertical_HW`.
+   ``` -->
 </li>
 </ol>
 </li>
-<li><p><strong>hls::stream and on HW</strong></p>
+<li><p><strong>hls::stream</strong></p>
 <ol>
 <li><p>Write a verification function for <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code>, similar to the one in question 1a.
 Verify that your test function works. Include the test function in your report.</p></li>
@@ -743,25 +745,43 @@ stream requires no resources for buffering. What impact do you expect that will
 have on the resource consumption? Quantify your answer. (3 lines)</p></li>
 <li><p>Replace the local array with an <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code> object and insert a dataflow
 pragma into <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code>. The <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code> class is declared in <code class="docutils literal notranslate"><span class="pre">hls_stream.h</span></code>.
-Modify the remaining functions as necessary.</p>
-   <!-- Note that you don’t have to inline
-   Filter_horizontal_HW and Filter_vertical_HW explicitly. The tool typically
-   inlines them automatically, or you can use the inline pragma to obtain the same
-   result.  -->
-<p>Include <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> and any other significant changes in your report.</p>
+Modify the remaining functions as necessary.
+Include <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> and any other significant changes in your report.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>We are concerned with streaming now, and that could merit a
 reconsideration of how we travese the data.</p>
 </div>
+   <!-- Note that you don’t have to inline
+   Filter_horizontal_HW and Filter_vertical_HW explicitly. The tool typically
+   inlines them automatically, or you can use the inline pragma to obtain the same
+   result.  -->
 </li>
 <li><p>What is the latency of <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> that Vitis HLS predicts? Make sure you verify your
 code. (1 line)</p></li>
-<li><p>For the last step, export your <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> as <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file and build <code class="docutils literal notranslate"><span class="pre">.xclbin</span></code> file as we
-did in previous HWs. Create a host code and include other functions like scale, differentiate, and compress
-so that they run on ARM core. Run Filter function on FPGA.
-Include the kernel execution time from Vitis Analyzer and
-your host code in the report.</p></li>
+</ol>
+</li>
+<li><p><strong>Moving on HW</strong></p>
+<ol>
+<li><p>Partition the <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> in a Load-Compute-Store pattern as we did in HW6.(<a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Step-1-Partition-the-Code-into-a-Load-Compute-Store-Pattern">Partition the Code into a Load-Compute-Store pattern</a>)
+Verify the code and include the code in the report.</p></li>
+<li><p>Export your <code class="docutils literal notranslate"><span class="pre">Filter_HW</span></code> as <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file and build <code class="docutils literal notranslate"><span class="pre">.xclbin</span></code> file as we
+did in HW5. Create a host code and include other functions like scale, differentiate, and compress
+so that they run on ARM core. Run Filter function on FPGA. Use the same <code class="docutils literal notranslate"><span class="pre">Input.bin</span></code> as input data and
+<code class="docutils literal notranslate"><span class="pre">Golden.bin</span></code> to verify the output.
+Use <code class="docutils literal notranslate"><span class="pre">O2</span></code> as the optimization level for the host code compile.
+Include the host code in the report.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refer to <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and the host code we used for the previous HWs.
+Collect the data before transferring to Filter kernel, and collect the data back
+after the kernel computation to feed in to the next stage, compress.</p>
+</div>
+</li>
+<li><p>Report the application latency to process 200 frames.
+Compare it with the baseline application latency from HW3 (1 line).</p></li>
+<li><p>How can you run other stages on the processor concurrently with the Filter kernel on FPGA?
+What is the speedup you expect to achieve?</p></li>
 </ol>
 </li>
 </ol>
