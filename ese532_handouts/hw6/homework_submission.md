@@ -129,7 +129,9 @@ for the sake of easy grading.
         - Click on ***open project*** and browse to the your build generated directory: `hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga`
         and click open.
 
-    1. Partition the HLS code into Load-Compute-Store Pattern as can be seen in [this code](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp) 
+    1. Partition the HLS code into Load-Compute-Store Pattern as can be seen in [this example](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/dataflow_stream)    
+    <!-- DJP: I think compute_add example is better -->
+    <!-- [this code](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp) -->
     and [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md).
     Enable dataflow with `HLS DATAFLOW` pragma and use `hls::stream`
     to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.
@@ -143,8 +145,9 @@ for the sake of easy grading.
     This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
 
     1. Our initial FPGA host code uses an in-order command queue.
-    Find out [how to use an out-of-order command queue](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/optimizingperformance.html) 
-    to get overlap between communication and computation. Make the necessary change in the `Host.cpp` and provide the change in the report. 
+    Find out how to use an out-of-order command queue 
+    to get [overlap between communication and computation](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation). 
+    Make the necessary change in the `Host.cpp` and provide the change in the report. 
     Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
     We expect you to see something like {numref}`comp_comm_overlap` or {numref}`comp_comm_overlap_2`.
         ```{figure} images/comp_comm_overlap.png

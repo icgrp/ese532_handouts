@@ -4,7 +4,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines).
 Your writeup should include your answers to the questions below. Even if a certain
 is just a "step", please include it in your report and leave the bullet blank
 for the sake of easy grading. 
-**Note that the last part of this assignment could take longer than the previous parts.**
+```{note}
+Note that the last part of this assignment could take longer than the previous parts.
+```
 
 <style type="text/css">
     ol { list-style-type: decimal; }
@@ -122,7 +124,7 @@ for the sake of easy grading.
          ``` -->
 
 1. **hls::stream**
-   1. Write a verification function for `Filter_HW`, similar to the one in question 1a.
+   1. Write a verification function for `Filter_HW`.
       Verify that your test function works. Include the test function in your report.
    1. Create a function `Filter_HW` that connects both parts of the filter together. Store
       the intermediate results in a local array. Include `Filter_HW` in your report. Use
@@ -146,19 +148,24 @@ for the sake of easy grading.
    1. What is the latency of `Filter_HW` that Vitis HLS predicts? Make sure you verify your
       code. (1 line)
 
-1. **Moving on HW**
+1. **Moving on HW** 
    1. Partition the `Filter_HW` in a Load-Compute-Store pattern as we did in HW6.([Partition the Code into a Load-Compute-Store pattern](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Step-1-Partition-the-Code-into-a-Load-Compute-Store-Pattern))
-      Verify the code and include the code in the report.
+      Verify the code and include the final code in the report.
    1. Export your `Filter_HW` as `.xo` file and build `.xclbin` file as we
       did in HW5. Create a host code and include other functions like scale, differentiate, and compress
       so that they run on ARM core. Run Filter function on FPGA. Use the same `Input.bin` as input data and
-      `Golden.bin` to verify the output. 
+      `Golden.bin` from HW3 to verify the output. 
       Use `O2` as the optimization level for the host code compile.
       Include the host code in the report.
          ```{note}
          Refer to `Makefile` and the host code we used for the previous HWs.
          Collect the data before transferring to Filter kernel, and collect the data back
          after the kernel computation to feed in to the next stage, compress.
+         You want to enable out-of-order queue to overlap communication and computation.
+         ```
+         ```{note}
+         Don't worry too much about the performance for now. In this question, we just want you to
+         integrate the HW kernel with other application running on CPU. 
          ```
    1. Report the application latency to process 200 frames.
       Compare it with the baseline application latency from HW3 (1 line).
