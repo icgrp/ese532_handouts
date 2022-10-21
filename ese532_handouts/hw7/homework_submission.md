@@ -3,7 +3,8 @@
 Your writeup should follow [the writeup guidelines](../writeup_guidelines).
 Your writeup should include your answers to the questions below. Even if a certain
 is just a "step", please include it in your report and leave the bullet blank
-for the sake of easy grading.
+for the sake of easy grading. 
+**Note that the last part of this assignment could take longer than the previous parts.**
 
 <style type="text/css">
     ol { list-style-type: decimal; }
@@ -14,7 +15,7 @@ for the sake of easy grading.
     tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 
-1. **Accelerating the Differentiate**
+<!-- 1. **Accelerating the Differentiate**
    1. Create a new Vitis HLS project and add the provided source files.
       Use a clock `xczu3eg-sbva484-1-i` in the device selection. Use a **150 MHz** clock, 
       and select the **Vitis Kernel Flow Target** for the Flow Target.
@@ -32,25 +33,28 @@ for the sake of easy grading.
       the dimensions of the data. Motivate your answer. (1 line)
    1. We could store pixels that are used multiple times in a buffer that is mapped to
       a local memory. Assuming we still produce the output pixels in the same order,
-      what is the smallest buffer that we can use? Motivate your answer. (3 lines)
-      <!-- 1. In some iterations, we must write a value to the local memory and read multiple
-         values. An array is typically mapped on a BRAM, which has only two ports.
-         Consequently, we need more bandwidth than the BRAM offers. Give two ways in
-         which we could resolve this issue. (4 lines) -->
-   1. Implement the function `Differentiate_HW` that exploits **data reuse**. 
+      what is the smallest buffer that we can use? Motivate your answer. (3 lines) -->
+   <!-- 1. In some iterations, we must write a value to the local memory and read multiple
+      values. An array is typically mapped on a BRAM, which has only two ports.
+      Consequently, we need more bandwidth than the BRAM offers. Give two ways in
+      which we could resolve this issue. (4 lines) -->
+   <!-- 1. Implement the function `Differentiate_HW` that exploits **data reuse**. 
       It loads the input pixels only once and sequentially. 
       Verify your code using your test function. Include the test function's output and the
       `Differentiate_HW` function in your report. The test function's output could be simply
       "TEST PASSED" depending on your implementation of testbench.
    1. Pipeline the loop body of your implementation with an II of 1. What is the
-      latency(in cycles) that Vitis HLS predicts? 
-         <!-- You can ignore whether Vitis HLS meets
+      latency(in cycles) that Vitis HLS predicts?  -->
+   <!-- You can ignore whether Vitis HLS meets
          the clock period or not for now. -->
-   1. On a microprocessor, branches are generally undesirable because they introduce
-      delays when they are predicted wrong. Why is this not a problem in a HW accelerator?
+   <!-- 1. On a microprocessor, branches are generally undesirable because they introduce
+      delays when they are predicted wrong. Why is this not a problem in a HW accelerator? -->
 
 1. **Accelerating the Filter horizontal**
-   1. Does `Filter_horizontal` offer any opportunitiy for data reuse? 
+   1. Create a new Vitis HLS project and add the provided source files.
+      Use a clock `xczu3eg-sbva484-1-i` in the device selection. Use a **150 MHz** clock, 
+      and select the **Vitis Kernel Flow Target** for the Flow Target.
+   1. Does `Filter_horizontal` offer any opportunity for data reuse? 
       What is the smallest buffer that we can use? (3 lines)
    1. What is the optimal order for traversing the input data (column-wise or row-wise)? 
       Assume that the input and output are stored in a BRAM. Motivate your
@@ -60,6 +64,12 @@ for the sake of easy grading.
       don’t have to use the streams at this point. Include the code in your report.
    1. Pipeline the loop body of `Filter_horizontal_HW`. Write a testbench to verify 
       `Filter_horizontal_HW`.
+      Similar to the one we used in HW5, the testbench should compare the result of 
+      `Filter_horizontal_SW` and `Filter_horizontal_HW` and exit your program with a value
+      of 1 if the output is not correct.
+      If the output is correct, the testbench can simply print out "TEST PASSED".
+      The input of the functions can be arbitrary values.
+      Verify that your test function works. Include the testbench in your report.
       What is the latency(in cycles) that Vitis HLS predicts? (1 line)
       <!-- You can
       ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
@@ -74,12 +84,12 @@ for the sake of easy grading.
          You can have user-defined macro to seperate simulation code and synthesis code as shown in
          [HLS user guide](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/Dynamic-Memory-Usage).               
          ```
-         ```{hint}
+         <!-- ```{hint}
          Try to achieve latency of <130000 cycles for `Filter_horizontal_HW`.
-         ```
+         ``` -->
 
 1. **Accelerating the Filter vertical**
-   1. Does `Filter_vertical_HW` offer any opportunity for data reuse?
+   1. Does `Filter_vertical` offer any opportunity for data reuse?
       What is the smallest buffer that we can use? (3 lines)
       <!-- Let’s continue with accelerating `Filter_vertical_HW`. 
       We could store pixels that
@@ -89,10 +99,10 @@ for the sake of easy grading.
    1. What is the optimal order for traversing the input data (column-wise or row-wise)
       with respect to FPGA on-chip memory usage? Assume that the input and output
       data are stored in a BRAM. Motivate your answer. (3 lines)
-         ```{hint}
+         <!-- ```{hint}
          We are not worrying about streaming, yet – just think about on-chip BRAM
          usage and minimization.
-         ```
+         ``` -->
    1. Create a function `Filter_vertical_HW` that is a version of `Filter_vertical_SW`
       that you modified based on the insights from the previous two questions. You
       don’t have to use the streams yet. Include the code in your report.
@@ -107,11 +117,11 @@ for the sake of easy grading.
       What is the latency(in cycles) that Vitis HLS predicts? (1 line)
       <!-- You can
       ignore whether Vitis HLS meets the clock period or not for now. (1 line) -->
-         ```{hint}
+         <!-- ```{hint}
          Try to achieve latency of <130000 cycles for `Filter_vertical_HW`.
-         ```
+         ``` -->
 
-1. **hls::stream and on HW**
+1. **hls::stream**
    1. Write a verification function for `Filter_HW`, similar to the one in question 1a.
       Verify that your test function works. Include the test function in your report.
    1. Create a function `Filter_HW` that connects both parts of the filter together. Store
@@ -124,22 +134,36 @@ for the sake of easy grading.
    1. Replace the local array with an `hls::stream` object and insert a dataflow
       pragma into `Filter_HW`. The `hls::stream` class is declared in `hls_stream.h`.
       Modify the remaining functions as necessary. 
-         <!-- Note that you don’t have to inline
-         Filter_horizontal_HW and Filter_vertical_HW explicitly. The tool typically
-         inlines them automatically, or you can use the inline pragma to obtain the same
-         result.  -->
       Include `Filter_HW` and any other significant changes in your report.
          ```{hint}
          We are concerned with streaming now, and that could merit a 
          reconsideration of how we travese the data.
          ```
+         <!-- Note that you don’t have to inline
+         Filter_horizontal_HW and Filter_vertical_HW explicitly. The tool typically
+         inlines them automatically, or you can use the inline pragma to obtain the same
+         result.  -->
    1. What is the latency of `Filter_HW` that Vitis HLS predicts? Make sure you verify your
       code. (1 line)
-   1. For the last step, export your `Filter_HW` as `.xo` file and build `.xclbin` file as we
-      did in previous HWs. Create a host code and include other functions like scale, differentiate, and compress
-      so that they run on ARM core. Run Filter function on FPGA.
-      Include the kernel execution time from Vitis Analyzer and 
-      your host code in the report.
+
+1. **Moving on HW**
+   1. Partition the `Filter_HW` in a Load-Compute-Store pattern as we did in HW6.([Partition the Code into a Load-Compute-Store pattern](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Step-1-Partition-the-Code-into-a-Load-Compute-Store-Pattern))
+      Verify the code and include the code in the report.
+   1. Export your `Filter_HW` as `.xo` file and build `.xclbin` file as we
+      did in HW5. Create a host code and include other functions like scale, differentiate, and compress
+      so that they run on ARM core. Run Filter function on FPGA. Use the same `Input.bin` as input data and
+      `Golden.bin` to verify the output. 
+      Use `O2` as the optimization level for the host code compile.
+      Include the host code in the report.
+         ```{note}
+         Refer to `Makefile` and the host code we used for the previous HWs.
+         Collect the data before transferring to Filter kernel, and collect the data back
+         after the kernel computation to feed in to the next stage, compress.
+         ```
+   1. Report the application latency to process 200 frames.
+      Compare it with the baseline application latency from HW3 (1 line).
+   1. How can you run other stages on the processor concurrently with the Filter kernel on FPGA?
+      What is the speedup you expect to achieve?
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
