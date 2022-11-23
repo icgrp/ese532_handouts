@@ -91,13 +91,13 @@ Note that the last part of this assignment could take longer than the previous p
          ``` -->
 
 1. **Accelerating the Filter vertical**
-   1. Does `Filter_vertical` offer any opportunity for data reuse?
-      What is the smallest buffer that we can use? (3 lines)
-      <!-- Let’s continue with accelerating `Filter_vertical_HW`. 
+   1. Let’s continue with accelerating `Filter_vertical_HW`. 
       We could store pixels that
       are used multiple times in a buffer that is mapped to a local memory. Assuming
-      we still produce the output pixels in the same order, 
-      what is the smallest buffer that we can use? Motivate your answer. (3 lines) -->
+      we still produce the output pixels in the same order as `Filter_horizontal_HW`, 
+      what is the smallest buffer that we can use? Motivate your answer. (3 lines)
+      <!-- Does `Filter_vertical` offer any opportunity for data reuse?
+      What is the smallest buffer that we can use? (3 lines) -->
    1. What is the optimal order for traversing the input data (column-wise or row-wise)
       with respect to FPGA on-chip memory usage? Assume that the input and output
       data are stored in a BRAM. Motivate your answer. (3 lines)
