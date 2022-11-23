@@ -698,13 +698,13 @@ You can have user-defined macro to seperate simulation code and synthesis code a
 </li>
 <li><p><strong>Accelerating the Filter vertical</strong></p>
 <ol>
-<li><p>Does <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> offer any opportunity for data reuse?
-What is the smallest buffer that we can use? (3 lines)</p>
-<!-- Let’s continue with accelerating `Filter_vertical_HW`. 
+<li><p>Let’s continue with accelerating <code class="docutils literal notranslate"><span class="pre">Filter_vertical_HW</span></code>.
 We could store pixels that
 are used multiple times in a buffer that is mapped to a local memory. Assuming
-we still produce the output pixels in the same order, 
-what is the smallest buffer that we can use? Motivate your answer. (3 lines) -->
+we still produce the output pixels in the same order as <code class="docutils literal notranslate"><span class="pre">Filter_horizontal_HW</span></code>,
+what is the smallest buffer that we can use? Motivate your answer. (3 lines)</p>
+<!-- Does `Filter_vertical` offer any opportunity for data reuse?
+What is the smallest buffer that we can use? (3 lines) -->
 </li>
 <li><p>What is the optimal order for traversing the input data (column-wise or row-wise)
 with respect to FPGA on-chip memory usage? Assume that the input and output
