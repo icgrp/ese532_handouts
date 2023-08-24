@@ -15,11 +15,11 @@ and it should contain the linked list code in [Questions](questions).
 2. **Array Sum** -- The filename has to be `array_sum.c`, 
 and it should contain the array_sum code in [Questions](questions).
 
-Please upload a `YOUR_PENNID.tgz` that contains 
+Please upload a `YOUR_PENN_USERNAME.tgz` that contains 
 `linked_list.c` and `array_sum.c` to the diagnostic assessment assignment in canvas. 
-If your Penn ID is `dopark`, then it should be `dopark.tgz`.
-For those who do are in the waitlist, please send `YOUR_PENNID.tgz` to
-dopark@seas.upenn.edu with the email titled with "ESE5320 Diagnostic". 
+If your Penn ID is `ept`, then it should be `ept.tgz`.
+For those who do are in the waitlist, please send `YOUR_PENN_USERNAME.tgz` to
+ept@seas.upenn.edu with the email titled with "ESE5320 Diagnostic". 
 TA will send the reply once the email is received.
 
 ````{admonition} Quick linux commands for tar files
