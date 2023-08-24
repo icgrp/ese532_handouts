@@ -2,7 +2,7 @@ root: index
 format: jb-book
 parts:
   - chapters:
-    - url: https://www.seas.upenn.edu/~ese5320/fall2022/fall2022.html
+    - url: https://www.seas.upenn.edu/~ese5320/fall2023/fall2023.html
       title: Syllabus
     - file: writeup_guidelines
   - caption: Homework Assignments
@@ -22,34 +22,34 @@ parts:
         - file: hw1/c_refresher
         - file: hw1/debug_app
         - file: hw1/homework_submission
-    - file: hw2/index
-      sections:
-        - file: hw2/collaboration
-        - file: hw2/walk_through
-        - file: hw2/homework_submission
-    - file: hw3/index
-      sections:
-        - file: hw3/collaboration
-        - file: hw3/u96v2_setup
-        - file: hw3/walk_through
-        - file: hw3/homework_submission
-    - file: hw4/index
-      sections:
-        - file: hw4/collaboration
-        - file: hw4/walk_through
-        - file: hw4/homework_submission
-    - file: hw5/index
-      sections:
-        - file: hw5/collaboration
-        - file: hw5/walk_through
-        - file: hw5/homework_submission
-    - file: hw6/index
-      sections:
-        - file: hw6/collaboration
-        - file: hw6/walk_through
-        - file: hw6/homework_submission
-    - file: hw7/index
-      sections:
-        - file: hw7/collaboration
-        - file: hw7/walk_through
-        - file: hw7/homework_submission
+    # - file: hw2/index
+    #   sections:
+    #     - file: hw2/collaboration
+    #     - file: hw2/walk_through
+    #     - file: hw2/homework_submission
+    # - file: hw3/index
+    #   sections:
+    #     - file: hw3/collaboration
+    #     - file: hw3/u96v2_setup
+    #     - file: hw3/walk_through
+    #     - file: hw3/homework_submission
+    # - file: hw4/index
+    #   sections:
+    #     - file: hw4/collaboration
+    #     - file: hw4/walk_through
+    #     - file: hw4/homework_submission
+    # - file: hw5/index
+    #   sections:
+    #     - file: hw5/collaboration
+    #     - file: hw5/walk_through
+    #     - file: hw5/homework_submission
+    # - file: hw6/index
+    #   sections:
+    #     - file: hw6/collaboration
+    #     - file: hw6/walk_through
+    #     - file: hw6/homework_submission
+    # - file: hw7/index
+    #   sections:
+    #     - file: hw7/collaboration
+    #     - file: hw7/walk_through
+    #     - file: hw7/homework_submission
