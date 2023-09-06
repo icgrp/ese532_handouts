@@ -530,7 +530,7 @@ you identified above.  You don’t have to restrict yourself to this platform. (
 <li><p>Assuming a platform that has unlimited resources, and you are free
 to exploit associativity for
 mathematical operations, draw a new DFG with the lowest critical path
-delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3.3).</p></li>
+delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3.3). To draw the DFG you may use as many or as few 2 input adders/subtractors, 2 input multipliers, or shifters as you want.</p></li>
 <li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3.7)
 in terms of compute operations. Assume that any number of instructions can execute in the same cycle.</p></li>
 <li><p>Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
@@ -580,6 +580,12 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_no
 <p>The real model is still more complicated than this, but this is a
 first-order model that can help us start reasoning about the performance of
 the computation including memory access.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Note, assembly identifiers that start with a period, such as `.p2align` are assembly directives and not instructions.
+</pre></div>
+</div>
+</div>
 <ol class="arabic">
 <li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3.1). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
 <li><p>Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p></li>
