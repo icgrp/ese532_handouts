@@ -150,6 +150,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     first-order model that can help us start reasoning about the performance of
     the computation including memory access.
     ```{hint}
+    Note, assembly identifiers that start with a period, such
+    as .p2align are assembly directives and not instructions.
     Here are some links which can help you get up to speed with ARM Assembly.
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
     - [Registers](https://developer.arm.com/documentation/102374/0100/Registers-in-AArch64---general-purpose-registers)
@@ -158,7 +160,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     ```
     ```{hint}
         Note, assembly identifiers that start with a period, such
-        as .p2align are assembly directives and not instructions.
+        as .p2align are assembly directives and not instructions..
     ```
 
     1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3.1). This value will be referred to as ($T_{filter\_h\_measured}$).
