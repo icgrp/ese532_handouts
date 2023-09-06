@@ -56,7 +56,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         need to use `gprof` (refer to {ref}`profiling/gprof`
         in the profiling tutorial).
 
-    3. Calculate and report the latencies of (Part 2a) in cycles and add it to {numref}`example-table-1`. Use your computer's CPU clock frequency to calculate this. If running on biglab you can find this by running the `lscpu` command.
+    3. Calculate and report the latencies of (Part 2.1) in cycles and add it to {numref}`example-table-1`. Use your computer's CPU clock frequency to calculate this. If running on biglab you can find this by running the `lscpu` command.
 
 3. **Analyze**
 
@@ -87,10 +87,10 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles (1 line).
 
         ```{hint}
-        This should be a simple calculation, and it won't necessarily match what you found in (Part 3a); we'll be working on that
+        This should be a simple calculation, and it won't necessarily match what you found in (Part 3.1); we'll be working on that
         in subsequent questions. 
         
-        Just like (Part 3c), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
+        Just like (Part 3.3), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
         Hence, you are asked to not estimate the impact of the parts that
         contribute little to runtime. We’ll get a better picture of
         that when we look at the assembly code.
@@ -104,15 +104,15 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     7. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
         mathematical operations, draw a new DFG with the lowest critical path
-        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3c).
-    8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3g)
+        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3.3).
+    8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3.7)
         in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
     9. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
-        bound for `LOOP3`, again only considering the operations outlined in (Part 3c). (4 lines)
+        bound for `LOOP3`, again only considering the operations outlined in (Part 3.3). (4 lines)
 4. **Refine**
     
     As you hopefully noticed, our model of using a DFG and counting
-    compute operations in (Part 3d) did not estimate `Filter_horizontal` very accurately.  We will now construct a better model by examining the assembly code of `Filter_horizontal`. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: `hw2/assignment/Filter_O2.s`. The code pertaining to `Filter_horizontal` is on lines 14-50 of `Filter_O2.s`. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
+    compute operations in (Part 3.4) did not estimate `Filter_horizontal` very accurately.  We will now construct a better model by examining the assembly code of `Filter_horizontal`. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: `hw2/assignment/Filter_O2.s`. The code pertaining to `Filter_horizontal` is on lines 14-50 of `Filter_O2.s`. To get you started analyzing, we have annotated the instructions between labels `.L2` and `.L3`. These are setup instructions, and are outside of any loops. 
     ```{hint}
     Here are some links which can help you get up to speed with ARM Assembly.
     - [Calling Convention](https://en.wikipedia.org/wiki/Calling_convention#ARM_(A64))
@@ -150,7 +150,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     first-order model that can help us start reasoning about the performance of
     the computation including memory access.
 
-    1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as ($T_{filter\_h\_measured}$).
+    1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3.1). This value will be referred to as ($T_{filter\_h\_measured}$).
 
     2. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52 of `Filter_O2.s`). Don't add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.
     
@@ -166,7 +166,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         8. comparison of a loop variable to a loop limit
         9. branch to top of a loop
         
-        You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?
+        You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3.3) (2 lines)?
     4.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.
 
     5. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
@@ -182,7 +182,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         Notice that our simple model doesn't work very well, and so $T_{filter\_h\_analytical}$ is very different from $T_{filter\_h\_measured}$.
     6. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
         ````{note}
-        Refining from (Part 4d), the model here is:
+        Refining from (Part 4.4), the model here is:
         ```{math}
         N_{instr} = N_{non\_mem} + N_{mem}
         ```
@@ -202,7 +202,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
     8. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
         ````{note}
-        Refining from (Part 4e), this gives us the model for the runtime of this filter computation:
+        Refining from (Part 4.5), this gives us the model for the runtime of this filter computation:
         ```{math}
         N_{mem} = N_{fast\_mem} + N_{slow\_mem}
         ```
