@@ -104,7 +104,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     7. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
         mathematical operations, draw a new DFG with the lowest critical path
-        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3.3).
+        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3.3). To draw the DFG you may use as many or as few 2 input adders/subtractors, 2 input multipliers, or shifters as you want.
     8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3.7)
         in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
     9. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
@@ -149,6 +149,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     The real model is still more complicated than this, but this is a
     first-order model that can help us start reasoning about the performance of
     the computation including memory access.
+    ```{hint}
+        Note, assembly identifiers that start with a period, such as `.p2align` are assembly directives and not instructions.
+    ```
 
     1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3.1). This value will be referred to as ($T_{filter\_h\_measured}$).
 
