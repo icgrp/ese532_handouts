@@ -9,7 +9,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
 </style>
 
 1. **Identify**
-    1. For the application you downloaded in hw2/assignment, describe the
+    a. For the application you downloaded in hw2/assignment, describe the
         operation performed on the input data by each 
         function and why you might want to perform the operation (3
         lines for each of Scale, Filter, Differentiate, Compress).
@@ -78,12 +78,12 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     * - Compress
       -  5.36313e+09
     ```
-    1. Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to {numref}`ultra96_profile` with the average latency of each function in cycles.
-    2. Which function from {numref}`ultra96_profile` has the highest latency? (1 line)
-    3. Assume that `LOOP3`
+    a. Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to {numref}`ultra96_profile` with the average latency of each function in cycles.
+    b. Which function from {numref}`ultra96_profile` has the highest latency? (1 line)
+    c. Assume that `LOOP3`
         of `Filter_horizontal` is unrolled completely into the body of `LOOP2`. Draw a Data Flow Graph (DFG)
         of the operations that are performed in the body of `LOOP2`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, only consider the *body* of `LOOP2` (not any of the looping).
-    4. Assuming that the operations in the DFG execute sequentially,
+    d. Assuming that the operations in the DFG execute sequentially,
         count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles (1 line).
 
         ```{hint}
@@ -95,19 +95,19 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         contribute little to runtime. We’ll get a better picture of
         that when we look at the assembly code.
         ```
-    5. If you would apply a $2\times$ speedup to one of the stages
+    e. If you would apply a $2\times$ speedup to one of the stages
         (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`)
         which one would you choose to obtain the best overall performance? (1 line)
-    6. Use Amdahl's Law to determine the highest overall application
+    f. Use Amdahl's Law to determine the highest overall application
         speedup that one could possibly achieve assuming you accelerate the one stage that
         you identified above.  You don't have to restrict yourself to this platform. (1 line)
-    7. Assuming a platform that has unlimited resources, and you are free 
+    g. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
         mathematical operations, draw a new DFG with the lowest critical path
         delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3c). You may use as many or as few 2 input adders, 2 input multipliers, and shifters as you want.
-    8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3g)
+    h. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3g)
         in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
-    9. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
+    i. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
         bound for `LOOP3`, again only considering the operations outlined in (Part 3c). (4 lines)
 4. **Refine**
     
@@ -150,11 +150,15 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     first-order model that can help us start reasoning about the performance of
     the computation including memory access.
 
-    1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as ($T_{filter\_h\_measured}$).
+    ````{hint}
+        Note, that in ARM assembly, identifiers that start with a period, such as `.p2align` are not instructions, but assembly directives. Do not count them as instructions.
+    ````
 
-    2. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52 of `Filter_O2.s`). Don't add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.
+    a. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as ($T_{filter\_h\_measured}$).
+
+    b. Make a table like {numref}`example-table-2` and add all the instructions that are *inside* the loops (that is, the instructions on lines 30-52 of `Filter_O2.s`). Don't add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.
     
-    3. Annotate each instruction with an appropriate description such as one of those listed below, and
+    c. Annotate each instruction with an appropriate description such as one of those listed below, and
         add to {numref}`example-table-2`. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed. 
         1. addition(s) for array indexing
         2. multiplication of coefficient with input
@@ -167,9 +171,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         9. branch to top of a loop
         
         You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?
-    4.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.
+    d.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.
 
-    5. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
+    e. Calculate the total number of instruction executions ($N_{instr}$) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel ($N_{par}$), calculate the runtime of the function ($T_{filter\_h\_analytical}$) in cycles (1 line).
         ````{note}
         The model here is:
         
@@ -180,7 +184,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         where $T_{cycle} = 1$ and $N_{par} = 2$.
         ````
         Notice that our simple model doesn't work very well, and so $T_{filter\_h\_analytical}$ is very different from $T_{filter\_h\_measured}$.
-    6. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
+    f. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
         ````{note}
         Refining from (Part 4d), the model here is:
         ```{math}
@@ -195,12 +199,12 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         where $T_{cycle\_non\_mem} = 1$ and $N_{par} = 2$.
         ````
         Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.
-    7. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximately* what fraction of its executions will be slow (1 or 2 lines per memory instruction).
+    g. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximately* what fraction of its executions will be slow (1 or 2 lines per memory instruction).
         ```{hint}
         Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function's execution, and thus will be fast due to caching. Assume that writes will be slow.
         ```
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
-    8. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
+    h. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
         ````{note}
         Refining from (Part 4e), this gives us the model for the runtime of this filter computation:
         ```{math}
@@ -217,7 +221,12 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         ````
         Now our model gives us the correct runtime of the function, and gives us more insight into the benefits of caching, and the consequences of a cache miss.
 4. **Coding**
-    1. Implement the `hash_func` and `cdc` functions from the following Python code in C/C++. You can find the starter code at `hw2/cdc/cdc.cpp`. You are free to use C/C++ standard library data structures
+
+     ````{note}
+        This section may feel unrelated to the rest of the assignment, however CDC will come up during the final project, and this will help you prepare for that.
+     ````
+
+    a. Implement the `hash_func` and `cdc` functions from the following Python code in C/C++. You can find the starter code at `hw2/cdc/cdc.cpp`. You are free to use C/C++ standard library data structures
     as you see fit. 
         ```Python
         win_size = 16
@@ -317,7 +326,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         redirecting the output in the command line, e.g. `./cdc > out.txt`
         - You can then use `diff` which will show differences in values if any, e.g. `diff out.txt golden.txt`
         ```
-    2. It is more efficient to not recompute the whole hash at every window.
+    b. It is more efficient to not recompute the whole hash at every window.
     Convince yourself that the next hash computation can be expressed as:
         ```Python
         hash_func(input, pos+1) = (hash_func(input, pos)*prime - 
@@ -325,7 +334,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
                        ord(input[pos+win_size])*prime)
         ```
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
-    3. Time the two `cdc` implementations and compare.
+    c. Time the two `cdc` implementations and compare.
         ```{tip}
         - Read the following resources to gain more context about the code:
           <br> Content-Defined Chunking (Rabin Fingerprint)
