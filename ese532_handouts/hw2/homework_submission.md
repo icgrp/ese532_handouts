@@ -45,18 +45,18 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       -  
       -  
     ```
-    1. Report the average latencies (i.e. time to execute one call of the function) of `Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress` in nanoseconds.  For this, you will
+    a. Report the average latencies (i.e. time to execute one call of the function) of `Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress` in nanoseconds.  For this, you will
         need to instrument the code (refer to {ref}`profiling/instrumentation`
         in the profiling tutorial).
         
         Write a Makefile (refer to the profiling tutorial) and use `-O2`
         optimization (we will explore optimization levels more in HW4).
 
-    2. Report the percentage of time each function (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`) takes in your program. For this, you will
+    b. Report the percentage of time each function (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`) takes in your program. For this, you will
         need to use `gprof` (refer to {ref}`profiling/gprof`
         in the profiling tutorial).
 
-    3. Calculate and report the latencies of (Part 2a) in cycles and add it to {numref}`example-table-1`. Use your computer's CPU clock frequency to calculate this. If running on biglab you can find this by running the `lscpu` command.
+    c. Calculate and report the latencies of (Part 2a) in cycles and add it to {numref}`example-table-1`. Use your computer's CPU clock frequency to calculate this. If running on biglab you can find this by running the `lscpu` command.
 
 3. **Analyze**
 
@@ -104,7 +104,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     7. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
         mathematical operations, draw a new DFG with the lowest critical path
-        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3c).
+        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3c). You may use as many or as few 2 input adders, 2 input multipliers, and shifters as you want.
     8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3g)
         in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
     9. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
