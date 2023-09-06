@@ -416,11 +416,14 @@ document.write(`
     ol ol ol { list-style-type: lower-roman; }
 </style>
 <ol class="arabic">
-<li><p><strong>Identify</strong>
-a. For the application you downloaded in hw2/assignment, describe the
+<li><p><strong>Identify</strong></p>
+<ol class="arabic simple">
+<li><p>For the application you downloaded in hw2/assignment, describe the
 operation performed on the input data by each
 function and why you might want to perform the operation (3
 lines for each of Scale, Filter, Differentiate, Compress).</p></li>
+</ol>
+</li>
 <li><p><strong>Measure</strong></p>
 <p>Build a table similar to the following, and populate it when answering the following questions:</p>
 <table class="table" id="example-table-1">
@@ -460,17 +463,18 @@ lines for each of Scale, Filter, Differentiate, Compress).</p></li>
 </tr>
 </tbody>
 </table>
-<p>a. Report the average latencies (i.e. time to execute one call of the function) of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code> in nanoseconds.  For this, you will
+<ol class="arabic">
+<li><p>Report the average latencies (i.e. time to execute one call of the function) of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code> in nanoseconds.  For this, you will
 need to instrument the code (refer to <a class="reference internal" href="walk_through.html#profiling-instrumentation"><span class="std std-ref">Instrumentation-based Profiling with Timers</span></a>
 in the profiling tutorial).</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Write a Makefile (refer to the profiling tutorial) and use `-O2`
- optimization (we will explore optimization levels more in HW4).
-</pre></div>
-</div>
-<p>b. Report the percentage of time each function (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>) takes in your program. For this, you will
+<p>Write a Makefile (refer to the profiling tutorial) and use <code class="docutils literal notranslate"><span class="pre">-O2</span></code>
+optimization (we will explore optimization levels more in HW4).</p>
+</li>
+<li><p>Report the percentage of time each function (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>) takes in your program. For this, you will
 need to use <code class="docutils literal notranslate"><span class="pre">gprof</span></code> (refer to <a class="reference internal" href="walk_through.html#profiling-gprof"><span class="std std-ref">Profiling using GNU gprof</span></a>
-in the profiling tutorial).</p>
-<p>c. Calculate and report the latencies of (Part 2a) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command.</p>
+in the profiling tutorial).</p></li>
+<li><p>Calculate and report the latencies of (Part 2a) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command.</p></li>
+</ol>
 </li>
 <li><p><strong>Analyze</strong></p>
 <p>In the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Since you don’t have access to one in this homework, we have profiled the application on it for you, and have provided you with the results:</p>
@@ -499,38 +503,39 @@ in the profiling tutorial).</p>
 </tr>
 </tbody>
 </table>
-<p>a. Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to <a class="reference internal" href="#ultra96-profile"><span class="std std-numref">Table 2</span></a> with the average latency of each function in cycles.
-b. Which function from <a class="reference internal" href="#ultra96-profile"><span class="std std-numref">Table 2</span></a> has the highest latency? (1 line)
-c. Assume that <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>
+<ol class="arabic">
+<li><p>Assuming the Ultra96 runs at a clock frequency of 1.2GHz, add a column to <a class="reference internal" href="#ultra96-profile"><span class="std std-numref">Table 2</span></a> with the average latency of each function in cycles.</p></li>
+<li><p>Which function from <a class="reference internal" href="#ultra96-profile"><span class="std std-numref">Table 2</span></a> has the highest latency? (1 line)</p></li>
+<li><p>Assume that <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>
 of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is unrolled completely into the body of <code class="docutils literal notranslate"><span class="pre">LOOP2</span></code>. Draw a Data Flow Graph (DFG)
-of the operations that are performed in the body of <code class="docutils literal notranslate"><span class="pre">LOOP2</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation. When drawing the DFG, only consider the <em>body</em> of <code class="docutils literal notranslate"><span class="pre">LOOP2</span></code> (not any of the looping).
-d. Assuming that the operations in the DFG execute sequentially,
+of the operations that are performed in the body of <code class="docutils literal notranslate"><span class="pre">LOOP2</span></code>. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on <code class="docutils literal notranslate"><span class="pre">Input</span></code>). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. <code class="docutils literal notranslate"><span class="pre">4*i</span></code> in <code class="docutils literal notranslate"><span class="pre">foo[4*i]</span></code> is an index computation. When drawing the DFG, only consider the <em>body</em> of <code class="docutils literal notranslate"><span class="pre">LOOP2</span></code> (not any of the looping).</p></li>
+<li><p>Assuming that the operations in the DFG execute sequentially,
 count the <em>total</em> number of compute operations involved in the execution of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line).</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ```{hint}
- This should be a simple calculation, and it won&#39;t necessarily match what you found in (Part 3a); we&#39;ll be working on that
- in subsequent questions. 
- 
- Just like (Part 3c), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
- Hence, you are asked to not estimate the impact of the parts that
- contribute little to runtime. We’ll get a better picture of
- that when we look at the assembly code.
- ```
-</pre></div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>This should be a simple calculation, and it won’t necessarily match what you found in (Part 3a); we’ll be working on that
+in subsequent questions.</p>
+<p>Just like (Part 3c), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
+Hence, you are asked to not estimate the impact of the parts that
+contribute little to runtime. We’ll get a better picture of
+that when we look at the assembly code.</p>
 </div>
-<p>e. If you would apply a <span class="math notranslate nohighlight">\(2\times\)</span> speedup to one of the stages
+</li>
+<li><p>If you would apply a <span class="math notranslate nohighlight">\(2\times\)</span> speedup to one of the stages
 (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>)
-which one would you choose to obtain the best overall performance? (1 line)
-f. Use Amdahl’s Law to determine the highest overall application
+which one would you choose to obtain the best overall performance? (1 line)</p></li>
+<li><p>Use Amdahl’s Law to determine the highest overall application
 speedup that one could possibly achieve assuming you accelerate the one stage that
-you identified above.  You don’t have to restrict yourself to this platform. (1 line)
-g. Assuming a platform that has unlimited resources, and you are free
+you identified above.  You don’t have to restrict yourself to this platform. (1 line)</p></li>
+<li><p>Assuming a platform that has unlimited resources, and you are free
 to exploit associativity for
 mathematical operations, draw a new DFG with the lowest critical path
-delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3c). You may use as many or as few 2 input adders, 2 input multipliers, and shifters as you want.
-h. Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3g)
-in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
-i. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
-bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3c). (4 lines)</p>
+delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3c).</p></li>
+<li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3g)
+in terms of compute operations. Assume that any number of instructions can execute in the same cycle.</p></li>
+<li><p>Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
+bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3c). (4 lines)</p></li>
+</ol>
 </li>
 <li><p><strong>Refine</strong></p>
 <p>As you hopefully noticed, our model of using a DFG and counting
@@ -575,162 +580,205 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_no
 <p>The real model is still more complicated than this, but this is a
 first-order model that can help us start reasoning about the performance of
 the computation including memory access.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Note, that in ARM assembly, identifiers that start with a period, such as `.p2align` are not instructions, but assembly directives. Do not count them as instructions.
-</pre></div>
-</div>
-</div>
-<p>a. Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p>
-<p>b. Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p>
-<p>c. Annotate each instruction with an appropriate description such as one of those listed below, and
-add to <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a>. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed.
-1. addition(s) for array indexing
-2. multiplication of coefficient with input
-3. addition to Sum
-4. shift to Sum
-5. reads from arrays
-6. writes to array
-7. increment of a loop variable
-8. comparison of a loop variable to a loop limit
-9. branch to top of a loop</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?
-</pre></div>
-</div>
-<p>d.  Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.</p>
-<p>e. Calculate the total number of instruction executions (<span class="math notranslate nohighlight">\(N_{instr}\)</span>) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel (<span class="math notranslate nohighlight">\(N_{par}\)</span>), calculate the runtime of the function (<span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span>) in cycles (1 line).
-````{note}
-The model here is:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ```{math}
- T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{par}} \times T_{cycle}
- ```
-
- where $T_{cycle} = 1$ and $N_{par} = 2$.
- ````
- Notice that our simple model doesn&#39;t work very well, and so $T_{filter\_h\_analytical}$ is very different from $T_{filter\_h\_measured}$.
-</pre></div>
-</div>
-<p>f. Calculate the total number of executions of memory instructions in <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> (<span class="math notranslate nohighlight">\(N_{mem}\)</span>) (1 line). Next, calculate the total number of executions of non-memory instructions (<span class="math notranslate nohighlight">\(N_{non\_mem}\)</span>) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes <span class="math notranslate nohighlight">\(T_{cycle\_mem}\)</span> cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span> (1 line). Now solve for <span class="math notranslate nohighlight">\(T_{cycle\_mem}\)</span> (1 line).
-<code class="docutils literal notranslate"><span class="pre">{note}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">Refining</span> <span class="pre">from</span> <span class="pre">(Part</span> <span class="pre">4d),</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">here</span> <span class="pre">is:</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```{math}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">N_{instr}</span> <span class="pre">=</span> <span class="pre">N_{non\_mem}</span> <span class="pre">+</span> <span class="pre">N_{mem}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```{math}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">\begin{align}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">T_{filter\_h\_measured}</span> <span class="pre">&amp;</span> <span class="pre">=</span> <span class="pre">\frac{N_{non\_mem}}{N_{par}}</span>&#160; <span class="pre">\times</span> <span class="pre">T_{cycle\_non\_mem}</span> <span class="pre">\\</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&amp;</span> <span class="pre">+</span> <span class="pre">N_{mem}</span> <span class="pre">\times</span> <span class="pre">T_{cycle\_mem}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">\end{align}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">where</span> <span class="pre">$T_{cycle\_non\_mem}</span> <span class="pre">=</span> <span class="pre">1$</span> <span class="pre">and</span> <span class="pre">$N_{par}</span> <span class="pre">=</span> <span class="pre">2$.</span>&#160;&#160;&#160;&#160;&#160; </code>
-Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.</p>
-<p>g. Consider the memory instructions in <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a>. For each instruction, record <em>approximately</em> what fraction of its executions will be slow (1 or 2 lines per memory instruction).
-<code class="docutils literal notranslate"><span class="pre">{hint}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">Think</span> <span class="pre">about</span> <span class="pre">which</span> <span class="pre">loads</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">from</span> <span class="pre">new</span> <span class="pre">memory</span> <span class="pre">locations,</span> <span class="pre">vs.</span> <span class="pre">locations</span> <span class="pre">which</span> <span class="pre">will</span> <span class="pre">have</span> <span class="pre">already</span> <span class="pre">been</span> <span class="pre">read</span> <span class="pre">from</span> <span class="pre">earlier</span> <span class="pre">during</span> <span class="pre">the</span> <span class="pre">function's</span> <span class="pre">execution,</span> <span class="pre">and</span> <span class="pre">thus</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">fast</span> <span class="pre">due</span> <span class="pre">to</span> <span class="pre">caching.</span> <span class="pre">Assume</span> <span class="pre">that</span> <span class="pre">writes</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">slow.</span>&#160;&#160;&#160;&#160;&#160; </code>
-With these fractions, calculate the total number of slow executions of memory instructions (<span class="math notranslate nohighlight">\(N_{slow\_mem}\)</span>), and the total number of fast executions of memory instructions (<span class="math notranslate nohighlight">\(N_{fast\_mem}\)</span>) (2 lines).</p>
-<p>h. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes <span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span> cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span> (1 line). Now solve for <span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span> (1 line).
-<code class="docutils literal notranslate"><span class="pre">{note}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">Refining</span> <span class="pre">from</span> <span class="pre">(Part</span> <span class="pre">4e),</span> <span class="pre">this</span> <span class="pre">gives</span> <span class="pre">us</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">runtime</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">filter</span> <span class="pre">computation:</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```{math}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">N_{mem}</span> <span class="pre">=</span> <span class="pre">N_{fast\_mem}</span> <span class="pre">+</span> <span class="pre">N_{slow\_mem}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```{math}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">\begin{align}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">T_{filter\_h\_measured}</span> <span class="pre">&amp;</span> <span class="pre">=</span> <span class="pre">\frac{N_{non\_mem}}{N_{par}}</span> <span class="pre">\times</span> <span class="pre">T_{cycle\_non\_mem}</span> <span class="pre">\\</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&amp;</span> <span class="pre">+</span> <span class="pre">N_{fast\_mem}</span> <span class="pre">\times</span>&#160; <span class="pre">T_{cycle\_fast\_mem}</span> <span class="pre">\\</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&amp;</span> <span class="pre">+</span> <span class="pre">N_{slow\_mem}</span> <span class="pre">\times</span> <span class="pre">T_{cycle\_slow\_mem}</span> <span class="pre">\\</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">\end{align}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">```</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">where</span> <span class="pre">$T_{cycle\_fast\_mem}</span> <span class="pre">=</span> <span class="pre">T_{cycle\_non\_mem}</span> <span class="pre">=</span> <span class="pre">1$</span> <span class="pre">and</span> <span class="pre">$N_{par}</span> <span class="pre">=</span> <span class="pre">2$.</span>&#160;&#160;&#160;&#160;&#160; </code>
-Now our model gives us the correct runtime of the function, and gives us more insight into the benefits of caching, and the consequences of a cache miss.</p>
+<ol class="arabic">
+<li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
+<li><p>Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p></li>
+<li><p>Annotate each instruction with an appropriate description such as one of those listed below, and
+add to <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a>. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed.</p>
+<ol class="arabic simple">
+<li><p>addition(s) for array indexing</p></li>
+<li><p>multiplication of coefficient with input</p></li>
+<li><p>addition to Sum</p></li>
+<li><p>shift to Sum</p></li>
+<li><p>reads from arrays</p></li>
+<li><p>writes to array</p></li>
+<li><p>increment of a loop variable</p></li>
+<li><p>comparison of a loop variable to a loop limit</p></li>
+<li><p>branch to top of a loop</p></li>
+</ol>
+<p>You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?</p>
 </li>
-<li><p><strong>Coding</strong></p>
+<li><p>Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.</p></li>
+<li><p>Calculate the total number of instruction executions (<span class="math notranslate nohighlight">\(N_{instr}\)</span>) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel (<span class="math notranslate nohighlight">\(N_{par}\)</span>), calculate the runtime of the function (<span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span>) in cycles (1 line).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This section may feel unrelated to the rest of the assignment, however CDC will come up during the final project, and this will help you prepare for that.</p>
+<p>The model here is:</p>
+<div class="math notranslate nohighlight">
+\[T_{filter\_h\_analytical} = \frac{N_{instr}}{N_{par}} \times T_{cycle}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_{cycle} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 2\)</span>.</p>
 </div>
-<p>a. Implement the <code class="docutils literal notranslate"><span class="pre">hash_func</span></code> and <code class="docutils literal notranslate"><span class="pre">cdc</span></code> functions from the following Python code in C/C++. You can find the starter code at <code class="docutils literal notranslate"><span class="pre">hw2/cdc/cdc.cpp</span></code>. You are free to use C/C++ standard library data structures
-as you see fit.
-```Python
-win_size = 16
-prime = 3
-modulus = 256
-target = 0</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> def hash_func(input, pos):
-     hash = 0
-     for i in range(0, win_size):
-         hash += ord(input[pos+win_size-1-i])*(pow(prime, i+1))
-     return hash
+<p>Notice that our simple model doesn’t work very well, and so <span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span> is very different from <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>.</p>
+</li>
+<li><p>Calculate the total number of executions of memory instructions in <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> (<span class="math notranslate nohighlight">\(N_{mem}\)</span>) (1 line). Next, calculate the total number of executions of non-memory instructions (<span class="math notranslate nohighlight">\(N_{non\_mem}\)</span>) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes <span class="math notranslate nohighlight">\(T_{cycle\_mem}\)</span> cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span> (1 line). Now solve for <span class="math notranslate nohighlight">\(T_{cycle\_mem}\)</span> (1 line).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refining from (Part 4d), the model here is:</p>
+<div class="math notranslate nohighlight">
+\[N_{instr} = N_{non\_mem} + N_{mem}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}}  \times T_{cycle\_non\_mem} \\
+                             &amp; + N_{mem} \times T_{cycle\_mem}
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_{cycle\_non\_mem} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 2\)</span>.</p>
+</div>
+<p>Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.</p>
+</li>
+<li><p>Consider the memory instructions in <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a>. For each instruction, record <em>approximately</em> what fraction of its executions will be slow (1 or 2 lines per memory instruction).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function’s execution, and thus will be fast due to caching. Assume that writes will be slow.</p>
+</div>
+<p>With these fractions, calculate the total number of slow executions of memory instructions (<span class="math notranslate nohighlight">\(N_{slow\_mem}\)</span>), and the total number of fast executions of memory instructions (<span class="math notranslate nohighlight">\(N_{fast\_mem}\)</span>) (2 lines).</p>
+</li>
+<li><p>Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes <span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span> cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span> (1 line). Now solve for <span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span> (1 line).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refining from (Part 4e), this gives us the model for the runtime of this filter computation:</p>
+<div class="math notranslate nohighlight">
+\[N_{mem} = N_{fast\_mem} + N_{slow\_mem}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_non\_mem} \\
+                          &amp; + N_{fast\_mem} \times  T_{cycle\_fast\_mem} \\
+                             &amp; + N_{slow\_mem} \times T_{cycle\_slow\_mem} \\
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_{cycle\_fast\_mem} = T_{cycle\_non\_mem} = 1\)</span> and <span class="math notranslate nohighlight">\(N_{par} = 2\)</span>.</p>
+</div>
+<p>Now our model gives us the correct runtime of the function, and gives us more insight into the benefits of caching, and the consequences of a cache miss.</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Coding</strong></p>
+<ol class="arabic">
+<li><p>Implement the <code class="docutils literal notranslate"><span class="pre">hash_func</span></code> and <code class="docutils literal notranslate"><span class="pre">cdc</span></code> functions from the following Python code in C/C++. You can find the starter code at <code class="docutils literal notranslate"><span class="pre">hw2/cdc/cdc.cpp</span></code>. You are free to use C/C++ standard library data structures
+as you see fit.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">win_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">prime</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">modulus</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">target</span> <span class="o">=</span> <span class="mi">0</span>
 
 
- def cdc(buff, buff_size):
-     for i in range(win_size, buff_size-win_size):
-         if((hash_func(buff, i) % modulus)) == target:
-             print(i)
+<span class="k">def</span> <span class="nf">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="nb">hash</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">win_size</span><span class="p">):</span>
+        <span class="nb">hash</span> <span class="o">+=</span> <span class="nb">ord</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">hash</span>
 
 
- def test_cdc(filename):
-     with open(filename) as f:
-         buff = f.read()
-         cdc(buff, len(buff))
+<span class="k">def</span> <span class="nf">cdc</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="n">buff_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">win_size</span><span class="p">,</span> <span class="n">buff_size</span><span class="o">-</span><span class="n">win_size</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">hash_func</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="n">modulus</span><span class="p">))</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
 
- test_cdc(&quot;prince.txt&quot;)
+<span class="k">def</span> <span class="nf">test_cdc</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">buff</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">cdc</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">buff</span><span class="p">))</span>
 
- ```
- Verify that your program outputs the following:
- ```{admonition} Output
- 299
- 366
- 367
- 838
- 1001
- 1263
- 2141
- 2283
- 2660
- 2708
- 2748
- 2820
- 3143
- 3210
- 3211
- 3682
- 3845
- 4107
- 4985
- 5127
- 5504
- 5552
- 5592
- 5664
- 5987
- 6054
- 6055
- 6526
- 6689
- 6951
- 7829
- 7971
- 8348
- 8396
- 8436
- 8508
- 8831
- 8898
- 8899
- 9370
- 9533
- 9795
- 10673
- 10815
- 11192
- 11240
- 11280
- 11352
- 11675
- 11742
- 11743
- 12214
- 12377
- 12639
- 13517
- 13659
- 14036
- 14084
- 14124
- 14196
- ```
- ```{tip}
- - To verify, you can first create a text file with the output, e.g. `golden.txt`
- - You can then write the output of your program to another text file by
- redirecting the output in the command line, e.g. `./cdc &gt; out.txt`
- - You can then use `diff` which will show differences in values if any, e.g. `diff out.txt golden.txt`
- ```
+
+<span class="n">test_cdc</span><span class="p">(</span><span class="s2">&quot;prince.txt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>b. It is more efficient to not recompute the whole hash at every window.
-Convince yourself that the next hash computation can be expressed as:
-<code class="docutils literal notranslate"><span class="pre">Python</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">hash_func(input,</span> <span class="pre">pos+1)</span> <span class="pre">=</span> <span class="pre">(hash_func(input,</span> <span class="pre">pos)*prime</span> <span class="pre">-</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ord(input[pos])*pow(prime,</span> <span class="pre">win_size+1)</span> <span class="pre">+</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ord(input[pos+win_size])*prime)</span>&#160;&#160;&#160;&#160;&#160; </code>
-Develop a second, revised <code class="docutils literal notranslate"><span class="pre">cdc</span></code> function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.</p>
-<p>c. Time the two <code class="docutils literal notranslate"><span class="pre">cdc</span></code> implementations and compare.
-<code class="docutils literal notranslate"><span class="pre">{tip}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Read</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">resources</span> <span class="pre">to</span> <span class="pre">gain</span> <span class="pre">more</span> <span class="pre">context</span> <span class="pre">about</span> <span class="pre">the</span> <span class="pre">code:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&lt;br&gt;</span> <span class="pre">Content-Defined</span> <span class="pre">Chunking</span> <span class="pre">(Rabin</span> <span class="pre">Fingerprint)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">https://moinakg.wordpress.com/tag/rabin-fingerprint/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">https://en.wikipedia.org/wiki/Rabin_fingerprint</span>&#160;&#160;&#160;&#160;&#160; </code></p>
+<p>Verify that your program outputs the following:</p>
+<div class="admonition-output admonition">
+<p class="admonition-title">Output</p>
+<p>299
+366
+367
+838
+1001
+1263
+2141
+2283
+2660
+2708
+2748
+2820
+3143
+3210
+3211
+3682
+3845
+4107
+4985
+5127
+5504
+5552
+5592
+5664
+5987
+6054
+6055
+6526
+6689
+6951
+7829
+7971
+8348
+8396
+8436
+8508
+8831
+8898
+8899
+9370
+9533
+9795
+10673
+10815
+11192
+11240
+11280
+11352
+11675
+11742
+11743
+12214
+12377
+12639
+13517
+13659
+14036
+14084
+14124
+14196</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>To verify, you can first create a text file with the output, e.g. <code class="docutils literal notranslate"><span class="pre">golden.txt</span></code></p></li>
+<li><p>You can then write the output of your program to another text file by
+redirecting the output in the command line, e.g. <code class="docutils literal notranslate"><span class="pre">./cdc</span> <span class="pre">&gt;</span> <span class="pre">out.txt</span></code></p></li>
+<li><p>You can then use <code class="docutils literal notranslate"><span class="pre">diff</span></code> which will show differences in values if any, e.g. <code class="docutils literal notranslate"><span class="pre">diff</span> <span class="pre">out.txt</span> <span class="pre">golden.txt</span></code></p></li>
+</ul>
+</div>
+</li>
+<li><p>It is more efficient to not recompute the whole hash at every window.
+Convince yourself that the next hash computation can be expressed as:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash_func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span><span class="o">*</span><span class="n">prime</span> <span class="o">-</span> 
+               <span class="nb">ord</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">prime</span><span class="p">,</span> <span class="n">win_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>
+               <span class="nb">ord</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">pos</span><span class="o">+</span><span class="n">win_size</span><span class="p">])</span><span class="o">*</span><span class="n">prime</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Develop a second, revised <code class="docutils literal notranslate"><span class="pre">cdc</span></code> function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.</p>
+</li>
+<li><p>Time the two <code class="docutils literal notranslate"><span class="pre">cdc</span></code> implementations and compare.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Read the following resources to gain more context about the code:
+<br> Content-Defined Chunking (Rabin Fingerprint)</p>
+<ul>
+<li><p><a class="reference external" href="https://moinakg.wordpress.com/tag/rabin-fingerprint/">https://moinakg.wordpress.com/tag/rabin-fingerprint/</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Rabin_fingerprint">https://en.wikipedia.org/wiki/Rabin_fingerprint</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </li>
 </ol>
 <section id="deliverables">
