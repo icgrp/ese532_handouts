@@ -473,7 +473,7 @@ optimization (we will explore optimization levels more in HW4).</p>
 <li><p>Report the percentage of time each function (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>) takes in your program. For this, you will
 need to use <code class="docutils literal notranslate"><span class="pre">gprof</span></code> (refer to <a class="reference internal" href="walk_through.html#profiling-gprof"><span class="std std-ref">Profiling using GNU gprof</span></a>
 in the profiling tutorial).</p></li>
-<li><p>Calculate and report the latencies of (Part 2a) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command.</p></li>
+<li><p>Calculate and report the latencies of (Part 2.1) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command.</p></li>
 </ol>
 </li>
 <li><p><strong>Analyze</strong></p>
@@ -513,9 +513,9 @@ of the operations that are performed in the body of <code class="docutils litera
 count the <em>total</em> number of compute operations involved in the execution of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line).</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>This should be a simple calculation, and it won’t necessarily match what you found in (Part 3a); we’ll be working on that
+<p>This should be a simple calculation, and it won’t necessarily match what you found in (Part 3.1); we’ll be working on that
 in subsequent questions.</p>
-<p>Just like (Part 3c), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
+<p>Just like (Part 3.3), we want you to focus on parts of the function that execute more times than others (i.e. the multiply, shift and accumulate).
 Hence, you are asked to not estimate the impact of the parts that
 contribute little to runtime. We’ll get a better picture of
 that when we look at the assembly code.</p>
@@ -530,16 +530,16 @@ you identified above.  You don’t have to restrict yourself to this platform. (
 <li><p>Assuming a platform that has unlimited resources, and you are free
 to exploit associativity for
 mathematical operations, draw a new DFG with the lowest critical path
-delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3c).</p></li>
-<li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3g)
+delay for the unrolled body of <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the same considerations as in (Part 3.3).</p></li>
+<li><p>Determine the critical path length of the unrolled <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code> with the new DFG you created in (Part 3.7)
 in terms of compute operations. Assume that any number of instructions can execute in the same cycle.</p></li>
 <li><p>Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
-bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3c). (4 lines)</p></li>
+bound for <code class="docutils literal notranslate"><span class="pre">LOOP3</span></code>, again only considering the operations outlined in (Part 3.3). (4 lines)</p></li>
 </ol>
 </li>
 <li><p><strong>Refine</strong></p>
 <p>As you hopefully noticed, our model of using a DFG and counting
-compute operations in (Part 3d) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">hw2/assignment/Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
+compute operations in (Part 3.4) did not estimate <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> very accurately.  We will now construct a better model by examining the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>. As mentioned previously, in the rest of this class, you will be working with an Ultra96 development board which has an ARM processor. Therefore instead of asking you to analyze x86 assembly compiled on your own PC, we are providing you with an assembly program that was compiled on the Ultra96: <code class="docutils literal notranslate"><span class="pre">hw2/assignment/Filter_O2.s</span></code>. The code pertaining to <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> is on lines 14-50 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>. To get you started analyzing, we have annotated the instructions between labels <code class="docutils literal notranslate"><span class="pre">.L2</span></code> and <code class="docutils literal notranslate"><span class="pre">.L3</span></code>. These are setup instructions, and are outside of any loops.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Here are some links which can help you get up to speed with ARM Assembly.</p>
@@ -581,7 +581,7 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}} \times T_{cycle\_no
 first-order model that can help us start reasoning about the performance of
 the computation including memory access.</p>
 <ol class="arabic">
-<li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
+<li><p>Record the runtime of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in cycles (1 line). You should have calculated this in (Part 3.1). This value will be referred to as (<span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span>).</p></li>
 <li><p>Make a table like <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> and add all the instructions that are <em>inside</em> the loops (that is, the instructions on lines 30-52 of <code class="docutils literal notranslate"><span class="pre">Filter_O2.s</span></code>). Don’t add the setup instructions that we annotated for you, to the table, however be sure to examine them as you will need to understand them to comprehend the rest of the code. Note that because the compiler optimized the code, the looping in the assembly works differently than how it reads in the C program. We will revisit optimization in HW4.</p></li>
 <li><p>Annotate each instruction with an appropriate description such as one of those listed below, and
 add to <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a>. This is not necessarily an exhaustive list, and some instructions may require a combination of some of the descriptions listed.</p>
@@ -596,7 +596,7 @@ add to <a class="reference internal" href="#example-table-2"><span class="std st
 <li><p>comparison of a loop variable to a loop limit</p></li>
 <li><p>branch to top of a loop</p></li>
 </ol>
-<p>You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3c) (2 lines)?</p>
+<p>You can use your C code to infer the annotations for the instructions. Which of the instructions in your table are the compute operations you identified in (Part 3.3) (2 lines)?</p>
 </li>
 <li><p>Calculate how many times each of the instructions are executed, and fill in the table. Looking at the loops in both C and assembly can help with this.</p></li>
 <li><p>Calculate the total number of instruction executions (<span class="math notranslate nohighlight">\(N_{instr}\)</span>) (1 line). Assuming that each instruction takes 1 cycle to execute, and that 2 instructions can be executed in parellel (<span class="math notranslate nohighlight">\(N_{par}\)</span>), calculate the runtime of the function (<span class="math notranslate nohighlight">\(T_{filter\_h\_analytical}\)</span>) in cycles (1 line).</p>
@@ -612,7 +612,7 @@ add to <a class="reference internal" href="#example-table-2"><span class="std st
 <li><p>Calculate the total number of executions of memory instructions in <a class="reference internal" href="#example-table-2"><span class="std std-numref">Table 3</span></a> (<span class="math notranslate nohighlight">\(N_{mem}\)</span>) (1 line). Next, calculate the total number of executions of non-memory instructions (<span class="math notranslate nohighlight">\(N_{non\_mem}\)</span>) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes <span class="math notranslate nohighlight">\(T_{cycle\_mem}\)</span> cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span> (1 line). Now solve for <span class="math notranslate nohighlight">\(T_{cycle\_mem}\)</span> (1 line).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Refining from (Part 4d), the model here is:</p>
+<p>Refining from (Part 4.4), the model here is:</p>
 <div class="math notranslate nohighlight">
 \[N_{instr} = N_{non\_mem} + N_{mem}\]</div>
 <div class="math notranslate nohighlight">
@@ -634,7 +634,7 @@ T_{filter\_h\_measured} &amp; = \frac{N_{non\_mem}}{N_{par}}  \times T_{cycle\_n
 <li><p>Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes <span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span> cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to <span class="math notranslate nohighlight">\(T_{filter\_h\_measured}\)</span> (1 line). Now solve for <span class="math notranslate nohighlight">\(T_{cycle\_slow\_mem}\)</span> (1 line).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Refining from (Part 4e), this gives us the model for the runtime of this filter computation:</p>
+<p>Refining from (Part 4.5), this gives us the model for the runtime of this filter computation:</p>
 <div class="math notranslate nohighlight">
 \[N_{mem} = N_{fast\_mem} + N_{slow\_mem}\]</div>
 <div class="math notranslate nohighlight">
