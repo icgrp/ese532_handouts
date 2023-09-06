@@ -150,9 +150,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     first-order model that can help us start reasoning about the performance of
     the computation including memory access.
 
-    ````{hint}
+    ```{hint}
         Note, that in ARM assembly, identifiers that start with a period, such as `.p2align` are not instructions, but assembly directives. Do not count them as instructions.
-    ````
+    ```
 
     a. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3a). This value will be referred to as ($T_{filter\_h\_measured}$).
 
@@ -184,6 +184,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         where $T_{cycle} = 1$ and $N_{par} = 2$.
         ````
         Notice that our simple model doesn't work very well, and so $T_{filter\_h\_analytical}$ is very different from $T_{filter\_h\_measured}$.
+
     f. Calculate the total number of executions of memory instructions in {numref}`example-table-2` ($N_{mem}$) (1 line). Next, calculate the total number of executions of non-memory instructions ($N_{non\_mem}$) (1 line). Now assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that each memory instruction takes $T_{cycle\_mem}$ cycles to execute, and that only 1 can be executed at a time. Write an expression for the runtime of the function in cycles, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_mem}$ (1 line).
         ````{note}
         Refining from (Part 4d), the model here is:
@@ -199,11 +200,13 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         where $T_{cycle\_non\_mem} = 1$ and $N_{par} = 2$.
         ````
         Our model now produces the correct runtime, and gives us a rough idea of how much time is spent in memory vs compute, but we can do better.
+
     g. Consider the memory instructions in {numref}`example-table-2`. For each instruction, record *approximately* what fraction of its executions will be slow (1 or 2 lines per memory instruction).
         ```{hint}
         Think about which loads will be from new memory locations, vs. locations which will have already been read from earlier during the function's execution, and thus will be fast due to caching. Assume that writes will be slow.
         ```
         With these fractions, calculate the total number of slow executions of memory instructions ($N_{slow\_mem}$), and the total number of fast executions of memory instructions ($N_{fast\_mem}$) (2 lines).
+    
     h. Assume that each non-memory instruction takes 1 cycle to execute, and that 2 of these can be executed in parellel. Also assume that a fast execution of a memory instruction takes 1 cycle and that only 1 can happen at a time. Also assume that a slow execution of a memory instruction takes $T_{cycle\_slow\_mem}$ cycles to execute, and that only 1 can happen at a time. Write an expression for the runtime of the function, and set it equal to $T_{filter\_h\_measured}$ (1 line). Now solve for $T_{cycle\_slow\_mem}$ (1 line). 
         ````{note}
         Refining from (Part 4e), this gives us the model for the runtime of this filter computation:
@@ -326,6 +329,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         redirecting the output in the command line, e.g. `./cdc > out.txt`
         - You can then use `diff` which will show differences in values if any, e.g. `diff out.txt golden.txt`
         ```
+    
     b. It is more efficient to not recompute the whole hash at every window.
     Convince yourself that the next hash computation can be expressed as:
         ```Python
@@ -334,6 +338,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
                        ord(input[pos+win_size])*prime)
         ```
         Develop a second, revised `cdc` function that uses this observation to reduce the work. Verify that your program is producing the same outputs with the changes.
+    
     c. Time the two `cdc` implementations and compare.
         ```{tip}
         - Read the following resources to gain more context about the code:
