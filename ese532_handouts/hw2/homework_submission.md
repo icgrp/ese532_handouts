@@ -220,6 +220,9 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         ````
         Now our model gives us the correct runtime of the function, and gives us more insight into the benefits of caching, and the consequences of a cache miss.
 4. **Coding**
+    ```{note}
+        This section may seem unrelated, however hashing and CDC are used in the final project, and we are introducing it here to prepare you.
+    ```
     1. Implement the `hash_func` and `cdc` functions from the following Python code in C/C++. You can find the starter code at `hw2/cdc/cdc.cpp`. You are free to use C/C++ standard library data structures
     as you see fit. 
         ```Python
