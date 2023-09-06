@@ -157,7 +157,8 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     - [Addressing Modes](https://developer.arm.com/documentation/den0024/a/The-A64-instruction-set/Memory-access-instructions/Specifying-the-address-for-a-Load-or-Store-instruction)
     ```
     ```{hint}
-        Note, assembly identifiers that start with a period, such as ".p2align" are assembly directives and not instructions.
+        Note, assembly identifiers that start with a period, such
+        as .p2align are assembly directives and not instructions.
     ```
 
     1. Record the runtime of `Filter_horizontal` in cycles (1 line). You should have calculated this in (Part 3.1). This value will be referred to as ($T_{filter\_h\_measured}$).
