@@ -107,7 +107,7 @@ JTAG module
 ```
 
 
-Your setup for this HW should look like {numref}`ultra96-setup`.
+Your setup for this HW should look like {numref}`ultra96-setup`. Note that the usb to ethernet adapter should be plugged into the usb port closest to the corner of the board.
 ```{figure} images/env_setup.jpg
 ---
 name: ultra96-setup

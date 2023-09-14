@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw3/walk_through';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="Ultra96 Setup" href="u96v2_setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
@@ -182,6 +184,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw2/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw2/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw2/homework_submission.html">Homework Submission</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW3 – Thread Parallel</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="u96v2_setup.html">Ultra96 Setup</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setup and Walk-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework_submission.html">Homework Submission</a></li>
 </ul>
 </li>
 </ul>
@@ -677,7 +686,7 @@ specific core? Let’s learn how to do that.</p>
 works on Linux. For MacOS and Windows, we let the scheduler
 choose the core. So if you are prototyping on your local
 machine, keep it in mind.</p></li>
-<li><p>Also note how in <code class="xref std std-numref docutils literal notranslate"><span class="pre">topo</span></code> there are 2 hyper-threads
+<li><p>Also note how in <a class="reference internal" href="#topo"><span class="std std-numref">Fig. 13</span></a> there are 2 hyper-threads
 per core on x86 processors. The <code class="docutils literal notranslate"><span class="pre">cpu_num</span></code> argument in <code class="docutils literal notranslate"><span class="pre">pin_thread_to_cpu</span></code> refers to
 the index number of the hyper-thread. Hence, for instance, if
 you want to run a thread on core 0 and one on core 1,
@@ -704,7 +713,7 @@ use the following commands:
 <figure class="align-default" id="topo">
 <img alt="../_images/topo_pc.png" src="../_images/topo_pc.png" />
 <figcaption>
-<p><span class="caption-text">An 8-core x86 processor with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">An 8-core x86 processor with 2 hyper-threads</span><a class="headerlink" href="#topo" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <hr class="docutils" />
@@ -1008,7 +1017,7 @@ You can monitor the core usage in <code class="docutils literal notranslate"><sp
 <figure class="align-default" id="top">
 <img alt="../_images/top.png" src="../_images/top.png" />
 <figcaption>
-<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">top</span></code> on Ultra96 showing core usage</span><a class="headerlink" href="#top" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">top</span></code> on Ultra96 showing core usage</span><a class="headerlink" href="#top" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1046,6 +1055,24 @@ You can monitor the core usage in <code class="docutils literal notranslate"><sp
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="u96v2_setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ultra96 Setup</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="homework_submission.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework Submission</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
