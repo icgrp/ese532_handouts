@@ -124,7 +124,7 @@ Your writeup should include your answers to the following questions:
             `Filter` to move the bottleneck? Don't experimentally find a `FILTER_LENGTH` but find it analytically. (7 lines)
 
 4. **CDC Parallel**
-    ```{tip}
+    ```{note}
     Note, this section is optional, but will help you out with the final project.
     ```
     Building on techniques and observations from previous parts,
