@@ -439,7 +439,7 @@ such as loading and storing pictures for this and the following
 questions. (1 line)</p></li>
 </ol>
 </li>
-<li><p><strong>Coarse-grain parallelism</strong></p>
+<li><p><strong>Coarse-grain data parallelism</strong></p>
 <p>We will parallelize the application by processing half of each
 picture on core 0 and the other half on core 1, a form of
 coarse-grain, data-level parallelism.
@@ -547,6 +547,10 @@ Indicate throughput and data transfer ratios where applicable.</p></li>
 </ol>
 </li>
 <li><p><strong>CDC Parallel</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note, this section is optional, but will help you out with the final project.</p>
+</div>
 <p>Building on techniques and observations from previous parts,
 create a data-parallel implementation of your CDC function from homework 2
 that uses four cores of ARM A53 to achieve

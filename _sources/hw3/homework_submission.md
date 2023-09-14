@@ -24,7 +24,7 @@ Your writeup should include your answers to the following questions:
         such as loading and storing pictures for this and the following 
         questions. (1 line)
 
-2. **Coarse-grain parallelism**
+2. **Coarse-grain data parallelism**
     
     We will parallelize the application by processing half of each
     picture on core 0 and the other half on core 1, a form of
@@ -124,7 +124,9 @@ Your writeup should include your answers to the following questions:
             `Filter` to move the bottleneck? Don't experimentally find a `FILTER_LENGTH` but find it analytically. (7 lines)
 
 4. **CDC Parallel**
-    
+    ```{tip}
+    Note, this section is optional, but will help you out with the final project.
+    ```
     Building on techniques and observations from previous parts,
     create a data-parallel implementation of your CDC function from homework 2 
     that uses four cores of ARM A53 to achieve

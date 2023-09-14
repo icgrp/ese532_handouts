@@ -407,6 +407,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-the-fpga">Run on the FPGA</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#write-the-sd-card-image">Write the SD Card Image</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-with-linux">Boot the Ultra96 (Environment - Personal Computer with Linux)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-mac">Boot the Ultra96 (Environment - Mac)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</a></li>
 </ul>
 </li>
@@ -515,17 +516,17 @@ and 2 should be in the “on” position.</p></li>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../_images/sd_card_mode.jpg"><img alt="../_images/sd_card_mode.jpg" src="../_images/sd_card_mode.jpg" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>And also make sure you have properly connected the JTAG module as follows:</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id5">
 <a class="reference internal image-reference" href="../_images/jtag.png"><img alt="../_images/jtag.png" src="../_images/jtag.png" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -535,7 +536,7 @@ and 2 should be in the “on” position.</p></li>
 <div><p>Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <a class="reference external" href="https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf">https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf</a></p>
 </div></blockquote>
 </div>
-<p>Your setup for this HW should look like <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>. Note that the usb to ethernet adapter should be plugged into the usb port closest to the corner of the board.</p>
+<p>Your setup for this HW should look like <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>. Note that the USB to Ethernet adapter should be plugged into the USB port closest to the corner of the board.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" />
 <figcaption>
@@ -573,19 +574,19 @@ and 2 should be in the “on” position.</p></li>
 <section id="boot-the-ultra96-environment-personal-computer-with-linux">
 <h4>Boot the Ultra96 (Environment - Personal Computer with Linux)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-with-linux" title="Permalink to this heading">#</a></h4>
 <ul>
-<li><p>The instructions here are for users running Linux on their personal computers. For Windows users, skim these through, and
-go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a>.</p></li>
+<li><p>The instructions here are for users running Linux on their personal computers. For Windows and Mac users, skim these through, and
+then go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a> or <a class="reference internal" href="#boot-mac"><span class="std std-ref">Boot the Ultra96 (Environment - Mac)</span></a>.</p></li>
 <li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
-<li><p>the first terminal will be used to copy binaries into the Ultra96</p></li>
+<li><p>the first terminal will be used to copy binaries onto the Ultra96</p></li>
 <li><p>the second terminal will be used to access the serial console of the Ultra96</p></li>
 </ul>
 </li>
 <li><p>We will now open the serial console of the Ultra96.
 You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port.
 We are using <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and launch <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> by <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">putty</span></code>.
-The settings are shown in <a class="reference internal" href="#putty"><span class="std std-numref">Fig. 7</span></a>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
+The settings are shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">putty</span></code>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
 the console output. If you are on Windows, this will be
 something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>.</p>
 <figure class="align-default" id="putty">
@@ -596,7 +597,7 @@ something different, like <code class="docutils literal notranslate"><span class
 </figure>
 </li>
 <li><p>After you have connected to the serial port, boot the board
-by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 8</span></a>.</p>
+by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p>
 <figure class="align-default" id="boot">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
@@ -714,14 +715,132 @@ computer.</p></li>
 </li>
 </ul>
 </section>
+<section id="boot-the-ultra96-environment-mac">
+<span id="boot-mac"></span><h4>Boot the Ultra96 (Environment - Mac)<a class="headerlink" href="#boot-the-ultra96-environment-mac" title="Permalink to this heading">#</a></h4>
+<p>First install the USB to Ethernet driver from <a class="reference external" href="https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179">here</a>. Then install this serial terminal from <a class="reference external" href="https://www.macupdate.com/app/mac/31352/coolterm">here</a>.</p>
+<ul>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>.</p></li>
+<li><p>We will use two terminals on our host computer:</p>
+<ul class="simple">
+<li><p>the first terminal will be used to copy binaries onto the Ultra96</p></li>
+<li><p>the second terminal will be used to access the serial console of the Ultra96</p></li>
+</ul>
+</li>
+<li><p>We will now open the serial console of the Ultra96.
+You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port.
+We are using <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and launch <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> by <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">putty</span></code>.
+The settings are shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">putty</span></code>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
+the console output. If you are on Windows, this will be
+something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>.</p>
+<figure class="align-default" id="id2">
+<img alt="../_images/putty.png" src="../_images/putty.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">PuTTY settings</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>After you have connected to the serial port, boot the board
+by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p>
+<figure class="align-default" id="id3">
+<img alt="../_images/boot.png" src="../_images/boot.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Watch your serial console for boot messages. Following is what ours look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>�Xilinx Zynq MP First Stage Boot Loader
+Release 2020.1   Oct 17 2020  -  06:29:34
+NOTICE:  ATF running on XCZU3EG/silicon v4/RTL5.1 at 0xfffea000
+NOTICE:  BL31: v2.2(release):v1.1-5588-g5918e656e
+NOTICE:  BL31: Built : 20:07:49, Oct 17 2020
+U-Boot 2020.01 (Oct 17 2020 - 20:08:47 +0000)
+Model: Avnet Ultra96 Rev1
+Board: Xilinx ZynqMP
+DRAM:  2 GiB
+.
+.
+.
+Starting kernel ...
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
+[    0.000000] Machine model: Avnet Ultra96 Rev1
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options &#39;115200n8&#39;)
+[    0.000000] printk: bootconsole [cdns0] enabled
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created DMA memory pool at 0x000000003ed40000, size 1 MiB
+[    0.000000] OF: reserved mem: initialized node rproc@3ed400000, compatible id shared-dma-pool
+[    0.000000] cma: Reserved 512 MiB at 0x000000005fc00000
+.
+.
+.
+.
+Starting syslogd/klogd: done
+Starting tcf-agent: OK
+PetaLinux 2020.1 ultra96v2-2020-1 ttyPS0
+root@ultra96v2-2020-1:~# The XKEYBOARD keymap compiler (xkbcomp) reports:
+&gt; Warning:          Unsupported high keycode 372 for name &lt;I372&gt; ignored
+&gt;                   X11 cannot support keycodes above 255.
+&gt;                   This warning only shows for the first high keycode.
+Errors from xkbcomp are not fatal to the X server
+D-BUS per-session daemon address is: unix:abstract=/tmp/dbus-2CuBS4BnDn,guid=63270a6bec61460191859caa5f9022fc
+matchbox: Cant find a keycode for keysym 269025056
+matchbox: ignoring key shortcut XF86Calendar=!$contacts
+matchbox: Cant find a keycode for keysym 2809
+matchbox: ignoring key shortcut telephone=!$dates
+matchbox: Cant find a keycode for keysym 269025050
+matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
+dbus-daemon[641]: Activating service name=&#39;org.a11y.atspi.Registry&#39; requested by &#39;:1.0&#39; (uid=0 pid=636 comm=&quot;matchbox-desktop &quot;)
+dbus-daemon[641]: Successfully activated service &#39;org.a11y.atspi.Registry&#39;
+SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+[settings daemon] Forking. run with -n to prevent fork
+</pre></div>
+</div>
+</li>
+<li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@u96v2-sbc-base-2020-2:~#
+</pre></div>
+</div>
+</li>
+<li><p>We will now enable ethernet connection between our Ultra96 and
+the host computer, such that we can copy files between
+the devices. Issue the following command in the serial console:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span><span class="m">10</span>.10.7.1<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
+</pre></div>
+</div>
+</li>
+<li><p>Now on your Mac, open up SystemPreferences-&gt;Network, and then you should see AX88179 show up in the connections box. Click it and set the IP address to 10.10.7.2 and the subnet mask to 255.0.0.0</p></li>
+<li><p>We have now assigned IP <code class="docutils literal notranslate"><span class="pre">10.10.7.1</span></code> to our Ultra96 and IP <code class="docutils literal notranslate"><span class="pre">10.10.7.2</span></code> to our USB ethernet device connected to our host computer.
+You can test the connection by doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.2</span></code> from the Ultra96 serial console, and doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.1</span></code> from the host
+computer.</p></li>
+<li><p>Unfortunately, as it stands, every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file <strong>on your host computer</strong> <code class="docutils literal notranslate"><span class="pre">.profile</span></code> (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In <code class="docutils literal notranslate"><span class="pre">.profile</span></code>, add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span><span class="m">10</span>.10.7.1<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
+
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
+</pre></div>
+</div>
+<p>Then create another file (also not in your home directory), called <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>, and add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.profile
+</pre></div>
+</div>
+<p>Next, copy these files over to the Ultra96:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>.profile<span class="w"> </span>.bashrc<span class="w"> </span>root@10.10.7.1:/home/root/
+</pre></div>
+</div>
+<p>Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.</p>
+</li>
+</ul>
+</section>
 <section id="boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
 <span id="boot-windows"></span><h4>Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows" title="Permalink to this heading">#</a></h4>
 <ul>
 <li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id6">
 <img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -729,7 +848,7 @@ computer.</p></li>
 <li><p>Start MobaXterm. Click <em><strong>Session</strong></em> in the left top corner and select <em><strong>Serial</strong></em>.
 Set the serial port as the one you found in the previous step and bps. In the example case,
 it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
-<li><p>Boot the board by pressing the boot switch as shown in <a class="reference internal" href="#boot"><span class="std std-numref">Fig. 8</span></a>.</p></li>
+<li><p>Boot the board by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p></li>
 <li><p>Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
 </pre></div>
@@ -737,10 +856,10 @@ it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
 </li>
 <li><p>Click plus sign to open up the local machine’s session(new tab).
 Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id7">
 <img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -748,18 +867,18 @@ Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span
 previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
 <code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(note that
 this is 24!) as follows:</p>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id8">
 <img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
 <li><p>Your devices are now connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id9">
 <img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -858,6 +977,7 @@ Then create another file (also not in your home directory), called <code class="
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-the-fpga">Run on the FPGA</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#write-the-sd-card-image">Write the SD Card Image</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-with-linux">Boot the Ultra96 (Environment - Personal Computer with Linux)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-mac">Boot the Ultra96 (Environment - Mac)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</a></li>
 </ul>
 </li>

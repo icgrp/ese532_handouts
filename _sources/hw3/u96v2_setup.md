@@ -107,7 +107,7 @@ JTAG module
 ```
 
 
-Your setup for this HW should look like {numref}`ultra96-setup`. Note that the usb to ethernet adapter should be plugged into the usb port closest to the corner of the board.
+Your setup for this HW should look like {numref}`ultra96-setup`. Note that the USB to Ethernet adapter should be plugged into the USB port closest to the corner of the board.
 ```{figure} images/env_setup.jpg
 ---
 name: ultra96-setup
@@ -134,11 +134,11 @@ Development Environment
 - Once you finish writing the image to the SD card, slide it into your Ultra96's SD card slot.
 
 #### Boot the Ultra96 (Environment - Personal Computer with Linux)
-- The instructions here are for users running Linux on their personal computers. For Windows users, skim these through, and
-  go to {ref}`boot_windows`.
+- The instructions here are for users running Linux on their personal computers. For Windows and Mac users, skim these through, and
+  then go to {ref}`boot_windows` or {ref}`boot_mac`.
 - Make sure you have the board connected as shown in {numref}`ultra96-setup`.
 - We will use two terminals on our host computer:
-    - the first terminal will be used to copy binaries into the Ultra96
+    - the first terminal will be used to copy binaries onto the Ultra96
     - the second terminal will be used to access the serial console of the Ultra96
 - We will now open the serial console of the Ultra96. 
   You can use any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. 
@@ -248,6 +248,114 @@ Development Environment
 You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
 computer.
 - Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
+    ```bash
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+
+    alias ls="ls --color"
+    alias ll="ls -laF --color"
+    ```
+    Then create another file (also not in your home directory), called `.bashrc`, and add the following:
+    ```bash
+    source .profile
+    ```
+    Next, copy these files over to the Ultra96:
+    ``` bash
+    scp .profile .bashrc root@10.10.7.1:/home/root/
+    ```
+    Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+
+(boot_mac)=
+#### Boot the Ultra96 (Environment - Mac)
+First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179). Then install this serial terminal from [here](https://www.macupdate.com/app/mac/31352/coolterm).
+
+- Make sure you have the board connected as shown in {numref}`ultra96-setup`.
+- We will use two terminals on our host computer:
+    - the first terminal will be used to copy binaries onto the Ultra96
+    - the second terminal will be used to access the serial console of the Ultra96
+- We will now open the serial console of the Ultra96. 
+  You can use any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. 
+  We are using `PuTTY` and launch `PuTTY` by `sudo putty`. 
+  The settings are shown in {numref}`putty`. `/dev/ttyUSB1` is the port where the Ultra96 dumps all
+  the console output. If you are on Windows, this will be
+  something different, like `COM4`. 
+    ```{figure} images/putty.png
+    ---
+    name: putty
+    ---
+    PuTTY settings
+    ```
+- After you have connected to the serial port, boot the board
+  by pressing the boot switch as shown in {numref}`boot`.
+    ```{figure} images/boot.png
+    ---
+    name: boot
+    ---
+    Switch for booting Ultra96
+    ```
+- Watch your serial console for boot messages. Following is what ours look like:
+    ```
+    �Xilinx Zynq MP First Stage Boot Loader
+    Release 2020.1   Oct 17 2020  -  06:29:34
+    NOTICE:  ATF running on XCZU3EG/silicon v4/RTL5.1 at 0xfffea000
+    NOTICE:  BL31: v2.2(release):v1.1-5588-g5918e656e
+    NOTICE:  BL31: Built : 20:07:49, Oct 17 2020
+    U-Boot 2020.01 (Oct 17 2020 - 20:08:47 +0000)
+    Model: Avnet Ultra96 Rev1
+    Board: Xilinx ZynqMP
+    DRAM:  2 GiB
+    .
+    .
+    .
+    Starting kernel ...
+    [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+    [    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
+    [    0.000000] Machine model: Avnet Ultra96 Rev1
+    [    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+    [    0.000000] printk: bootconsole [cdns0] enabled
+    [    0.000000] efi: Getting EFI parameters from FDT:
+    [    0.000000] efi: UEFI not found.
+    [    0.000000] Reserved memory: created DMA memory pool at 0x000000003ed40000, size 1 MiB
+    [    0.000000] OF: reserved mem: initialized node rproc@3ed400000, compatible id shared-dma-pool
+    [    0.000000] cma: Reserved 512 MiB at 0x000000005fc00000
+    .
+    .
+    .
+    .
+    Starting syslogd/klogd: done
+    Starting tcf-agent: OK
+    PetaLinux 2020.1 ultra96v2-2020-1 ttyPS0
+    root@ultra96v2-2020-1:~# The XKEYBOARD keymap compiler (xkbcomp) reports:
+    > Warning:          Unsupported high keycode 372 for name <I372> ignored
+    >                   X11 cannot support keycodes above 255.
+    >                   This warning only shows for the first high keycode.
+    Errors from xkbcomp are not fatal to the X server
+    D-BUS per-session daemon address is: unix:abstract=/tmp/dbus-2CuBS4BnDn,guid=63270a6bec61460191859caa5f9022fc
+    matchbox: Cant find a keycode for keysym 269025056
+    matchbox: ignoring key shortcut XF86Calendar=!$contacts
+    matchbox: Cant find a keycode for keysym 2809
+    matchbox: ignoring key shortcut telephone=!$dates
+    matchbox: Cant find a keycode for keysym 269025050
+    matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
+    dbus-daemon[641]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=0 pid=636 comm="matchbox-desktop ")
+    dbus-daemon[641]: Successfully activated service 'org.a11y.atspi.Registry'
+    SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+    [settings daemon] Forking. run with -n to prevent fork
+    ```
+- Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
+    ```bash
+    root@u96v2-sbc-base-2020-2:~#
+    ```
+- We will now enable ethernet connection between our Ultra96 and
+    the host computer, such that we can copy files between
+    the devices. Issue the following command in the serial console:
+    ```bash
+    ifconfig eth0 10.10.7.1 netmask 255.0.0.0
+    ```
+- Now on your Mac, open up SystemPreferences->Network, and then you should see AX88179 show up in the connections box. Click it and set the IP address to 10.10.7.2 and the subnet mask to 255.0.0.0
+- We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
+You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
+computer.
+- Unfortunately, as it stands, every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
 
