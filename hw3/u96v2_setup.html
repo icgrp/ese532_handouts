@@ -516,17 +516,17 @@ and 2 should be in the “on” position.</p></li>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:</p>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/sd_card_mode.jpg"><img alt="../_images/sd_card_mode.jpg" src="../_images/sd_card_mode.jpg" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>And also make sure you have properly connected the JTAG module as follows:</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../_images/jtag.png"><img alt="../_images/jtag.png" src="../_images/jtag.png" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -586,7 +586,7 @@ then go to <a class="reference internal" href="#boot-windows"><span class="std s
 <li><p>We will now open the serial console of the Ultra96.
 You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port.
 We are using <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and launch <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> by <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">putty</span></code>.
-The settings are shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">putty</span></code>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
+The settings are shown in <a class="reference internal" href="#putty"><span class="std std-numref">Fig. 7</span></a>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
 the console output. If you are on Windows, this will be
 something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>.</p>
 <figure class="align-default" id="putty">
@@ -726,25 +726,13 @@ computer.</p></li>
 <li><p>the second terminal will be used to access the serial console of the Ultra96</p></li>
 </ul>
 </li>
-<li><p>We will now open the serial console of the Ultra96.
-You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port.
-We are using <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and launch <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> by <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">putty</span></code>.
-The settings are shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">putty</span></code>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
-the console output. If you are on Windows, this will be
-something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>.</p>
-<figure class="align-default" id="id2">
-<img alt="../_images/putty.png" src="../_images/putty.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">PuTTY settings</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
+<li><p>We will now open the serial console of the Ultra96. Open CoolTerm and click <code class="docutils literal notranslate"><span class="pre">options</span></code>. Then Under <code class="docutils literal notranslate"><span class="pre">Serial</span> <span class="pre">Port</span></code> choose <code class="docutils literal notranslate"><span class="pre">usbserial-1234_oj11</span></code>. Set the baudrate to 115200. Then under Data Handling, select <code class="docutils literal notranslate"><span class="pre">Handle</span> <span class="pre">BS</span> <span class="pre">and</span> <span class="pre">DEL</span> <span class="pre">Characters</span></code>. Then press okay. Then click <code class="docutils literal notranslate"><span class="pre">Connect</span></code> to open up the port.</p></li>
 <li><p>After you have connected to the serial port, boot the board
 by pressing the boot switch as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">boot</span></code>.</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id2">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -837,10 +825,10 @@ computer.</p></li>
 <span id="boot-windows"></span><h4>Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows" title="Permalink to this heading">#</a></h4>
 <ul>
 <li><p>Connect your ultra96 jtag usb to your computer. Also connect the ethernet-usb to ultra96 and the computer. Go to device managers and note down the serial port of the usb. In the example case, it’s COM4.</p>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id5">
 <img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -856,10 +844,10 @@ it’s COM4 and 115200. Click <em><strong>OK</strong></em>.</p></li>
 </li>
 <li><p>Click plus sign to open up the local machine’s session(new tab).
 Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> and find out the ip address and netmask assigned to the USB-ethernet device. Following is the example:</p>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id6">
 <img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -867,18 +855,18 @@ Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span
 previous step, the ip address of the local machine is <code class="docutils literal notranslate"><span class="pre">169.254.123.23</span></code> and netmask is
 <code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>. So, let’s assign the ultra96 to a ip of <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>(note that
 this is 24!) as follows:</p>
-<figure class="align-default" id="id8">
+<figure class="align-default" id="id7">
 <img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
 <li><p>Your devices are now connected. Go to the local machine’s tab and ssh into the Ultra96:</p>
-<figure class="align-default" id="id9">
+<figure class="align-default" id="id8">
 <img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>

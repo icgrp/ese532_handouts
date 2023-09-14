@@ -272,18 +272,7 @@ First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/
 - We will use two terminals on our host computer:
     - the first terminal will be used to copy binaries onto the Ultra96
     - the second terminal will be used to access the serial console of the Ultra96
-- We will now open the serial console of the Ultra96. 
-  You can use any program like `minicom`, `gtkterm` or `PuTTY` to connect to our serial port. 
-  We are using `PuTTY` and launch `PuTTY` by `sudo putty`. 
-  The settings are shown in {numref}`putty`. `/dev/ttyUSB1` is the port where the Ultra96 dumps all
-  the console output. If you are on Windows, this will be
-  something different, like `COM4`. 
-    ```{figure} images/putty.png
-    ---
-    name: putty
-    ---
-    PuTTY settings
-    ```
+- We will now open the serial console of the Ultra96. Open CoolTerm and click `options`. Then Under `Serial Port` choose `usbserial-1234_oj11`. Set the baudrate to 115200. Then under Data Handling, select `Handle BS and DEL Characters`. Then press okay. Then click `Connect` to open up the port.
 - After you have connected to the serial port, boot the board
   by pressing the boot switch as shown in {numref}`boot`.
     ```{figure} images/boot.png
