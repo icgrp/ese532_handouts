@@ -744,98 +744,13 @@ snippets of assembly)</p></li>
 </ol>
 </li>
 <li><p><strong>Using NEON Intrinsics</strong></p>
-<p>You will now accelerate the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> function using neon intrinsics. Accelerate this function by using vector loads and stores. If you look at <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> in <code class="docutils literal notranslate"><span class="pre">Filter.cpp</span></code> right after the <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">VECTORIZED</span></code>, you will see an implimentation of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> using neon intrinsics, which may help you become more familiar with using intrinsics. <a class="reference external" href="https://developer.arm.com/documentation/den0018/a/NEON-Code-Examples-with-Intrinsics/Swapping-color-channels/How-de-interleave-and-interleave-work">This</a> page should give you some idea about how to exploit certain vector loads to help perform Scale. You can use [this] (<a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:&#64;navigationhierarchiessimdisa=%5BNeon%5D">https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:&#64;navigationhierarchiessimdisa=[Neon]</a>) page to help you find documentation for particular intrinsics. You can use <a class="reference external" href="https://github.com/gcc-mirror/gcc/blob/master/gcc/config/arm/arm_neon.h">this</a> page to help you figure out how to work with different neon datatypes, especially for those that use structs.</p>
-<p>We will now accelerate the <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> function using intrinsics.
-We have provided you with a neon intrinsics implementation of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>
-in <code class="docutils literal notranslate"><span class="pre">Filter.cpp</span></code> right after the <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">VECTORIZED</span></code>.
-This implementation doesn’t achieve full performance like the
-auto vectorization did. We will find out why and fix it.</p>
-<ol class="arabic">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">-O3</span></code> optimization and build the
-target by doing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">neon_filter</span></code>. Run it with <code class="docutils literal notranslate"><span class="pre">./neon_filter</span></code> and
-report the latency of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>. Report the speedup with respect to the baseline in 3. Include the assembly code of the neon intrinsic implementation of
-<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>.</p></li>
-<li><p>The <a class="reference internal" href="walk_through.html"><span class="doc">Setup and Walk-through</span></a> talked about how you get lanes by packing
-data into vectors. Moreover, in 3j you saw how data type matters in
-generating performant assembly code that utilizes full lanes of the NEON
-units. Flowing data through the lanes is key to getting full
-throughput out of the NEON units.</p>
-<p>As we saw, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>
-function works on seven 8-bit data elements at a time.
-Describe how our neon intrinsic implementation deals with a number of data elements that is not divisible
-by the number of vector lanes without losing significant
-performance? (3 lines)</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<ul>
-<li><p>Is there anything about the structure of the filter
-(coefficients array) that helps us?</p></li>
-<li><p>Following are two animations. What can you figure out from it?</p>
-<figure class="align-default" id="baseline-filter">
-<img alt="../_images/baseline-filter.gif" src="../_images/baseline-filter.gif" />
-<figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> without vectorization</span><a class="headerlink" href="#baseline-filter" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="vectorized-filter">
-<img alt="../_images/vectorized-filter.gif" src="../_images/vectorized-filter.gif" />
-<figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> with vectorization</span><a class="headerlink" href="#vectorized-filter" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</li>
-</ul>
-</div>
-</li>
-<li><p>Explain at which granularity and in which order our implementation processes
-the input data with vector instructions. (7 lines)</p></li>
-<li><p>Compare the assembly code from 3j and 5a. What differences do you notice between
-the instructions generated?</p></li>
-<li><p>Using NEON intrinsics, modify <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>
-and try to achieve a speedup with respect to our implementation.
-Include the accelerated function in your report.  Make
-sure that you verify your optimized code functions properly (i.e. you should see <code class="docutils literal notranslate"><span class="pre">Application</span> <span class="pre">completed</span> <span class="pre">successfully.</span></code>).</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<ul class="simple">
-<li><p>Can you find an intrinsic that can be used to reduce the number
-of intrinsics we currently use?</p></li>
-<li><p>You can also lookup the assembly instruction from 3j at <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics">NEON Intrinsics Reference</a>
-and find a corresponding intrinsic to use in your modification!</p></li>
-</ul>
-</div>
-</li>
-<li><p>Does your modified <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> achieve the speedup you got in 3k? If not,
-can you figure out why?</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<ul>
-<li><p>Use the flag <code class="docutils literal notranslate"><span class="pre">-fopt-info-loop-optimized</span></code> as follows to find out which
-loops got vectorized:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">mcpu</span><span class="o">=</span><span class="n">native</span> <span class="o">-</span><span class="n">fopt</span><span class="o">-</span><span class="n">info</span><span class="o">-</span><span class="n">loop</span><span class="o">-</span><span class="n">optimized</span> <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">stdout</span> <span class="o">|</span> <span class="n">c</span><span class="o">++</span><span class="n">filt</span> <span class="o">&gt;</span> <span class="n">Filter_O1</span><span class="o">.</span><span class="n">s</span>
-</pre></div>
-</div>
-</li>
-<li><p>Use the flag <code class="docutils literal notranslate"><span class="pre">-fopt-info-vec-missed</span></code> as follows to find out what the compiler
-wasn’t able to vectorize:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">mcpu</span><span class="o">=</span><span class="n">native</span> <span class="o">-</span><span class="n">fopt</span><span class="o">-</span><span class="n">info</span><span class="o">-</span><span class="n">vec</span><span class="o">-</span><span class="n">missed</span> <span class="n">Filter</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">stdout</span> <span class="o">|</span> <span class="n">c</span><span class="o">++</span><span class="n">filt</span> <span class="o">&gt;</span> <span class="n">Filter_O1</span><span class="o">.</span><span class="n">s</span>
-</pre></div>
-</div>
-</li>
-<li><p>When comparing the assembly code from 3j and the above, how many <code class="docutils literal notranslate"><span class="pre">bne</span></code> instructions
-do you see? What does it tell you about auto vectorization on code that uses
-neon intrinsics? What is a common loop optimization technique to reduce the impact of
-branch instructions?</p></li>
-</ul>
-</div>
-</li>
-<li><p>Try to achieve the same speedup as 3k for your <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after identifying the
-problem in 5f.
-Report the latency of your modified <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> and the application
-as a whole. (2 lines)</p></li>
-<li><p>Compare your performance with the lower bounds. (1 lines)</p></li>
-<li><p>Compare the performance of manual and automatic vectorization.
-(1 lines)</p></li>
+<p>You will now accelerate the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> function using neon intrinsics. Accelerate this function by using vector loads and stores. If you look at <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> in <code class="docutils literal notranslate"><span class="pre">Filter.cpp</span></code> right after the <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">VECTORIZED</span></code>, you will see an implimentation of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> using neon intrinsics, which may help you become more familiar with using intrinsics. <a class="reference external" href="https://developer.arm.com/documentation/den0018/a/NEON-Code-Examples-with-Intrinsics/Swapping-color-channels/How-de-interleave-and-interleave-work">This</a> page should give you some idea about how to exploit certain vector loads to help perform Scale. You can use <a class="reference external" href="https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:&#64;navigationhierarchiessimdisa=%5BNeon%5D">this</a> page to help you find documentation for particular intrinsics. You can use <a class="reference external" href="https://github.com/gcc-mirror/gcc/blob/master/gcc/config/arm/arm_neon.h">this</a> page to help you figure out how to work with different neon datatypes, especially for those that use structs.</p>
+<ol class="arabic simple">
+<li><p>Explain your strategy for accelerating <code class="docutils literal notranslate"><span class="pre">Scale</span></code>, and include a screenshot of your function in the report. You will also submit code for this section (see the Deliverables section).</p></li>
+<li><p>Compile the target <code class="docutils literal notranslate"><span class="pre">baseline</span></code> with <code class="docutils literal notranslate"><span class="pre">-O3</span></code> but autovectorization turned off with <code class="docutils literal notranslate"><span class="pre">-fno-tree-vectorize</span></code>. Run it and report the latency of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>.</p></li>
+<li><p>Compile the target <code class="docutils literal notranslate"><span class="pre">baseline</span></code> with <code class="docutils literal notranslate"><span class="pre">-O3</span></code> but this time with autovectorization. Run it and report the latency of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>.</p></li>
+<li><p>Compile the target <code class="docutils literal notranslate"><span class="pre">neon</span></code>. Run it and report the latency of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>.</p></li>
+<li><p>How much faster was your neon implimentation over the two baseline implimentations?</p></li>
 </ol>
 </li>
 <li><p><strong>Reflection</strong></p>
