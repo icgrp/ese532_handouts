@@ -278,84 +278,18 @@ Your writeup should include your answers to the following questions:
 
 5. **Using NEON Intrinsics**
     
-    You will now accelerate the `Scale` function using neon intrinsics. Accelerate this function by using vector loads and stores. If you look at `Filter_vertical` in `Filter.cpp` right after the `#ifdef VECTORIZED`, you will see an implimentation of `Filter_vertical` using neon intrinsics, which may help you become more familiar with using intrinsics. [This](https://developer.arm.com/documentation/den0018/a/NEON-Code-Examples-with-Intrinsics/Swapping-color-channels/How-de-interleave-and-interleave-work) page should give you some idea about how to exploit certain vector loads to help perform Scale. You can use [this] (https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiessimdisa=[Neon]) page to help you find documentation for particular intrinsics. You can use [this](https://github.com/gcc-mirror/gcc/blob/master/gcc/config/arm/arm_neon.h) page to help you figure out how to work with different neon datatypes, especially for those that use structs.
+    You will now accelerate the `Scale` function using neon intrinsics. Accelerate this function by using vector loads and stores. If you look at `Filter_vertical` in `Filter.cpp` right after the `#ifdef VECTORIZED`, you will see an implimentation of `Filter_vertical` using neon intrinsics, which may help you become more familiar with using intrinsics. [This](https://developer.arm.com/documentation/den0018/a/NEON-Code-Examples-with-Intrinsics/Swapping-color-channels/How-de-interleave-and-interleave-work) page should give you some idea about how to exploit certain vector loads to help perform Scale. You can use [this](https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiessimdisa=[Neon]) page to help you find documentation for particular intrinsics. You can use [this](https://github.com/gcc-mirror/gcc/blob/master/gcc/config/arm/arm_neon.h) page to help you figure out how to work with different neon datatypes, especially for those that use structs.
 
-    We will now accelerate the `Filter_vertical` function using intrinsics.
-    We have provided you with a neon intrinsics implementation of `Filter_vertical`
-    in `Filter.cpp` right after the `#ifdef VECTORIZED`.
-    This implementation doesn't achieve full performance like the
-    auto vectorization did. We will find out why and fix it.
-    1. Use `-O3` optimization and build the
-        target by doing `make neon_filter`. Run it with `./neon_filter` and
-        report the latency of `Filter_vertical`. Report the speedup with respect to the baseline in 3. Include the assembly code of the neon intrinsic implementation of
-        `Filter_vertical`.  
-    2. The {doc}`walk_through` talked about how you get lanes by packing
-        data into vectors. Moreover, in 3j you saw how data type matters in
-        generating performant assembly code that utilizes full lanes of the NEON
-        units. Flowing data through the lanes is key to getting full
-        throughput out of the NEON units.
-        
-        As we saw, `Filter_vertical`
-        function works on seven 8-bit data elements at a time.
-        Describe how our neon intrinsic implementation deals with a number of data elements that is not divisible
-        by the number of vector lanes without losing significant
-        performance? (3 lines)
-        ````{hint}
-        - Is there anything about the structure of the filter 
-        (coefficients array) that helps us?
-        - Following are two animations. What can you figure out from it?
-            ```{figure} images/baseline-filter.gif
-            ---
-            name: baseline-filter
-            ---
-            `Filter_vertical` without vectorization
-            ```
-            ```{figure} images/vectorized-filter.gif
-            ---
-            name: vectorized-filter
-            ---
-            `Filter_vertical` with vectorization
-            ```
-        ````
-    3. Explain at which granularity and in which order our implementation processes
-        the input data with vector instructions. (7 lines)
-    4. Compare the assembly code from 3j and 5a. What differences do you notice between
-        the instructions generated?
-    5. Using NEON intrinsics, modify `Filter_vertical` 
-        and try to achieve a speedup with respect to our implementation.
-        Include the accelerated function in your report.  Make
-        sure that you verify your optimized code functions properly (i.e. you should see `Application completed successfully.`).
-        ```{hint}
-        - Can you find an intrinsic that can be used to reduce the number
-            of intrinsics we currently use?
-        - You can also lookup the assembly instruction from 3j at [NEON Intrinsics Reference](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/intrinsics)
-        and find a corresponding intrinsic to use in your modification!
-        ```
-    6. Does your modified `Filter_vertical` achieve the speedup you got in 3k? If not,
-        can you figure out why?
-        ```{hint}
-        - Use the flag `-fopt-info-loop-optimized` as follows to find out which
-            loops got vectorized:
-            ```
-            g++ -S -O3 -mcpu=native -fopt-info-loop-optimized Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
-            ```
-        - Use the flag `-fopt-info-vec-missed` as follows to find out what the compiler
-            wasn't able to vectorize:
-            ```
-            g++ -S -O3 -mcpu=native -fopt-info-vec-missed Filter.cpp -o /dev/stdout | c++filt > Filter_O1.s
-            ```
-        - When comparing the assembly code from 3j and the above, how many `bne` instructions
-            do you see? What does it tell you about auto vectorization on code that uses
-            neon intrinsics? What is a common loop optimization technique to reduce the impact of
-            branch instructions?
-        ```
-    7. Try to achieve the same speedup as 3k for your `Filter_vertical` after identifying the
-        problem in 5f. 
-        Report the latency of your modified `Filter_vertical` and the application
-        as a whole. (2 lines)
-    8. Compare your performance with the lower bounds. (1 lines)
-    9. Compare the performance of manual and automatic vectorization.
-        (1 lines)
+    1. Explain your strategy for accelerating `Scale`, and include a screenshot of your function in the report. You will also submit code for this section (see the Deliverables section).
+
+    2. Compile the target `baseline` with `-O3` but autovectorization turned off with `-fno-tree-vectorize`. Run it and report the latency of `Scale`.
+
+    3. Compile the target `baseline` with `-O3` but this time with autovectorization. Run it and report the latency of `Scale`.
+
+    4. Compile the target `neon`. Run it and report the latency of `Scale`.
+
+    5. How much faster was your neon implimentation over the two baseline implimentations?
+
 
 6. **Reflection**
 
