@@ -278,6 +278,8 @@ Your writeup should include your answers to the following questions:
 
 5. **Using NEON Intrinsics**
     
+    You will now accelerate the `Scale` function using neon intrinsics. Accelerate this function by using vector loads and stores. If you look at `Filter_vertical` in `Filter.cpp` right after the `#ifdef VECTORIZED`, you will see an implimentation of `Filter_vertical` using neon intrinsics, which may help you become more familiar with using intrinsics. [This](https://developer.arm.com/documentation/den0018/a/NEON-Code-Examples-with-Intrinsics/Swapping-color-channels/How-de-interleave-and-interleave-work) page should give you some idea about how to exploit certain vector loads to help perform Scale. You can use [this] (https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiessimdisa=[Neon]) page to help you find documentation for particular intrinsics. You can use [this](https://github.com/gcc-mirror/gcc/blob/master/gcc/config/arm/arm_neon.h) page to help you figure out how to work with different neon datatypes, especially for those that use structs.
+
     We will now accelerate the `Filter_vertical` function using intrinsics.
     We have provided you with a neon intrinsics implementation of `Filter_vertical`
     in `Filter.cpp` right after the `#ifdef VECTORIZED`.
