@@ -83,7 +83,7 @@ Your writeup should include your answers to the following questions:
         ```
     3. Include the assembly code of the innermost loop of `Filter_horizontal` at optimization level 
         `-O2` in your report.
-    4. Based on the machine code of questions 2b and 2c, explain the most important 
+    4. Based on the machine code of questions 2.2 and 2.3, explain the most important 
         difference between the `-O0` and `-O2` versions. (2 lines)
         ```{hint}
         Leading questions:
@@ -106,8 +106,8 @@ Your writeup should include your answers to the following questions:
         ```
     6. Include the assembly code of the innermost loop of
         `Filter_horizontal` at optimization level `-O3` in your report.
-    7. Based on the machine code of questions 2c and
-        2f, explain the most important difference between the
+    7. Based on the machine code of questions 2.3 and
+        2.6, explain the most important difference between the
         `-O2` and `-O3` versions. (1 line)
     8. What are two drawbacks of using a higher optimization level? (5 lines)
 
