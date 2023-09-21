@@ -296,7 +296,7 @@ Your writeup should include your answers to the following questions:
     Reflect on the cooperation in your team.
     1. Compare your actual time on tasks with your original
         estimates. (table with 1-2 line explanation of major discrepancies)
-    2. Reflect on your task decomposition (1a).
+    2. Reflect on your task decomposition (1.1).
         Were you able to complete the task as you originally planned?
         What aspects of your original task distribution worked well and why?
         Did you refine the plan during the assignment? How and why?  In
