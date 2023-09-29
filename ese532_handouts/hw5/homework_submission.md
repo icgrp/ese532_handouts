@@ -176,7 +176,7 @@ Your writeup should include your answers to the following questions:
     ``` -->
     1. Run `vitis_analyzer ./mmult.xclbin.run_summary` to open Vitis Analyzer. 
     1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.
-    1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot. Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
+    1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot (start from clEnqueueTask and go till clFinish). Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
         Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.
         ```{figure} images/vitis_analyzer.png
         ---

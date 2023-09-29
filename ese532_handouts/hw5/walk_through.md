@@ -249,7 +249,7 @@ Vitis flow consists of **1)compiling the host code, 2)generating kernel object(.
 If you take a look at the Makefile, `make all` will execute steps specified above.
 
 Because we already generated `mmult.xo` file, the command to generate Xilinx object file(`.xo`) is commented out.
-Vitis compiler(`v++`) performs this step with `--copmile` flag, or `-c` for short.
+Vitis compiler(`v++`) performs this step with `--compile` flag, or `-c` for short.
 You can also generate `.xo` file directly using Vitis HLS like we just did. 
 FYI, you can create `.xo` file from RTL code, too (obviously).
 
