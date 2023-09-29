@@ -683,7 +683,7 @@ to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tu
 Vitis flow consists of <strong>1)compiling the host code, 2)generating kernel object(.xo file), 3)generating FPGA binary(.xclbin file), 4)packaging to a bootable image.</strong>
 If you take a look at the Makefile, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> will execute steps specified above.</p>
 <p>Because we already generated <code class="docutils literal notranslate"><span class="pre">mmult.xo</span></code> file, the command to generate Xilinx object file(<code class="docutils literal notranslate"><span class="pre">.xo</span></code>) is commented out.
-Vitis compiler(<code class="docutils literal notranslate"><span class="pre">v++</span></code>) performs this step with <code class="docutils literal notranslate"><span class="pre">--copmile</span></code> flag, or <code class="docutils literal notranslate"><span class="pre">-c</span></code> for short.
+Vitis compiler(<code class="docutils literal notranslate"><span class="pre">v++</span></code>) performs this step with <code class="docutils literal notranslate"><span class="pre">--compile</span></code> flag, or <code class="docutils literal notranslate"><span class="pre">-c</span></code> for short.
 You can also generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file directly using Vitis HLS like we just did.
 FYI, you can create <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file from RTL code, too (obviously).</p>
 <p>Next step, which is usually called “linking” step, calls Vivado to perform
