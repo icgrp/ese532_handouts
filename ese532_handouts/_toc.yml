@@ -2,7 +2,7 @@ root: index
 format: jb-book
 parts:
   - chapters:
-    - url: https://www.seas.upenn.edu/~ese5320/fall2023/fall2023.html
+    - url: https://www.seas.upenn.edu/~ese5320/fall2024/fall2024.html
       title: Syllabus
     - file: writeup_guidelines
   - caption: Homework Assignments
