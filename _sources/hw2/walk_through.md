@@ -258,15 +258,8 @@ TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
 We ran each function 100 times so as to get more sample hits within each function, which helps to some degree, however in this case there is still a great deal of inaccuracy. You can learn more about sampling errors with `gprof` [here](https://sourceware.org/binutils/docs/gprof/Sampling-Error.html).
 Also, be sure to refer to the [manual](https://sourceware.org/binutils/docs/gprof/) to find out about more command line options, and how to [interpret gprof's output](https://sourceware.org/binutils/docs/gprof/Output.html). When working through the homework, you should find that the functions' runtimes are long enough that gprof should work reasonably well without the need for adding loops like in the example above.
 
-Now that we have shown you three approaches for measuring latency, a natural question is when do you use either of these methods?
-- Use {ref}`profiling/instrumentation` or {ref}`profiling/gprof` when you want to find individual
-latencies of your functions.
 
-
-However, the above answer is too simple. The application we showed you
+The application we showed you
 is slow enough for `std::chrono` to measure accurately. When the resolution of your system timer is not fine-grained
 enough, or your function is too fast, you should measure the function for a longer period of time (see the spin loop section from [here](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf)). 
 
-For our application above, we saw that the total runtime reported by task-clock and PMU counter doesn't differ. Hence, it doesn't matter which approach you use in this case. If you want to get the latencies
-of individual function in ***cycles*** instead, you can just use your
-measured time with the clock frequency to figure out the cycles.
