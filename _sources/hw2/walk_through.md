@@ -37,7 +37,7 @@ end goal is the same; which is to answer where is the bottleneck?
 
 In this tutorial, we will show you how you can use the system timer to
 measure latency in seconds for parts of your program. We'll then demonstrate how you can use linux `gprof` to automatically instrument
-your code and get profiling information.
+your code and get profiling information. Lastly, we'll show how you can use linux `perf` tool to get ***performance counter*** statistics of your program.
 
 (profiling/instrumentation)=
 ### Instrumentation-based Profiling with Timers
@@ -258,15 +258,89 @@ TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
 We ran each function 100 times so as to get more sample hits within each function, which helps to some degree, however in this case there is still a great deal of inaccuracy. You can learn more about sampling errors with `gprof` [here](https://sourceware.org/binutils/docs/gprof/Sampling-Error.html).
 Also, be sure to refer to the [manual](https://sourceware.org/binutils/docs/gprof/) to find out about more command line options, and how to [interpret gprof's output](https://sourceware.org/binutils/docs/gprof/Output.html). When working through the homework, you should find that the functions' runtimes are long enough that gprof should work reasonably well without the need for adding loops like in the example above.
 
+(profiling/perf)=
+### Performance Counter Statistics using Perf
+```{note}
+Biglab doesn't have perf. The following is for your reference
+and you can try it in your own machine, or when we provide
+you with an Ultra96 board.
+```
+ARM has a dedicated Performance Monitor Unit (PMU) that can give you the number of cycles
+your program takes to run (read more about PMU [here](https://easyperf.net/blog/2018/06/01/PMU-counters-and-profiling-basics)).
+We can use `perf` to get the performance counter statistics of your program (read these [slides](https://static.linaro.org/connect/yvr18/presentations/yvr18-416.pdf) to learn more about perf).
+
+Run perf as follows (`make perf` in the supplied `Makefile`):
+```
+sudo perf stat ./rendering
+```
+You should see the following output:
+```
+[stahmed@macarena hw2_profiling_tutorial]$ make perf
+g++ -DWITH_TIMER -Wall -g -O2 -Wno-unused-label -I/src/sw/ -I/src/host/ -o rendering ./src/host/3d_rendering_host.cpp ./src/host/utils.cpp ./src/host/check_result.cpp ./src/sw/rendering_sw.cpp  
+Executable rendering compiled!
+Running perf stat...
+3D Rendering Application
+Total latency of projection is: 125316 ns.
+Total latency of rasterization1 is: 136611 ns.
+Total latency of rasterization2 is: 2.29206e+06 ns.
+Total latency of zculling is: 244155 ns.
+Total latency of coloringFB is: 146167 ns.
+Total time taken by the loop is: 3.48606e+06 ns.
+---------------------------------------------------------------
+Average latency of projection per loop iteration is: 39.2594 ns.
+Average latency of rasterization1 per loop iteration is: 42.7979 ns.
+Average latency of rasterization2 per loop iteration is: 718.065 ns.
+Average latency of zculling per loop iteration is: 76.4897 ns.
+Average latency of coloringFB per loop iteration is: 45.7917 ns.
+Average latency of each loop iteration is: 1092.12 ns.
+Writing output...
+Check output.txt for a bunny!
+
+ Performance counter stats for './rendering':
+
+              6.36 msec task-clock                #    0.953 CPUs utilized          
+                 0      context-switches          #    0.000 K/sec                  
+                 0      cpu-migrations            #    0.000 K/sec                  
+               163      page-faults               #    0.026 M/sec                  
+        17,322,039      cycles                    #    2.722 GHz                    
+        39,090,159      instructions              #    2.26  insn per cycle         
+         5,358,366      branches                  #  842.109 M/sec                  
+            56,019      branch-misses             #    1.05% of all branches        
+
+       0.006679970 seconds time elapsed
+
+       0.006685000 seconds user
+       0.000000000 seconds sys
+```
+From the above output, we can see that our program took $17,322,039$ cycles at $2.722$ GHz. We can use these numbers to find the 
+run time of our program, which is $17322039/2.722$
+$\approx$ $6.36$ milli seconds which agrees with the $6.36$ msec
+reported by perf too. Note that perf used the "task-clock" (system timer)
+to report the latency in seconds, and used the PMU counter to report
+the latency in cycles. The PMU counter runs at the same frequency as
+the cpu, which is $2.722$ GHz, whereas the system timer runs at a
+much lower frequency (in the MHz range).
+ 
+---
 Now that we have shown you three approaches for measuring latency, a natural question is when do you use either of these methods?
 - Use {ref}`profiling/instrumentation` or {ref}`profiling/gprof` when you want to find individual
 latencies of your functions.
-
+- Use {ref}`profiling/perf` when you just want to know the total latency (either
+in seconds or cycles) of your program. When you don't have `perf` available in your system,
+you can also run `time executable-name` to get the total time
+your program takes to run.
 
 However, the above answer is too simple. The application we showed you
 is slow enough for `std::chrono` to measure accurately. When the resolution of your system timer is not fine-grained
-enough, or your function is too fast, you should measure the function for a longer period of time (see the spin loop section from [here](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf)). 
+enough, or your function is too fast, you should measure the function for a longer period of time (see the spin loop section from [here](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf)). Alternatively,
+that's where the PMU offers more accuracy. Since the PMU runs at the same
+frequency as the CPU, it can measure any function. However, you will
+have to isolate your functions and create separate programs to use
+the PMU through `perf`. There is no stopwatch-like user API for the PMU
+counter.
 
 For our application above, we saw that the total runtime reported by task-clock and PMU counter doesn't differ. Hence, it doesn't matter which approach you use in this case. If you want to get the latencies
 of individual function in ***cycles*** instead, you can just use your
 measured time with the clock frequency to figure out the cycles.
+Alternatively you could get the fraction of time spent by your function
+and use the total number of cycles from `perf stat`.
