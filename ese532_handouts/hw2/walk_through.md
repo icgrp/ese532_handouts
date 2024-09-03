@@ -261,5 +261,5 @@ Also, be sure to refer to the [manual](https://sourceware.org/binutils/docs/gpro
 
 The application we showed you
 is slow enough for `std::chrono` to measure accurately. When the resolution of your system timer is not fine-grained
-enough, or your function is too fast, you should measure the function for a longer period of time (see the spin loop section from [here](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf)). 
+enough, or your function is too fast, you should measure the function for a longer period of time. 
 
