@@ -186,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW3 – Thread Parallel</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Collaboration</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="u96v2_setup.html">Ultra96 Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework_submission.html">Homework Submission</a></li>
@@ -378,7 +379,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -394,6 +397,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collaboration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-git-repo-to-collaborate">Using Git Repo to Collaborate</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -420,6 +433,14 @@ familiarize yourself with them.  See the course policies on the course
 web page <a class="reference external" href="http://www.seas.upenn.edu/~ese5320">http://www.seas.upenn.edu/~ese5320</a> for full details of
 our policies for this course.</p>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="using-git-repo-to-collaborate">
+<h1>Using Git Repo to Collaborate<a class="headerlink" href="#using-git-repo-to-collaborate" title="Permalink to this heading">#</a></h1>
+<p>It’s recommended to use a git repo to collaborate with your partner(s). If you choose to do that,</p>
+<ul class="simple">
+<li><p><strong>Keep your repo private on github</strong>: You are violating the <a class="reference external" href="https://catalog.upenn.edu/pennbook/code-of-academic-integrity/">Code of Academic Integrity</a> if your repo is public to anyone out of your group.</p></li>
+<li><p><strong>Careful with large files</strong>: During the compilation flow, you might generate some large files such as SD card image, bootloader and FPGA bitstream, which cannot be uploaded to github. It is suggested that you only share source files with git repo, and use Google Drive for large files. It is a good practice to use <a class="reference external" href="https://git-scm.com/docs/gitignore/en">.gitignore</a> to specify untracked files that git should ignore.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,6 +501,22 @@ our policies for this course.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Collaboration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-git-repo-to-collaborate">Using Git Repo to Collaborate</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

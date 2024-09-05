@@ -16,3 +16,9 @@ familiarize yourself with them.  See the course policies on the course
 web page <http://www.seas.upenn.edu/~ese5320> for full details of
 our policies for this course.
 ```
+
+# Using Git Repo to Collaborate
+
+It's recommended to use a git repo to collaborate with your partner(s). If you choose to do that, 
+* **Keep your repo private on github**: You are violating the [Code of Academic Integrity](https://catalog.upenn.edu/pennbook/code-of-academic-integrity/) if your repo is public to anyone out of your group. 
+* **Careful with large files**: During the compilation flow, you might generate some large files such as SD card image, bootloader and FPGA bitstream, which cannot be uploaded to github. It is suggested that you only share source files with git repo, and use Google Drive for large files. It is a good practice to use [.gitignore](https://git-scm.com/docs/gitignore/en) to specify untracked files that git should ignore.  
