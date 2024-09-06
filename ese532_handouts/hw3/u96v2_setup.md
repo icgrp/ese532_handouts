@@ -409,3 +409,6 @@ computer.
     source .profile
     ```
     Next, drag and drop these files over to the Ultra96 in /home/root/. Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+
+### Remote SSH via VSCode (not recommended)
+Using Remote SSH in VSCode to write code directly on your board can be convenient. However, Remote SSH installs a server on the board during tunnel setup, which consumes significant space. Given the limited storage capacity of SD cards you will get, this can lead to space constraints when you need additional files or further compilation. To avoid this, it is recommended to develop locally on your host computer and 'scp' files to the board.
