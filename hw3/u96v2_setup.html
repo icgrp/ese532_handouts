@@ -412,6 +412,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-ssh-via-vscode-not-recommended">Remote SSH via VSCode (not recommended)</a></li>
 </ul>
 </li>
 </ul>
@@ -890,6 +891,10 @@ Then create another file (also not in your home directory), called <code class="
 </ul>
 </section>
 </section>
+<section id="remote-ssh-via-vscode-not-recommended">
+<h3>Remote SSH via VSCode (not recommended)<a class="headerlink" href="#remote-ssh-via-vscode-not-recommended" title="Permalink to this heading">#</a></h3>
+<p>Using Remote SSH in VSCode to write code directly on your board can be convenient. However, Remote SSH installs a server on the board during tunnel setup, which consumes significant space. Given the limited storage capacity of SD cards you will get, this can lead to space constraints when you need additional files or further compilation. To avoid this, it is recommended to develop locally on your host computer and ‘scp’ files to the board.</p>
+</section>
 </section>
 </section>
 
@@ -970,6 +975,7 @@ Then create another file (also not in your home directory), called <code class="
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-ssh-via-vscode-not-recommended">Remote SSH via VSCode (not recommended)</a></li>
 </ul>
 </li>
 </ul>
