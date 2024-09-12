@@ -64,8 +64,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw4/homework_submission';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HW5 – Accelerator" href="../hw5/index.html" />
-    <link rel="prev" title="Setup and Walk-through" href="walk_through.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
@@ -190,18 +188,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw3/u96v2_setup.html">Ultra96 Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw3/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw3/homework_submission.html">Homework Submission</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW4 – SIMD</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="walk_through.html">Setup and Walk-through</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework Submission</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../hw5/index.html">HW5 – Accelerator</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../hw5/collaboration.html">Collaboration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hw5/walk_through.html">Setup and Walk-through</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hw5/homework_submission.html">Homework Submission</a></li>
 </ul>
 </li>
 </ul>
@@ -460,7 +446,7 @@ everybody in the team. (3 lines)</p></li>
 <p>Before we dive into the vector optimizations, we will investigate the
 effects of different levels of compiler optimizations.</p>
 <table class="table" id="optimization-table">
-<caption><span class="caption-number">Table 5 </span><span class="caption-text">Latency and Code size per Optimization Level</span><a class="headerlink" href="#optimization-table" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-text">Latency and Code size per Optimization Level</span><a class="headerlink" href="#optimization-table" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Optimization level</p></th>
 <th class="head"><p>Latency (ns)</p></th>
@@ -511,7 +497,7 @@ copy back results as needed and version control your code using git repositories
 <ol class="arabic">
 <li><p>Measure the latency and size of the <code class="docutils literal notranslate"><span class="pre">baseline</span></code> target at the
 different optimization levels. Put your measurements in a table like
-<a class="reference internal" href="#optimization-table"><span class="std std-numref">Table 5</span></a>. You can change
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">optimization-table</span></code>. You can change
 the optimization level by editing the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.</p></li>
 <li><p>Include the assembly code of the innermost loop of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>
 at optimization level <code class="docutils literal notranslate"><span class="pre">-O0</span></code> in your report. Use the following command to get the assembly and then look for <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> in <code class="docutils literal notranslate"><span class="pre">Filter_O1.s</span></code>:</p>
@@ -575,7 +561,7 @@ may also be useful.</p>
 <div class="full-width admonition">
 <p class="admonition-title">Vectorization Speedup Summary</p>
 <table class="table" id="vectorization-table">
-<caption><span class="caption-number">Table 6 </span><span class="caption-text">Vectorization Speedup Summary</span><a class="headerlink" href="#vectorization-table" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-text">Vectorization Speedup Summary</span><a class="headerlink" href="#vectorization-table" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p>Baseline</p></th>
@@ -656,12 +642,12 @@ may also be useful.</p>
 </div>
 <ol class="arabic">
 <li><p>Report the latency of each stage of the baseline application at
-<code class="docutils literal notranslate"><span class="pre">-O3</span></code>. (Start a table like <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 6</span></a>; we will continue to fill in this
+<code class="docutils literal notranslate"><span class="pre">-O3</span></code>. (Start a table like <code class="xref std std-numref docutils literal notranslate"><span class="pre">vectorization-table</span></code>; we will continue to fill in this
 table throughout this problem.)</p></li>
 <li><p>Based on your understanding of the C code, which loops in
 the streaming stages of the application have
 sufficient data parallelism for vectorization?  Motivate your answer.
-(Mark suitability by filling in Yes or No in the suitability column of <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 6</span></a>; add explanation in 2–5 lines after table.)</p></li>
+(Mark suitability by filling in Yes or No in the suitability column of <code class="xref std std-numref docutils literal notranslate"><span class="pre">vectorization-table</span></code>; add explanation in 2–5 lines after table.)</p></li>
 <li><p>Identify the critical path lower bound for <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> in
 terms of compute operations.  Focus on the data path.  Ignore
 control flow and offset computations. You may assume
@@ -700,13 +686,13 @@ achieve the resource bound identified in 3e? (5 lines)</p>
 <p>Remember Amdahl’s Law; think about critical path lower
 bounds and resource capacity lower bounds.</p>
 </div>
-<p>(Fill in the ideal vectorization speedup column in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 6</span></a>; separately show Amdahl’s Law calculation for overall speedup.)</p>
+<p>(Fill in the ideal vectorization speedup column in <code class="xref std std-numref docutils literal notranslate"><span class="pre">vectorization-table</span></code>; separately show Amdahl’s Law calculation for overall speedup.)</p>
 </li>
 <li><p>We will now enable the vectorization in g++. You can enable it by removing
 the <code class="docutils literal notranslate"><span class="pre">-fno-tree-vectorize</span></code> flag from the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.
 <code class="docutils literal notranslate"><span class="pre">-O3</span></code> optimization automatically turns on the flag <code class="docutils literal notranslate"><span class="pre">-ftree-vectorize</span></code>, which vectorizes
 your code.</p></li>
-<li><p>Report the speedup of the vectorized code with respect to the baseline. (Fill in the “Baseline with SIMD” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 6</span></a>.)</p></li>
+<li><p>Report the speedup of the vectorized code with respect to the baseline. (Fill in the “Baseline with SIMD” columns in <code class="xref std std-numref docutils literal notranslate"><span class="pre">vectorization-table</span></code>.)</p></li>
 <li><p>Explain the discrepancy between your measured and ideal
 performance based on the optimization of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>.
 (3 lines)</p>
@@ -730,7 +716,7 @@ in the previous problem. (1 line) Include the assembly code of
 <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after you have resolved the issue.</p></li>
 <li><p>Report the speedup with respect to the baseline after resolving
 the issue in both <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>.
-(Fill in the “Baseline with SIMD Modified” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 6</span></a>.)</p></li>
+(Fill in the “Baseline with SIMD Modified” columns in <code class="xref std std-numref docutils literal notranslate"><span class="pre">vectorization-table</span></code>.)</p></li>
 </ol>
 </li>
 <li><p><strong>NEON Intrinsics Example</strong></p>
@@ -829,24 +815,6 @@ able to  contribute to your team? (1–3 lines)</p></li>
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="walk_through.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Setup and Walk-through</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../hw5/index.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">HW5 – Accelerator</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
