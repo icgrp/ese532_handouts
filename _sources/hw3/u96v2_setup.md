@@ -118,7 +118,7 @@ Development Environment
 ### Run on the FPGA
 #### Write the SD Card Image
 - Download a sample SD card image for Ultra96 from
-[here](https://drive.google.com/file/d/1iJ50GLfd5ZcNvMm0A2MnOB7aEO9HInTC/view?usp=drive_link).
+[sample SD card image](https://drive.google.com/file/d/1iJ50GLfd5ZcNvMm0A2MnOB7aEO9HInTC/view?usp=drive_link).
   <!-- - In the **Reference Designs** tab:
     - Click on the **Ultra96-V2 – Vitis PetaLinux Platform 2020+ Vector Add (Sharepoint site)** link.
     - Browse to **2020.2** -> **Vitis_PreBuilt_Example** -> **u96v2_sbc_vadd_2020_2.tar.gz**
