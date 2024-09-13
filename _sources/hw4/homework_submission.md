@@ -228,6 +228,7 @@ Your writeup should include your answers to the following questions:
         discussed in class and in {doc}`walk_through`) and reason  about what resources it has
         available to be used on each cycle. Think about how vectorization
         could exploit the set of computations a NEON unit can do in parallel. 
+        - You may also need to review whether the size of variables involved in the computation are optimal
         ```
     6. What speedup do you expect your application can achieve if the compiler is able to 
         achieve the resource bound identified in 3e? (5 lines)
