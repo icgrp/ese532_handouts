@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw4/walk_through';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="Collaboration" href="collaboration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
@@ -190,6 +192,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw3/u96v2_setup.html">Ultra96 Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw3/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw3/homework_submission.html">Homework Submission</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW4 – SIMD</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setup and Walk-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework_submission.html">Homework Submission</a></li>
 </ul>
 </li>
 </ul>
@@ -437,19 +445,19 @@ document.write(`
 <h2>Vectorization<a class="headerlink" href="#vectorization" title="Permalink to this heading">#</a></h2>
 <p>We will divide the computation into vectors that run on
 the NEON units in our ARM cores.
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">cortex-a53</span></code> shows the high level block diagram of
+<a class="reference internal" href="#cortex-a53"><span class="std std-numref">Fig. 16</span></a> shows the high level block diagram of
 the ARM core in Ultra96 board.</p>
 <figure class="align-default" id="cortex-a53">
 <img alt="../_images/cortex-a53.png" src="../_images/cortex-a53.png" />
 <figcaption>
-<p><span class="caption-text">ARM Cortex A-53 Overview. Source: <a class="reference external" href="https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh">ANANDTECH</a></span><a class="headerlink" href="#cortex-a53" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">ARM Cortex A-53 Overview. Source: <a class="reference external" href="https://www.anandtech.com/show/7591/answered-by-the-experts-arms-cortex-a53-lead-architect-peter-greenhalgh">ANANDTECH</a></span><a class="headerlink" href="#cortex-a53" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The Ultra96 boards have ARM Cortex A-53 cores. It’s a
 2-way decode, in-order core with one 64-bit NEON SIMD unit,
-as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">arm-core-table</span></code>.</p>
+as shown in <a class="reference internal" href="#arm-core-table"><span class="std std-numref">Table 4</span></a>.</p>
 <table class="table" id="arm-core-table">
-<caption><span class="caption-text">ARM Core, Source: <a class="reference external" href="https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3">A-53</a></span><a class="headerlink" href="#arm-core-table" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">ARM Core, Source: <a class="reference external" href="https://www.anandtech.com/show/8718/the-samsung-galaxy-note-4-exynos-review/3">A-53</a></span><a class="headerlink" href="#arm-core-table" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p>Cortex A-53</p></th>
@@ -756,6 +764,24 @@ Use the <a class="reference external" href="https://developer.arm.com/architectu
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="collaboration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Collaboration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="homework_submission.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework Submission</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
