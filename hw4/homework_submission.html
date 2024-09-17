@@ -670,9 +670,11 @@ happens if you unroll the loops completely?</p>
 operands?  How many bits are necessary to hold the output?)
 (one line)</p></li>
 <li><p>Report the resource capacity lower bound for
-<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>. Focus on the computation; you may ignore control flow and
-addressing computations. There are many resources that may limit the performance.<br />
-(5 lines)</p>
+<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>. Focus on the computation and the computation size
+identified in the question 3.d while computimg resource capacity;
+you may ignore control flow and addressing computations.
+There are many resources that may limit the performance.</p>
+<p>(5 lines)</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <ul class="simple">
@@ -683,7 +685,6 @@ to identify the one that is most constraining.</p></li>
 discussed in class and in <a class="reference internal" href="walk_through.html"><span class="doc">Setup and Walk-through</span></a>) and reason  about what resources it has
 available to be used on each cycle. Think about how vectorization
 could exploit the set of computations a NEON unit can do in parallel.</p></li>
-<li><p>You may also need to review whether the size of variables involved in the computation are optimal</p></li>
 </ul>
 </div>
 </li>
@@ -699,7 +700,7 @@ bounds and resource capacity lower bounds.</p>
 <li><p>We will now enable the vectorization in g++. You can enable it by removing
 the <code class="docutils literal notranslate"><span class="pre">-fno-tree-vectorize</span></code> flag from the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in the hw4 Makefile.
 <code class="docutils literal notranslate"><span class="pre">-O3</span></code> optimization automatically turns on the flag <code class="docutils literal notranslate"><span class="pre">-ftree-vectorize</span></code>, which vectorizes
-your code.</p></li>
+your code.(You do not need to modify code for this estimation yet)</p></li>
 <li><p>Report the speedup of the vectorized code with respect to the baseline. (Fill in the “Baseline with SIMD” columns in <a class="reference internal" href="#vectorization-table"><span class="std std-numref">Table 6</span></a>.)</p></li>
 <li><p>Explain the discrepancy between your measured and ideal
 performance based on the optimization of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>.

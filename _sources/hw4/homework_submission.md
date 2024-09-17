@@ -217,8 +217,11 @@ Your writeup should include your answers to the following questions:
         operands?  How many bits are necessary to hold the output?)
         (one line)
     5. Report the resource capacity lower bound for
-        `Filter_vertical`. Focus on the computation; you may ignore control flow and
-        addressing computations. There are many resources that may limit the performance.  
+        `Filter_vertical`. Focus on the computation and the computation size
+        identified in the question 3.d while computimg resource capacity;
+        you may ignore control flow and addressing computations. 
+        There are many resources that may limit the performance.  
+
         (5 lines)
         ```{hint}
         - As with any resource capacity lower bound analysis, you
@@ -228,7 +231,6 @@ Your writeup should include your answers to the following questions:
         discussed in class and in {doc}`walk_through`) and reason  about what resources it has
         available to be used on each cycle. Think about how vectorization
         could exploit the set of computations a NEON unit can do in parallel. 
-        - You may also need to review whether the size of variables involved in the computation are optimal
         ```
     6. What speedup do you expect your application can achieve if the compiler is able to 
         achieve the resource bound identified in 3e? (5 lines)
@@ -240,7 +242,7 @@ Your writeup should include your answers to the following questions:
     7. We will now enable the vectorization in g++. You can enable it by removing
         the `-fno-tree-vectorize` flag from the `CXXFLAGS` in the hw4 Makefile.
         `-O3` optimization automatically turns on the flag `-ftree-vectorize`, which vectorizes
-        your code.
+        your code.(You do not need to modify code for this estimation yet)
     8. Report the speedup of the vectorized code with respect to the baseline. (Fill in the "Baseline with SIMD" columns in {numref}`vectorization-table`.)
     9. Explain the discrepancy between your measured and ideal
         performance based on the optimization of `Filter_horizontal`.
@@ -255,7 +257,7 @@ Your writeup should include your answers to the following questions:
         ````
     10. Show how you can resolve the issue that you identified 
         in the previous problem. (1 line) Include the assembly code of
-        `Filter_vertical` after you have resolved the issue.
+        `Filter_vertical` after you have resolved the issue.   
     11. Report the speedup with respect to the baseline after resolving
         the issue in both `Filter_horizontal` and `Filter_vertical`.
         (Fill in the "Baseline with SIMD Modified" columns in {numref}`vectorization-table`.)
