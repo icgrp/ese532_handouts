@@ -242,7 +242,7 @@ Your writeup should include your answers to the following questions:
     7. We will now enable the vectorization in g++. You can enable it by removing
         the `-fno-tree-vectorize` flag from the `CXXFLAGS` in the hw4 Makefile.
         `-O3` optimization automatically turns on the flag `-ftree-vectorize`, which vectorizes
-        your code.(You do not need to modify code for this estimation yet)
+        your code.(You do not need to modify code for 3.7 and 3.8. Just report the speedup for the given code with vectorization)
     8. Report the speedup of the vectorized code with respect to the baseline. (Fill in the "Baseline with SIMD" columns in {numref}`vectorization-table`.)
     9. Explain the discrepancy between your measured and ideal
         performance based on the optimization of `Filter_horizontal`.
