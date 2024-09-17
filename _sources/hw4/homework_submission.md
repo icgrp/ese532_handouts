@@ -218,7 +218,7 @@ Your writeup should include your answers to the following questions:
         (one line)
     5. Report the resource capacity lower bound for
         `Filter_vertical`. Focus on the computation and the computation size
-        identified in the question 3.d while computimg resource capacity;
+        identified in the question 3.d while computing resource capacity;
         you may ignore control flow and addressing computations. 
         There are many resources that may limit the performance.  
 
