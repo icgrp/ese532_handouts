@@ -835,9 +835,7 @@ then copy them from the Ultra96-host(your laptop) to the Ultra96.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>If you have trouble with ssh to the board after flashing the new SD card img, it might because the SSH key on the board has changed but your host computer still remembers the old one. To resolve this issue, you can manually remove the old SSH key from your host computer’s known_hosts file.</p>
-<p>Use a file editor (nano/vim/vscode/notepad) to open the known_hosts file:</p>
-<p>code ~/.ssh/known_hosts</p>
-<p>Find the line associated with the old IP address of the board, delete it, and save the file.</p>
+<p>Use a file editor (nano/vim/vscode/notepad) to open the known_hosts file: code ~/.ssh/known_hosts, find the line associated with the old IP address of the board, delete it, and save the file.</p>
 </div>
 <ul>
 <li><p>On the serial console, you can now run your code as follows:</p>
