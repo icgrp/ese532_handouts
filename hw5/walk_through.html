@@ -829,8 +829,17 @@ then copy them from the Ultra96-host(your laptop) to the Ultra96.</p>
 </section>
 <section id="boot-the-ultra96">
 <h4>Boot the Ultra96<a class="headerlink" href="#boot-the-ultra96" title="Permalink to this heading">#</a></h4>
-<ul>
+<ul class="simple">
 <li><p>Boot the ultra96 as we did in HW3 and HW4. Login as <code class="docutils literal notranslate"><span class="pre">root</span></code> with Password: <code class="docutils literal notranslate"><span class="pre">root</span></code>.</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you have trouble with ssh to the board after flashing the new SD card img, it might because the SSH key on the board has changed but your host computer still remembers the old one. To resolve this issue, you can manually remove the old SSH key from your host computer’s known_hosts file.</p>
+<p>Use a file editor (nano/vim/vscode/notepad) to open the known_hosts file:</p>
+<p>code ~/.ssh/known_hosts</p>
+<p>Find the line associated with the old IP address of the board, delete it, and save the file.</p>
+</div>
+<ul>
 <li><p>On the serial console, you can now run your code as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
 <span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>

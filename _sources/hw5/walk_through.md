@@ -390,6 +390,17 @@ Make sure you don't hot plug/unplug the SD card. This can potentially corrupt th
 
 #### Boot the Ultra96
 - Boot the ultra96 as we did in HW3 and HW4. Login as `root` with Password: `root`.
+
+```{caution}
+If you have trouble with ssh to the board after flashing the new SD card img, it might because the SSH key on the board has changed but your host computer still remembers the old one. To resolve this issue, you can manually remove the old SSH key from your host computer's known_hosts file.
+
+Use a file editor (nano/vim/vscode/notepad) to open the known_hosts file:
+
+code ~/.ssh/known_hosts
+
+Find the line associated with the old IP address of the board, delete it, and save the file.  
+```
+
 - On the serial console, you can now run your code as follows:
     ```
     cd /media/sd-mmcblk0p1
