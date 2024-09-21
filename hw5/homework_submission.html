@@ -66,6 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw5/homework_submission';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Setup and Walk-through" href="walk_through.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
@@ -196,6 +197,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw4/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw4/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw4/homework_submission.html">Homework Submission</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW5 – Accelerator</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="walk_through.html">Setup and Walk-through</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework Submission</a></li>
 </ul>
 </li>
 </ul>
@@ -622,7 +629,7 @@ Keep the trace in Vitis Analyzer open, we will use the numbers from it in the ne
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/vitis_analyzer.png"><img alt="../_images/vitis_analyzer.png" src="../_images/vitis_analyzer.png" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Example screenshot</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Example screenshot</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -631,7 +638,7 @@ Keep the trace in Vitis Analyzer open, we will use the numbers from it in the ne
 <li><p><strong>Breakeven and Net Acceleration</strong></p>
 <p>We can model an accelerator with setup and transfer time as:</p>
 <div class="math notranslate nohighlight" id="equation-accelerator-model">
-<span class="eqno">()<a class="headerlink" href="#equation-accelerator-model" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+T_{transfer}+T_{fpga}\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-accelerator-model" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+T_{transfer}+T_{fpga}\]</div>
 <p>Let <span class="math notranslate nohighlight">\(T_{seq}\)</span> be the time for an operation (such as the matrix multiply) on the ARM that your found in 1a
 and <span class="math notranslate nohighlight">\(T_{fpga}\)</span> be the time for the operation on the FPGA that you found in 4b.</p>
 <p>Let <span class="math notranslate nohighlight">\(S_{fpga}=\frac{T_{seq}}{T_{fpga}}\)</span> or <span class="math notranslate nohighlight">\(T_{fpga}=\frac{T_{seq}}{S_{fpga}}\)</span>.</p>
@@ -662,7 +669,7 @@ equation for <span class="math notranslate nohighlight">\(T_{transfer}\)</span> 
 <li><p>For the value of <span class="math notranslate nohighlight">\(N\)</span> found in 5i, what is the value of <span class="math notranslate nohighlight">\(S_{fpga}\)</span>?</p></li>
 <li><p>If you perform a large number of accelerator invocations, you only need to perform the setup operations once.</p>
 <div class="math notranslate nohighlight" id="equation-accelerator-model-k-invoke">
-<span class="eqno">()<a class="headerlink" href="#equation-accelerator-model-k-invoke" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+k \cdot (T_{transfer}+T_{fpga})\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-accelerator-model-k-invoke" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+k \cdot (T_{transfer}+T_{fpga})\]</div>
 <p>Assuming the number of invocations, <span class="math notranslate nohighlight">\(k\)</span>, is large (say 1 million), how does
 this change the value of N for 10x speedup (
 <span class="math notranslate nohighlight">\(T_{accel}=\frac{T_{seq}}{10}\)</span>) ?</p>
@@ -729,6 +736,15 @@ a curve for DSPs and BlockRAMs.</p>
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="walk_through.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setup and Walk-through</p>
+      </div>
+    </a>
 </div></div>
   
 </div>
