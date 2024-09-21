@@ -73,7 +73,7 @@ Your writeup should include your answers to the following questions:
         Scroll down to the loop you are interested in and click the operation to view the schedule of the operation. 
         ```
     1. Make a schematic drawing of the hardware implementation
-            consisting of the data path and state machine similar to Figure 2
+            consisting of the data path and state machine similar to the figure
             of the [Vitis HLS User Guide: Extracting Control Logic and Implementing I/O Ports Example](https://docs.amd.com/r/en-US/ug1399-vitis-hls/Extracting-Control-Logic-and-Implementing-I/O-Ports-Example).
             You can ignore the addressing and loop hardware (such as
             `phi_mux` and `icmp`) in your data path.
