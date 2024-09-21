@@ -74,7 +74,7 @@ Your writeup should include your answers to the following questions:
         ```
     1. Make a schematic drawing of the hardware implementation
             consisting of the data path and state machine similar to Figure 2
-            of the [Vitis HLS User Guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_1/ug1399-vitis-hls.pdf#page=9).
+            of the [Vitis HLS User Guide: Extracting Control Logic and Implementing I/O Ports Example](https://docs.amd.com/r/en-US/ug1399-vitis-hls/Extracting-Control-Logic-and-Implementing-I/O-Ports-Example).
             You can ignore the addressing and loop hardware (such as
             `phi_mux` and `icmp`) in your data path.
     1. Explain why the performance of this accelerator is
