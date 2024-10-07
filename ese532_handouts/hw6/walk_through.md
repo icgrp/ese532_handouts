@@ -50,7 +50,10 @@ In this HW, we will analyze how the processor
 core communicates with an accelerator. We tell you some
 specific things to experiment with, but you should do some reading from:
 - This HW is highly related to this [Vitis Host Code Optimization Tutorial](https://xilinx.github.io/Vitis-Tutorials/2020-2/docs/build/html/docs/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/README.html)
-- Chapter 6, 7, 19, 20 of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf)
+- [Profiling and Debugging the application](https://docs.amd.com/r/en-US/ug1393-vitis-application-acceleration/Profiling-and-Debugging-the-Application
+)
+- [HLS Synthesis Report](https://docs.amd.com/r/en-US/ug1393-vitis-application-acceleration/HLS-Synthesis-Report
+)<!-- - Chapter 6, 7, 19, 20 of [UG1393](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1393-vitis-application-acceleration.pdf) -->
 - [Programming for Vitis HLS](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/Vitis-HLS-Coding-Styles)
 
 
