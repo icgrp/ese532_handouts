@@ -164,9 +164,9 @@ Include the code and screenshot of the terminal outputs.
     ```
     Explain the results you get.  
     1. Why do the `char` and `unsigned char` sums differ
-    from the integer sums?  (2-3 lines each) 
-    2. Why does the computer produce the specific values
-    that it does for each of the `char` and `unsigned char` sums? (1-3
+    from each other?  (2-3 lines each) 
+    2 .Why do the `char` and `unsigned char` sums differ
+    from their 'intsum'? (1-3
     lines each)
 
 9. What is the purpose of the preprocessor, compiler, and
