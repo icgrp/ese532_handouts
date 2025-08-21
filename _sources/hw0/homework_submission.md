@@ -19,7 +19,7 @@ Please upload a `YOUR_PENN_USERNAME.tgz` that contains
 `linked_list.c` and `array_sum.c` to the diagnostic assessment assignment in canvas. 
 If your Penn ID is `ept`, then it should be `ept.tgz`.
 For those who do are in the waitlist, please send `YOUR_PENN_USERNAME.tgz` to
-iamanvi@seas.upenn.edu or runlong@seas.upenn.edu with the email titled with "ESE5320 Diagnostic". 
+wkun@seas.upenn.edu or peterpro@seas.upenn.edu with the email titled with "ESE5320 Diagnostic". 
 TAs will send the reply once the email is received.
 
 
