@@ -13,15 +13,15 @@ parts:
         - file: hw0/collaboration
         - file: hw0/questions
         - file: hw0/homework_submission
-    # - file: hw1/index
-    #   sections:
-    #     - file: hw1/collaboration
-    #     - file: hw1/walk_through
-    #     - file: hw1/makefile_tutorial
-    #     - file: hw1/gdb_tutorial
-    #     - file: hw1/c_refresher
-    #     - file: hw1/debug_app
-    #     - file: hw1/homework_submission
+    - file: hw1/index
+      sections:
+        - file: hw1/collaboration
+        - file: hw1/walk_through
+        - file: hw1/makefile_tutorial
+        - file: hw1/gdb_tutorial
+        - file: hw1/c_refresher
+        - file: hw1/debug_app
+        - file: hw1/homework_submission
     # - file: hw2/index
     #   sections:
     #     - file: hw2/collaboration
