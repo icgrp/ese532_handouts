@@ -1,7 +1,7 @@
 # HW1 -- Remember C
 
 ```{admonition} Due
-Friday, September 6, 5:00 PM EDT
+Friday, September 5, 5:00 PM EDT
 ```
 This first assignment is designed to refresh your C knowledge and
 introduce you to the development environment we will be using for the term.
