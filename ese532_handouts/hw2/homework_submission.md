@@ -82,7 +82,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     2. Which function from {numref}`ultra96_profile` has the highest latency? (1 line)
     3. Assume that `LOOP3`
         of `Filter_horizontal` is unrolled completely into the body of `LOOP2`. Draw a Data Flow Graph (DFG)
-        of the operations that are performed in the body of `LOOP2`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, only consider the *body* of `LOOP2` (not any of the looping).
+        of the operations that are performed in the body of `LOOP2`. You may ignore index computations (i.e. only include the compute operations (multiply, accumulate and shift) that work on `Input`). Index computations are operations used to calculate the index to be used with a pointer to get an element. For e.g. `4*i` in `foo[4*i]` is an index computation. When drawing the DFG, only consider the *body* of `LOOP2` (not any of the looping). Include the shifting operation of Sum. 
     4. Assuming that the operations in the DFG execute sequentially,
         count the *total* number of compute operations involved in the execution of `Filter_horizontal` (consider how many times the compute operations in the DFG will run, when taking the looping of loops 1 and 2 into account) (1 line). Assuming that each operation takes one clock, estimate the average latency of `Filter_horizontal` in cycles (1 line).
 
@@ -104,7 +104,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
     7. Assuming a platform that has unlimited resources, and you are free 
         to exploit associativity for
         mathematical operations, draw a new DFG with the lowest critical path
-        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3.3). To draw the DFG you may use as many or as few 2 input adders/subtractors, 2 input multipliers, or shifters as you want.
+        delay for the unrolled body of `LOOP3` with the same considerations as in (Part 3.3). To draw the DFG you may use as many or as few 2 input adders/subtractors, 2 input multipliers, or shifters as you want. Ensure it is clear what instructions are being executed in parallel. 
     8. Determine the critical path length of the unrolled `LOOP3` with the new DFG you created in (Part 3.7)
         in terms of compute operations. Assume that any number of instructions can execute in the same cycle.
     9. Assuming a platform that has 4 multipliers, 2 adders, and a shifter, report the resource capacity lower
