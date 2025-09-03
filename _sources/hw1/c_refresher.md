@@ -162,14 +162,14 @@ Include the code and screenshot of the terminal outputs.
         }
     }
     ```
-    Explain the results you get.  
-    1. Why do the `char` and `unsigned char` sums differ
+    Explain the results you get.
+1. Why do the `char` and `unsigned char` sums differ
     from each other?  (2-3 lines)
-    2 .Why do the `char` and `unsigned char` sums differ
+2 .Why do the `char` and `unsigned char` sums differ
     from their 'intsum'? (1-3
     lines)
 
-9. What is the purpose of the preprocessor, compiler, and
+10. What is the purpose of the preprocessor, compiler, and
 linker? (each 3 lines max.)
 
     Potentially useful:
@@ -184,7 +184,7 @@ linker? (each 3 lines max.)
     this section of this assignment) you may find it useful to get
     your C working on a workstation, laptop, or on Biglab using gcc.]
 
-10. If the preprocessor cannot find a file that is included
+11. If the preprocessor cannot find a file that is included
 with `#include`, give at least three different ways you could resolve
 the problem so that the preprocessor can find the file? (1--2 lines each)
 
@@ -193,7 +193,7 @@ the problem so that the preprocessor can find the file? (1--2 lines each)
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <http://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html>
 
-11. If the linker gives you an error like `undefined reference to ...`,
+12. If the linker gives you an error like `undefined reference to ...`,
 identify three reasons this could occur and at least one way to resolve each.
 (1--2 lines each)
 
