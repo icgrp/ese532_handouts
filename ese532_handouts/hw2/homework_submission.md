@@ -1,5 +1,7 @@
 # Homework Submission
 
+Ensure you are profiling on Biglab to ensure consistency between you and your partner. 
+
 Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your writeup should include the following:
 
 <style type="text/css">
