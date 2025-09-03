@@ -163,9 +163,9 @@ Include the code and screenshot of the terminal outputs.
     }
     ```
     Explain the results you get.
-1. Why do the `char` and `unsigned char` sums differ
+    1. Why do the `char` and `unsigned char` sums differ
     from each other?  (2-3 lines)
-2 .Why do the `char` and `unsigned char` sums differ
+    2 .Why do the `char` and `unsigned char` sums differ
     from their 'intsum'? (1-3
     lines)
 
