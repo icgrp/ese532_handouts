@@ -31,8 +31,7 @@ Build and run the tutorial using:
 
 ## Measuring Latency
 You can measure latency in many different ways---instrumenting the code vs sampling-based profiling,
-using system timer vs using hardware timer etc. (review these
-[slides](https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf) and learn about clock sources [here](http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/)). However, the
+using system timer vs using hardware timer etc. (learn about clock sources [here](http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/)). However, the
 end goal is the same; which is to answer where is the bottleneck?
 
 In this tutorial, we will show you how you can use the system timer to
