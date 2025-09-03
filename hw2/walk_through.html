@@ -473,8 +473,7 @@ The code you will use for
 <section id="measuring-latency">
 <h2>Measuring Latency<a class="headerlink" href="#measuring-latency" title="Link to this heading">#</a></h2>
 <p>You can measure latency in many different ways—instrumenting the code vs sampling-based profiling,
-using system timer vs using hardware timer etc. (review these
-<a class="reference external" href="https://www.cs.fsu.edu/~engelen/courses/HPC/Performance.pdf">slides</a> and learn about clock sources <a class="reference external" href="http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/">here</a>). However, the
+using system timer vs using hardware timer etc. (learn about clock sources <a class="reference external" href="http://btorpey.github.io/blog/2014/02/18/clock-sources-in-linux/">here</a>). However, the
 end goal is the same; which is to answer where is the bottleneck?</p>
 <p>In this tutorial, we will show you how you can use the system timer to
 measure latency in seconds for parts of your program. We’ll then demonstrate how you can use linux <code class="docutils literal notranslate"><span class="pre">gprof</span></code> to automatically instrument
