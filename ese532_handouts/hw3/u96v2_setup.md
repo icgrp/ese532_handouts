@@ -266,7 +266,7 @@ computer.
 
 (boot_mac)=
 #### Boot the Ultra96 (Environment - Mac)
-First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179). Then install this serial terminal from [here](https://www.macupdate.com/app/mac/31352/coolterm).
+First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179). Then install this serial terminal from [here](https://www.macupdate.com/app/mac/31352/coolterm). After installing ASIX, open it and press "Activate".
 
 - Make sure you have the board connected as shown in {numref}`ultra96-setup`.
 - We will use two terminals on our host computer:
@@ -340,7 +340,7 @@ First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
     ```
-- Now on your Mac, open up SystemPreferences->Network, and then you should see AX88179 show up in the connections box. Click it and set the IP address to 10.10.7.2 and the subnet mask to 255.0.0.0
+- Now on your Mac, open up SystemPreferences->Network, and then you should see AX88179 show up in the connections box. After pressing "Details", under TCP/IP tab, configure the AX88179 from "Using DHCP" to "Manual". Then set the IP address to 10.10.7.2 and the subnet mask to 255.0.0.0
 - We have now assigned IP `10.10.7.1` to our Ultra96 and IP `10.10.7.2` to our USB ethernet device connected to our host computer.
 You can test the connection by doing `ping 10.10.7.2` from the Ultra96 serial console, and doing `ping 10.10.7.1` from the host
 computer.
