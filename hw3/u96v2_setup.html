@@ -739,7 +739,7 @@ computer.</p></li>
 </section>
 <section id="boot-the-ultra96-environment-mac">
 <span id="boot-mac"></span><h4>Boot the Ultra96 (Environment - Mac)<a class="headerlink" href="#boot-the-ultra96-environment-mac" title="Link to this heading">#</a></h4>
-<p>First install the USB to Ethernet driver from <a class="reference external" href="https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179">here</a>. Then install this serial terminal from <a class="reference external" href="https://www.macupdate.com/app/mac/31352/coolterm">here</a>.</p>
+<p>First install the USB to Ethernet driver from <a class="reference external" href="https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179">here</a>. Then install this serial terminal from <a class="reference external" href="https://www.macupdate.com/app/mac/31352/coolterm">here</a>. After installing ASIX, open it and press “Activate”.</p>
 <ul>
 <li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
@@ -820,7 +820,7 @@ the devices. Issue the following command in the serial console:</p>
 </pre></div>
 </div>
 </li>
-<li><p>Now on your Mac, open up SystemPreferences-&gt;Network, and then you should see AX88179 show up in the connections box. Click it and set the IP address to 10.10.7.2 and the subnet mask to 255.0.0.0</p></li>
+<li><p>Now on your Mac, open up SystemPreferences-&gt;Network, and then you should see AX88179 show up in the connections box. After pressing “Details”, under TCP/IP tab, configure the AX88179 from “Using DHCP” to “Manual”. Then set the IP address to 10.10.7.2 and the subnet mask to 255.0.0.0</p></li>
 <li><p>We have now assigned IP <code class="docutils literal notranslate"><span class="pre">10.10.7.1</span></code> to our Ultra96 and IP <code class="docutils literal notranslate"><span class="pre">10.10.7.2</span></code> to our USB ethernet device connected to our host computer.
 You can test the connection by doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.2</span></code> from the Ultra96 serial console, and doing <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.10.7.1</span></code> from the host
 computer.</p></li>

@@ -104,6 +104,11 @@ Your writeup should include your answers to the following questions:
         in your report.
     7. Validate your results.  Report on how you validated
         and any discrepancies. (1 line)
+    ```{tip}
+      You should prove that your calculated `PIPELINE_PAR` is the best one and well balanced the computation. This means showing us the `diff` result with the golden output is not sufficient. We accept two forms of proofs:
+      1. Increase/decrease the `PIPELINE_PAR` to prove the latency/throughput is better than a bigger/smaller value, showing a slot would be better.
+      2. Measure the execution time of core 0 and core 1 to prove they are roughly the same while using the optimal parameter
+    ```
     8. Report the throughput of your new application in pictures per
             second.  (1--2 lines)
     9. Let's investigate the performance if we incorporate the optimized
