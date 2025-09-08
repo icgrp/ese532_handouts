@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw3/u96v2_setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setup and Walk-through" href="walk_through.html" />
+    <link rel="prev" title="Collaboration" href="collaboration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -184,7 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
@@ -205,6 +205,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../hw2/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw2/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw2/homework_submission.html">Homework Submission</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW3 – Thread Parallel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ultra96 Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="walk_through.html">Setup and Walk-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework_submission.html">Homework Submission</a></li>
 </ul>
 </details></li>
 </ul>
@@ -451,7 +459,7 @@ document.write(`
 <a class="reference internal image-reference" href="../_images/zynq-eg-block.png"><img alt="../_images/zynq-eg-block.png" src="../_images/zynq-eg-block.png" style="height: 550px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">AMD-Xilinx Zynq UltraScale+ MPSoC diagram</span><a class="headerlink" href="#zynq" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">AMD-Xilinx Zynq UltraScale+ MPSoC diagram</span><a class="headerlink" href="#zynq" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <!-- 
@@ -540,7 +548,7 @@ and 2 should be in the “on” position.</p></li>
 <a class="reference internal image-reference" href="../_images/sd_card_mode.jpg"><img alt="../_images/sd_card_mode.jpg" src="../_images/sd_card_mode.jpg" style="height: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">SD card mode. 1 is OFF and 2 is ON at SW3.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>And also make sure you have properly connected the JTAG module as follows:</p>
@@ -548,7 +556,7 @@ and 2 should be in the “on” position.</p></li>
 <a class="reference internal image-reference" href="../_images/jtag.png"><img alt="../_images/jtag.png" src="../_images/jtag.png" style="height: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">JTAG module</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">JTAG module</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -558,11 +566,11 @@ and 2 should be in the “on” position.</p></li>
 <div><p>Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <a class="reference external" href="https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf">https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf</a></p>
 </div></blockquote>
 </div>
-<p>Your setup for this HW should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>. Note that the USB to Ethernet adapter should be plugged into the USB port closest to the corner of the board.</p>
+<p>Your setup for this HW should look like <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>. Note that the USB to Ethernet adapter should be plugged into the USB port closest to the corner of the board.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" />
 <figcaption>
-<p><span class="caption-text">Development Environment</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -598,7 +606,7 @@ and 2 should be in the “on” position.</p></li>
 <ul>
 <li><p>The instructions here are for users running Linux on their personal computers. For Windows and Mac users, skim these through, and
 then go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a> or <a class="reference internal" href="#boot-mac"><span class="std std-ref">Boot the Ultra96 (Environment - Mac)</span></a>.</p></li>
-<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p></li>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries onto the Ultra96</p></li>
@@ -608,13 +616,13 @@ then go to <a class="reference internal" href="#boot-windows"><span class="std s
 <li><p>We will now open the serial console of the Ultra96.
 You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port.
 We are using <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and launch <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> by <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">putty</span></code>.
-The settings are shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">putty</span></code>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
+The settings are shown in <a class="reference internal" href="#putty"><span class="std std-numref">Fig. 7</span></a>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
 the console output. If you are on Windows, this will be
 something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>.</p>
 <figure class="align-default" id="putty">
 <img alt="../_images/putty.png" src="../_images/putty.png" />
 <figcaption>
-<p><span class="caption-text">PuTTY settings</span><a class="headerlink" href="#putty" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">PuTTY settings</span><a class="headerlink" href="#putty" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -623,7 +631,7 @@ by pressing the boot switch as shown in <code class="xref std std-numref docutil
 <figure class="align-default" id="boot">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
-<p><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -741,7 +749,7 @@ computer.</p></li>
 <span id="boot-mac"></span><h4>Boot the Ultra96 (Environment - Mac)<a class="headerlink" href="#boot-the-ultra96-environment-mac" title="Link to this heading">#</a></h4>
 <p>First install the USB to Ethernet driver from <a class="reference external" href="https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179">here</a>. Then install this serial terminal from <a class="reference external" href="https://www.macupdate.com/app/mac/31352/coolterm">here</a>. After installing ASIX, open it and press “Activate”.</p>
 <ul>
-<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p></li>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 6</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries onto the Ultra96</p></li>
@@ -754,7 +762,7 @@ by pressing the boot switch as shown in <code class="xref std std-numref docutil
 <figure class="align-default" id="id2">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
-<p><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -850,7 +858,7 @@ computer.</p></li>
 <figure class="align-default" id="id5">
 <img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" />
 <figcaption>
-<p><span class="caption-text">Find the port</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -869,7 +877,7 @@ Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span
 <figure class="align-default" id="id6">
 <img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" />
 <figcaption>
-<p><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -880,7 +888,7 @@ this is 24!) as follows:</p>
 <figure class="align-default" id="id7">
 <img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" />
 <figcaption>
-<p><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -888,7 +896,7 @@ this is 24!) as follows:</p>
 <figure class="align-default" id="id8">
 <img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" />
 <figcaption>
-<p><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -948,6 +956,24 @@ Then create another file (also not in your home directory), called <code class="
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="collaboration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Collaboration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="walk_through.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setup and Walk-through</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

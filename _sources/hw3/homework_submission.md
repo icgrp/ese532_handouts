@@ -122,7 +122,7 @@ Your writeup should include your answers to the following questions:
         The output of the ECC unit and compression pipeline are 
         output to a single $2$-Gigabit/s Ethernet port.
         1. Draw a streaming dataflow diagram for the network server.
-            Indicate throughput and data transfer ratios where applicable.
+            Indicate throughput and data transfer ratios (output data size ÷ input data size for a stage) where applicable.
         2. What is the maximum throughput that the server can achieve? (10 lines)
         3. Where is the bottleneck? (1 line)
         4. How much smaller do we have to make the kernel (`FILTER_LENGTH`) of
