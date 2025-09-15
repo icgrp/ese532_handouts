@@ -235,7 +235,9 @@ Your writeup should include your answers to the following questions:
     6. Calculate the ideal vectorization speedup for each stage and fill in {numref}`vectorization-table`. Additionally, what speedup do you expect your application can achieve if the compiler is able to 
         achieve the ideal vectorization speedup? (5 lines) 
         ```{hint}
-        For each stage, Identify how many operations can run in vector parallel on the NEON. How does that reduce the resource bound? How does this reduce the overall number of cycles (keep in mind the critical path). You should consider both critical path lower bounds and resource capacity lower bounds. 
+        For each stage, Identify how many operations can run in vector parallel on the NEON.
+        How does that reduce the resource bound? How does this reduce the overall number of cycles.
+        You should consider both critical path lower bounds and resource capacity lower bounds. 
 
         Remember Amdahl's Law for speedup. 
         ```
