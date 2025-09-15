@@ -233,9 +233,11 @@ Your writeup should include your answers to the following questions:
         could exploit the set of computations a NEON unit can do in parallel. 
         ```
     6. Calculate the ideal vectorization speedup for each stage and fill in {numref}`vectorization-table`. Additionally, what speedup do you expect your application can achieve if the compiler is able to 
-        achieve the ideal vectorization speedup? (5 lines)
+        achieve the ideal vectorization speedup? (5 lines) 
         ```{hint}
-        You should consider both critical path lower bounds and resource capacity lower bounds. Remember Amdahl's Law for speedup. 
+        For each stage, Identify how many operations can run in vector parallel on the NEON. How does that reduce the resource bound? How does this reduce the overall number of cycles (keep in mind the critical path). You should consider both critical path lower bounds and resource capacity lower bounds. 
+
+        Remember Amdahl's Law for speedup. 
         ```
         (Fill in the ideal vectorization speedup column in {numref}`vectorization-table`; separately show Amdahl's Law calculation for overall speedup.)
     7. We will now enable the vectorization in g++. You can enable it by removing
