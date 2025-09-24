@@ -140,9 +140,9 @@ Your writeup should include your answers to the following questions:
             and show how it is connected to the memories.  You can find the
             variables that are mapped onto memories in the ***Resource Profile*** view of the
             ***Analysis*** perspective.
-            ```{hint}
-            From the information on ***Analysis***, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.
-            ```
+        ````{hint}
+        From the information on ***Analysis***, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.
+        ````
 
     1. Assuming a continuous flow of input data, how many data
             does the pipelined loop need per clock cycle from `Buffer_1`?
