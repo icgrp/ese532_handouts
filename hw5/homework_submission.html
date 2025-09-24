@@ -605,7 +605,8 @@ initiation interval for the <code class="docutils literal notranslate"><span cla
 <li><p>Draw a schematic for the data path of <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 and show how it is connected to the memories.  You can find the
 variables that are mapped onto memories in the <em><strong>Resource Profile</strong></em> view of the
-<em><strong>Analysis</strong></em> perspective.</p></li>
+<em><strong>Analysis</strong></em> perspective.
+<code class="docutils literal notranslate"><span class="pre">{hint}</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">From</span> <span class="pre">the</span> <span class="pre">information</span> <span class="pre">on</span> <span class="pre">***Analysis***,</span> <span class="pre">what</span> <span class="pre">can</span> <span class="pre">you</span> <span class="pre">conclude</span> <span class="pre">about</span> <span class="pre">the</span> <span class="pre">process</span> <span class="pre">behind</span> <span class="pre">the</span> <span class="pre">loop?</span> <span class="pre">Show</span> <span class="pre">us</span> <span class="pre">where</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">are</span> <span class="pre">stored</span> <span class="pre">and</span> <span class="pre">allocated</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">memory.</span> <span class="pre">When</span> <span class="pre">they</span> <span class="pre">are</span> <span class="pre">loaded,</span> <span class="pre">what</span> <span class="pre">are</span> <span class="pre">the</span> <span class="pre">subsequent</span> <span class="pre">processes</span> <span class="pre">that</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">gone</span> <span class="pre">through?</span> <span class="pre">A</span> <span class="pre">rough</span> <span class="pre">sketch</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">process</span> <span class="pre">showing</span> <span class="pre">the</span> <span class="pre">main</span> <span class="pre">components</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">considered</span> <span class="pre">satisfactory.</span>&#160;&#160;&#160;&#160;&#160; </code></p></li>
 <li><p>Assuming a continuous flow of input data, how many data
 does the pipelined loop need per clock cycle from <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code>?
 (1 line)</p></li>
@@ -696,6 +697,10 @@ this change the value of N for 10x speedup (
 <span class="math notranslate nohighlight">\(T_{accel}=\frac{T_{seq}}{10}\)</span>) ?</p>
 </li>
 </ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>By delving into how runtime scales with problem size, you now see how batching amortizes setup cost (You will need a large N for a satisfactory speedup). The goal is to give you an idea that in a project, you should consider a number of factors such as reducing the occurrence of <span class="math notranslate nohighlight">\(T_{setup}\)</span> and <span class="math notranslate nohighlight">\(T_{transfer}\)</span> to eliminate bottlenecks. Accelerating the computation speed by vectorizing or other techniques you have learnt from previous homeworks are not the only solutions towards your problem.</p>
+</div>
 </li>
 <li><p><strong>Reflection</strong></p>
 <ol class="arabic">

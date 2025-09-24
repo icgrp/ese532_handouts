@@ -140,6 +140,10 @@ Your writeup should include your answers to the following questions:
             and show how it is connected to the memories.  You can find the
             variables that are mapped onto memories in the ***Resource Profile*** view of the
             ***Analysis*** perspective.
+            ```{hint}
+            From the information on ***Analysis***, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.
+            ```
+
     1. Assuming a continuous flow of input data, how many data
             does the pipelined loop need per clock cycle from `Buffer_1`?
             (1 line)
@@ -229,6 +233,9 @@ Your writeup should include your answers to the following questions:
         Assuming the number of invocations, $k$, is large (say 1 million), how does
         this change the value of N for 10x speedup (
         $T_{accel}=\frac{T_{seq}}{10}$) ?
+    ```{hint}
+    By delving into how runtime scales with problem size, you now see how batching amortizes setup cost (You will need a large N for a satisfactory speedup). The goal is to give you an idea that in a project, you should consider a number of factors such as reducing the occurrence of $T_{setup}$ and $T_{transfer}$ to eliminate bottlenecks. Accelerating the computation speed by vectorizing or other techniques you have learnt from previous homeworks are not the only solutions towards your problem. 
+    ```
 
 6. **Reflection**
     1. Problems 1--3 in this assignment took you through
