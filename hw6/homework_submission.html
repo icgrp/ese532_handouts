@@ -597,7 +597,7 @@ and click open.</p></li>
 <p>and <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md">this tutorial</a>.
 Enable dataflow with <code class="docutils literal notranslate"><span class="pre">HLS</span> <span class="pre">DATAFLOW</span></code> pragma and use <code class="docutils literal notranslate"><span class="pre">hls::stream</span></code>
 to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
 Also, provide the screenshot of <em><strong>Performance &amp; Resource Estimates</strong></em> table in
 the Synthesis Summary Report. Because you have Load, Compute, Store functions,
@@ -609,27 +609,26 @@ Find out how to use an out-of-order command queue
 to get <a class="reference external" href="https://docs.amd.com/r/2024.1-English/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation">overlap between communication and computation</a>.
 Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
 Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
-We expect you to see something like <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap</span></code> or <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap_2</span></code>.</p></li>
-</ol>
+We expect you to see something like <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap</span></code> or <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap_2</span></code>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Read the overlap between communication and computation document and specifically look at the **Figure: Event Triggering Setup**. Your goal is to create a design such that you can achieve this out of order queue for data movement. 
-```
-```{figure} images/comp_comm_overlap.png
----
-name: comp_comm_overlap
----
-Communication and Computation overlap
-```
-```{figure} images/comp_comm_overlap_2.png
----
-name: comp_comm_overlap_2
----
-Communication and Computation overlap when a kernel runtime is longer
-```
-</pre></div>
+<ul class="simple">
+<li><p>Read the overlap between communication and computation document and specifically look at the <strong>Figure: Event Triggering Setup</strong>. Your goal is to create a design such that you can achieve this out of order queue for data movement.</p></li>
+</ul>
 </div>
-<ol class="arabic">
+<figure class="align-default" id="comp-comm-overlap">
+<img alt="../_images/comp_comm_overlap.png" src="../_images/comp_comm_overlap.png" />
+<figcaption>
+<p><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="comp-comm-overlap-2">
+<img alt="../_images/comp_comm_overlap_2.png" src="../_images/comp_comm_overlap_2.png" />
+<figcaption>
+<p><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
 <li><p>Use the following command in your host machine. Report the clocks, memory ports and resources that are available on the platform:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>platforminfo $PLATFORM_REPO_PATHS/u96v2_sbc_base.xpfm
 </pre></div>
@@ -666,7 +665,6 @@ Provide a screenshot of the relevant section of Application Trace from Vitis Ana
 <ol class="arabic simple">
 <li><p>Put your latency results from the CPU version in part a, and your FPGA implementations in parts b, g, j, and k into a table, and show the speedup relative to the CPU version.</p></li>
 </ol>
-</div>
 </div>
 </li>
 <li><p><strong>Analyze Implementation</strong></p>
