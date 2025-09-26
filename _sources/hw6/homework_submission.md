@@ -150,6 +150,10 @@ for the sake of easy grading.
     Make the necessary change in the `Host.cpp` and provide the change in the report. 
     Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
     We expect you to see something like {numref}`comp_comm_overlap` or {numref}`comp_comm_overlap_2`.
+
+    ```{hint}
+        - Read the overlap between communication and computation document and specifically look at the **Figure: Event Triggering Setup**. Your goal is to create a design such that you can achieve this out of order queue for data movement. 
+        ```
         ```{figure} images/comp_comm_overlap.png
         ---
         name: comp_comm_overlap
