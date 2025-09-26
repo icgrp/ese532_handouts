@@ -193,7 +193,7 @@ for the sake of easy grading.
     Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
     ```{hint}
         - You may need to reduce the number of NUM_MAT and/or the size of your array partition from 2.1 
-        ```
+    ```
 
     1. Put your latency results from the CPU version in part a, and your FPGA implementations in parts b, g, j, and k into a table, and show the speedup relative to the CPU version.
     
