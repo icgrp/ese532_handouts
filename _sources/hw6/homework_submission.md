@@ -146,7 +146,7 @@ for the sake of easy grading.
 
     1. Our initial FPGA host code uses an in-order command queue.
     Find out how to use an out-of-order command queue 
-    to get [overlap between communication and computation](https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation). 
+    to get [overlap between communication and computation](https://docs.amd.com/r/2024.1-English/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation). 
     Make the necessary change in the `Host.cpp` and provide the change in the report. 
     Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
     We expect you to see something like {numref}`comp_comm_overlap` or {numref}`comp_comm_overlap_2`.

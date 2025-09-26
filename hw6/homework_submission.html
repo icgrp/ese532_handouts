@@ -605,7 +605,7 @@ expand each function in the table to show that you achieved II=1.</p></li>
 This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.</p></li>
 <li><p>Our initial FPGA host code uses an in-order command queue.
 Find out how to use an out-of-order command queue
-to get <a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation">overlap between communication and computation</a>.
+to get <a class="reference external" href="https://docs.amd.com/r/2024.1-English/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation">overlap between communication and computation</a>.
 Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
 Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
 We expect you to see something like <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap</span></code> or <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap_2</span></code>.</p>
