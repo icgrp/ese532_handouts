@@ -239,3 +239,14 @@ for the sake of easy grading.
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
   - writeup in pdf.
+  - a tarball containing the hw6 source code with your modified code.
+    ````{admonition} Quick linux commands for tar files
+    :class: dropdown, tip
+    ```
+    # Compress
+    tar -cvzf <file_name.tgz> directory_to_compress/
+    # Decompress
+    tar -xvzf <file_name.tgz>
+    ```
+    ````
+  - writeup in pdf.
