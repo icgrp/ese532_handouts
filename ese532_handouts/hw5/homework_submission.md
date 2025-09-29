@@ -23,7 +23,7 @@ Your writeup should include your answers to the following questions:
         - First, cd to the HW5 directory that you git cloned, and source settings to be able to run vitis_hls.
           `source sourceMe.sh`.
 
-          **If you work locally**, source `settings64.sh` in vitis installation directory.
+          **If you work locally**, `source settings64.sh` in vitis installation directory.
           
           (e.g.: `source /tools/Xilinx/Vitis/2020.2/settings64.sh`)
 
