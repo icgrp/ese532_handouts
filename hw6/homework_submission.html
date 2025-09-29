@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw6/homework_submission';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Setup and Walk-through" href="walk_through.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -186,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
@@ -227,6 +226,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../hw5/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw5/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw5/homework_submission.html">Homework Submission</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW6 – Accelerator Interface</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="walk_through.html">Setup and Walk-through</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework Submission</a></li>
 </ul>
 </details></li>
 </ul>
@@ -609,7 +614,7 @@ Find out how to use an out-of-order command queue
 to get <a class="reference external" href="https://docs.amd.com/r/2024.1-English/ug1393-vitis-application-acceleration/Overlapping-Data-Transfers-with-Kernel-Computation">overlap between communication and computation</a>.
 Make the necessary change in the <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> and provide the change in the report.
 Build the project with the modified host code. Report the three latencies. Provide a screenshot from Vitis Analyzer.
-We expect you to see something like <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap</span></code> or <code class="xref std std-numref docutils literal notranslate"><span class="pre">comp_comm_overlap_2</span></code>.</p>
+We expect you to see something like <a class="reference internal" href="#comp-comm-overlap"><span class="std std-numref">Fig. 20</span></a> or <a class="reference internal" href="#comp-comm-overlap-2"><span class="std std-numref">Fig. 21</span></a>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <ul class="simple">
@@ -619,13 +624,13 @@ We expect you to see something like <code class="xref std std-numref docutils li
 <figure class="align-default" id="comp-comm-overlap">
 <img alt="../_images/comp_comm_overlap.png" src="../_images/comp_comm_overlap.png" />
 <figcaption>
-<p><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Communication and Computation overlap</span><a class="headerlink" href="#comp-comm-overlap" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="comp-comm-overlap-2">
 <img alt="../_images/comp_comm_overlap_2.png" src="../_images/comp_comm_overlap_2.png" />
 <figcaption>
-<p><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Communication and Computation overlap when a kernel runtime is longer</span><a class="headerlink" href="#comp-comm-overlap-2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -761,6 +766,15 @@ device in your report.</p></li>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="walk_through.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setup and Walk-through</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
