@@ -48,8 +48,8 @@ parts:
         - file: hw6/collaboration
         - file: hw6/walk_through
         - file: hw6/homework_submission
-    # - file: hw7/index
-    #   sections:
-    #     - file: hw7/collaboration
-    #     - file: hw7/walk_through
-    #     - file: hw7/homework_submission
+    - file: hw7/index
+      sections:
+        - file: hw7/collaboration
+        - file: hw7/walk_through
+        - file: hw7/homework_submission
