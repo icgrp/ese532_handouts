@@ -132,9 +132,9 @@ for the sake of easy grading.
     1. Partition the HLS code into Load-Compute-Store Pattern as can be seen in [this example](https://github.com/Xilinx/Vitis_Accel_Examples/tree/2021.1/cpp_kernels/dataflow_stream)    
     <!-- DJP: I think compute_add example is better -->
     <!-- [this code](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Runtime_and_System_Optimization/Design_Tutorials/01-host-code-opt/reference-files/srcKernel/pass.cpp) -->
-    and [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md).
-    Enable dataflow with `HLS DATAFLOW` pragma and use `hls::stream`
-    to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.
+   and [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md).
+   Enable dataflow with `HLS DATAFLOW` pragma and use `hls::stream`
+   to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.
 
     1. Make sure to run C simulation and verify that your HLS code is functionally correct. Provide the code in your report.
     Also, provide the screenshot of ***Performance & Resource Estimates*** table in
