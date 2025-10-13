@@ -129,7 +129,7 @@ for the sake of easy grading.
         - Click on ***open project*** and browse to the your build generated directory: `hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga`
         and click open.
 
-    1. Partition the HLS code into Load-Compute-Store Pattern as can be seen in [this example (https://github.com/Xilinx/Vitis_Accel_Examples/tree/2021.1/cpp_kernels/dataflow_stream)
+    1. Partition the HLS code into Load-Compute-Store Pattern as can be seen in [this example](https://github.com/Xilinx/Vitis_Accel_Examples/tree/2021.1/cpp_kernels/dataflow_stream)
    and [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis_HLS/dataflow_design.md).
    Enable dataflow with `HLS DATAFLOW` pragma and use `hls::stream`
    to pass data between Load, Compute, Store functions. Make additional changes to the code to achieve II=1.
