@@ -660,7 +660,7 @@ We will use the outputs from this question in the next part.</p>
 and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
 Use 2 <code class="docutils literal notranslate"><span class="pre">mmult_fpga</span></code> units. This can be done by modifying <code class="docutils literal notranslate"><span class="pre">design.cfg</span></code>.<br />
 Rebuild the FPGA version,
-copy the binaries and boot files, reboot and test. This will take about &gt;30 minutes to build (While this is building, you can work on Part 2: Analyze Implementation). Report the latencies.
+copy the binaries and boot files, reboot and test. This will take about &gt;30 minutes to build. Report the latencies.
 Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -674,11 +674,11 @@ Provide a screenshot of the relevant section of Application Trace from Vitis Ana
 </li>
 <li><p><strong>Analyze Implementation</strong></p>
 <p>In this question, we will investigate what the FPGA implementation
-of the matrix multiplication (Part 1k) look like using Vivado (not
+of the matrix multiplication (Part 1.11) look like using Vivado (not
 Vivado HLS).  Vivado is part of the Vitis installation.</p>
 <ol class="arabic">
 <li><p>Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
-flip-flop, and LUT) the implementation (Part 1k)
+flip-flop, and LUT) the implementation (Part 1.11)
 consumes. You can find this information in the <em><strong>Implementation</strong></em> tab on the
 left hand side. Click <em><strong>Report Utilization</strong></em> under <em><strong>Open Implemented Design</strong></em>.
 Launch Vivado using the following commands and open the
