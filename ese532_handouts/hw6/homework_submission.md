@@ -171,7 +171,7 @@ for the sake of easy grading.
         ```
 
     1. Assign separate ports to the `mmult_fpga`, then rebuild and run the kernel.
-    This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. 
+    This will take about 30 minutes to build. Report the latencies. Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. (Including System Diagram)
     Does assigning multiple ports on Ultra96 have any impact on your design?
     Save/Move the `hw6/apps/mmult/_x` folder of the project to somewhere else before doing the next question. 
     We will use the outputs from this question in the next part.
@@ -188,7 +188,7 @@ for the sake of easy grading.
     Use 2 `mmult_fpga` units. This can be done by modifying `design.cfg`.    
     Rebuild the FPGA version, 
     copy the binaries and boot files, reboot and test. This will take about >30 minutes to build. Report the latencies. 
-    Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
+    Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer. (Including System Diagram)
         ```{hint}
         - You may need to reduce the number of NUM_MAT and/or the size of your array partition from 2.1 
         ```
