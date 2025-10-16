@@ -187,7 +187,7 @@ for the sake of easy grading.
     and apply it to your design. Note that you need to modify your host code to get multiple compute units working.
     Use 2 `mmult_fpga` units. This can be done by modifying `design.cfg`.    
     Rebuild the FPGA version, 
-    copy the binaries and boot files, reboot and test. This will take about >30 minutes to build (While this is building, you can work on Part 2: Analyze Implementation). Report the latencies. 
+    copy the binaries and boot files, reboot and test. This will take about >30 minutes to build. Report the latencies. 
     Provide a screenshot of the relevant section of Application Trace from Vitis Analyzer.
         ```{hint}
         - You may need to reduce the number of NUM_MAT and/or the size of your array partition from 2.1 
@@ -198,11 +198,11 @@ for the sake of easy grading.
 1. **Analyze Implementation**
 
     In this question, we will investigate what the FPGA implementation
-        of the matrix multiplication (Part 1k) look like using Vivado (not
+        of the matrix multiplication (Part 1.11) look like using Vivado (not
         Vivado HLS).  Vivado is part of the Vitis installation.
     
     1. Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
-    flip-flop, and LUT) the implementation (Part 1k)
+    flip-flop, and LUT) the implementation (Part 1.11)
     consumes. You can find this information in the ***Implementation*** tab on the
     left hand side. Click ***Report Utilization*** under ***Open Implemented Design***.
     Launch Vivado using the following commands and open the
