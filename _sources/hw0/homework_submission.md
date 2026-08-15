@@ -19,12 +19,12 @@ Please upload a `YOUR_PENN_USERNAME.tgz` that contains
 `linked_list.c` and `array_sum.c` to the diagnostic assessment assignment in canvas. 
 If your Penn ID is `ept`, then it should be `ept.tgz`.
 For those who do are in the waitlist, please send `YOUR_PENN_USERNAME.tgz` to
-wkun@seas.upenn.edu or peterpro@seas.upenn.edu with the email titled with "ESE5320 Diagnostic". 
+mingle02@engineering.upenn.edu or keyao@engineering.upenn.edu with the email titled with "ESE5320 Diagnostic".
 TAs will send the reply once the email is received.
 
 
 ## Testing code
-We recommend testing code on [eniac.seas.upenn.edu](eniac.seas.upenn.edu) as we will test your code on that machine so if it works on your
+We recommend testing code on eniac.seas.upenn.edu as we will test your code on that machine so if it works on your
 local machine and not on eniac.seas.upenn.edu, it will be considered incorrect. Also `getline()` function might not work on every machine but will work on eniac machine as eniac has the function as part of it's standard libraries. 
 
 You can refer to this [link](https://cets.seas.upenn.edu/answers/vnc.html) for learning about accessing and using eniac using VNC.
