@@ -1,7 +1,7 @@
 # HW6 -- Accelerator Interface
 
 ```{admonition} Due
-Friday, October 17, 5:00 PM
+Friday, October 23, 5:00 PM EDT
 ```
 In this assignment, we will go deeper in host/kernel code optimization.
 
