@@ -181,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/homework_submission.html">Homework Submission</a></li>
 </ul>
@@ -619,7 +620,7 @@ Starting kernel ...
 [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
 [    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
 [    0.000000] Machine model: Avnet Ultra96 Rev1
-[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options &#39;115200n8&#39;)
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
 [    0.000000] printk: bootconsole [cdns0] enabled
 [    0.000000] efi: Getting EFI parameters from FDT:
 [    0.000000] efi: UEFI not found.
@@ -645,8 +646,8 @@ matchbox: Cant find a keycode for keysym 2809
 matchbox: ignoring key shortcut telephone=!$dates
 matchbox: Cant find a keycode for keysym 269025050
 matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
-dbus-daemon[641]: Activating service name=&#39;org.a11y.atspi.Registry&#39; requested by &#39;:1.0&#39; (uid=0 pid=636 comm=&quot;matchbox-desktop &quot;)
-dbus-daemon[641]: Successfully activated service &#39;org.a11y.atspi.Registry&#39;
+dbus-daemon[641]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=0 pid=636 comm="matchbox-desktop ")
+dbus-daemon[641]: Successfully activated service 'org.a11y.atspi.Registry'
 SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
 [settings daemon] Forking. run with -n to prevent fork
 </pre></div>
@@ -696,8 +697,8 @@ computer.</p></li>
 <li><p>Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file <strong>on your host computer</strong> <code class="docutils literal notranslate"><span class="pre">.profile</span></code> (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In <code class="docutils literal notranslate"><span class="pre">.profile</span></code>, add the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span><span class="m">10</span>.10.7.1<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
 
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls --color"</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">"ls -laF --color"</span>
 </pre></div>
 </div>
 <p>Then create another file (also not in your home directory), called <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>, and add the following:</p>
@@ -750,7 +751,7 @@ Starting kernel ...
 [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
 [    0.000000] Linux version 5.4.0-xilinx-v2020.1 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP Sat Oct 17 20:08:16 UTC 2020
 [    0.000000] Machine model: Avnet Ultra96 Rev1
-[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options &#39;115200n8&#39;)
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
 [    0.000000] printk: bootconsole [cdns0] enabled
 [    0.000000] efi: Getting EFI parameters from FDT:
 [    0.000000] efi: UEFI not found.
@@ -776,8 +777,8 @@ matchbox: Cant find a keycode for keysym 2809
 matchbox: ignoring key shortcut telephone=!$dates
 matchbox: Cant find a keycode for keysym 269025050
 matchbox: ignoring key shortcut XF86Start=!matchbox-remote -desktop
-dbus-daemon[641]: Activating service name=&#39;org.a11y.atspi.Registry&#39; requested by &#39;:1.0&#39; (uid=0 pid=636 comm=&quot;matchbox-desktop &quot;)
-dbus-daemon[641]: Successfully activated service &#39;org.a11y.atspi.Registry&#39;
+dbus-daemon[641]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=0 pid=636 comm="matchbox-desktop ")
+dbus-daemon[641]: Successfully activated service 'org.a11y.atspi.Registry'
 SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
 [settings daemon] Forking. run with -n to prevent fork
 </pre></div>
@@ -802,8 +803,8 @@ computer.</p></li>
 <li><p>Unfortunately, as it stands, every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file <strong>on your host computer</strong> <code class="docutils literal notranslate"><span class="pre">.profile</span></code> (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In <code class="docutils literal notranslate"><span class="pre">.profile</span></code>, add the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span><span class="m">10</span>.10.7.1<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
 
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls --color"</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">"ls -laF --color"</span>
 </pre></div>
 </div>
 <p>Then create another file (also not in your home directory), called <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>, and add the following:</p>
@@ -872,8 +873,8 @@ You can easily drag and drop files from/to the local machine to/from Ultra96.</p
 <li><p>Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file <strong>on your host computer</strong> <code class="docutils literal notranslate"><span class="pre">.profile</span></code> (make sure you don’t do this in your home directory, or else you may overwrite an existing one). In <code class="docutils literal notranslate"><span class="pre">.profile</span></code>, add the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span>put-your-ip-address-here<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.255.0.0
 
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls --color&quot;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -laF --color&quot;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls --color"</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s2">"ls -laF --color"</span>
 </pre></div>
 </div>
 <p>Where <code class="docutils literal notranslate"><span class="pre">put-your-ip-address-here</span></code> is the ip you set in the previous step (in the example it was <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>).

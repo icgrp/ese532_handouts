@@ -181,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../hw0/questions.html">Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/homework_submission.html">Homework Submission</a></li>
 </ul>
@@ -420,14 +421,14 @@ inspect variables. If you know how to debug using <code class="docutils literal 
 <span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Value of a is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Value of a is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
 <span class="w">    </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="n">log_msg</span><span class="p">(</span><span class="s">&quot;Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">log_msg</span><span class="p">(</span><span class="s">&quot;Brace for impact! We are about to crash!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">log_msg</span><span class="p">(</span><span class="s">"Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">log_msg</span><span class="p">(</span><span class="s">"Brace for impact! We are about to crash!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="w">    </span><span class="n">my_broken_function</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
@@ -469,7 +470,7 @@ using <code class="docutils literal notranslate"><span class="pre">file</span> <
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) file ./program
 A program is being debugged already.
 Are you sure you want to change the file? (y or n) y
-Load new symbol table from &quot;./program&quot;? (y or n) y
+Load new symbol table from "./program"? (y or n) y
 Reading symbols from ./program...
 </pre></div>
 </div>
@@ -483,13 +484,13 @@ Starting program: /mnt/castor/seas_home/s/stahmed/ese532_code/hw1/tutorial/progr
 Missing separate debuginfos, use: zypper install glibc-debuginfo-2.31-7.30.x86_64
 
 Temporary breakpoint 1, main () at program.c:18
-18	    log_msg(&quot;Welcome to the wonderful world of segfaults!\n&quot;);
+18	    log_msg("Welcome to the wonderful world of segfaults!\n");
 </pre></div>
 </div>
 </li>
 <li><p><u><strong>Step to the next line</strong></u> using <code class="docutils literal notranslate"><span class="pre">step</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">step</span>
-<span class="n">log_msg</span> <span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="mh">0x400630</span> <span class="s2">&quot;Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">5</span>
+<span class="n">log_msg</span> <span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="mh">0x400630</span> <span class="s2">"Welcome to the wonderful world of segfaults!</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">5</span>
 <span class="mi">5</span>	   <span class="n">printf</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -511,11 +512,11 @@ Temporary breakpoint 1, main () at program.c:18
 </li>
 <li><p>Looks like we are inside the <code class="docutils literal notranslate"><span class="pre">log_msg</span></code> function. <u><strong>Step out of the function</strong></u> using <code class="docutils literal notranslate"><span class="pre">finish</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) finish
-Run till exit from #0  log_msg (string=0x400630 &quot;Welcome to the wonderful world of segfaults!\n&quot;)
+Run till exit from #0  log_msg (string=0x400630 "Welcome to the wonderful world of segfaults!\n")
     at program.c:5
 Welcome to the wonderful world of segfaults!
 main () at program.c:19
-19	    log_msg(&quot;Brace for impact! We are about to crash!\n&quot;);
+19	    log_msg("Brace for impact! We are about to crash!\n");
 </pre></div>
 </div>
 </li>
@@ -534,7 +535,7 @@ that function using <code class="docutils literal notranslate"><span class="pre"
 <span class="n">Continuing</span><span class="o">.</span>
 
 <span class="n">Breakpoint</span> <span class="mi">2</span><span class="p">,</span> <span class="n">my_broken_function</span> <span class="p">()</span> <span class="n">at</span> <span class="n">program</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">12</span>
-<span class="mi">12</span>	    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Value of a is </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="mi">12</span>	    <span class="n">printf</span><span class="p">(</span><span class="s2">"Value of a is </span><span class="si">%d</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
@@ -547,7 +548,7 @@ that function using <code class="docutils literal notranslate"><span class="pre"
 <span class="n">called</span> <span class="n">by</span> <span class="n">frame</span> <span class="n">at</span> <span class="mh">0x7fffffffdda0</span>
 <span class="n">source</span> <span class="n">language</span> <span class="n">c</span><span class="o">.</span>
 <span class="n">Arglist</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> 
-<span class="n">Locals</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">Previous</span> <span class="n">frame</span><span class="s1">&#39;s sp is 0x7fffffffdd90</span>
+<span class="n">Locals</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">Previous</span> <span class="n">frame</span><span class="s1">'s sp is 0x7fffffffdd90</span>
 <span class="n">Saved</span> <span class="n">registers</span><span class="p">:</span>
 <span class="n">rbp</span> <span class="n">at</span> <span class="mh">0x7fffffffdd80</span><span class="p">,</span> <span class="n">rip</span> <span class="n">at</span> <span class="mh">0x7fffffffdd88</span>
 </pre></div>
@@ -622,19 +623,19 @@ GNU gdb (GDB) Red Hat Enterprise Linux 8.0.1-30.amzn2.0.3
 Copyright (C) 2017 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
 This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;
-and &quot;show warranty&quot; for details.
-This GDB was configured as &quot;aarch64-redhat-linux-gnu&quot;.
-Type &quot;show configuration&quot; for configuration details.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
 For bug reporting instructions, please see:
 &lt;http://www.gnu.org/software/gdb/bugs/&gt;.
 Find the GDB manual and other documentation resources online at:
 &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
-For help, type &quot;help&quot;.
-Type &quot;apropos word&quot; to search for commands related to &quot;word&quot;...
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
 Reading symbols from program...done.
 [New LWP 1720]
-Core was generated by `./program&#39;.
+Core was generated by `./program'.
 Program terminated with signal SIGSEGV, Segmentation fault.
 #0  0x0000000000400610 in my_broken_function () at program.c:9
 9	    *p = 1;
