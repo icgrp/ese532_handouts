@@ -1,5 +1,5 @@
 # Overview
-There are 7 homework assignments and 1 project in this course.
+There are 6 homework assignments and 1 project in this course.
 
 ```{tip}
 As mentioned in the course homepage, we will award bonus points
