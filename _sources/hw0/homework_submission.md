@@ -17,7 +17,7 @@ and it should contain the array_sum code in [Questions](questions).
 
 Please upload a `YOUR_PENN_USERNAME.tgz` that contains 
 `linked_list.c` and `array_sum.c` to the diagnostic assessment assignment in canvas. 
-If your Penn ID is `ept`, then it should be `ept.tgz`.
+If your Penn key is `ept`, then it should be `ept.tgz`.
 For those who do are in the waitlist, please send `YOUR_PENN_USERNAME.tgz` to
 mingle02@engineering.upenn.edu or keyao@engineering.upenn.edu with the email titled with "ESE5320 Diagnostic".
 TAs will send the reply once the email is received.
