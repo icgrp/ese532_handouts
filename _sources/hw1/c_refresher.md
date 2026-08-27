@@ -40,7 +40,7 @@ that verify your solution.
      - What data structure do the contents at `0x24`, `0x28`, and `0x2C` remind you of?
     ```
 
-3. {numref}`pointer-question-2` shows the content of an 8 element int array on the stack.
+2. {numref}`pointer-question-2` shows the content of an 8 element int array on the stack.
     1. `int a[2][4] = {{10, 20, 30, 40}, {50, 60, 70, 80}};` creates a
     stack memory space shown in <!-- Write the C code to allocate this array on the stack as shown in  -->
     {numref}`Fig. {number}(a) <pointer-question-2>`, as a 2D array. 
@@ -60,7 +60,7 @@ that verify your solution.
     8 element array on the stack
     ```
 
-4. Considering the following code, give an expression to obtain
+3. Considering the following code, give an expression to obtain
 the address of `b` that can be accessed via the third
 element of `x`. <!--(1 line)-->
     Include the C code and screenshot of the terminal outputs that verify your solution.
@@ -78,7 +78,7 @@ element of `x`. <!--(1 line)-->
     struct s1 x[5];
     ```
 
-5. The following array will be stored as a sequence of bits in
+4. The following array will be stored as a sequence of bits in
 memory.  We could also consider these bits as a sequence
 of bytes (`unsigned char`).  <!-- Show code that prints those bytes. -->   Include the code that prints those bytes 
 and screenshot of the terminal outputs.
@@ -94,9 +94,9 @@ your solution is reporting.
     double a[] = {3.14, 2.71};
     ```
 
-6. Put together code to print the address associated with each of the
+5. Put together code to print the address associated with each of the
 arrays, `a`, `b`, `c`, and `d`. <!-- Include the code and the results of running it and reporting the addresses. -->
-Include the code and screenshot of the terminal outputs.
+Include the code and screenshot of the terminal outputs. Explain the results you get.
     ```C
     void temp(int i) {
       int a[2];
@@ -111,7 +111,7 @@ Include the code and screenshot of the terminal outputs.
       return;
     }
     ```
-7. What might happen with the following code?
+6. What might happen with the following code?
     ```C
     int a[3];
     int b[4];
@@ -125,7 +125,7 @@ Include the code and screenshot of the terminal outputs.
     identified case, what happens and why (2 lines max for each case).
 
 
-8. Compile and run the following code.
+7. Compile and run the following code.
     ```C
     #include "stdio.h"
     #include "stdlib.h"
@@ -169,7 +169,7 @@ Include the code and screenshot of the terminal outputs.
     from their 'intsum'? (1-3
     lines)
 
-10. What is the purpose of the preprocessor, compiler, and
+8. What is the purpose of the preprocessor, compiler, and
 linker? (each 3 lines max.)
 
     Potentially useful:
@@ -184,7 +184,7 @@ linker? (each 3 lines max.)
     this section of this assignment) you may find it useful to get
     your C working on a workstation, laptop, or on Biglab using gcc.]
 
-11. If the preprocessor cannot find a file that is included
+9. If the preprocessor cannot find a file that is included
 with `#include`, give at least three different ways you could resolve
 the problem so that the preprocessor can find the file? (1--2 lines each)
 
@@ -193,7 +193,7 @@ the problem so that the preprocessor can find the file? (1--2 lines each)
     - <https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html#Directory-Options>
     - <http://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html>
 
-12. If the linker gives you an error like `undefined reference to ...`,
+10. If the linker gives you an error like `undefined reference to ...`,
 identify three reasons this could occur and at least one way to resolve each.
 (1--2 lines each)
 
