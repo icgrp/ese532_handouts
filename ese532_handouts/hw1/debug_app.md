@@ -1,6 +1,6 @@
 # Debug an Application
 
-1. Create a new source C file and paste the following code in it.
+1. Create a new source C file `program.c` and paste the following code in it.
 The code should print another message, but due to a bug, it doesn't.
     ```C
     #include <stdio.h>
