@@ -8,7 +8,7 @@ Even if a certain question is just a “step”, please include it in your repor
     ol ol ol { list-style-type: lower-roman; }
 </style>
 
-1. **GDB Tutorial**
+1. **GDB Tutorial** -- go through the [GDB Tutorial](gdb_tutorial) and answer the following questions.
     1. Describe how you do the following in gdb (each 3 lines max.):
         1. Add a breakpoint.
         2. Remove a breakpoint.
@@ -27,7 +27,7 @@ from the [C Refresher](c_refresher) section.
 
 ## Deliverables
 In summary, upload the following in their respective links in canvas:
-  - one tarball from the [Debug an Application](debug_app) section.
+  - one tarball from the [Debug an Application](debug_app) section, including the `Makefile` and the corrected `program.c` file.
     ````{admonition} Quick linux commands for tar files
     :class: dropdown, tip
     ```
