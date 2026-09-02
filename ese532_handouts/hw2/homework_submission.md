@@ -47,18 +47,18 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
       -  
       -  
     ```
-    1. Report the average latencies (i.e. time to execute one call of the function) of `Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress` in nanoseconds.  For this, you will
+    1. Write a Makefile (refer to the profiling tutorial) and use `-O2`
+        optimization (we will explore optimization levels more in HW4).
+        
+        Report the average latencies (i.e. time to execute one call of the function) of `Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress` in nanoseconds.  For this, you will
         need to instrument the code (refer to {ref}`profiling/instrumentation`
         in the profiling tutorial).
-        
-        Write a Makefile (refer to the profiling tutorial) and use `-O2`
-        optimization (we will explore optimization levels more in HW4).
 
     2. Report the percentage of time each function (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`) takes in your program. For this, you will
         need to use `gprof` (refer to {ref}`profiling/gprof`
         in the profiling tutorial).
 
-    3. Calculate and report the latencies of (Part 2.1) in cycles and add it to {numref}`example-table-1`. Use your computer's CPU clock frequency to calculate this. If running on biglab you can find this by running the `lscpu` command.
+    3. Calculate and report the latencies of (Part 2.1) in cycles and add it to {numref}`example-table-1`. Use your computer's CPU clock frequency to calculate this. If running on biglab you can find this by running the `lscpu` command. If you are not running on biglab, report your CPU clock frequency.
 
 3. **Analyze**
 
@@ -97,7 +97,7 @@ Your writeup should follow [the writeup guidelines](../writeup_guidelines). Your
         contribute little to runtime. We’ll get a better picture of
         that when we look at the assembly code.
         ```
-    5. If you would apply a $2\times$ speedup to one of the stages
+    5. If you could apply a $2\times$ speedup to one of the stages
         (`Scale`, `Filter_horizontal`, `Filter_vertical`, `Differentiate`, `Compress`)
         which one would you choose to obtain the best overall performance? (1 line)
     6. Use Amdahl's Law to determine the highest overall application
