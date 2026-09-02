@@ -486,16 +486,16 @@ lines for each of Scale, Filter, Differentiate, Compress).</p></li>
 </table>
 </div>
 <ol class="arabic">
-<li><p>Report the average latencies (i.e. time to execute one call of the function) of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code> in nanoseconds.  For this, you will
+<li><p>Write a Makefile (refer to the profiling tutorial) and use <code class="docutils literal notranslate"><span class="pre">-O2</span></code>
+optimization (we will explore optimization levels more in HW4).</p>
+<p>Report the average latencies (i.e. time to execute one call of the function) of <code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code> in nanoseconds.  For this, you will
 need to instrument the code (refer to <a class="reference internal" href="walk_through.html#profiling-instrumentation"><span class="std std-ref">Instrumentation-based Profiling with Timers</span></a>
 in the profiling tutorial).</p>
-<p>Write a Makefile (refer to the profiling tutorial) and use <code class="docutils literal notranslate"><span class="pre">-O2</span></code>
-optimization (we will explore optimization levels more in HW4).</p>
 </li>
 <li><p>Report the percentage of time each function (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>) takes in your program. For this, you will
 need to use <code class="docutils literal notranslate"><span class="pre">gprof</span></code> (refer to <a class="reference internal" href="walk_through.html#profiling-gprof"><span class="std std-ref">Profiling using GNU gprof</span></a>
 in the profiling tutorial).</p></li>
-<li><p>Calculate and report the latencies of (Part 2.1) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command.</p></li>
+<li><p>Calculate and report the latencies of (Part 2.1) in cycles and add it to <a class="reference internal" href="#example-table-1"><span class="std std-numref">Table 1</span></a>. Use your computer’s CPU clock frequency to calculate this. If running on biglab you can find this by running the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command. If you are not running on biglab, report your CPU clock frequency.</p></li>
 </ol>
 </li>
 <li><p><strong>Analyze</strong></p>
@@ -544,7 +544,7 @@ contribute little to runtime. We’ll get a better picture of
 that when we look at the assembly code.</p>
 </div>
 </li>
-<li><p>If you would apply a <span class="math notranslate nohighlight">\(2\times\)</span> speedup to one of the stages
+<li><p>If you could apply a <span class="math notranslate nohighlight">\(2\times\)</span> speedup to one of the stages
 (<code class="docutils literal notranslate"><span class="pre">Scale</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code>, <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, <code class="docutils literal notranslate"><span class="pre">Differentiate</span></code>, <code class="docutils literal notranslate"><span class="pre">Compress</span></code>)
 which one would you choose to obtain the best overall performance? (1 line)</p></li>
 <li><p>Use Amdahl’s Law to determine the highest overall application

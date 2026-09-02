@@ -150,7 +150,7 @@ std::cout << "Average latency of coloringFB per loop iteration is: " << time_col
 std::cout << "Average latency of each loop iteration is: " << total_time.avg_latency() << " ns." << std::endl;
 
 ```
-Recompile the program using `make` and run `./rendering`. You should see results similar to the following:
+When we compile the program using `make` and run `./rendering`, you should see results similar to the following:
 ```
 [ec2-user@ip-172-31-40-51 hw2_profiling_tutorial]$ ./rendering
 3D Rendering Application
