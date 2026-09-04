@@ -448,7 +448,7 @@ Your writeup should include your answers to the following questions:</p>
 <ol class="arabic">
 <li><p><strong>Baseline</strong></p>
 <p>Get the source code and run the <code class="docutils literal notranslate"><span class="pre">baseline</span></code> project on the Ultra96 as shown in
-<span class="xref std std-doc">walk_through</span>.
+<a class="reference internal" href="code_setup.html"><span class="doc">Code Setup</span></a>.
 Copy <code class="docutils literal notranslate"><span class="pre">hw3</span></code> directory to Ultra96:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>-r<span class="w"> </span>hw3<span class="w"> </span>root@10.10.7.1:/home/root/
 </pre></div>
@@ -456,7 +456,7 @@ Copy <code class="docutils literal notranslate"><span class="pre">hw3</span></co
 <ol class="arabic simple">
 <li><p>Determine the throughput of <code class="docutils literal notranslate"><span class="pre">baseline</span></code> in pictures per
 second.  This is your baseline. We use <code class="docutils literal notranslate"><span class="pre">-O2</span></code> for the baseline, so you
-should keep using -O2 for the rest of the homework. Ignore overhead
+should keep using <code class="docutils literal notranslate"><span class="pre">-O2</span></code> for the rest of the homework. Ignore overhead
 such as loading and storing pictures for this and the following
 questions. (1 line)</p></li>
 </ol>
@@ -554,12 +554,12 @@ and any discrepancies. (1 line)</p></li>
 <li><p>Measure the execution time of core 0 and core 1 to prove they are roughly the same while using the optimal parameter</p></li>
 </ol>
 </div>
-<ol class="arabic simple" start="8">
+<ol class="arabic" start="8">
 <li><p>Report the throughput of your new application in pictures per
 second.  (1–2 lines)</p></li>
 <li><p>Let’s investigate the performance if we incorporate the optimized
-pipeline in a video broadcast server.  The input data is read from
-an interface with <span class="math notranslate nohighlight">\(80\)</span> MB/s throughput.  <span class="math notranslate nohighlight">\(75\%\)</span> of traffic is
+pipeline in a video broadcast server. Assume the following:</p>
+<p>The input data is read from an interface with <span class="math notranslate nohighlight">\(80\)</span> MB/s throughput.  <span class="math notranslate nohighlight">\(75\%\)</span> of traffic is
 video traffic that is compressed using our pipeline (running on
 2 processors). Assume the 2 cores can pipeline the process perfectly. The remaining
 <span class="math notranslate nohighlight">\(25\%\)</span> is other traffic that we protect with an error correction code
@@ -570,10 +570,10 @@ output to a single <span class="math notranslate nohighlight">\(2\)</span>-Gigab
 <ol class="arabic simple">
 <li><p>Draw a streaming dataflow diagram for the network server.
 Indicate throughput and data transfer ratios (output data size ÷ input data size for a stage) where applicable.</p></li>
-<li><p>What is the maximum throughput that the server can achieve? (10 lines)</p></li>
+<li><p>What is the maximum throughput that the server can achieve? Explain how it can be achieved. (5–7 lines)</p></li>
 <li><p>Where is the bottleneck? (1 line)</p></li>
 <li><p>How much smaller do we have to make the kernel (<code class="docutils literal notranslate"><span class="pre">FILTER_LENGTH</span></code>) of
-<code class="docutils literal notranslate"><span class="pre">Filter</span></code> to move the bottleneck? Don’t experimentally find a <code class="docutils literal notranslate"><span class="pre">FILTER_LENGTH</span></code> but find it analytically. (7 lines)</p></li>
+<code class="docutils literal notranslate"><span class="pre">Filter</span></code> to move the bottleneck? Don’t experimentally find a <code class="docutils literal notranslate"><span class="pre">FILTER_LENGTH</span></code> but find it analytically. (5 lines)</p></li>
 </ol>
 </li>
 </ol>
@@ -616,7 +616,7 @@ split inputs between cores.</p></li>
 </ol>
 <section id="deliverables">
 <h2>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this heading">#</a></h2>
-<p>In summary, upload the following in their respective links in canvas:</p>
+<p>In summary, upload the following in their respective links in canvas. Name your submission files with your PennKey:</p>
 <ul>
 <li><p>a tarball containing the 4 projects with your modified code.</p>
 <div class="dropdown tip admonition">
