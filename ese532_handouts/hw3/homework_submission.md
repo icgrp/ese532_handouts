@@ -12,7 +12,7 @@ Your writeup should include your answers to the following questions:
 1. **Baseline**
     
     Get the source code and run the `baseline` project on the Ultra96 as shown in
-    {doc}`walk_through`.
+    {doc}`code_setup`.
     Copy `hw3` directory to Ultra96:
     ```bash
     scp -r hw3 root@10.10.7.1:/home/root/
@@ -20,7 +20,7 @@ Your writeup should include your answers to the following questions:
 
     1. Determine the throughput of `baseline` in pictures per
         second.  This is your baseline. We use `-O2` for the baseline, so you
-        should keep using -O2 for the rest of the homework. Ignore overhead 
+        should keep using `-O2` for the rest of the homework. Ignore overhead
         such as loading and storing pictures for this and the following 
         questions. (1 line)
 
@@ -112,8 +112,9 @@ Your writeup should include your answers to the following questions:
     8. Report the throughput of your new application in pictures per
             second.  (1--2 lines)
     9. Let's investigate the performance if we incorporate the optimized
-        pipeline in a video broadcast server.  The input data is read from 
-        an interface with $80$ MB/s throughput.  $75\%$ of traffic is
+        pipeline in a video broadcast server. Assume the following:
+
+        The input data is read from an interface with $80$ MB/s throughput.  $75\%$ of traffic is
         video traffic that is compressed using our pipeline (running on
         2 processors). Assume the 2 cores can pipeline the process perfectly. The remaining
         $25\%$ is other traffic that we protect with an error correction code
@@ -123,10 +124,10 @@ Your writeup should include your answers to the following questions:
         output to a single $2$-Gigabit/s Ethernet port.
         1. Draw a streaming dataflow diagram for the network server.
             Indicate throughput and data transfer ratios (output data size ÷ input data size for a stage) where applicable.
-        2. What is the maximum throughput that the server can achieve? (10 lines)
+        2. What is the maximum throughput that the server can achieve? Explain how it can be achieved. (5--7 lines)
         3. Where is the bottleneck? (1 line)
         4. How much smaller do we have to make the kernel (`FILTER_LENGTH`) of
-            `Filter` to move the bottleneck? Don't experimentally find a `FILTER_LENGTH` but find it analytically. (7 lines)
+            `Filter` to move the bottleneck? Don't experimentally find a `FILTER_LENGTH` but find it analytically. (5 lines)
 
 4. **CDC Parallel**
     ```{note}
@@ -157,7 +158,7 @@ Your writeup should include your answers to the following questions:
     5. Validate your design and report on any discrepancies.
 
 ## Deliverables
-In summary, upload the following in their respective links in canvas:
+In summary, upload the following in their respective links in canvas. Name your submission files with your PennKey:
   - a tarball containing the 4 projects with your modified code.
     ````{admonition} Quick linux commands for tar files
     :class: dropdown, tip

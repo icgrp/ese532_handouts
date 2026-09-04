@@ -3,7 +3,7 @@
 In the previous homework, we dealt with a streaming application that
 compressed only one picture. For this homework, we will use the same
 application, except that it will take a video stream instead of a
-single picture. You can run the [threads tutorial](threads_tutorial) on the host computer.
+single picture. You can run the [walk-through](threads_walkthrough) on the host computer.
 **But note that you need to run the code for [homework submission](homework_submission) on the Ultra96.**
 
 <!-- We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
