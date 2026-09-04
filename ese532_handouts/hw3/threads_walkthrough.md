@@ -1,76 +1,6 @@
-# Setup and Walk-through
-## Obtaining and Running the Code
-In the previous homework, we dealt with a streaming application that
-compressed only one picture. For this homework, we will use the same
-application, except that it will take a video stream instead of a
-single picture. You can run [Walk-through](walk_through) on the host computer.
-**But note that you need to run the code for [homework submission](homework_submission) on the Ultra96.**
+# Walk-through: Working with Threads
 
-<!-- We will use machines in Biglab/Detkin/Ketterer. Biglab nodes are
-shared by multiple users---meaning your processes are not the only
-ones running on a core. Hence, you might not see full performance scaling
-as you use more cores. Detkin machines should give you dedicated access
-to the cores. -->
-
-- Clone the `ese532_code`
-    repository using the following command:
-    ```
-    git clone https://github.com/icgrp/ese532_code.git
-    ```
-    If you already have it cloned, pull in the latest changes
-    using:
-    ```
-    cd ese532_code/
-    git pull origin master
-    ```
-    The code you will use for [homework submission](homework_submission)
-    is in the `hw3` directory. The directory structure looks like this:
-    ```
-    hw3/
-        assignment/
-            Makefile
-            Walkthrough.cpp
-            common/
-                App.h
-                Constants.h
-                Stopwatch.h
-                Utilities.h
-                Utilities.cpp
-            baseline/
-                App.cpp
-                Compress.cpp
-                Differentiate.cpp
-                Filter.cpp
-                Scale.cpp
-            coarse_grain/
-                ...
-            pipeline_2_cores/
-                ...
-            cdc_parallel/
-                ...
-        data/
-            Input.bin
-            Golden.bin
-    ```
-- There are four parts to the homework. You can build all of them by executing `make all`
-    in the `hw3/assignment` directory. You can build separately by:
-    - `make base` and run `./base` to run the baseline project.
-    - `make coarse` and run `./coarse` to run the coarse-grain project.
-    - `make pipeline2` and run `./pipeline2` to run the pipeline project on 2 cores.
-    - `make cdc` and run `./cdc` to run the data-parallel CDC you will implement on 4 cores.
-- The `data` folder contains the input data, `Input.bin`, which has 100 frames of
-    size $960$ by $540$ pixels, where each pixel is a byte. `Golden.bin` contains the
-    expected output. `base`, `coarse` and `pipeline2` uses this file to see if there is a mismatch between
-    your program's output and the expected output. `cdc` uses `prince.txt`
-    from the `data` folder as an input. `golden.txt` has the expected output
-    cdc will produce.
-- The `assignment/common` folder has header files and helper functions used by the
-    four parts.
-- You will mostly be working with the code in the rest of the folders.
-
-## Working with Threads
-
-### Basics
+## Basics
 Consider the following code:
 
 ```CPP
@@ -366,7 +296,7 @@ This concludes everything you need to know about `std::threads` to
 complete this homework. You can run the full walk-through by
 `make walkthrough` and `./walkthrough`.
 
-### Coarse-grain
+## Coarse-grain
 The coarse-grain part of the homework shows you how you can process
 a data parallel function with threads. We show how you change the
 `Scale` function to process it with two threads:
@@ -408,7 +338,7 @@ processes indices `[0, 270)` and the other processes `[270, 540)`.
 If you wanted to use three threads, you can split the indices as `[0,180)`,
 `[180, 360)` and `[360, 540)` and invoke another thread and pin it to cpu 3.
 
-### Pipeline
+## Pipeline
 The pipeline part of the homework shows you how you can orchestrate
 the launching of threads and achieve pipeline parallelism. Start reading
 from the main function, where we launch a process on cpu 0:
@@ -581,7 +511,7 @@ pressing `1`.
 ````
 -->
 
-### Monitoring Processes using `top`
+## Monitoring Processes using `top`
 When you run the code on the Ultra96, you can use `top` to monitor the processes running on your system.
 You can monitor the core usage in `top` by pressing `1`.
 
@@ -592,7 +522,8 @@ name: top
 `top` on Ultra96 showing core usage
 ```
 
-### Performance Counter Statistics using Perf
+<!--
+## Performance Counter Statistics using Perf
 In hw2, two methods are suggested to measure latency: instrumentation-based profiling and gprof. In hw3, a new method using Perf is proposed. To go through the following steps, you need to 'cd' to hw2 folder and probably need to install 'perf' on the board.  
 
 ARM has a dedicated Performance Monitor Unit (PMU) that can give you the number of cycles
@@ -674,3 +605,4 @@ of individual function in ***cycles*** instead, you can just use your
 measured time with the clock frequency to figure out the cycles.
 Alternatively you could get the fraction of time spent by your function
 and use the total number of cycles from `perf stat`.
+-->

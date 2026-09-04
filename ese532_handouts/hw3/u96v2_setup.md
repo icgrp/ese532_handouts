@@ -106,7 +106,7 @@ JTAG module
 -->
 
 ```{caution}
-> Your board should be preassembled, but please still be cautious with ESD protection when using the JTAG module with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. - <https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf>
+Your board should be preassembled, but please still be cautious with ESD protection when using the JTAG module with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. - <https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf>
 ```
 
 
@@ -139,7 +139,7 @@ Development Environment
 - Once you finish writing the image to the SD card, slide it into your Ultra96's SD card slot.
 
 #### Resize the SD Card Partition (Optional)
-- The defualt partition size for root is quite small from the image. If you are running out of space, you may want to resize the partition to use the full capacity of your SD card. To do this on Linux, first insert the SD card into your computer, and then run:
+- The default partition size for root is quite small from the image. If you are running out of space, you may want to resize the partition to use the full capacity of your SD card. To do this on Linux, first insert the SD card into your computer, and then run:
     ``` bash
     lsblk
     ```
@@ -211,7 +211,7 @@ Development Environment
     Switch for booting Ultra96
     ```
 - Watch your serial console for boot messages. Following is what ours look like:
-    ```
+    ```TEXT
     NOTICE:  BL31: Non secure code at 0x8000000
     NOTICE:  BL31: v2.10.0	(release):v1.1-13187-g4f82b6134
     NOTICE:  BL31: Built : 04:45:53, Mar 12 2024
@@ -331,7 +331,7 @@ Development Environment
 - Now in your second console **on the host computer**, first
     find out the name that has been assigned to the USB-ethernet
     device by issuing `ifconfig`
-    ```
+    ```TEXT
     enx000ec6c4b500: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
             inet 10.10.7.2  netmask 255.0.0.0  broadcast 10.255.255.255
             ether 00:0e:c6:c4:b5:00  txqueuelen 1000  (Ethernet)
@@ -359,10 +359,6 @@ computer.
 - Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
-<!--
-    alias ls="ls --color"
-    alias ll="ls -laF --color"
--->
     ```
     Then create another file (also not in your home directory), called `.bashrc`, and add the following:
     ```bash
@@ -392,7 +388,7 @@ First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/
     Switch for booting Ultra96
     ```
 - Watch your serial console for boot messages. Following is what ours look like:
-    ```
+    ```TEXT
     NOTICE:  BL31: Non secure code at 0x8000000
     NOTICE:  BL31: v2.10.0	(release):v1.1-13187-g4f82b6134
     NOTICE:  BL31: Built : 04:45:53, Mar 12 2024
@@ -516,17 +512,13 @@ computer.
 - Unfortunately, as it stands, every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
-<!--
-    alias ls="ls --color"
-    alias ll="ls -laF --color"
--->
     ```
     Then create another file (also not in your home directory), called `.bashrc`, and add the following:
     ```bash
     source .profile
     ```
     Next, copy these files over to the Ultra96:
-    ``` bash
+    ```bash
     scp .profile .bashrc root@10.10.7.1:/home/root/
     ```
     Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
@@ -569,10 +561,6 @@ computer.
 - Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 put-your-ip-address-here netmask 255.255.0.0
-<!--
-    alias ls="ls --color"
-    alias ll="ls -laF --color"
--->
     ```
     Where `put-your-ip-address-here` is the ip you set in the previous step (in the example it was `169.254.123.24`).
     Then create another file (also not in your home directory), called `.bashrc`, and add the following:
