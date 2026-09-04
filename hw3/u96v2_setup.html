@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw3/u96v2_setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code Setup" href="code_setup.html" />
+    <link rel="prev" title="Collaboration" href="collaboration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -127,8 +129,6 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -178,7 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 
@@ -200,6 +200,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw2/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw2/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw2/homework_submission.html">Homework Submission</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW3 – Thread Parallel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ultra96 Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_setup.html">Code Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads_walkthrough.html">Walk-through: Working with Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework_submission.html">Homework Submission</a></li>
 </ul>
 </details></li>
 </ul>
@@ -446,7 +455,7 @@ document.write(`
 <figure class="align-default" id="zynq">
 <a class="reference internal image-reference" href="../_images/zynq-eg-block.png"><img alt="../_images/zynq-eg-block.png" src="../_images/zynq-eg-block.png" style="height: 550px;" /></a>
 <figcaption>
-<p><span class="caption-text">AMD-Xilinx Zynq UltraScale+ MPSoC diagram</span><a class="headerlink" href="#zynq" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">AMD-Xilinx Zynq UltraScale+ MPSoC diagram</span><a class="headerlink" href="#zynq" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <!-- 
@@ -547,15 +556,13 @@ JTAG module
 -->
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<blockquote>
-<div><p>Your board should be preassembled, but please still be cautious with ESD protection when using the JTAG module with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. - <a class="reference external" href="https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf">https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf</a></p>
-</div></blockquote>
+<p>Your board should be preassembled, but please still be cautious with ESD protection when using the JTAG module with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. - <a class="reference external" href="https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf">https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf</a></p>
 </div>
-<p>Your setup for this HW should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>. Note that the USB to Ethernet adapter should be plugged into the USB port closest to the corner of the board.</p>
+<p>Your setup for this HW should look like <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 4</span></a>. Note that the USB to Ethernet adapter should be plugged into the USB port closest to the corner of the board.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/env_setup.jpg" src="../_images/env_setup.jpg" />
 <figcaption>
-<p><span class="caption-text">Development Environment</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -592,7 +599,7 @@ JTAG module
 <section id="resize-the-sd-card-partition-optional">
 <h4>Resize the SD Card Partition (Optional)<a class="headerlink" href="#resize-the-sd-card-partition-optional" title="Permalink to this heading">#</a></h4>
 <ul>
-<li><p>The defualt partition size for root is quite small from the image. If you are running out of space, you may want to resize the partition to use the full capacity of your SD card. To do this on Linux, first insert the SD card into your computer, and then run:</p>
+<li><p>The default partition size for root is quite small from the image. If you are running out of space, you may want to resize the partition to use the full capacity of your SD card. To do this on Linux, first insert the SD card into your computer, and then run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsblk
 </pre></div>
 </div>
@@ -643,7 +650,7 @@ nvme0n1<span class="w">     </span><span class="m">259</span>:0<span class="w"> 
 <ul>
 <li><p>The instructions here are for users running Linux on their personal computers. For Windows and Mac users, skim these through, and
 then go to <a class="reference internal" href="#boot-windows"><span class="std std-ref">Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)</span></a> or <a class="reference internal" href="#boot-mac"><span class="std std-ref">Boot the Ultra96 (Environment - Mac)</span></a>.</p></li>
-<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p></li>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 4</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries onto the Ultra96</p></li>
@@ -653,13 +660,13 @@ then go to <a class="reference internal" href="#boot-windows"><span class="std s
 <li><p>We will now open the serial console of the Ultra96.
 You can use any program like <code class="docutils literal notranslate"><span class="pre">minicom</span></code>, <code class="docutils literal notranslate"><span class="pre">gtkterm</span></code> or <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> to connect to our serial port.
 We are using <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and launch <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> by <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">putty</span></code>.
-The settings are shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">putty</span></code>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
+The settings are shown in <a class="reference internal" href="#putty"><span class="std std-numref">Fig. 5</span></a>. <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> is the port where the Ultra96 dumps all
 the console output. If you are on Windows, this will be
 something different, like <code class="docutils literal notranslate"><span class="pre">COM4</span></code>.</p>
 <figure class="align-default" id="putty">
 <img alt="../_images/putty.png" src="../_images/putty.png" />
 <figcaption>
-<p><span class="caption-text">PuTTY settings</span><a class="headerlink" href="#putty" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">PuTTY settings</span><a class="headerlink" href="#putty" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -668,62 +675,62 @@ by pressing the boot switch as shown in <code class="xref std std-numref docutil
 <figure class="align-default" id="boot">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
-<p><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#boot" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
 <li><p>Watch your serial console for boot messages. Following is what ours look like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOTICE</span><span class="p">:</span>  <span class="n">BL31</span><span class="p">:</span> <span class="n">Non</span> <span class="n">secure</span> <span class="n">code</span> <span class="n">at</span> <span class="mh">0x8000000</span>
-<span class="n">NOTICE</span><span class="p">:</span>  <span class="n">BL31</span><span class="p">:</span> <span class="n">v2</span><span class="mf">.10.0</span>	<span class="p">(</span><span class="n">release</span><span class="p">):</span><span class="n">v1</span><span class="mf">.1</span><span class="o">-</span><span class="mi">13187</span><span class="o">-</span><span class="n">g4f82b6134</span>
-<span class="n">NOTICE</span><span class="p">:</span>  <span class="n">BL31</span><span class="p">:</span> <span class="n">Built</span> <span class="p">:</span> <span class="mi">04</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">53</span><span class="p">,</span> <span class="n">Mar</span> <span class="mi">12</span> <span class="mi">2024</span>
+<div class="highlight-TEXT notranslate"><div class="highlight"><pre><span></span>NOTICE:  BL31: Non secure code at 0x8000000
+NOTICE:  BL31: v2.10.0	(release):v1.1-13187-g4f82b6134
+NOTICE:  BL31: Built : 04:45:53, Mar 12 2024
 
 
-<span class="n">U</span><span class="o">-</span><span class="n">Boot</span> <span class="mf">2024.01</span> <span class="p">(</span><span class="n">May</span> <span class="mi">14</span> <span class="mi">2024</span> <span class="o">-</span> <span class="mi">03</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">48</span> <span class="o">+</span><span class="mi">0000</span><span class="p">)</span>
+U-Boot 2024.01 (May 14 2024 - 03:31:48 +0000)
 
-<span class="n">CPU</span><span class="p">:</span>   <span class="n">ZynqMP</span>
-<span class="n">Silicon</span><span class="p">:</span> <span class="n">v3</span>
-<span class="n">Chip</span><span class="p">:</span>  <span class="n">zu3eg</span>
-<span class="n">Board</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">ZynqMP</span>
-<span class="n">DRAM</span><span class="p">:</span>  <span class="mi">2</span> <span class="n">GiB</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="n">Starting</span> <span class="n">kernel</span> <span class="o">...</span>
+CPU:   ZynqMP
+Silicon: v3
+Chip:  zu3eg
+Board: Xilinx ZynqMP
+DRAM:  2 GiB
+.
+.
+.
+Starting kernel ...
 
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">Booting</span> <span class="n">Linux</span> <span class="n">on</span> <span class="n">physical</span> <span class="n">CPU</span> <span class="mh">0x0000000000</span> <span class="p">[</span><span class="mh">0x410fd034</span><span class="p">]</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">Linux</span> <span class="n">version</span> <span class="mf">6.6.10</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">v2024</span><span class="mf">.1</span><span class="o">-</span><span class="n">g2a9895f4630b</span> <span class="p">(</span><span class="n">oe</span><span class="o">-</span><span class="n">user</span><span class="nd">@oe</span><span class="o">-</span><span class="n">host</span><span class="p">)</span> <span class="p">(</span><span class="n">aarch64</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gcc</span> <span class="p">(</span><span class="n">GCC</span><span class="p">)</span> <span class="mf">12.2.0</span><span class="p">,</span> <span class="n">GNU</span> <span class="n">ld</span> <span class="p">(</span><span class="n">GNU</span> <span class="n">Binutils</span><span class="p">)</span> <span class="mf">2.39.0.20220819</span><span class="p">)</span> <span class="c1">#1 SMP Sat Apr 27 05:22:24 UTC 2024</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">KASLR</span> <span class="n">disabled</span> <span class="n">due</span> <span class="n">to</span> <span class="n">lack</span> <span class="n">of</span> <span class="n">seed</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">Machine</span> <span class="n">model</span><span class="p">:</span> <span class="n">xlnx</span><span class="p">,</span><span class="n">zynqmp</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">earlycon</span><span class="p">:</span> <span class="n">cdns0</span> <span class="n">at</span> <span class="n">MMIO</span> <span class="mh">0x00000000ff010000</span> <span class="p">(</span><span class="n">options</span> <span class="s1">'115200n8'</span><span class="p">)</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">printk</span><span class="p">:</span> <span class="n">bootconsole</span> <span class="p">[</span><span class="n">cdns0</span><span class="p">]</span> <span class="n">enabled</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Xinetd</span> <span class="n">A</span> <span class="n">Powerful</span> <span class="n">Replacement</span> <span class="n">For</span> <span class="n">Inetd</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Finished</span> <span class="n">Permit</span> <span class="n">User</span> <span class="n">Sessions</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Getty</span> <span class="n">on</span> <span class="n">tty1</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Serial</span> <span class="n">Getty</span> <span class="n">on</span> <span class="n">ttyPS0</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Reached</span> <span class="n">target</span> <span class="n">Login</span> <span class="n">Prompts</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Target</span> <span class="n">Communication</span> <span class="n">Framework</span> <span class="n">agent</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Network</span> <span class="n">Time</span> <span class="n">Service</span><span class="o">.</span>
-         <span class="n">Starting</span> <span class="n">Hostname</span> <span class="n">Service</span><span class="o">...</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Hostname</span> <span class="n">Service</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Finished</span> <span class="n">Access</span> <span class="n">point</span> <span class="k">for</span> <span class="n">Ultra96</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Reached</span> <span class="n">target</span> <span class="n">Multi</span><span class="o">-</span><span class="n">User</span> <span class="n">System</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Reached</span> <span class="n">target</span> <span class="n">Graphical</span> <span class="n">Interface</span><span class="o">.</span>
-         <span class="n">Starting</span> <span class="n">Record</span> <span class="n">Runlevel</span> <span class="n">Change</span> <span class="ow">in</span> <span class="n">UTMP</span><span class="o">...</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Finished</span> <span class="n">Record</span> <span class="n">Runlevel</span> <span class="n">Change</span> <span class="ow">in</span> <span class="n">UTMP</span><span class="o">.</span>
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.6.10-xilinx-v2024.1-g2a9895f4630b (oe-user@oe-host) (aarch64-xilinx-linux-gcc (GCC) 12.2.0, GNU ld (GNU Binutils) 2.39.0.20220819) #1 SMP Sat Apr 27 05:22:24 UTC 2024
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: xlnx,zynqmp
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+[    0.000000] printk: bootconsole [cdns0] enabled
+.
+.
+.
+[  OK  ] Started Xinetd A Powerful Replacement For Inetd.
+[  OK  ] Finished Permit User Sessions.
+[  OK  ] Started Getty on tty1.
+[  OK  ] Started Serial Getty on ttyPS0.
+[  OK  ] Reached target Login Prompts.
+[  OK  ] Started Target Communication Framework agent.
+[  OK  ] Started Network Time Service.
+         Starting Hostname Service...
+[  OK  ] Started Hostname Service.
+[  OK  ] Finished Access point for Ultra96.
+[  OK  ] Reached target Multi-User System.
+[  OK  ] Reached target Graphical Interface.
+         Starting Record Runlevel Change in UTMP...
+[  OK  ] Finished Record Runlevel Change in UTMP.
 
-<span class="o">********************************************************************************************</span>
-<span class="n">The</span> <span class="n">PetaLinux</span> <span class="n">source</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">images</span> <span class="n">provided</span><span class="o">/</span><span class="n">generated</span> <span class="n">are</span> <span class="k">for</span> <span class="n">demonstration</span> <span class="n">purposes</span> <span class="n">only</span><span class="o">.</span>
-<span class="n">Please</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">xilinx</span><span class="o">-</span><span class="n">wiki</span><span class="o">.</span><span class="n">atlassian</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">spaces</span><span class="o">/</span><span class="n">A</span><span class="o">/</span><span class="n">pages</span><span class="o">/</span><span class="mi">2741928025</span><span class="o">/</span><span class="n">Moving</span><span class="o">+</span><span class="n">from</span><span class="o">+</span><span class="n">PetaLinux</span><span class="o">+</span><span class="n">to</span><span class="o">+</span><span class="n">Production</span><span class="o">+</span><span class="n">Deployment</span>
-<span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="o">.</span>
-<span class="o">********************************************************************************************</span>
-<span class="n">PetaLinux</span> <span class="mf">2024.1</span><span class="o">+</span><span class="n">release</span><span class="o">-</span><span class="n">S05201002</span> <span class="n">u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">1</span> <span class="n">ttyPS0</span>
+********************************************************************************************
+The PetaLinux source code and images provided/generated are for demonstration purposes only.
+Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
+for more details.
+********************************************************************************************
+PetaLinux 2024.1+release-S05201002 u96v2-sbc-base-2024-1 ttyPS0
 
-<span class="n">u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">1</span> <span class="n">login</span><span class="p">:</span> <span class="n">root</span> <span class="p">(</span><span class="n">automatic</span> <span class="n">login</span><span class="p">)</span>
+u96v2-sbc-base-2024-1 login: root (automatic login)
 
-<span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+root@u96v2-sbc-base-2024-1:~#
 </pre></div>
 </div>
 </li>
@@ -798,21 +805,21 @@ the devices. Issue the following command in the serial console:</p>
 <li><p>Now in your second console <strong>on the host computer</strong>, first
 find out the name that has been assigned to the USB-ethernet
 device by issuing <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enx000ec6c4b500</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
-        <span class="n">inet</span> <span class="mf">10.10.7.2</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>  <span class="n">broadcast</span> <span class="mf">10.255.255.255</span>
-        <span class="n">ether</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">e</span><span class="p">:</span><span class="n">c6</span><span class="p">:</span><span class="n">c4</span><span class="p">:</span><span class="n">b5</span><span class="p">:</span><span class="mi">00</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">213</span>  <span class="nb">bytes</span> <span class="mi">32750</span> <span class="p">(</span><span class="mf">32.7</span> <span class="n">KB</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
-        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">249</span>  <span class="nb">bytes</span> <span class="mi">25958</span> <span class="p">(</span><span class="mf">25.9</span> <span class="n">KB</span><span class="p">)</span>
-        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
-<span class="n">lo</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">73</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">LOOPBACK</span><span class="p">,</span><span class="n">RUNNING</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">65536</span>
-        <span class="n">inet</span> <span class="mf">127.0.0.1</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
-        <span class="n">inet6</span> <span class="p">::</span><span class="mi">1</span>  <span class="n">prefixlen</span> <span class="mi">128</span>  <span class="n">scopeid</span> <span class="mh">0x10</span><span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>
-        <span class="n">loop</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Local</span> <span class="n">Loopback</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">570887</span>  <span class="nb">bytes</span> <span class="mi">920673672</span> <span class="p">(</span><span class="mf">920.6</span> <span class="n">MB</span><span class="p">)</span>
-        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
-        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">570887</span>  <span class="nb">bytes</span> <span class="mi">920673672</span> <span class="p">(</span><span class="mf">920.6</span> <span class="n">MB</span><span class="p">)</span>
-        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+<div class="highlight-TEXT notranslate"><div class="highlight"><pre><span></span>enx000ec6c4b500: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 10.10.7.2  netmask 255.0.0.0  broadcast 10.255.255.255
+        ether 00:0e:c6:c4:b5:00  txqueuelen 1000  (Ethernet)
+        RX packets 213  bytes 32750 (32.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 249  bytes 25958 (25.9 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 570887  bytes 920673672 (920.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 570887  bytes 920673672 (920.6 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 </pre></div>
 </div>
 <p>In our case, the USB-ethernet device is <code class="docutils literal notranslate"><span class="pre">enx000ec6c4b500</span></code>.
@@ -828,30 +835,23 @@ computer.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span><span class="m">10</span>.10.7.1<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
 </pre></div>
 </div>
-</li>
-</ul>
-<!--
-    alias ls="ls --color"
-    alias ll="ls -laF --color"
--->
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
-Then create another file (also not in your home directory), called `.bashrc`, and add the following:
-```bash
-source .profile
-```
-Next, copy these files over to the Ultra96:
-``` bash
-scp .profile .bashrc root@10.10.7.1:/home/root/
-```
-Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+<p>Then create another file (also not in your home directory), called <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>, and add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.profile
 </pre></div>
 </div>
+<p>Next, copy these files over to the Ultra96:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>.profile<span class="w"> </span>.bashrc<span class="w"> </span>root@10.10.7.1:/home/root/
+</pre></div>
+</div>
+<p>Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.</p>
+</li>
+</ul>
 </section>
 <section id="boot-the-ultra96-environment-mac">
 <span id="boot-mac"></span><h4>Boot the Ultra96 (Environment - Mac)<a class="headerlink" href="#boot-the-ultra96-environment-mac" title="Permalink to this heading">#</a></h4>
 <p>First install the USB to Ethernet driver from <a class="reference external" href="https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179">here</a>. Then install this serial terminal from <a class="reference external" href="https://www.macupdate.com/app/mac/31352/coolterm">here</a>. After installing ASIX, open it and press “Activate”.</p>
 <ul>
-<li><p>Make sure you have the board connected as shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup</span></code>.</p></li>
+<li><p>Make sure you have the board connected as shown in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 4</span></a>.</p></li>
 <li><p>We will use two terminals on our host computer:</p>
 <ul class="simple">
 <li><p>the first terminal will be used to copy binaries onto the Ultra96</p></li>
@@ -864,62 +864,62 @@ by pressing the boot switch as shown in <code class="xref std std-numref docutil
 <figure class="align-default" id="id2">
 <img alt="../_images/boot.png" src="../_images/boot.png" />
 <figcaption>
-<p><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Switch for booting Ultra96</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
 <li><p>Watch your serial console for boot messages. Following is what ours look like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOTICE</span><span class="p">:</span>  <span class="n">BL31</span><span class="p">:</span> <span class="n">Non</span> <span class="n">secure</span> <span class="n">code</span> <span class="n">at</span> <span class="mh">0x8000000</span>
-<span class="n">NOTICE</span><span class="p">:</span>  <span class="n">BL31</span><span class="p">:</span> <span class="n">v2</span><span class="mf">.10.0</span>	<span class="p">(</span><span class="n">release</span><span class="p">):</span><span class="n">v1</span><span class="mf">.1</span><span class="o">-</span><span class="mi">13187</span><span class="o">-</span><span class="n">g4f82b6134</span>
-<span class="n">NOTICE</span><span class="p">:</span>  <span class="n">BL31</span><span class="p">:</span> <span class="n">Built</span> <span class="p">:</span> <span class="mi">04</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">53</span><span class="p">,</span> <span class="n">Mar</span> <span class="mi">12</span> <span class="mi">2024</span>
+<div class="highlight-TEXT notranslate"><div class="highlight"><pre><span></span>NOTICE:  BL31: Non secure code at 0x8000000
+NOTICE:  BL31: v2.10.0	(release):v1.1-13187-g4f82b6134
+NOTICE:  BL31: Built : 04:45:53, Mar 12 2024
 
 
-<span class="n">U</span><span class="o">-</span><span class="n">Boot</span> <span class="mf">2024.01</span> <span class="p">(</span><span class="n">May</span> <span class="mi">14</span> <span class="mi">2024</span> <span class="o">-</span> <span class="mi">03</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">48</span> <span class="o">+</span><span class="mi">0000</span><span class="p">)</span>
+U-Boot 2024.01 (May 14 2024 - 03:31:48 +0000)
 
-<span class="n">CPU</span><span class="p">:</span>   <span class="n">ZynqMP</span>
-<span class="n">Silicon</span><span class="p">:</span> <span class="n">v3</span>
-<span class="n">Chip</span><span class="p">:</span>  <span class="n">zu3eg</span>
-<span class="n">Board</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">ZynqMP</span>
-<span class="n">DRAM</span><span class="p">:</span>  <span class="mi">2</span> <span class="n">GiB</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="n">Starting</span> <span class="n">kernel</span> <span class="o">...</span>
+CPU:   ZynqMP
+Silicon: v3
+Chip:  zu3eg
+Board: Xilinx ZynqMP
+DRAM:  2 GiB
+.
+.
+.
+Starting kernel ...
 
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">Booting</span> <span class="n">Linux</span> <span class="n">on</span> <span class="n">physical</span> <span class="n">CPU</span> <span class="mh">0x0000000000</span> <span class="p">[</span><span class="mh">0x410fd034</span><span class="p">]</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">Linux</span> <span class="n">version</span> <span class="mf">6.6.10</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">v2024</span><span class="mf">.1</span><span class="o">-</span><span class="n">g2a9895f4630b</span> <span class="p">(</span><span class="n">oe</span><span class="o">-</span><span class="n">user</span><span class="nd">@oe</span><span class="o">-</span><span class="n">host</span><span class="p">)</span> <span class="p">(</span><span class="n">aarch64</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gcc</span> <span class="p">(</span><span class="n">GCC</span><span class="p">)</span> <span class="mf">12.2.0</span><span class="p">,</span> <span class="n">GNU</span> <span class="n">ld</span> <span class="p">(</span><span class="n">GNU</span> <span class="n">Binutils</span><span class="p">)</span> <span class="mf">2.39.0.20220819</span><span class="p">)</span> <span class="c1">#1 SMP Sat Apr 27 05:22:24 UTC 2024</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">KASLR</span> <span class="n">disabled</span> <span class="n">due</span> <span class="n">to</span> <span class="n">lack</span> <span class="n">of</span> <span class="n">seed</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">Machine</span> <span class="n">model</span><span class="p">:</span> <span class="n">xlnx</span><span class="p">,</span><span class="n">zynqmp</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">earlycon</span><span class="p">:</span> <span class="n">cdns0</span> <span class="n">at</span> <span class="n">MMIO</span> <span class="mh">0x00000000ff010000</span> <span class="p">(</span><span class="n">options</span> <span class="s1">'115200n8'</span><span class="p">)</span>
-<span class="p">[</span>    <span class="mf">0.000000</span><span class="p">]</span> <span class="n">printk</span><span class="p">:</span> <span class="n">bootconsole</span> <span class="p">[</span><span class="n">cdns0</span><span class="p">]</span> <span class="n">enabled</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Xinetd</span> <span class="n">A</span> <span class="n">Powerful</span> <span class="n">Replacement</span> <span class="n">For</span> <span class="n">Inetd</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Finished</span> <span class="n">Permit</span> <span class="n">User</span> <span class="n">Sessions</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Getty</span> <span class="n">on</span> <span class="n">tty1</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Serial</span> <span class="n">Getty</span> <span class="n">on</span> <span class="n">ttyPS0</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Reached</span> <span class="n">target</span> <span class="n">Login</span> <span class="n">Prompts</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Target</span> <span class="n">Communication</span> <span class="n">Framework</span> <span class="n">agent</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Network</span> <span class="n">Time</span> <span class="n">Service</span><span class="o">.</span>
-         <span class="n">Starting</span> <span class="n">Hostname</span> <span class="n">Service</span><span class="o">...</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Started</span> <span class="n">Hostname</span> <span class="n">Service</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Finished</span> <span class="n">Access</span> <span class="n">point</span> <span class="k">for</span> <span class="n">Ultra96</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Reached</span> <span class="n">target</span> <span class="n">Multi</span><span class="o">-</span><span class="n">User</span> <span class="n">System</span><span class="o">.</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Reached</span> <span class="n">target</span> <span class="n">Graphical</span> <span class="n">Interface</span><span class="o">.</span>
-         <span class="n">Starting</span> <span class="n">Record</span> <span class="n">Runlevel</span> <span class="n">Change</span> <span class="ow">in</span> <span class="n">UTMP</span><span class="o">...</span>
-<span class="p">[</span>  <span class="n">OK</span>  <span class="p">]</span> <span class="n">Finished</span> <span class="n">Record</span> <span class="n">Runlevel</span> <span class="n">Change</span> <span class="ow">in</span> <span class="n">UTMP</span><span class="o">.</span>
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 6.6.10-xilinx-v2024.1-g2a9895f4630b (oe-user@oe-host) (aarch64-xilinx-linux-gcc (GCC) 12.2.0, GNU ld (GNU Binutils) 2.39.0.20220819) #1 SMP Sat Apr 27 05:22:24 UTC 2024
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: xlnx,zynqmp
+[    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+[    0.000000] printk: bootconsole [cdns0] enabled
+.
+.
+.
+[  OK  ] Started Xinetd A Powerful Replacement For Inetd.
+[  OK  ] Finished Permit User Sessions.
+[  OK  ] Started Getty on tty1.
+[  OK  ] Started Serial Getty on ttyPS0.
+[  OK  ] Reached target Login Prompts.
+[  OK  ] Started Target Communication Framework agent.
+[  OK  ] Started Network Time Service.
+         Starting Hostname Service...
+[  OK  ] Started Hostname Service.
+[  OK  ] Finished Access point for Ultra96.
+[  OK  ] Reached target Multi-User System.
+[  OK  ] Reached target Graphical Interface.
+         Starting Record Runlevel Change in UTMP...
+[  OK  ] Finished Record Runlevel Change in UTMP.
 
-<span class="o">********************************************************************************************</span>
-<span class="n">The</span> <span class="n">PetaLinux</span> <span class="n">source</span> <span class="n">code</span> <span class="ow">and</span> <span class="n">images</span> <span class="n">provided</span><span class="o">/</span><span class="n">generated</span> <span class="n">are</span> <span class="k">for</span> <span class="n">demonstration</span> <span class="n">purposes</span> <span class="n">only</span><span class="o">.</span>
-<span class="n">Please</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">xilinx</span><span class="o">-</span><span class="n">wiki</span><span class="o">.</span><span class="n">atlassian</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">spaces</span><span class="o">/</span><span class="n">A</span><span class="o">/</span><span class="n">pages</span><span class="o">/</span><span class="mi">2741928025</span><span class="o">/</span><span class="n">Moving</span><span class="o">+</span><span class="n">from</span><span class="o">+</span><span class="n">PetaLinux</span><span class="o">+</span><span class="n">to</span><span class="o">+</span><span class="n">Production</span><span class="o">+</span><span class="n">Deployment</span>
-<span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="o">.</span>
-<span class="o">********************************************************************************************</span>
-<span class="n">PetaLinux</span> <span class="mf">2024.1</span><span class="o">+</span><span class="n">release</span><span class="o">-</span><span class="n">S05201002</span> <span class="n">u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">1</span> <span class="n">ttyPS0</span>
+********************************************************************************************
+The PetaLinux source code and images provided/generated are for demonstration purposes only.
+Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
+for more details.
+********************************************************************************************
+PetaLinux 2024.1+release-S05201002 u96v2-sbc-base-2024-1 ttyPS0
 
-<span class="n">u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">1</span> <span class="n">login</span><span class="p">:</span> <span class="n">root</span> <span class="p">(</span><span class="n">automatic</span> <span class="n">login</span><span class="p">)</span>
+u96v2-sbc-base-2024-1 login: root (automatic login)
 
-<span class="n">root</span><span class="nd">@u96v2</span><span class="o">-</span><span class="n">sbc</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+root@u96v2-sbc-base-2024-1:~#
 </pre></div>
 </div>
 </li>
@@ -999,24 +999,17 @@ computer.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span><span class="m">10</span>.10.7.1<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
 </pre></div>
 </div>
-</li>
-</ul>
-<!--
-    alias ls="ls --color"
-    alias ll="ls -laF --color"
--->
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
-Then create another file (also not in your home directory), called `.bashrc`, and add the following:
-```bash
-source .profile
-```
-Next, copy these files over to the Ultra96:
-``` bash
-scp .profile .bashrc root@10.10.7.1:/home/root/
-```
-Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+<p>Then create another file (also not in your home directory), called <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>, and add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.profile
 </pre></div>
 </div>
+<p>Next, copy these files over to the Ultra96:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>.profile<span class="w"> </span>.bashrc<span class="w"> </span>root@10.10.7.1:/home/root/
+</pre></div>
+</div>
+<p>Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.</p>
+</li>
+</ul>
 </section>
 <section id="boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows">
 <span id="boot-windows"></span><h4>Boot the Ultra96 (Environment - Personal Computer or Detkin Machines with Windows)<a class="headerlink" href="#boot-the-ultra96-environment-personal-computer-or-detkin-machines-with-windows" title="Permalink to this heading">#</a></h4>
@@ -1025,7 +1018,7 @@ Now when the Ultra96 boots, you should be able to connect directly over ssh with
 <figure class="align-default" id="id3">
 <img alt="../_images/win_eth_0.jpg" src="../_images/win_eth_0.jpg" />
 <figcaption>
-<p><span class="caption-text">Find the port</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Find the port</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -1044,7 +1037,7 @@ Type <code class="docutils literal notranslate"><span class="pre">ifconfig</span
 <figure class="align-default" id="id4">
 <img alt="../_images/win_eth_1.jpg" src="../_images/win_eth_1.jpg" />
 <figcaption>
-<p><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">ifconfig to find out your local machine’s ip</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -1055,7 +1048,7 @@ this is 24!) as follows:</p>
 <figure class="align-default" id="id5">
 <img alt="../_images/win_eth_2.jpg" src="../_images/win_eth_2.jpg" />
 <figcaption>
-<p><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Connect you machine and Ultra96</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -1063,7 +1056,7 @@ this is 24!) as follows:</p>
 <figure class="align-default" id="id6">
 <img alt="../_images/win_eth_3.jpg" src="../_images/win_eth_3.jpg" />
 <figcaption>
-<p><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">ssh in to the Ultra96 and transfer files</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -1073,21 +1066,14 @@ You can easily drag and drop files from/to the local machine to/from Ultra96.</p
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifconfig<span class="w"> </span>eth0<span class="w"> </span>put-your-ip-address-here<span class="w"> </span>netmask<span class="w"> </span><span class="m">255</span>.255.0.0
 </pre></div>
 </div>
-</li>
-</ul>
-<!--
-    alias ls="ls --color"
-    alias ll="ls -laF --color"
--->
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
-Where `put-your-ip-address-here` is the ip you set in the previous step (in the example it was `169.254.123.24`).
-Then create another file (also not in your home directory), called `.bashrc`, and add the following:
-```bash
-source .profile
-```
-Next, drag and drop these files over to the Ultra96 in /home/root/. Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.
+<p>Where <code class="docutils literal notranslate"><span class="pre">put-your-ip-address-here</span></code> is the ip you set in the previous step (in the example it was <code class="docutils literal notranslate"><span class="pre">169.254.123.24</span></code>).
+Then create another file (also not in your home directory), called <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>, and add the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.profile
 </pre></div>
 </div>
+<p>Next, drag and drop these files over to the Ultra96 in /home/root/. Now when the Ultra96 boots, you should be able to connect directly over ssh without having to configure the board via serial.</p>
+</li>
+</ul>
 </section>
 </section>
 <section id="remote-ssh-via-vscode-not-recommended">
@@ -1127,6 +1113,24 @@ Next, drag and drop these files over to the Ultra96 in /home/root/. Now when the
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="collaboration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Collaboration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="code_setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Code Setup</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
