@@ -77,14 +77,15 @@ If you prefer a book, refer to ***C++ Concurrency in Action*** by Anthony D. Wil
 
 We have provided you with:
 - An Ultra96 board with a power cable and a JTAG USB cable
-  - Please check SW3 as the Note below. 
-    1 should be in the "off" position, 
-    and 2 should be in the "on" position.
+  <!-- - Please check SW3 as the Note below.  -->
+  <!--   1 should be in the "off" position,  -->
+  <!--   and 2 should be in the "on" position. -->
 - 2 USB-ethernet adapters
 - 1 ethernet cable
 - 1 SD card and an SD card reader
 - USB-C to USB 3.1 adaptor (for those of you who only have USB-C ports in your computer)
 
+<!--
 ````{note}
 Some of you might be receiving the boards disassembled. In that case, make sure you have set the board in SD card mode as follows:
 ```{figure} images/sd_card_mode.jpg
@@ -102,8 +103,10 @@ height: 300px
 JTAG module
 ```
 ````
+-->
+
 ```{caution}
-> Be cautious with ESD protection when using this board with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. Be careful not to touch these pins or the circuits on the Pod when plugging the boards together - <https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf>
+> Your board should be preassembled, but please still be cautious with ESD protection when using the JTAG module with Ultra96. The Ultra96 has exposed pins on the UART and JTAG headers. - <https://www.avnet.com/opasdata/d120001/medias/docus/190/5362-PB-AES-ACC-U96-JTAG-V3b.pdf>
 ```
 
 
@@ -123,15 +126,62 @@ Development Environment
     - Click on the **Ultra96-V2 – Vitis PetaLinux Platform 2020+ Vector Add (Sharepoint site)** link.
     - Browse to **2020.2** -> **Vitis_PreBuilt_Example** -> **u96v2_sbc_vadd_2020_2.tar.gz**
     - Click on the download button -->
+<!--
 - Then, unzip the `u96v2_sbc_vadd_2020_2.tar.gz`. The .gz file contains `sd_card.img` and `README.txt`.
     ``` bash
     tar -xvzf u96v2_sbc_vadd_2020_2.tar.gz
     ```
+-->
 - Write `sd_card.img` to your SD card.
     - In Ubuntu 20.04, you can use `Startup Disk Creator`.
     - You can also use [Rufus](https://rufus.ie/) or
       [balenaEtcher](https://www.balena.io/etcher/).
 - Once you finish writing the image to the SD card, slide it into your Ultra96's SD card slot.
+
+#### Resize the SD Card Partition (Optional)
+- The defualt partition size for root is quite small from the image. If you are running out of space, you may want to resize the partition to use the full capacity of your SD card. To do this on Linux, first insert the SD card into your computer, and then run:
+    ``` bash
+    lsblk
+    ```
+  You should see output similar to below:
+    ``` bash
+    NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+    sda           8:0    1  29.8G  0 disk 
+    ├─sda1        8:1    1   976M  0 part 
+    └─sda2        8:2    1   2.5G  0 part 
+    nvme0n1     259:0    0 931.5G  0 disk 
+    ├─nvme0n1p1 259:1    0     2G  0 part /boot
+    └─nvme0n1p2 259:2    0 929.5G  0 part /
+    ```
+  In this example, the SD card is `sda`, as indicated by its size and the fact that it has two partitions. `sda1` is the boot partition, and `sda2` is the root partition, which we want to resize.
+
+  ```{caution}
+  Make sure you are resizing the correct partition. In this example the SD card is `sda`, but it may be different on your computer. If you resize the wrong partition, you may lose data!
+  ```
+  You can resize the root partition using `gparted` or `parted`. For example, to resize the root partition to use the full capacity of the SD card, you can run:
+    ``` bash
+    sudo parted /dev/sda
+    (parted) resizepart 2 100%
+    (parted) quit
+    ```
+  Alternatively, you can use `growpart` to resize the partition (note the space between `/dev/sda` and `2`):
+    ``` bash
+    sudo growpart /dev/sda 2
+    ```
+  Then, you can resize the filesystem on the root partition using `resize2fs`:
+    ``` bash
+    sudo resize2fs /dev/sda2
+    ```
+  Run `lsblk` again to verify that the root partition has been resized.
+  ``` bash
+    NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+    sda           8:0    1  29.8G  0 disk 
+    ├─sda1        8:1    1   976M  0 part 
+    └─sda2        8:2    1  28.9G  0 part 
+    nvme0n1     259:0    0 931.5G  0 disk 
+    ├─nvme0n1p1 259:1    0     2G  0 part /boot
+    └─nvme0n1p2 259:2    0 929.5G  0 part /
+  ```
 
 #### Boot the Ultra96 (Environment - Personal Computer with Linux)
 - The instructions here are for users running Linux on their personal computers. For Windows and Mac users, skim these through, and
@@ -161,6 +211,60 @@ Development Environment
     Switch for booting Ultra96
     ```
 - Watch your serial console for boot messages. Following is what ours look like:
+    ```
+    NOTICE:  BL31: Non secure code at 0x8000000
+    NOTICE:  BL31: v2.10.0	(release):v1.1-13187-g4f82b6134
+    NOTICE:  BL31: Built : 04:45:53, Mar 12 2024
+
+
+    U-Boot 2024.01 (May 14 2024 - 03:31:48 +0000)
+
+    CPU:   ZynqMP
+    Silicon: v3
+    Chip:  zu3eg
+    Board: Xilinx ZynqMP
+    DRAM:  2 GiB
+    .
+    .
+    .
+    Starting kernel ...
+
+    [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+    [    0.000000] Linux version 6.6.10-xilinx-v2024.1-g2a9895f4630b (oe-user@oe-host) (aarch64-xilinx-linux-gcc (GCC) 12.2.0, GNU ld (GNU Binutils) 2.39.0.20220819) #1 SMP Sat Apr 27 05:22:24 UTC 2024
+    [    0.000000] KASLR disabled due to lack of seed
+    [    0.000000] Machine model: xlnx,zynqmp
+    [    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+    [    0.000000] printk: bootconsole [cdns0] enabled
+    .
+    .
+    .
+    [  OK  ] Started Xinetd A Powerful Replacement For Inetd.
+    [  OK  ] Finished Permit User Sessions.
+    [  OK  ] Started Getty on tty1.
+    [  OK  ] Started Serial Getty on ttyPS0.
+    [  OK  ] Reached target Login Prompts.
+    [  OK  ] Started Target Communication Framework agent.
+    [  OK  ] Started Network Time Service.
+             Starting Hostname Service...
+    [  OK  ] Started Hostname Service.
+    [  OK  ] Finished Access point for Ultra96.
+    [  OK  ] Reached target Multi-User System.
+    [  OK  ] Reached target Graphical Interface.
+             Starting Record Runlevel Change in UTMP...
+    [  OK  ] Finished Record Runlevel Change in UTMP.
+
+    ********************************************************************************************
+    The PetaLinux source code and images provided/generated are for demonstration purposes only.
+    Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
+    for more details.
+    ********************************************************************************************
+    PetaLinux 2024.1+release-S05201002 u96v2-sbc-base-2024-1 ttyPS0
+
+    u96v2-sbc-base-2024-1 login: root (automatic login)
+
+    root@u96v2-sbc-base-2024-1:~#
+    ```
+<!--
     ```
     �Xilinx Zynq MP First Stage Boot Loader
     Release 2020.1   Oct 17 2020  -  06:29:34
@@ -212,6 +316,11 @@ Development Environment
 - Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
     ```bash
     root@u96v2-sbc-base-2020-2:~#
+    ```
+-->
+- You should be automatically logged in as `root` with Password: `root`. If not, login as `root` with Password: `root`.
+    ```bash
+    root@u96v2-sbc-base-2024-1:~#
     ```
 - We will now enable ethernet connection between our Ultra96 and
     the host computer, such that we can copy files between
@@ -250,9 +359,10 @@ computer.
 - Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
-
+<!--
     alias ls="ls --color"
     alias ll="ls -laF --color"
+-->
     ```
     Then create another file (also not in your home directory), called `.bashrc`, and add the following:
     ```bash
@@ -282,6 +392,60 @@ First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/
     Switch for booting Ultra96
     ```
 - Watch your serial console for boot messages. Following is what ours look like:
+    ```
+    NOTICE:  BL31: Non secure code at 0x8000000
+    NOTICE:  BL31: v2.10.0	(release):v1.1-13187-g4f82b6134
+    NOTICE:  BL31: Built : 04:45:53, Mar 12 2024
+
+
+    U-Boot 2024.01 (May 14 2024 - 03:31:48 +0000)
+
+    CPU:   ZynqMP
+    Silicon: v3
+    Chip:  zu3eg
+    Board: Xilinx ZynqMP
+    DRAM:  2 GiB
+    .
+    .
+    .
+    Starting kernel ...
+
+    [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+    [    0.000000] Linux version 6.6.10-xilinx-v2024.1-g2a9895f4630b (oe-user@oe-host) (aarch64-xilinx-linux-gcc (GCC) 12.2.0, GNU ld (GNU Binutils) 2.39.0.20220819) #1 SMP Sat Apr 27 05:22:24 UTC 2024
+    [    0.000000] KASLR disabled due to lack of seed
+    [    0.000000] Machine model: xlnx,zynqmp
+    [    0.000000] earlycon: cdns0 at MMIO 0x00000000ff010000 (options '115200n8')
+    [    0.000000] printk: bootconsole [cdns0] enabled
+    .
+    .
+    .
+    [  OK  ] Started Xinetd A Powerful Replacement For Inetd.
+    [  OK  ] Finished Permit User Sessions.
+    [  OK  ] Started Getty on tty1.
+    [  OK  ] Started Serial Getty on ttyPS0.
+    [  OK  ] Reached target Login Prompts.
+    [  OK  ] Started Target Communication Framework agent.
+    [  OK  ] Started Network Time Service.
+             Starting Hostname Service...
+    [  OK  ] Started Hostname Service.
+    [  OK  ] Finished Access point for Ultra96.
+    [  OK  ] Reached target Multi-User System.
+    [  OK  ] Reached target Graphical Interface.
+             Starting Record Runlevel Change in UTMP...
+    [  OK  ] Finished Record Runlevel Change in UTMP.
+
+    ********************************************************************************************
+    The PetaLinux source code and images provided/generated are for demonstration purposes only.
+    Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
+    for more details.
+    ********************************************************************************************
+    PetaLinux 2024.1+release-S05201002 u96v2-sbc-base-2024-1 ttyPS0
+
+    u96v2-sbc-base-2024-1 login: root (automatic login)
+
+    root@u96v2-sbc-base-2024-1:~#
+    ```
+<!--
     ```
     �Xilinx Zynq MP First Stage Boot Loader
     Release 2020.1   Oct 17 2020  -  06:29:34
@@ -334,6 +498,11 @@ First install the USB to Ethernet driver from [here](https://www.asix.com.tw/en/
     ```bash
     root@u96v2-sbc-base-2020-2:~#
     ```
+-->
+- You should be automatically logged in as `root` with Password: `root`. If not, login as `root` with Password: `root`.
+    ```bash
+    root@u96v2-sbc-base-2024-1:~#
+    ```
 - We will now enable ethernet connection between our Ultra96 and
     the host computer, such that we can copy files between
     the devices. Issue the following command in the serial console:
@@ -347,9 +516,10 @@ computer.
 - Unfortunately, as it stands, every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 10.10.7.1 netmask 255.0.0.0
-
+<!--
     alias ls="ls --color"
     alias ll="ls -laF --color"
+-->
     ```
     Then create another file (also not in your home directory), called `.bashrc`, and add the following:
     ```bash
@@ -374,7 +544,7 @@ computer.
 - Boot the board by pressing the boot switch as shown in {numref}`boot`.
 - Note that near the end some messages spill, so just press Enter couple of times, and you see that you need to login. Login as `root` with Password: `root`.
     ```
-    root@u96v2-sbc-base-2020-2:~#
+    root@u96v2-sbc-base-2024-1:~#
     ```
 
 - Click plus sign to open up the local machine's session(new tab).
@@ -399,9 +569,10 @@ computer.
 - Unfortunately, currently every time you boot your Ultra96, you will have to login via serial and configure the IP address, before you can connect via ssh. To fix this, create a new file **on your host computer** `.profile` (make sure you don't do this in your home directory, or else you may overwrite an existing one). In `.profile`, add the following:
     ```bash
     ifconfig eth0 put-your-ip-address-here netmask 255.255.0.0
-
+<!--
     alias ls="ls --color"
     alias ll="ls -laF --color"
+-->
     ```
     Where `put-your-ip-address-here` is the ip you set in the previous step (in the example it was `169.254.123.24`).
     Then create another file (also not in your home directory), called `.bashrc`, and add the following:
