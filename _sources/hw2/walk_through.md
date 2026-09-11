@@ -210,47 +210,54 @@ Running ./rendering_instrumented to get gmon.out for gprof...
 3D Rendering Application
 Writing output...
 Check output.txt for a bunny!
-Running gprof ./rendering_instrumented...
+Running gprof -p ./rendering_instrumented...
 Flat profile:
 
 Each sample counts as 0.01 seconds.
-  %   cumulative   self              self     total           
- time   seconds   seconds    calls  us/call  us/call  name    
- 43.93      0.25     0.25 80438400     0.00     0.00  pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)
- 26.36      0.40     0.15   319200     0.47     1.26  rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)
- 22.84      0.53     0.13   319200     0.41     0.41  coloringFB(int, int, Pixel*, unsigned char (*) [256])
-  7.03      0.57     0.04   319200     0.13     0.13  zculling(int, CandidatePixel*, int, Pixel*)
-  0.00      0.57     0.00   319200     0.00     0.00  projection(Triangle_3D, Triangle_2D*, int)
-  0.00      0.57     0.00   319200     0.00     0.00  rasterization1(Triangle_2D, unsigned char*, int*)
-  0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z13check_resultsPA256_h
-  0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z15check_clockwise11Triangle_2D
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls   s/call   s/call  name
+ 45.38      1.18     1.18  3192000     0.00     0.00  rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)
+ 37.12      2.15     0.96 180073000     0.00     0.00  pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)
+  8.46      2.37     0.22  3192000     0.00     0.00  zculling(int, CandidatePixel*, int, Pixel*)
+  5.00      2.50     0.13  3192000     0.00     0.00  coloringFB(int, int, Pixel*, unsigned char (*) [256])
+  1.54      2.54     0.04  3192000     0.00     0.00  rasterization1(Triangle_2D, unsigned char*, int*)
+  0.77      2.56     0.02  5946000     0.00     0.00  find_max(unsigned char, unsigned char, unsigned char)
+  0.77      2.58     0.02  1474000     0.00     0.00  clockwise_vertices(Triangle_2D*)
+  0.58      2.59     0.01  5946000     0.00     0.00  find_min(unsigned char, unsigned char, unsigned char)
+  0.38      2.60     0.01        1     0.01     0.01  check_results(unsigned char (*) [256])
+  0.00      2.60     0.00  6165000     0.00     0.00  check_clockwise(Triangle_2D)
+  0.00      2.60     0.00  3192000     0.00     0.00  projection(Triangle_3D, Triangle_2D*, int)
+  0.00      2.60     0.00        1     0.00     2.59  rendering_sw(Triangle_3D*, unsigned char (*) [256])
+  0.00      2.60     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00      2.60     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+
 ...
 ```
 You can see that here `gprof` is able to pick out the most computationally intensive task (note that `pixel_in_triangle` is used by
 `rasterization2`), however it otherwise differs rather significantly from when we previously instrumented the code with timers. This is because of how `gprof` estimates time spent in a function. It samples the cpu's program counter every 0.01 seconds, and from that determines which function it is inside, and for how long. Because the functions in this particular benchmark run so quickly relative to the sampling rate, `gprof` cannot adequately estimate their runtimes. To help alleviate this, you will notice that the code that was actually profiled looks like as follows:
 
 ```
-TRIANGLES: for (int i = 0; i < NUM_3D_TRI; i ++ )
+TRIANGLES: for (int j = 0; j < NUM_3D_TRI; j++ )
   {
     // five stages for processing each 3D triangle
-    for(int i = 0; i < 100; i++) {
-      projection( triangle_3ds[i], &triangle_2ds, angle );
+    for(int i = 0; i < 1000; i++) {
+      projection( triangle_3ds[j], &triangle_2ds, angle );
     }
 
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 1000; i++) {
       flag = rasterization1(triangle_2ds, max_min, max_index);
     }
 
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 1000; i++) {
       size_fragment = rasterization2( flag, max_min, max_index, triangle_2ds, fragment );
     }
 
-    for(int i = 0; i < 100; i++) {
-      size_pixels = zculling( i, fragment, size_fragment, pixels);
+    for(int i = 0; i < 1000; i++) {
+      size_pixels = zculling( j, fragment, size_fragment, pixels);
     }
 
-    for(int i = 0; i < 100; i++) {
-      coloringFB ( i, size_pixels, pixels, output);
+    for(int i = 0; i < 1000; i++) {
+      coloringFB ( j, size_pixels, pixels, output);
     }
   }
 ```

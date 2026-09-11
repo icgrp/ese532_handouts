@@ -647,46 +647,53 @@ Running ./rendering_instrumented to get gmon.out for gprof...
 3D Rendering Application
 Writing output...
 Check output.txt for a bunny!
-Running gprof ./rendering_instrumented...
+Running gprof -p ./rendering_instrumented...
 Flat profile:
 
 Each sample counts as 0.01 seconds.
-  %   cumulative   self              self     total           
- time   seconds   seconds    calls  us/call  us/call  name    
- 43.93      0.25     0.25 80438400     0.00     0.00  pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)
- 26.36      0.40     0.15   319200     0.47     1.26  rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)
- 22.84      0.53     0.13   319200     0.41     0.41  coloringFB(int, int, Pixel*, unsigned char (*) [256])
-  7.03      0.57     0.04   319200     0.13     0.13  zculling(int, CandidatePixel*, int, Pixel*)
-  0.00      0.57     0.00   319200     0.00     0.00  projection(Triangle_3D, Triangle_2D*, int)
-  0.00      0.57     0.00   319200     0.00     0.00  rasterization1(Triangle_2D, unsigned char*, int*)
-  0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z13check_resultsPA256_h
-  0.00      0.57     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z15check_clockwise11Triangle_2D
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls   s/call   s/call  name
+ 45.38      1.18     1.18  3192000     0.00     0.00  rasterization2(bool, unsigned char*, int*, Triangle_2D, CandidatePixel*)
+ 37.12      2.15     0.96 180073000     0.00     0.00  pixel_in_triangle(unsigned char, unsigned char, Triangle_2D)
+  8.46      2.37     0.22  3192000     0.00     0.00  zculling(int, CandidatePixel*, int, Pixel*)
+  5.00      2.50     0.13  3192000     0.00     0.00  coloringFB(int, int, Pixel*, unsigned char (*) [256])
+  1.54      2.54     0.04  3192000     0.00     0.00  rasterization1(Triangle_2D, unsigned char*, int*)
+  0.77      2.56     0.02  5946000     0.00     0.00  find_max(unsigned char, unsigned char, unsigned char)
+  0.77      2.58     0.02  1474000     0.00     0.00  clockwise_vertices(Triangle_2D*)
+  0.58      2.59     0.01  5946000     0.00     0.00  find_min(unsigned char, unsigned char, unsigned char)
+  0.38      2.60     0.01        1     0.01     0.01  check_results(unsigned char (*) [256])
+  0.00      2.60     0.00  6165000     0.00     0.00  check_clockwise(Triangle_2D)
+  0.00      2.60     0.00  3192000     0.00     0.00  projection(Triangle_3D, Triangle_2D*, int)
+  0.00      2.60     0.00        1     0.00     2.59  rendering_sw(Triangle_3D*, unsigned char (*) [256])
+  0.00      2.60     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00      2.60     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+
 ...
 </pre></div>
 </div>
 <p>You can see that here <code class="docutils literal notranslate"><span class="pre">gprof</span></code> is able to pick out the most computationally intensive task (note that <code class="docutils literal notranslate"><span class="pre">pixel_in_triangle</span></code> is used by
 <code class="docutils literal notranslate"><span class="pre">rasterization2</span></code>), however it otherwise differs rather significantly from when we previously instrumented the code with timers. This is because of how <code class="docutils literal notranslate"><span class="pre">gprof</span></code> estimates time spent in a function. It samples the cpu’s program counter every 0.01 seconds, and from that determines which function it is inside, and for how long. Because the functions in this particular benchmark run so quickly relative to the sampling rate, <code class="docutils literal notranslate"><span class="pre">gprof</span></code> cannot adequately estimate their runtimes. To help alleviate this, you will notice that the code that was actually profiled looks like as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TRIANGLES</span><span class="p">:</span> <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_3D_TRI</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TRIANGLES</span><span class="p">:</span> <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">NUM_3D_TRI</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span> <span class="p">)</span>
   <span class="p">{</span>
     <span class="o">//</span> <span class="n">five</span> <span class="n">stages</span> <span class="k">for</span> <span class="n">processing</span> <span class="n">each</span> <span class="mi">3</span><span class="n">D</span> <span class="n">triangle</span>
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">projection</span><span class="p">(</span> <span class="n">triangle_3ds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">angle</span> <span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">projection</span><span class="p">(</span> <span class="n">triangle_3ds</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">angle</span> <span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">flag</span> <span class="o">=</span> <span class="n">rasterization1</span><span class="p">(</span><span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">max_min</span><span class="p">,</span> <span class="n">max_index</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">size_fragment</span> <span class="o">=</span> <span class="n">rasterization2</span><span class="p">(</span> <span class="n">flag</span><span class="p">,</span> <span class="n">max_min</span><span class="p">,</span> <span class="n">max_index</span><span class="p">,</span> <span class="n">triangle_2ds</span><span class="p">,</span> <span class="n">fragment</span> <span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">size_pixels</span> <span class="o">=</span> <span class="n">zculling</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment</span><span class="p">,</span> <span class="n">size_fragment</span><span class="p">,</span> <span class="n">pixels</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">size_pixels</span> <span class="o">=</span> <span class="n">zculling</span><span class="p">(</span> <span class="n">j</span><span class="p">,</span> <span class="n">fragment</span><span class="p">,</span> <span class="n">size_fragment</span><span class="p">,</span> <span class="n">pixels</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">coloringFB</span> <span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">size_pixels</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">coloringFB</span> <span class="p">(</span> <span class="n">j</span><span class="p">,</span> <span class="n">size_pixels</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 </pre></div>
