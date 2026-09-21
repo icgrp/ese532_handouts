@@ -106,8 +106,8 @@ Your writeup should include your answers to the following questions:
         `-O2` and `-O3` versions. Quote the relevant assembly 
         chunks and explain what additional optimization they represent. (3 lines)
     7. Higher optimization levels can make debugging code harder. 
-        Comparing the `-O0` to the `-O3` version, explain how the structure 
-        of the generated assembly changed, and how it makes it harder to debug. (3 lines)
+        Comparing the `-O0` to the `-O3` version, explain how the generated code 
+        differs from the source code and how this makes it harder to debug. (3 lines)
         ```{hint}
         Track the values of the variables `X`, `Y`, and `i` as you step through
         `Filter_horizontal`.  
@@ -247,8 +247,8 @@ Your writeup should include your answers to the following questions:
           - <https://developer.arm.com/docs/den0024/latest/armv8-registers/neon-and-floating-point-registers/vector-register-sizes>
         ````
     10. Show how you can resolve the issue that you identified 
-        in the previous problem. (1 line) Include the assembly code of
-        `Filter_vertical` after you have resolved the issue.   
+        in the previous problem. (1 line) Include the relevant code modification and
+        the assembly code of `Filter_vertical` after you have resolved the issue.   
     11. After resolving the issue in both `Filter_horizontal` and `Filter_vertical`, how 
         much speed up with respect to the baseline do you have now? 
         Report your speed up and the new latencies of `Filter_horizontal` and `Filter_vertical`.
