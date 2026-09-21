@@ -85,7 +85,7 @@ Your writeup should include your answers to the following questions:
     3. Include the assembly code of the innermost loop of `Filter_horizontal` at optimization level 
         `-O2` in your report.
     4. Based on the machine code of questions 2.2 and 2.3, explain the most important 
-        difference between the `-O0` and `-O2` versions. (2 lines)
+        difference between the `-O0` and `-O2` versions. Cite the relevant assembly instructions and explain what computation or memory access they eliminate.(2 lines)
         ```{hint}
         Leading questions:
         - for each case (`-O0`, `-O2`), how many times does the
@@ -99,18 +99,19 @@ Your writeup should include your answers to the following questions:
             memory or recaculating?
         - how is the `-O2` loop able to perform fewer operations?
         ```
-    5. Why would you want to use optimization level `-O0`? (3 lines)
+    5. Include the assembly code of the innermost loop of
+        `Filter_horizontal` at optimization level `-O3` in your report.
+    6. Based on the machine code of questions 2.3 and
+        2.6, explain the most important difference between the
+        `-O2` and `-O3` versions. Quote the relevant assembly 
+        chunks and explain what additional optimization they represent. (3 lines)
+    7. Higher optimization levels can make debugging code harder. 
+        Comparing the `-O0` to the `-O3` version, explain how the structure 
+        of the generated assembly changed, and how it makes it harder to debug. (3 lines)
         ```{hint}
-        Compile the code with `-O3` and track the values of the
-        variables `X`, `Y`, and `i` as you step through
+        Track the values of the variables `X`, `Y`, and `i` as you step through
         `Filter_horizontal`.  
         ```
-    6. Include the assembly code of the innermost loop of
-        `Filter_horizontal` at optimization level `-O3` in your report.
-    7. Based on the machine code of questions 2.3 and
-        2.6, explain the most important difference between the
-        `-O2` and `-O3` versions. (1 line)
-    8. What are two drawbacks of using a higher optimization level? (5 lines)
 
 3. **Automatic Vectorization**
     
@@ -203,7 +204,7 @@ Your writeup should include your answers to the following questions:
         (one line)
     5. Report the resource capacity lower bound for
         `Filter_vertical`. Focus on the computation and the computation size
-        identified in the question 3.d while computing resource capacity;
+        identified in the question 3.4 while computing resource capacity;
         you may ignore control flow and addressing computations. 
         There are many resources that may limit the performance.  
 
@@ -234,7 +235,7 @@ Your writeup should include your answers to the following questions:
         your code.(You do not need to modify code for 3.7 and 3.8. Just report the speedup for the given code with vectorization)
     8. Report the speedup of the vectorized code with respect to the baseline. (Fill in the "Baseline with SIMD" columns in {numref}`vectorization-table`.)
     9. Explain the discrepancy between your measured and ideal
-        performance based on the optimization of `Filter_horizontal`.
+        performance based on the optimization of `Filter_horizontal`. Identify the relevant SIMD instructions in your generated assembly and explain how the operand widths affect the amount of parallelism achieved. Include the relevant assembly snippet. 
         (3 lines)
         ````{hint}
         - Look at the size of the multiplications in the assembly code.
