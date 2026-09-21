@@ -218,7 +218,8 @@ Your writeup should include your answers to the following questions:
         available to be used on each cycle. Think about how vectorization
         could exploit the set of computations a NEON unit can do in parallel. 
         ```
-    6. Calculate the ideal vectorization speedup for each stage and fill in {numref}`vectorization-table`. Additionally, what speedup do you expect your application can achieve if the compiler is able to 
+    6. Calculate the ideal vectorization speedup for each stage and fill in {numref}`vectorization-table` and justify them. 
+        Additionally, what speedup do you expect your application can achieve if the compiler is able to 
         achieve the ideal vectorization speedup? (5 lines) 
         ```{hint}
         For each stage, Identify how many operations can run in vector parallel on the NEON. (Part 3)
@@ -275,13 +276,9 @@ Your writeup should include your answers to the following questions:
 
     1. Explain your strategy for accelerating `Scale`, and include a screenshot of your function in the report. You will also submit code for this section (see the Deliverables section).
 
-    2. Compile the target `baseline` with `-O3` but autovectorization turned off with `-fno-tree-vectorize`. Run it and report the latency of `Scale`.
+    2. Compile the target `neon`. Run it and report the latency of `Scale`.
 
-    3. Compile the target `baseline` with `-O3` but this time with autovectorization. Run it and report the latency of `Scale`.
-
-    4. Compile the target `neon`. Run it and report the latency of `Scale`.
-
-    5. How much faster was your neon implimentation over the two baseline implimentations?
+    3. Recall the latency of `Scale` when compiled with `-O3` without and with autovectorization, from Part 3. How much faster was your neon implimentation over the two baseline implementations?
 
 
 6. **Reflection**
