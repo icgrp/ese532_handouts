@@ -70,7 +70,8 @@ Your writeup should include your answers to the following questions:
     1. Measure the latency and size of the `baseline` target at the
         different optimization levels. Put your measurements in a table like
         {numref}`optimization-table`. You can change
-        the optimization level by editing the `CXXFLAGS` in the hw4 Makefile.
+        the optimization level by editing the `CXXFLAGS` in the hw4 Makefile. Include screenshots of the results of 
+        runs at different optimization levels.
     2. Include the assembly code of the innermost loop of `Filter_horizontal`
         at optimization level `-O0` in your report. Use the following command to get the assembly and then look for `Filter_horizontal` in `Filter_O1.s`:
         ```
@@ -84,7 +85,7 @@ Your writeup should include your answers to the following questions:
     3. Include the assembly code of the innermost loop of `Filter_horizontal` at optimization level 
         `-O2` in your report.
     4. Based on the machine code of questions 2.2 and 2.3, explain the most important 
-        difference between the `-O0` and `-O2` versions. (2 lines)
+        difference between the `-O0` and `-O2` versions. Cite the relevant assembly instructions and explain what computation or memory access they eliminate.(2 lines)
         ```{hint}
         Leading questions:
         - for each case (`-O0`, `-O2`), how many times does the
@@ -98,18 +99,19 @@ Your writeup should include your answers to the following questions:
             memory or recaculating?
         - how is the `-O2` loop able to perform fewer operations?
         ```
-    5. Why would you want to use optimization level `-O0`? (3 lines)
+    5. Include the assembly code of the innermost loop of
+        `Filter_horizontal` at optimization level `-O3` in your report.
+    6. Based on the machine code of questions 2.3 and
+        2.6, explain the most important difference between the
+        `-O2` and `-O3` versions. Quote the relevant assembly 
+        chunks and explain what additional optimization they represent. (3 lines)
+    7. Higher optimization levels can make debugging code harder. 
+        Comparing the `-O0` to the `-O3` version, explain how the structure 
+        of the generated assembly changed, and how it makes it harder to debug. (3 lines)
         ```{hint}
-        Compile the code with `-O3` and track the values of the
-        variables `X`, `Y`, and `i` as you step through
+        Track the values of the variables `X`, `Y`, and `i` as you step through
         `Filter_horizontal`.  
         ```
-    6. Include the assembly code of the innermost loop of
-        `Filter_horizontal` at optimization level `-O3` in your report.
-    7. Based on the machine code of questions 2.3 and
-        2.6, explain the most important difference between the
-        `-O2` and `-O3` versions. (1 line)
-    8. What are two drawbacks of using a higher optimization level? (5 lines)
 
 3. **Automatic Vectorization**
     
@@ -136,19 +138,13 @@ Your writeup should include your answers to the following questions:
       -  
       - Baseline with SIMD 
       -  
-      - Baseline with SIMD Modified
-      -  
     * -  
       - Latency (ns) 
       - Suitability (Y/N)
       - Ideal Vectorization Speedup 
       - Latency (ns)
       - Speedup
-      - Latency (ns)
-      - Speedup
     * - `Scale`
-      -  
-      -  
       -  
       -  
       -  
@@ -160,11 +156,7 @@ Your writeup should include your answers to the following questions:
       -  
       -  
       -  
-      -  
-      -  
     * - `Filter_vertical`
-      -  
-      -  
       -  
       -  
       -  
@@ -176,11 +168,7 @@ Your writeup should include your answers to the following questions:
       -  
       -  
       -  
-      -  
-      -  
     * - `Compress`
-      -  
-      -  
       -  
       -  
       -  
@@ -190,8 +178,6 @@ Your writeup should include your answers to the following questions:
       -  
       - N/A
       - 
-      -  
-      -  
       -  
       -  
     ```
@@ -218,7 +204,7 @@ Your writeup should include your answers to the following questions:
         (one line)
     5. Report the resource capacity lower bound for
         `Filter_vertical`. Focus on the computation and the computation size
-        identified in the question 3.d while computing resource capacity;
+        identified in the question 3.4 while computing resource capacity;
         you may ignore control flow and addressing computations. 
         There are many resources that may limit the performance.  
 
@@ -232,7 +218,8 @@ Your writeup should include your answers to the following questions:
         available to be used on each cycle. Think about how vectorization
         could exploit the set of computations a NEON unit can do in parallel. 
         ```
-    6. Calculate the ideal vectorization speedup for each stage and fill in {numref}`vectorization-table`. Additionally, what speedup do you expect your application can achieve if the compiler is able to 
+    6. Calculate the ideal vectorization speedup for each stage and fill in {numref}`vectorization-table` and justify them. 
+        Additionally, what speedup do you expect your application can achieve if the compiler is able to 
         achieve the ideal vectorization speedup? (5 lines) 
         ```{hint}
         For each stage, Identify how many operations can run in vector parallel on the NEON. (Part 3)
@@ -249,7 +236,7 @@ Your writeup should include your answers to the following questions:
         your code.(You do not need to modify code for 3.7 and 3.8. Just report the speedup for the given code with vectorization)
     8. Report the speedup of the vectorized code with respect to the baseline. (Fill in the "Baseline with SIMD" columns in {numref}`vectorization-table`.)
     9. Explain the discrepancy between your measured and ideal
-        performance based on the optimization of `Filter_horizontal`.
+        performance based on the optimization of `Filter_horizontal`. Identify the relevant SIMD instructions in your generated assembly and explain how the operand widths affect the amount of parallelism achieved. Include the relevant assembly snippet. 
         (3 lines)
         ````{hint}
         - Look at the size of the multiplications in the assembly code.
@@ -262,9 +249,9 @@ Your writeup should include your answers to the following questions:
     10. Show how you can resolve the issue that you identified 
         in the previous problem. (1 line) Include the assembly code of
         `Filter_vertical` after you have resolved the issue.   
-    11. Report the speedup with respect to the baseline after resolving
-        the issue in both `Filter_horizontal` and `Filter_vertical`.
-        (Fill in the "Baseline with SIMD Modified" columns in {numref}`vectorization-table`.)
+    11. After resolving the issue in both `Filter_horizontal` and `Filter_vertical`, how 
+        much speed up with respect to the baseline do you have now? 
+        Report your speed up and the new latencies of `Filter_horizontal` and `Filter_vertical`.
 
 4. **NEON Intrinsics Example**
 
@@ -289,13 +276,9 @@ Your writeup should include your answers to the following questions:
 
     1. Explain your strategy for accelerating `Scale`, and include a screenshot of your function in the report. You will also submit code for this section (see the Deliverables section).
 
-    2. Compile the target `baseline` with `-O3` but autovectorization turned off with `-fno-tree-vectorize`. Run it and report the latency of `Scale`.
+    2. Compile the target `neon`. Run it and report the latency of `Scale`.
 
-    3. Compile the target `baseline` with `-O3` but this time with autovectorization. Run it and report the latency of `Scale`.
-
-    4. Compile the target `neon`. Run it and report the latency of `Scale`.
-
-    5. How much faster was your neon implimentation over the two baseline implimentations?
+    3. Recall the latency of `Scale` when compiled with `-O3` without and with autovectorization, from Part 3. How much faster was your neon implimentation over the two baseline implementations?
 
 
 6. **Reflection**
