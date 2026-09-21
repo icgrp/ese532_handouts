@@ -568,8 +568,8 @@ memory or recaculating?</p></li>
 <code class="docutils literal notranslate"><span class="pre">-O2</span></code> and <code class="docutils literal notranslate"><span class="pre">-O3</span></code> versions. Quote the relevant assembly
 chunks and explain what additional optimization they represent. (3 lines)</p></li>
 <li><p>Higher optimization levels can make debugging code harder.
-Comparing the <code class="docutils literal notranslate"><span class="pre">-O0</span></code> to the <code class="docutils literal notranslate"><span class="pre">-O3</span></code> version, explain how the structure
-of the generated assembly changed, and how it makes it harder to debug. (3 lines)</p>
+Comparing the <code class="docutils literal notranslate"><span class="pre">-O0</span></code> to the <code class="docutils literal notranslate"><span class="pre">-O3</span></code> version, explain how the generated code
+differs from the source code and how this makes it harder to debug.. (3 lines)</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Track the values of the variables <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">i</span></code> as you step through
@@ -733,8 +733,8 @@ relation between Q and V registers.  Perhaps useful:</p>
 </div>
 </li>
 <li><p>Show how you can resolve the issue that you identified
-in the previous problem. (1 line) Include the assembly code of
-<code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after you have resolved the issue.</p></li>
+in the previous problem. (1 line) Include the relevant code modification and
+the assembly code of <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code> after you have resolved the issue.</p></li>
 <li><p>After resolving the issue in both <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>, how
 much speed up with respect to the baseline do you have now?
 Report your speed up and the new latencies of <code class="docutils literal notranslate"><span class="pre">Filter_horizontal</span></code> and <code class="docutils literal notranslate"><span class="pre">Filter_vertical</span></code>.</p></li>
