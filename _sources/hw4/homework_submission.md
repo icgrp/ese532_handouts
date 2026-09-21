@@ -107,7 +107,7 @@ Your writeup should include your answers to the following questions:
         chunks and explain what additional optimization they represent. (3 lines)
     7. Higher optimization levels can make debugging code harder. 
         Comparing the `-O0` to the `-O3` version, explain how the generated code 
-        differs from the source code and how this makes it harder to debug.. (3 lines)
+        differs from the source code and how this makes it harder to debug. (3 lines)
         ```{hint}
         Track the values of the variables `X`, `Y`, and `i` as you step through
         `Filter_horizontal`.  
