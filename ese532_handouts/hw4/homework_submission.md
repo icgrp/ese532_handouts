@@ -70,7 +70,8 @@ Your writeup should include your answers to the following questions:
     1. Measure the latency and size of the `baseline` target at the
         different optimization levels. Put your measurements in a table like
         {numref}`optimization-table`. You can change
-        the optimization level by editing the `CXXFLAGS` in the hw4 Makefile.
+        the optimization level by editing the `CXXFLAGS` in the hw4 Makefile. Include screenshots of the results of 
+        runs at different optimization levels.
     2. Include the assembly code of the innermost loop of `Filter_horizontal`
         at optimization level `-O0` in your report. Use the following command to get the assembly and then look for `Filter_horizontal` in `Filter_O1.s`:
         ```
@@ -136,19 +137,13 @@ Your writeup should include your answers to the following questions:
       -  
       - Baseline with SIMD 
       -  
-      - Baseline with SIMD Modified
-      -  
     * -  
       - Latency (ns) 
       - Suitability (Y/N)
       - Ideal Vectorization Speedup 
       - Latency (ns)
       - Speedup
-      - Latency (ns)
-      - Speedup
     * - `Scale`
-      -  
-      -  
       -  
       -  
       -  
@@ -160,11 +155,7 @@ Your writeup should include your answers to the following questions:
       -  
       -  
       -  
-      -  
-      -  
     * - `Filter_vertical`
-      -  
-      -  
       -  
       -  
       -  
@@ -176,11 +167,7 @@ Your writeup should include your answers to the following questions:
       -  
       -  
       -  
-      -  
-      -  
     * - `Compress`
-      -  
-      -  
       -  
       -  
       -  
@@ -190,8 +177,6 @@ Your writeup should include your answers to the following questions:
       -  
       - N/A
       - 
-      -  
-      -  
       -  
       -  
     ```
@@ -262,9 +247,9 @@ Your writeup should include your answers to the following questions:
     10. Show how you can resolve the issue that you identified 
         in the previous problem. (1 line) Include the assembly code of
         `Filter_vertical` after you have resolved the issue.   
-    11. Report the speedup with respect to the baseline after resolving
-        the issue in both `Filter_horizontal` and `Filter_vertical`.
-        (Fill in the "Baseline with SIMD Modified" columns in {numref}`vectorization-table`.)
+    11. After resolving the issue in both `Filter_horizontal` and `Filter_vertical`, how 
+        much speed up with respect to the baseline do you have now? 
+        Report your speed up and the new latencies of `Filter_horizontal` and `Filter_vertical`.
 
 4. **NEON Intrinsics Example**
 
