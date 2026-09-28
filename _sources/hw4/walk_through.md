@@ -168,7 +168,7 @@ No.
 ```
 
 ---
-Read [NEON and floating-point registers](https://developer.arm.com/documentation/den0024/a/armv8-registers/neon-and-floating-point-registers) and answer the
+Read [NEON and floating-point registers](https://student.cs.uwaterloo.ca/~cs452/docs/rpi4b/DEN0024A_v8_architecture_PG.pdf) and answer the
 following questions:
 ```{admonition} 1. How many NEON registers are there in ARMv8 and what are they labeled as?
 :class: dropdown
