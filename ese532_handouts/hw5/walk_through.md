@@ -23,18 +23,18 @@ times you need to invoke low-level placement and routing and introduce
  simulation and emulation you can use validate your design before
  invoking low-level placement and routing.
 
-In the homework, you could either use linux machines in Detkin/Ketterer or 
+In the homework, you could either use linux machines in AGH 104, Moore 101, Moore 100, or 
 install Vitis locally. If you want to install Vitis locally, we expect that your computer has at least:
 - Linux OS
 - 16 GB RAM
 - 4 cores
-- 70 GB free hard disk space
+- 200 GB free hard disk space
 If you want to install Vitis locally, follow the instructions in 
-{ref}`install_locally`. If you want to use Detkin/Ketterer machines, 
+{ref}`install_locally`. If you want to use lab machines, 
 jump to {ref}`software_code`.
 
 (install_locally)=
-### Installing Vitis 2020.2 on your Personal Computer(Linux OS)
+### Installing Vitis 2024.1 on your Personal Computer(Linux OS)
 <!-- Running Vitis on your local computer will likely be the best interactive
 experience with the GUI.  However, it will take more time and effort (and
 disk space) to get it setup.  Ultimately, we recommend you set it up, but
@@ -54,14 +54,14 @@ below to install Vitis (the tutorials install SDSoC and you should not install t
 - [ESE532 SDSoC on Virtual Box](https://docs.google.com/document/d/1XKVsD3gt8NeJgvcykNxD37CZME8r-dkUBl1D8KESYZk/edit?usp=sharing) -->
 
 Note that Vitis is fully supported in Linux OS only.
-Follow the instructions below to install Vitis on your linux machine:
-1. Go to [this link](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html) and
-select ***2020.2***. Then, download
-***Xilinx Unified Installer 2020.2: Linux Self Extracting Web Installer***. Create an account with Xilinx if you don't have one.
+Follow the instructions below to install Vitis 2024.1 on your linux machine:
+1. Go to [this link](https://www.amd.com/en/support/downloads/adaptive-socs-and-fpgas/development-tools/2024-1.html). Then, click on
+***Unified Installer for FPGA & Adaptive SoC Tools Update 1 – 2024.1 – Jun 19, 2024***
+and download
+***AMD Unified Installer for FPGAs & Adaptive SoCs 2024.1.1: All OS installer Single-File Download***
+Create an account with Xilinx if you don't have one.
 
-1. We found [this video](https://youtu.be/debP5oI28l8) useful to install Vitis.
-
-1. When selecting devices, selecting Zynq UltraScale+ MPSoC should be enough for this class.
+2. When selecting devices, selecting Zynq UltraScale+ MPSoC should be enough for this class.
 
     ```{figure} images/ese5320_vitis_devices.png
     ---
@@ -71,26 +71,26 @@ select ***2020.2***. Then, download
     ```
     The full installation will take about 30 min - 1 hour.
 
-1. Open the file `~/.bashrc` in your terminal and add the following line. This is the license for using Vitis:
+3. Open the file `~/.bashrc` in your terminal and add the following line. This is the license for using Vitis:
     ```
     export LM_LICENSE_FILE="2100@potato.cis.upenn.edu:1709@potato.cis.upenn.edu:1717@potato.cis.upenn.edu:27010@potato.cis.upenn.edu:27009@potato.cis.upenn.edu"
     ```
     Do `source ~/.bashrc` to update the terminal environment
     with this variable.
-1. You might need to issue the following commands if you encounter an error with `libtinfo`:
+4. You might need to issue the following commands if you encounter an error with `libtinfo`:
     ```
     sudo apt update
     sudo apt install libtinfo-dev
     sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5
     ```
-1. As of January 1st 2022, there needs a patch. Download ***y2k22_patch-1.2.zip*** in [this link](https://support.xilinx.com/s/article/76960?language=en_US).
-    Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs.
+<!-- 1. As of January 1st 2022, there needs a patch. Download ***y2k22_patch-1.2.zip*** in [this link](https://support.xilinx.com/s/article/76960?language=en_US). -->
+<!--     Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs. -->
+<!---->
 
-1. Get the Ultra96 platform from [here](https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2/).
-   Scroll down and click **Reference Designs** tab. Then, click **Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)**.
-   Click **2020.2**$\rightarrow$**Vitis_Platform**. Download **u96v2_sbc_vitis_2020_2.tar.gz**.
+5. Get the Ultra96 platform from [here](https://drive.google.com/drive/folders/1cDE5bHXCgkdAFvRdH7Ao-NxBxG35hj9C?usp=drive_link).
+   Download **u96v2_sbc_base_2024_1.tgz**.
     ```
-    tar -xvzf u96v2_sbc_vitis_2020_2.tar.gz
+    tar -xvzf u96v2_sbc_base_2024_1.tgz
     ```
     Locate the extracted folder to wherever you want.
 
@@ -125,7 +125,7 @@ hw5/
     Makefile
     u96_v2.cfg
 ```
-- `sourceMe.sh` will help you to source Xilinx tools
+- `sourceMe.sh` will help you to source Xilinx tools on lab machines.
 - `xrt.ini` defines the options necessary for Vitis Analyzer.
 - The `common` folder has header files and helper functions.
 - You will mostly be working with the code in the `hls` folder. The 
@@ -133,8 +133,8 @@ hw5/
     to a hardware function (known as a kernel in Vitis). The `Host.cpp` file has
     the "driver" code that transfers the data to the fpga, runs the kernel,
     fetches back the result from the kernel and then verifies it for correctness.
-- Read [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis) to get an idea of how the Vitis flow works.
-  Note that there are *Data Center Platform* and *Embedded Platform*. Our ultra96 board belongs to *Embedded Platform*.
+- Read [this tutorial](https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1/Getting_Started/Vitis) to get an idea of how the Vitis flow works. Part 1, Part 3 and Part 4 of the tutorial are most relevant to this homework. 
+  Note that there are *Data Center Acceleration flow* and *Embedded System Design flow*. Our ultra96 board belongs to *Embedded System*.
 <!-- - Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution. -->
 <!-- - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
 - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-host-program) to learn about how the hardware function is
@@ -164,7 +164,7 @@ utilized in `Host.cpp` -->
 We are now going to start working on the {doc}`homework_submission` where we will follow a bottom-up approach and optimize 
 our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. <!-- Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS. -->
 [This tutorial](<https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS>
-) will give you a basic idea on Vitis HLS.
+) will give you a basic idea on Vitis HLS. Note that we will use the classic Vitis HLS GUI in this homework instead of the unified IDE.
 
 Once you have 3i completed from the {doc}`homework_submission`,
 proceed {ref}`vitis`.
@@ -271,7 +271,7 @@ This step packages your design and define various files required for booting/con
   (e.g. `export PLATFORM_REPO_PATHS=/home/user/ese5320/u96v2_sbc_base`)
 - `make all` to generate .xclbin file and bootable image.
   This process will take >20 minutes depending on your kernel design. 
-  If you are working in Detkin/Ketterer, make sure that you have enough space in your user directory so that the image file does not exceed the quota.
+  If you are working on lab machine, make sure that you have enough space in your user directory so that the image file does not exceed the quota.
     ```{note}
     In `u96_v2.cfg`, we commented out the profiling block.
     As mentioned in [here](https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/profile-Options),
@@ -326,15 +326,16 @@ Once the build has completed in {ref}`vitis` section, you will see a generated `
 The package directory contains the following
 files that we are interested in:
 ```
-package/sd_card.img
 package/sd_card/BOOT.BIN
 package/sd_card/boot.scr
-package/sd_card/image.ub
+package/sd_card/Image
+package/sd_card/fsbl.elf
+package/sd_card/system.dtb
 package/sd_card/host
 package/sd_card/mmult.xclbin
 ```
-If you are working in Detkin/Ketterer machines, we suggest you to copy files above to your 
-local machine and proceed. You can plug in USB disk to the Detkin/Ketterer machines and copy the
+If you are working on lab machines, we suggest you to copy files above to your 
+local machine and proceed. You can plug in USB disk to the lab machines and copy the
 generated `package` directory over to your laptop. You can also use `scp` or WinSCP.
 <!-- If your laptop is Linux, you can use `scp` and if you are using
 Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
@@ -363,8 +364,6 @@ When we recompile our code, the files that will need to be
 updated are:
 ```
 package/sd_card/BOOT.BIN
-package/sd_card/boot.scr
-package/sd_card/image.ub
 package/sd_card/host
 package/sd_card/mmult.xclbin
 ```
@@ -399,13 +398,12 @@ Use a file editor (nano/vim/vscode/notepad) to open the known_hosts file: code ~
 
 - On the serial console, you can now run your code as follows:
     ```
-    cd /media/sd-mmcblk0p1
-    export XILINX_XRT=/usr
+    cd /run/media/mmcblk0p1
     ./host mmult.xclbin
     ```
     You should see the log message that the xclbin file is being loaded.
     ```
-    Loading: 'mmult.xclbin'
+    INFO: Loading: 'mmult.xclbin'
     ```
     In the last line of the log message, you should see the testing message.
     ```
@@ -413,29 +411,28 @@ Use a file editor (nano/vim/vscode/notepad) to open the known_hosts file: code ~
     ```    
 - You should see the generated files:
     ```
-    mmult.xclbin.run_summary
-    profile_summary.csv
-    timeline_trace.csv
+    xrt.run_summary
+    summary.csv
+    device_trace_0.csv
+    opencl_trace.csv
     ```
     To generate these files, you need to have `xrt.ini` in the same directory that you run `./host mmult.xclbin` on.
     If you uncomment the profiling block in `u96_v2.cfg` when you build for `.xclbin`, you will be able to get additional information in these `*.csv` files.
 - Copy these files to your computer by issuing the following command. Modify the command with the username of your computer and
     the directory you want to put the files in.
     ```
-    scp mmult.xclbin.run_summary timeline_trace.csv profile_summary.csv YOURNAME@10.10.7.2:/YOUR_DIR/
+    scp xrt.run_summary device_trace_0.csv summary.csv opencl_trace.csv YOURNAME@10.10.7.2:/YOUR_DIR/
     ```
-- If you are using Detkin/Ketterer machines, copy these files to Detkin/Ketterer machines and run
+- If you are using lab machines, copy these files to lab machines and run
 Vitis Analayzer in your host computer to view the trace by doing:
     ```
-    vitis_analyzer ./mmult.xclbin.run_summary
+    vitis_analyzer --classic ./xrt.run_summary
     ```
 - As stated in the note above, when you modify your HLS code, that will cause the hardware to
 change, and hence the following files(regenerated) will need to be copied to
-the `/media/sd-mmcblk0p1` directory
+the `/run/media/mmcblk0p1` directory
     ```
     package/sd_card/BOOT.BIN
-    package/sd_card/boot.scr
-    package/sd_card/image.ub
     package/sd_card/host
     package/sd_card/mmult.xclbin
     ```
@@ -455,7 +452,7 @@ in running a hardware function on the Ultra96.
 - <https://github.com/aws/aws-fpga/blob/master/Vitis/docs/Setup_AWS_CLI_and_S3_Bucket.md>
  -->
 - <https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration> 
-- <https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis>
+- <https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1/Getting_Started/Vitis>
 - <https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS>
 <!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
  -->
