@@ -21,14 +21,15 @@ Your writeup should include your answers to the following questions:
     1. Now move to Detkin/Ketter Linux machine(or your local machine if you installed Vitis).
        We will now simulate the matrix multiplier in Vitis HLS.
         - First, cd to the HW5 directory that you git cloned, and source settings to be able to run vitis_hls.
-          `source sourceMe.sh`.
+          **If you work on lab Linux machine**, `source sourceMe.sh`.
 
           **If you work locally**, `source settings64.sh` in vitis installation directory.
-          
-          (e.g.: `source /tools/Xilinx/Vitis/2020.2/settings64.sh`)
+
+          (e.g.: `source /tools/Xilinx/Vitis/2024.1/settings64.sh`)
 
           You can add line like this above the `export LM_LICENSE_FILE=...` line in `~/.bashrc`.
-        - Start Vitis HLS by `vitis_hls &` in the terminal. You should now see the IDE.
+        - Start Vitis HLS by `vitis_hls -classic` in the terminal. You should now see the IDE.
+        - Ignore the deprecation warning and continue.
         - Create a new project and add `hw5/hls/MatrixMultiplication.cpp` and `hw5/hls/MatrixMultiplication.h` as source files.
         - Specify `mmult` as top function.
         - Add `hw5/hls/Testbench.cpp` as TestBench files.
@@ -36,7 +37,7 @@ Your writeup should include your answers to the following questions:
             selection. Use a ***150MHz***
             clock, and select ***Vitis Kernel Flow Target*** for the Flow Target.
             Click Finish.
-        - Right-click on ***solution1*** and select
+        - Right-click on ***solution1*** in ***Explorer*** and select
             ***Solution Settings***.
         - In the ***General*** tab, select ***config_compile*** command and set
             ***pipeline_loops*** to ***0***. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
@@ -55,18 +56,17 @@ Your writeup should include your answers to the following questions:
             testbenches.  Our testbenches can serve as an example and
             template for you.)
     1. Synthesize the matrix multiplier in Vitis HLS.
-       Analyze the ***Synthesis Report*** by expanding the ***solution1*** tab in the ***Explorer*** view, browsing to ***syn/report*** and opening the `.rpt` file.
+       Analyze the ***Synthesis Report*** by right clicking the ***solution1*** tab in the ***Explorer*** view, and click ***Open Report*** and then ***Synthesis***.
         What is the expected latency of the hardware accelerator in ms? (1 line)
         ```{note}
         This is "High Level" synthesis. This is the process of translating your C source code to RTL.
         Logic synthesis that transforms RTL-specified design into a gate-level representation
-        is done on Vivado. Note that the numbers you got from 1-d,e are all estimates!
+        is done on Vivado. Note that the numbers you got from 1.4, 1.5 are all estimates!
         ```
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does the implementation consume? (4 lines)
     1. Analyze how the computations are scheduled in time.  You can
-            see this information in the ***Schedule Viewer*** of the
-            ***Analysis*** perspective.  How many cycles does a
+            see this information by clicking the ***Solution*** tab on top and then ***Open Schedule Viewer***.  How many cycles does a
             multiplication take? (1 line)
         ```{note}
         In the ***Schedule Viewer***, you will see ***Operation\Control Step***.
@@ -80,39 +80,36 @@ Your writeup should include your answers to the following questions:
     1. Explain why the performance of this accelerator is
             worse than the software implementation. (3 lines)
 2. **HLS Kernel Optimization: Loop Unrolling**
-    1. Go back to the ***Synthesis perspective***, and unroll the
+    1. Go back to your HLS `.cpp` file, and unroll the
         loop with label `Main_loop_k` 2 times using an `unroll`
-        pragma (See [this](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll) for an example of unroll pragma). Synthesize the code and look again at the schedule. 
+        pragma (See [this](https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-unroll) for an example of unroll pragma). Synthesize the code and look again at the schedule. 
         Does the latency of the entire loop change? Explain the latency discrepancy from the original (non-unrolled).
         <!-- Explain how the schedule for the unrolled loop is able to
         reduce the latency of the entire loop evaluation (all
         iterations) compared to the original (non-unrolled)
         loop.  (3-4 lines). -->
         ```{hint}
-        What characteristic of the original code prevented
-        this optimization? and why is the unrolled loop able to exploit
-        more parallelism?
+        Is the unrolled loop able to exploit
+        parallelism as you expected? What other bottlenecks might be limiting the performance? We will explore more in the next section.
         ```
     1. We could also have unrolled the loop manually.
-        What would the
-            equivalent C code look like?
-    1. Inspect the resource usage in the ***Resource Profile***
-            view of the ***Analysis*** perspective, as we increase the unroll factor. Of the
+        What would the equivalent C code look like?
+    1. Inspect the resource usage by right-clicking the `mmult` module under ***Synthesis Report***, then ***Open Synthesis Details Report***. Look at ***Utilization Estimates***. As we increase the unroll factor. Of the
             computational resources (`fmul` and `fadd`)
             which one(s) are shared by  multiple operations? (1 line)
     1. Unroll the loop with label `Main_loop_k`
-        completely, and
-        synthesize the design again. You may notice that the estimated clock period in the ***Synthesis perspective*** is shown in red.
+        completely, change the clock to ***250MHz***, and
+        synthesize the design again. You may notice that the estimated clock period in the ***Synthesis summary*** is shown in red.
         What does this mean? (3 lines)
-        <!-- ```{note}
-            Due to
-            variation among Vitis HLS versions, sometimes it works and
-            nothing is flagged.  The intent of this question is to
-            illustrate things you may encounter and (with the following
-            questions) show you how to address them.  If it's not
-            flagged in red, just report the estimated clock period.
-        ``` -->
-    1. Change the clock to ***100MHz***, and
+        <!-- ```{note} -->
+        <!--     Due to -->
+        <!--     variation among Vitis HLS versions, sometimes it works and -->
+        <!--     nothing is flagged.  The intent of this question is to -->
+        <!--     illustrate things you may encounter and (with the following -->
+        <!--     questions) show you how to address them.  If it's not -->
+        <!--     flagged in red, just report the estimated clock period. -->
+        <!-- ``` -->
+    1. Change the clock back to ***150MHz***, and
              synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
@@ -121,7 +118,7 @@ Your writeup should include your answers to the following questions:
             additions? (2 lines)
     1. We want to multiply two streams of matrices with each other.  We
             can fill the FPGA with copies of one of the accelerators from question
-            1d(original, 150MHz) or 2e(unrolled, 100MHz).  Which
+            1.4(original, 150MHz) or 2.5(unrolled, 100MHz).  Which
             accelerator would you choose for the highest throughput?
         ```{hint}
          We are just asking for a Resource Bound analysis here.
@@ -138,10 +135,10 @@ Your writeup should include your answers to the following questions:
             still not met. It does not matter, we will fix it later.)  -->
     1. Draw a schematic for the data path of `Main_loop_j`
             and show how it is connected to the memories.  You can find the
-            variables that are mapped onto memories in the ***Resource Profile*** view of the
-            ***Analysis*** perspective.
+            variables that are mapped onto memories in the ***Storage Report*** section of the
+            ***Synthesis Report***.
         ````{hint}
-        From the information on ***Analysis***, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.
+        From the information you gathered, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.
         ````
 
     1. Assuming a continuous flow of input data, how many data
@@ -154,7 +151,7 @@ Your writeup should include your answers to the following questions:
             each of the arrays with a picture that shows how the elements of
             these arrays are accessed by one iteration of the pipelined loop.
     1. Partition the buffers according to your description in the
-            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-array_partition) 
+            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-array_partition) 
             for examples of array partitioning pragma).
             Also, pipeline the `Init_loop_j` loop. 
             Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.
@@ -178,11 +175,11 @@ Your writeup should include your answers to the following questions:
     So collaborate with your partner if you are not able to use the GUI
     or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
     ``` -->
-    1. Run `vitis_analyzer ./mmult.xclbin.run_summary` to open Vitis Analyzer. 
-    1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.
-    1. Take a screenshot of the ***Application Timeline***. Try to zoom into the relevant section and have everything in one screenshot (start from clEnqueueTask and go till clFinish). Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
+    1. Run `vitis_analyzer --classic ./xrt.run_summary` to open Vitis Analyzer. 
+    1. Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the timeline trace.
+    1. Take a screenshot of the ***Timeline Trace***. Try to zoom into the relevant section and have everything in one screenshot (start from `clEnqueueTask` and go till `clFinish`). Figure out which lines from `Host.cpp` correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can't fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
         Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.
-        ```{figure} images/vitis_analyzer.png
+        ```{figure} images/vitis_analyzer_2024_1_classic.png
         ---
         height: 300px
         ---

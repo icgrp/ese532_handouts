@@ -67,6 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw5/homework_submission';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Setup and Walk-through" href="walk_through.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -129,8 +130,6 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,7 +179,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 
@@ -217,6 +216,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw4/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw4/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw4/homework_submission.html">Homework Submission</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW5 – Accelerator</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="walk_through.html">Setup and Walk-through</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework Submission</a></li>
 </ul>
 </details></li>
 </ul>
@@ -468,12 +473,13 @@ Find the latency of the matrix multiplier (mmult kernel) using <code class="docu
 We will now simulate the matrix multiplier in Vitis HLS.</p>
 <ul>
 <li><p>First, cd to the HW5 directory that you git cloned, and source settings to be able to run vitis_hls.
-<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.</p>
+<strong>If you work on lab Linux machine</strong>, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">sourceMe.sh</span></code>.</p>
 <p><strong>If you work locally</strong>, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">settings64.sh</span></code> in vitis installation directory.</p>
-<p>(e.g.: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/tools/Xilinx/Vitis/2020.2/settings64.sh</span></code>)</p>
+<p>(e.g.: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/tools/Xilinx/Vitis/2024.1/settings64.sh</span></code>)</p>
 <p>You can add line like this above the <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LM_LICENSE_FILE=...</span></code> line in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
 </li>
-<li><p>Start Vitis HLS by <code class="docutils literal notranslate"><span class="pre">vitis_hls</span> <span class="pre">&amp;</span></code> in the terminal. You should now see the IDE.</p></li>
+<li><p>Start Vitis HLS by <code class="docutils literal notranslate"><span class="pre">vitis_hls</span> <span class="pre">-classic</span></code> in the terminal. You should now see the IDE.</p></li>
+<li><p>Ignore the deprecation warning and continue.</p></li>
 <li><p>Create a new project and add <code class="docutils literal notranslate"><span class="pre">hw5/hls/MatrixMultiplication.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">hw5/hls/MatrixMultiplication.h</span></code> as source files.</p></li>
 <li><p>Specify <code class="docutils literal notranslate"><span class="pre">mmult</span></code> as top function.</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">hw5/hls/Testbench.cpp</span></code> as TestBench files.</p></li>
@@ -481,7 +487,7 @@ We will now simulate the matrix multiplier in Vitis HLS.</p>
 selection. Use a <em><strong>150MHz</strong></em>
 clock, and select <em><strong>Vitis Kernel Flow Target</strong></em> for the Flow Target.
 Click Finish.</p></li>
-<li><p>Right-click on <em><strong>solution1</strong></em> and select
+<li><p>Right-click on <em><strong>solution1</strong></em> in <em><strong>Explorer</strong></em> and select
 <em><strong>Solution Settings</strong></em>.</p></li>
 <li><p>In the <em><strong>General</strong></em> tab, select <em><strong>config_compile</strong></em> command and set
 <em><strong>pipeline_loops</strong></em> to <em><strong>0</strong></em>. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
@@ -503,20 +509,19 @@ components for the project, you will need to develop your own
 testbenches.  Our testbenches can serve as an example and
 template for you.)</p></li>
 <li><p>Synthesize the matrix multiplier in Vitis HLS.
-Analyze the <em><strong>Synthesis Report</strong></em> by expanding the <em><strong>solution1</strong></em> tab in the <em><strong>Explorer</strong></em> view, browsing to <em><strong>syn/report</strong></em> and opening the <code class="docutils literal notranslate"><span class="pre">.rpt</span></code> file.
+Analyze the <em><strong>Synthesis Report</strong></em> by right clicking the <em><strong>solution1</strong></em> tab in the <em><strong>Explorer</strong></em> view, and click <em><strong>Open Report</strong></em> and then <em><strong>Synthesis</strong></em>.
 What is the expected latency of the hardware accelerator in ms? (1 line)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is “High Level” synthesis. This is the process of translating your C source code to RTL.
 Logic synthesis that transforms RTL-specified design into a gate-level representation
-is done on Vivado. Note that the numbers you got from 1-d,e are all estimates!</p>
+is done on Vivado. Note that the numbers you got from 1.4, 1.5 are all estimates!</p>
 </div>
 </li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does the implementation consume? (4 lines)</p></li>
 <li><p>Analyze how the computations are scheduled in time.  You can
-see this information in the <em><strong>Schedule Viewer</strong></em> of the
-<em><strong>Analysis</strong></em> perspective.  How many cycles does a
+see this information by clicking the <em><strong>Solution</strong></em> tab on top and then <em><strong>Open Schedule Viewer</strong></em>.  How many cycles does a
 multiplication take? (1 line)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -535,9 +540,9 @@ worse than the software implementation. (3 lines)</p></li>
 </li>
 <li><p><strong>HLS Kernel Optimization: Loop Unrolling</strong></p>
 <ol class="arabic">
-<li><p>Go back to the <em><strong>Synthesis perspective</strong></em>, and unroll the
+<li><p>Go back to your HLS <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file, and unroll the
 loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code> 2 times using an <code class="docutils literal notranslate"><span class="pre">unroll</span></code>
-pragma (See <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule.
+pragma (See <a class="reference external" href="https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-unroll">this</a> for an example of unroll pragma). Synthesize the code and look again at the schedule.
 Does the latency of the entire loop change? Explain the latency discrepancy from the original (non-unrolled).</p>
  <!-- Explain how the schedule for the unrolled loop is able to
  reduce the latency of the entire loop evaluation (all
@@ -545,32 +550,29 @@ Does the latency of the entire loop change? Explain the latency discrepancy from
  loop.  (3-4 lines). -->
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>What characteristic of the original code prevented
-this optimization? and why is the unrolled loop able to exploit
-more parallelism?</p>
+<p>Is the unrolled loop able to exploit
+parallelism as you expected? What other bottlenecks might be limiting the performance? We will explore more in the next section.</p>
 </div>
 </li>
 <li><p>We could also have unrolled the loop manually.
-What would the
-equivalent C code look like?</p></li>
-<li><p>Inspect the resource usage in the <em><strong>Resource Profile</strong></em>
-view of the <em><strong>Analysis</strong></em> perspective, as we increase the unroll factor. Of the
+What would the equivalent C code look like?</p></li>
+<li><p>Inspect the resource usage by right-clicking the <code class="docutils literal notranslate"><span class="pre">mmult</span></code> module under <em><strong>Synthesis Report</strong></em>, then <em><strong>Open Synthesis Details Report</strong></em>. Look at <em><strong>Utilization Estimates</strong></em>. As we increase the unroll factor. Of the
 computational resources (<code class="docutils literal notranslate"><span class="pre">fmul</span></code> and <code class="docutils literal notranslate"><span class="pre">fadd</span></code>)
 which one(s) are shared by  multiple operations? (1 line)</p></li>
 <li><p>Unroll the loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code>
-completely, and
-synthesize the design again. You may notice that the estimated clock period in the <em><strong>Synthesis perspective</strong></em> is shown in red.
+completely, change the clock to <em><strong>250MHz</strong></em>, and
+synthesize the design again. You may notice that the estimated clock period in the <em><strong>Synthesis summary</strong></em> is shown in red.
 What does this mean? (3 lines)</p>
- <!-- ```{note}
-     Due to
-     variation among Vitis HLS versions, sometimes it works and
-     nothing is flagged.  The intent of this question is to
-     illustrate things you may encounter and (with the following
-     questions) show you how to address them.  If it's not
-     flagged in red, just report the estimated clock period.
- ``` -->
+ <!-- ```{note} -->
+ <!--     Due to -->
+ <!--     variation among Vitis HLS versions, sometimes it works and -->
+ <!--     nothing is flagged.  The intent of this question is to -->
+ <!--     illustrate things you may encounter and (with the following -->
+ <!--     questions) show you how to address them.  If it's not -->
+ <!--     flagged in red, just report the estimated clock period. -->
+ <!-- ``` -->
 </li>
-<li><p>Change the clock to <em><strong>100MHz</strong></em>, and
+<li><p>Change the clock back to <em><strong>150MHz</strong></em>, and
 synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does this implementation consume? (4 lines)</p></li>
@@ -579,7 +581,7 @@ scheduled in series.  What does this imply about floating-point
 additions? (2 lines)</p></li>
 <li><p>We want to multiply two streams of matrices with each other.  We
 can fill the FPGA with copies of one of the accelerators from question
-1d(original, 150MHz) or 2e(unrolled, 100MHz).  Which
+1.4(original, 150MHz) or 2.5(unrolled, 100MHz).  Which
 accelerator would you choose for the highest throughput?</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -600,11 +602,11 @@ initiation interval for the <code class="docutils literal notranslate"><span cla
      still not met. It does not matter, we will fix it later.)  --></p></li>
 <li><p>Draw a schematic for the data path of <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 and show how it is connected to the memories.  You can find the
-variables that are mapped onto memories in the <em><strong>Resource Profile</strong></em> view of the
-<em><strong>Analysis</strong></em> perspective.</p>
+variables that are mapped onto memories in the <em><strong>Storage Report</strong></em> section of the
+<em><strong>Synthesis Report</strong></em>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>From the information on <em><strong>Analysis</strong></em>, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.</p>
+<p>From the information you gathered, what can you conclude about the process behind the loop? Show us where the data are stored and allocated on the memory. When they are loaded, what are the subsequent processes that they have gone through? A rough sketch of the process showing the main components will be considered satisfactory.</p>
 </div>
 </li>
 <li><p>Assuming a continuous flow of input data, how many data
@@ -617,7 +619,7 @@ achieve a better performance.  Illustrate the best way to partition
 each of the arrays with a picture that shows how the elements of
 these arrays are accessed by one iteration of the pipelined loop.</p></li>
 <li><p>Partition the buffers according to your description in the
-previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1399-vitis-hls/pragma-HLS-array_partition">Section of the Vitis HLS User Guide</a>
+previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-array_partition">Section of the Vitis HLS User Guide</a>
 for examples of array partitioning pragma).
 Also, pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop.
 Synthesize the design and report the expected latency in ms. Provide the modified <code class="docutils literal notranslate"><span class="pre">mmult</span></code> code in your report.</p></li>
@@ -643,14 +645,14 @@ Run by following the instruction in <a class="reference internal" href="walk_thr
  or try to [install Vitis toolchain locally](https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Getting_Started/Vitis/Part2.md#vitis-flow-101--part-2--installation-guide).
  ``` -->
 <ol class="arabic">
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">vitis_analyzer</span> <span class="pre">./mmult.xclbin.run_summary</span></code> to open Vitis Analyzer.</p></li>
-<li><p>Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the application timeline.</p></li>
-<li><p>Take a screenshot of the <em><strong>Application Timeline</strong></em>. Try to zoom into the relevant section and have everything in one screenshot (start from clEnqueueTask and go till clFinish). Figure out which lines from <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can’t fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">vitis_analyzer</span> <span class="pre">--classic</span> <span class="pre">./xrt.run_summary</span></code> to open Vitis Analyzer.</p></li>
+<li><p>Find the latency of the matrix multiplication (mmult kernel) by hovering on the kernel call in the timeline trace.</p></li>
+<li><p>Take a screenshot of the <em><strong>Timeline Trace</strong></em>. Try to zoom into the relevant section and have everything in one screenshot (start from <code class="docutils literal notranslate"><span class="pre">clEnqueueTask</span></code> and go till <code class="docutils literal notranslate"><span class="pre">clFinish</span></code>). Figure out which lines from <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> correspond to the sections in the screenshot and annotate the screenshot. Include the annotated screenshot in your report. If you can’t fit everything in one screenshot, take multiple screenshots and annotate. For your reference, following is an example screenshot.
 Keep the trace in Vitis Analyzer open, we will use the numbers from it in the next section.</p>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/vitis_analyzer.png"><img alt="../_images/vitis_analyzer.png" src="../_images/vitis_analyzer.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/vitis_analyzer_2024_1_classic.png"><img alt="../_images/vitis_analyzer_2024_1_classic.png" src="../_images/vitis_analyzer_2024_1_classic.png" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Example screenshot</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Example screenshot</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </li>
@@ -659,7 +661,7 @@ Keep the trace in Vitis Analyzer open, we will use the numbers from it in the ne
 <li><p><strong>Breakeven and Net Acceleration</strong></p>
 <p>We can model an accelerator with setup and transfer time as:</p>
 <div class="math notranslate nohighlight" id="equation-accelerator-model">
-<span class="eqno">()<a class="headerlink" href="#equation-accelerator-model" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+T_{transfer}+T_{fpga}\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-accelerator-model" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+T_{transfer}+T_{fpga}\]</div>
 <p>Let <span class="math notranslate nohighlight">\(T_{seq}\)</span> be the time for an operation (such as the matrix multiply) on the ARM that your found in 1a
 and <span class="math notranslate nohighlight">\(T_{fpga}\)</span> be the time for the operation on the FPGA that you found in 4b.</p>
 <p>Let <span class="math notranslate nohighlight">\(S_{fpga}=\frac{T_{seq}}{T_{fpga}}\)</span> or <span class="math notranslate nohighlight">\(T_{fpga}=\frac{T_{seq}}{S_{fpga}}\)</span>.</p>
@@ -690,7 +692,7 @@ equation for <span class="math notranslate nohighlight">\(T_{transfer}\)</span> 
 <li><p>For the value of <span class="math notranslate nohighlight">\(N\)</span> found in 5i, what is the value of <span class="math notranslate nohighlight">\(S_{fpga}\)</span>?</p></li>
 <li><p>If you perform a large number of accelerator invocations, you only need to perform the setup operations once.</p>
 <div class="math notranslate nohighlight" id="equation-accelerator-model-k-invoke">
-<span class="eqno">()<a class="headerlink" href="#equation-accelerator-model-k-invoke" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+k \cdot (T_{transfer}+T_{fpga})\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-accelerator-model-k-invoke" title="Permalink to this equation">#</a></span>\[T_{accel} = T_{setup}+k \cdot (T_{transfer}+T_{fpga})\]</div>
 <p>Assuming the number of invocations, <span class="math notranslate nohighlight">\(k\)</span>, is large (say 1 million), how does
 this change the value of N for 10x speedup (
 <span class="math notranslate nohighlight">\(T_{accel}=\frac{T_{seq}}{10}\)</span>) ?</p>
@@ -760,6 +762,15 @@ a curve for DSPs and BlockRAMs.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="walk_through.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setup and Walk-through</p>
+      </div>
+    </a>
 </div>
                 </footer>
               

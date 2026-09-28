@@ -62,11 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'hw5/walk_through';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework Submission" href="homework_submission.html" />
+    <link rel="prev" title="Collaboration" href="collaboration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -129,8 +129,6 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,7 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../writeup_guidelines.html">Writeup Guidelines</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hw0/index.html">Diagnostic Assessment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hw0/collaboration.html">Collaboration</a></li>
 
@@ -217,6 +215,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../hw4/collaboration.html">Collaboration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw4/walk_through.html">Setup and Walk-through</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hw4/homework_submission.html">Homework Submission</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">HW5 – Accelerator</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="collaboration.html">Collaboration</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setup and Walk-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework_submission.html">Homework Submission</a></li>
 </ul>
 </details></li>
 </ul>
@@ -432,7 +436,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-acceleration">Hardware Acceleration</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-vitis-2020-2-on-your-personal-computer-linux-os">Installing Vitis 2020.2 on your Personal Computer(Linux OS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-vitis-2024-1-on-your-personal-computer-linux-os">Installing Vitis 2024.1 on your Personal Computer(Linux OS)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-and-running-the-code">Obtaining and Running the Code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-code">Building the code</a></li>
 </ul>
@@ -483,19 +487,19 @@ and next will show you a few techniques that allow you to reduce the number of
 times you need to invoke low-level placement and routing and introduce
 simulation and emulation you can use validate your design before
 invoking low-level placement and routing.</p>
-<p>In the homework, you could either use linux machines in Detkin/Ketterer or
+<p>In the homework, you could either use linux machines in AGH 104, Moore 101, Moore 100, or
 install Vitis locally. If you want to install Vitis locally, we expect that your computer has at least:</p>
 <ul class="simple">
 <li><p>Linux OS</p></li>
 <li><p>16 GB RAM</p></li>
 <li><p>4 cores</p></li>
-<li><p>70 GB free hard disk space
+<li><p>200 GB free hard disk space
 If you want to install Vitis locally, follow the instructions in
-<a class="reference internal" href="#install-locally"><span class="std std-ref">Installing Vitis 2020.2 on your Personal Computer(Linux OS)</span></a>. If you want to use Detkin/Ketterer machines,
+<a class="reference internal" href="#install-locally"><span class="std std-ref">Installing Vitis 2024.1 on your Personal Computer(Linux OS)</span></a>. If you want to use lab machines,
 jump to <a class="reference internal" href="#software-code"><span class="std std-ref">Obtaining and Running the Code</span></a>.</p></li>
 </ul>
-<section id="installing-vitis-2020-2-on-your-personal-computer-linux-os">
-<span id="install-locally"></span><h3>Installing Vitis 2020.2 on your Personal Computer(Linux OS)<a class="headerlink" href="#installing-vitis-2020-2-on-your-personal-computer-linux-os" title="Permalink to this heading">#</a></h3>
+<section id="installing-vitis-2024-1-on-your-personal-computer-linux-os">
+<span id="install-locally"></span><h3>Installing Vitis 2024.1 on your Personal Computer(Linux OS)<a class="headerlink" href="#installing-vitis-2024-1-on-your-personal-computer-linux-os" title="Permalink to this heading">#</a></h3>
 <!-- Running Vitis on your local computer will likely be the best interactive
 experience with the GUI.  However, it will take more time and effort (and
 disk space) to get it setup.  Ultimately, we recommend you set it up, but
@@ -513,17 +517,18 @@ below to install Vitis (the tutorials install SDSoC and you should not install t
 - [ESE532 SDSoC on Parallels Desktop](https://youtu.be/HaOWfmCAyCE)
 - [ESE532 SDSoC on Virtual Box](https://docs.google.com/document/d/1XKVsD3gt8NeJgvcykNxD37CZME8r-dkUBl1D8KESYZk/edit?usp=sharing) -->
 <p>Note that Vitis is fully supported in Linux OS only.
-Follow the instructions below to install Vitis on your linux machine:</p>
+Follow the instructions below to install Vitis 2024.1 on your linux machine:</p>
 <ol class="arabic">
-<li><p>Go to <a class="reference external" href="https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html">this link</a> and
-select <em><strong>2020.2</strong></em>. Then, download
-<em><strong>Xilinx Unified Installer 2020.2: Linux Self Extracting Web Installer</strong></em>. Create an account with Xilinx if you don’t have one.</p></li>
-<li><p>We found <a class="reference external" href="https://youtu.be/debP5oI28l8">this video</a> useful to install Vitis.</p></li>
+<li><p>Go to <a class="reference external" href="https://www.amd.com/en/support/downloads/adaptive-socs-and-fpgas/development-tools/2024-1.html">this link</a>. Then, click on
+<em><strong>Unified Installer for FPGA &amp; Adaptive SoC Tools Update 1 – 2024.1 – Jun 19, 2024</strong></em>
+and download
+<em><strong>AMD Unified Installer for FPGAs &amp; Adaptive SoCs 2024.1.1: All OS installer Single-File Download</strong></em>
+Create an account with Xilinx if you don’t have one.</p></li>
 <li><p>When selecting devices, selecting Zynq UltraScale+ MPSoC should be enough for this class.</p>
 <figure class="align-default" id="ese5320-vitis-devices">
 <img alt="../_images/ese5320_vitis_devices.png" src="../_images/ese5320_vitis_devices.png" />
 <figcaption>
-<p><span class="caption-text">Selecting devices when installing Vitis</span><a class="headerlink" href="#ese5320-vitis-devices" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Selecting devices when installing Vitis</span><a class="headerlink" href="#ese5320-vitis-devices" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The full installation will take about 30 min - 1 hour.</p>
@@ -542,12 +547,14 @@ with this variable.</p>
 </pre></div>
 </div>
 </li>
-<li><p>As of January 1st 2022, there needs a patch. Download <em><strong>y2k22_patch-1.2.zip</strong></em> in <a class="reference external" href="https://support.xilinx.com/s/article/76960?language=en_US">this link</a>.
-Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs.</p></li>
-<li><p>Get the Ultra96 platform from <a class="reference external" href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2/">here</a>.
-Scroll down and click <strong>Reference Designs</strong> tab. Then, click <strong>Ultra96-V2 – Vitis Platform 2020+ (Sharepoint site)</strong>.
-Click <strong>2020.2</strong><span class="math notranslate nohighlight">\(\rightarrow\)</span><strong>Vitis_Platform</strong>. Download <strong>u96v2_sbc_vitis_2020_2.tar.gz</strong>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_vitis_2020_2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</ol>
+<!-- 1. As of January 1st 2022, there needs a patch. Download ***y2k22_patch-1.2.zip*** in [this link](https://support.xilinx.com/s/article/76960?language=en_US). -->
+<!--     Follow the instructions to apply y2k22 patch. If need help on this, please contact TAs. -->
+<!---->
+<ol class="arabic" start="5">
+<li><p>Get the Ultra96 platform from <a class="reference external" href="https://drive.google.com/drive/folders/1cDE5bHXCgkdAFvRdH7Ao-NxBxG35hj9C?usp=drive_link">here</a>.
+Download <strong>u96v2_sbc_base_2024_1.tgz</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">u96v2_sbc_base_2024_1</span><span class="o">.</span><span class="n">tgz</span>
 </pre></div>
 </div>
 <p>Locate the extracted folder to wherever you want.</p>
@@ -584,7 +591,7 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw5</span
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> will help you to source Xilinx tools</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sourceMe.sh</span></code> will help you to source Xilinx tools on lab machines.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> defines the options necessary for Vitis Analyzer.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">common</span></code> folder has header files and helper functions.</p></li>
 <li><p>You will mostly be working with the code in the <code class="docutils literal notranslate"><span class="pre">hls</span></code> folder. The
@@ -592,8 +599,8 @@ is in the <code class="docutils literal notranslate"><span class="pre">hw5</span
 to a hardware function (known as a kernel in Vitis). The <code class="docutils literal notranslate"><span class="pre">Host.cpp</span></code> file has
 the “driver” code that transfers the data to the fpga, runs the kernel,
 fetches back the result from the kernel and then verifies it for correctness.</p></li>
-<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis">this tutorial</a> to get an idea of how the Vitis flow works.
-Note that there are <em>Data Center Platform</em> and <em>Embedded Platform</em>. Our ultra96 board belongs to <em>Embedded Platform</em>.</p></li>
+<li><p>Read <a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1/Getting_Started/Vitis">this tutorial</a> to get an idea of how the Vitis flow works. Part 1, Part 3 and Part 4 of the tutorial are most relevant to this homework.
+Note that there are <em>Data Center Acceleration flow</em> and <em>Embedded System Design flow</em>. Our ultra96 board belongs to <em>Embedded System</em>.</p></li>
 </ul>
 <!-- - Read [this](https://developer.xilinx.com/en/articles/example-1-simple-memory-allocation.html) to learn about simple memory allocation and OpenCL execution. -->
 <!-- - Read [this](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.2/Getting_Started/Vitis/Part3.md#the-source-code-for-the-vector-add-kernel) to learn about the syntax of the code in `hls/MatrixMultiplication.cpp`.
@@ -621,7 +628,7 @@ utilized in `Host.cpp` -->
  -->
 <p>We are now going to start working on the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a> where we will follow a bottom-up approach and optimize
 our hardware function using Vitis HLS IDE first and then re-compile it and run it on the FPGA in the end. <!-- Scroll to {ref}`vitis_hls` to learn about how to use Vitis HLS. -->
-<a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS">This tutorial</a> will give you a basic idea on Vitis HLS.</p>
+<a class="reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS">This tutorial</a> will give you a basic idea on Vitis HLS. Note that we will use the classic Vitis HLS GUI in this homework instead of the unified IDE.</p>
 <p>Once you have 3i completed from the <a class="reference internal" href="homework_submission.html"><span class="doc">Homework Submission</span></a>,
 proceed <a class="reference internal" href="#vitis"><span class="std std-ref">Building the code</span></a>.</p>
 <hr class="docutils" />
@@ -718,7 +725,7 @@ installation directory and do <code class="docutils literal notranslate"><span c
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> to generate .xclbin file and bootable image.
 This process will take &gt;20 minutes depending on your kernel design.
-If you are working in Detkin/Ketterer, make sure that you have enough space in your user directory so that the image file does not exceed the quota.</p>
+If you are working on lab machine, make sure that you have enough space in your user directory so that the image file does not exceed the quota.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">u96_v2.cfg</span></code>, we commented out the profiling block.
@@ -760,12 +767,12 @@ on AWS or Biglab (shown later) and then later copy the binaries
 to your personal computer, copy them into the board and finally run them on the board.
  -->
 <!-- In the end,  -->
-<p>Your setup should look like <code class="xref std std-numref docutils literal notranslate"><span class="pre">ultra96-setup-hw5</span></code> like we did in HW3 and HW4.</p>
+<p>Your setup should look like <a class="reference internal" href="#ultra96-setup-hw5"><span class="std std-numref">Fig. 16</span></a> like we did in HW3 and HW4.</p>
 <!-- You can also use Windows PCs in Detkin/Ketterer. -->
 <figure class="align-default" id="ultra96-setup-hw5">
 <a class="reference internal image-reference" href="../_images/env_setup1.jpg"><img alt="../_images/env_setup1.jpg" src="../_images/env_setup1.jpg" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup-hw5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Development Environment</span><a class="headerlink" href="#ultra96-setup-hw5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -776,16 +783,17 @@ to your personal computer, copy them into the board and finally run them on the 
 <p>Once the build has completed in <a class="reference internal" href="#vitis"><span class="std std-ref">Building the code</span></a> section, you will see a generated <code class="docutils literal notranslate"><span class="pre">package</span></code> directory. e.g. <code class="docutils literal notranslate"><span class="pre">hw5/package</span></code>.
 The package directory contains the following
 files that we are interested in:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">.</span><span class="n">img</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">scr</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">ub</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">Image</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">fsbl</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">system</span><span class="o">.</span><span class="n">dtb</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">host</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
-<p>If you are working in Detkin/Ketterer machines, we suggest you to copy files above to your
-local machine and proceed. You can plug in USB disk to the Detkin/Ketterer machines and copy the
+<p>If you are working on lab machines, we suggest you to copy files above to your
+local machine and proceed. You can plug in USB disk to the lab machines and copy the
 generated <code class="docutils literal notranslate"><span class="pre">package</span></code> directory over to your laptop. You can also use <code class="docutils literal notranslate"><span class="pre">scp</span></code> or WinSCP.</p>
 <!-- If your laptop is Linux, you can use `scp` and if you are using
 Windows you can use programs like [WinSCP](https://winscp.net/eng/index.php).
@@ -816,8 +824,6 @@ On Linux, you can do this from <em>Disks</em> application.</p></li>
 When we recompile our code, the files that will need to be
 updated are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">scr</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">ub</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">host</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
@@ -854,13 +860,12 @@ then copy them from the Ultra96-host(your laptop) to the Ultra96.</p>
 </div>
 <ul>
 <li><p>On the serial console, you can now run your code as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">sd</span><span class="o">-</span><span class="n">mmcblk0p1</span>
-<span class="n">export</span> <span class="n">XILINX_XRT</span><span class="o">=/</span><span class="n">usr</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">mmcblk0p1</span>
 <span class="o">./</span><span class="n">host</span> <span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
 </div>
 <p>You should see the log message that the xclbin file is being loaded.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loading</span><span class="p">:</span> <span class="s1">'mmult.xclbin'</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span> <span class="n">Loading</span><span class="p">:</span> <span class="s1">'mmult.xclbin'</span>
 </pre></div>
 </div>
 <p>In the last line of the log message, you should see the testing message.</p>
@@ -869,9 +874,10 @@ then copy them from the Ultra96-host(your laptop) to the Ultra96.</p>
 </div>
 </li>
 <li><p>You should see the generated files:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
-<span class="n">profile_summary</span><span class="o">.</span><span class="n">csv</span>
-<span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrt</span><span class="o">.</span><span class="n">run_summary</span>
+<span class="n">summary</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">device_trace_0</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">opencl_trace</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
 <p>To generate these files, you need to have <code class="docutils literal notranslate"><span class="pre">xrt.ini</span></code> in the same directory that you run <code class="docutils literal notranslate"><span class="pre">./host</span> <span class="pre">mmult.xclbin</span></code> on.
@@ -879,22 +885,20 @@ If you uncomment the profiling block in <code class="docutils literal notranslat
 </li>
 <li><p>Copy these files to your computer by issuing the following command. Modify the command with the username of your computer and
 the directory you want to put the files in.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span> <span class="n">timeline_trace</span><span class="o">.</span><span class="n">csv</span> <span class="n">profile_summary</span><span class="o">.</span><span class="n">csv</span> <span class="n">YOURNAME</span><span class="o">@</span><span class="mf">10.10.7.2</span><span class="p">:</span><span class="o">/</span><span class="n">YOUR_DIR</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">xrt</span><span class="o">.</span><span class="n">run_summary</span> <span class="n">device_trace_0</span><span class="o">.</span><span class="n">csv</span> <span class="n">summary</span><span class="o">.</span><span class="n">csv</span> <span class="n">opencl_trace</span><span class="o">.</span><span class="n">csv</span> <span class="n">YOURNAME</span><span class="o">@</span><span class="mf">10.10.7.2</span><span class="p">:</span><span class="o">/</span><span class="n">YOUR_DIR</span><span class="o">/</span>
 </pre></div>
 </div>
 </li>
-<li><p>If you are using Detkin/Ketterer machines, copy these files to Detkin/Ketterer machines and run
+<li><p>If you are using lab machines, copy these files to lab machines and run
 Vitis Analayzer in your host computer to view the trace by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_analyzer</span> <span class="o">./</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span><span class="o">.</span><span class="n">run_summary</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vitis_analyzer</span> <span class="o">--</span><span class="n">classic</span> <span class="o">./</span><span class="n">xrt</span><span class="o">.</span><span class="n">run_summary</span>
 </pre></div>
 </div>
 </li>
 <li><p>As stated in the note above, when you modify your HLS code, that will cause the hardware to
 change, and hence the following files(regenerated) will need to be copied to
-the <code class="docutils literal notranslate"><span class="pre">/media/sd-mmcblk0p1</span></code> directory</p>
+the <code class="docutils literal notranslate"><span class="pre">/run/media/mmcblk0p1</span></code> directory</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">BOOT</span><span class="o">.</span><span class="n">BIN</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">scr</span>
-<span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">ub</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">host</span>
 <span class="n">package</span><span class="o">/</span><span class="n">sd_card</span><span class="o">/</span><span class="n">mmult</span><span class="o">.</span><span class="n">xclbin</span>
 </pre></div>
@@ -919,7 +923,7 @@ in running a hardware function on the Ultra96.</p>
  -->
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration">https://docs.xilinx.com/r/en-US/ug1393-vitis-application-acceleration</a></p></li>
-<li><p><a class="github reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis">Xilinx/Vitis-Tutorials</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1/Getting_Started/Vitis">Xilinx/Vitis-Tutorials</a></p></li>
 <li><p><a class="github reference external" href="https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Getting_Started/Vitis_HLS">Xilinx/Vitis-Tutorials</a></p></li>
 </ul>
 <!-- - <https://github.com/Xilinx/Vitis-Tutorials/blob/master/docs/Pathway3/BuildingAnApplication.md>
@@ -959,6 +963,24 @@ in running a hardware function on the Ultra96.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="collaboration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Collaboration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="homework_submission.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework Submission</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -976,7 +998,7 @@ in running a hardware function on the Ultra96.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-acceleration">Hardware Acceleration</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-vitis-2020-2-on-your-personal-computer-linux-os">Installing Vitis 2020.2 on your Personal Computer(Linux OS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-vitis-2024-1-on-your-personal-computer-linux-os">Installing Vitis 2024.1 on your Personal Computer(Linux OS)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-and-running-the-code">Obtaining and Running the Code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-code">Building the code</a></li>
 </ul>
