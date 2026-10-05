@@ -33,6 +33,10 @@ If you want to install Vitis locally, follow the instructions in
 {ref}`install_locally`. If you want to use lab machines, 
 jump to {ref}`software_code`.
 
+```{caution}
+It is recommended to use the lab machines in AGH 104, Moore 101, Moore 100 for this homework, as they already have Vitis installed and tested. If you run into any issues with Vitis installation on your personal computer, TAs can only provide limited support.
+```
+
 (install_locally)=
 ### Installing Vitis 2024.1 on your Personal Computer(Linux OS)
 <!-- Running Vitis on your local computer will likely be the best interactive
