@@ -90,11 +90,18 @@ Your writeup should include your answers to the following questions:
         loop.  (3-4 lines). -->
         ```{hint}
         Is the unrolled loop able to exploit
-        parallelism as you expected? What other bottlenecks might be limiting the performance? We will explore more in the next section.
+        parallelism as you expected? What other bottlenecks might be limiting the performance?
         ```
     1. We could also have unrolled the loop manually.
         What would the equivalent C code look like?
-    1. Inspect the resource usage by right-clicking the `mmult` module under ***Synthesis Report***, then ***Open Synthesis Details Report***. Look at ***Utilization Estimates***. As we increase the unroll factor. Of the
+    1. We can partition `Buffer_1` and `Buffer_2` to
+            achieve a better performance.  Illustrate the best way to partition
+            each of the arrays with a picture that shows how the elements of
+            these arrays are accessed by one iteration of the pipelined loop.
+    1. Partition the buffers according to your description in the
+            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-array_partition) 
+            for examples of array partitioning pragma).
+    1. Inspect the resource usage by right-clicking the `mmult` module under ***Synthesis Report***, then ***Open Synthesis Details Report***. Look at ***Utilization Estimates***. As we increase the unroll factor, of the
             computational resources (`fmul` and `fadd`)
             which one(s) are shared by  multiple operations? (1 line)
     1. Unroll the loop with label `Main_loop_k`
@@ -109,7 +116,7 @@ Your writeup should include your answers to the following questions:
         <!--     questions) show you how to address them.  If it's not -->
         <!--     flagged in red, just report the estimated clock period. -->
         <!-- ``` -->
-    1. Change the clock back to ***150MHz***, and
+    1. Change the clock to ***100MHz***, and
              synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
@@ -118,7 +125,7 @@ Your writeup should include your answers to the following questions:
             additions? (2 lines)
     1. We want to multiply two streams of matrices with each other.  We
             can fill the FPGA with copies of one of the accelerators from question
-            1.4(original, 150MHz) or 2.5(unrolled, 100MHz).  Which
+            1.4(original, 150MHz) or 2.7(unrolled, 100MHz).  Which
             accelerator would you choose for the highest throughput?
         ```{hint}
          We are just asking for a Resource Bound analysis here.
@@ -126,7 +133,7 @@ Your writeup should include your answers to the following questions:
         ```
 			
 3. **HLS Kernel Optimization: Pipelining**
-    1. Remove the unroll pragma, and pipeline the `Main_loop_j`
+    1. Remove the unroll and partition pragma, and pipeline the `Main_loop_j`
             loop with the minimal initiation
             interval (II) of 1 using the `pipeline` pragma. Restore the clock to ***150MHz***.
             Synthesize the design again.  Report the
@@ -144,22 +151,15 @@ Your writeup should include your answers to the following questions:
     1. Assuming a continuous flow of input data, how many data
             does the pipelined loop need per clock cycle from `Buffer_1`?
             (1 line)
-    1. Considering what you found in the two previous questions, why does
+    1. Considering what you found in the previous questions, why does
             the tool not achieve an initiation interval of 1? (3 lines)
-    1. We can partition `Buffer_1` and `Buffer_2` to
-            achieve a better performance.  Illustrate the best way to partition
-            each of the arrays with a picture that shows how the elements of
-            these arrays are accessed by one iteration of the pipelined loop.
-    1. Partition the buffers according to your description in the
-            previous question with the `array_partition` pragma. (See ***Partitioning Arrays to Improve Pipelining*** [Section of the Vitis HLS User Guide](https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-array_partition) 
-            for examples of array partitioning pragma).
-            Also, pipeline the `Init_loop_j` loop. 
+    1. Based on your analysis, propose a solution to achieve an initiation interval of 1 for the pipelined loops.
+            Also pipeline the `Init_loop_j` loop. 
             Synthesize the design and report the expected latency in ms. Provide the modified `mmult` code in your report.
     1. How many resources of each type (BlockRAM, DSP unit, flip-flop,
             and LUT) does this implementation consume? (4 lines)
-    1. Pipeline the `Init_loop_j` loop also with an II of
-        1 and synthesize your design. Before exporting the synthesized design, you can run C/RTL co-simulation to verify
-        that the RTL is functionally identical to the C code.
+    1. Before exporting the synthesized design, you can run C/RTL co-simulation to verify
+        that the RTL is functionally identical to the C code. Include a screenshot of the co-simulation result in your report.
     1. Export your synthesized design by right-clicking on ***solution1*** and then selecting ***Export RTL***. Choose ***Vitis Kernel (.xo)*** as the
         ***Format***. Select output location to be your
         `ese532_code/hw5` directory and select OK.

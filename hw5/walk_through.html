@@ -570,6 +570,10 @@ function on the FPGA.</p>
 <span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This year we are using a new verion of Vitis (2024.1) and we have updated the code to work with this version. We will keep updating the code to fix any issues we find. So make sure you pull in the latest changes before you start working on the homework.</p>
+</div>
 <p>The code you will use for <a class="reference internal" href="homework_submission.html"><span class="doc std std-doc">homework submission</span></a>
 is in the <code class="docutils literal notranslate"><span class="pre">hw5</span></code> directory. The directory structure looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hw5</span><span class="o">/</span>
@@ -729,7 +733,7 @@ If you are working on lab machine, make sure that you have enough space in your 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">u96_v2.cfg</span></code>, we commented out the profiling block.
-As mentioned in <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/profile-Options">here</a>,
+As mentioned in <a class="reference external" href="https://docs.xilinx.com/r/2024.1-English/ug1393-vitis-application-acceleration/profile-Options">here</a>,
 we can monitor data ports with Vitis Analyzer when the profiling is enabled. But it costs additional resources on the FPGA that makes
 the compilation longer, and we commented out for this assignment.</p>
 </div>
@@ -738,7 +742,7 @@ the compilation longer, and we commented out for this assignment.</p>
 <p>To increase the clock frequency, you first need to generate <code class="docutils literal notranslate"><span class="pre">.xo</span></code> file targeting 200MHz(for example) in Vitis HLS.
 And you need to include a flag like <code class="docutils literal notranslate"><span class="pre">--clock.defaultFreqHz</span> <span class="pre">200000000</span></code> when you do linking (<code class="docutils literal notranslate"><span class="pre">v++</span> <span class="pre">--link</span></code>).
 Without the flag, the tool uses the default clock frequency for Ultra96, which is 150MHz.</p>
-<p>If you go through <a class="reference external" href="https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis">Vitis User Guide</a>
+<p>If you go through <a class="reference external" href="https://docs.xilinx.com/r/2024.1-English/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis">Vitis User Guide</a>
 for useful flags/options, please make sure that they are applicable to the embedded platform.
 As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belongs to the embedded platform.</p>
 </div>

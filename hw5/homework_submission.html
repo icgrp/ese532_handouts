@@ -551,12 +551,19 @@ Does the latency of the entire loop change? Explain the latency discrepancy from
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Is the unrolled loop able to exploit
-parallelism as you expected? What other bottlenecks might be limiting the performance? We will explore more in the next section.</p>
+parallelism as you expected? What other bottlenecks might be limiting the performance?</p>
 </div>
 </li>
 <li><p>We could also have unrolled the loop manually.
 What would the equivalent C code look like?</p></li>
-<li><p>Inspect the resource usage by right-clicking the <code class="docutils literal notranslate"><span class="pre">mmult</span></code> module under <em><strong>Synthesis Report</strong></em>, then <em><strong>Open Synthesis Details Report</strong></em>. Look at <em><strong>Utilization Estimates</strong></em>. As we increase the unroll factor. Of the
+<li><p>We can partition <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code> and <code class="docutils literal notranslate"><span class="pre">Buffer_2</span></code> to
+achieve a better performance.  Illustrate the best way to partition
+each of the arrays with a picture that shows how the elements of
+these arrays are accessed by one iteration of the pipelined loop.</p></li>
+<li><p>Partition the buffers according to your description in the
+previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-array_partition">Section of the Vitis HLS User Guide</a>
+for examples of array partitioning pragma).</p></li>
+<li><p>Inspect the resource usage by right-clicking the <code class="docutils literal notranslate"><span class="pre">mmult</span></code> module under <em><strong>Synthesis Report</strong></em>, then <em><strong>Open Synthesis Details Report</strong></em>. Look at <em><strong>Utilization Estimates</strong></em>. As we increase the unroll factor, of the
 computational resources (<code class="docutils literal notranslate"><span class="pre">fmul</span></code> and <code class="docutils literal notranslate"><span class="pre">fadd</span></code>)
 which one(s) are shared by  multiple operations? (1 line)</p></li>
 <li><p>Unroll the loop with label <code class="docutils literal notranslate"><span class="pre">Main_loop_k</span></code>
@@ -572,7 +579,7 @@ What does this mean? (3 lines)</p>
  <!--     flagged in red, just report the estimated clock period. -->
  <!-- ``` -->
 </li>
-<li><p>Change the clock back to <em><strong>150MHz</strong></em>, and
+<li><p>Change the clock to <em><strong>100MHz</strong></em>, and
 synthesize it again. What is the expected latency of the new accelerator in ms? (1 line)</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does this implementation consume? (4 lines)</p></li>
@@ -581,7 +588,7 @@ scheduled in series.  What does this imply about floating-point
 additions? (2 lines)</p></li>
 <li><p>We want to multiply two streams of matrices with each other.  We
 can fill the FPGA with copies of one of the accelerators from question
-1.4(original, 150MHz) or 2.5(unrolled, 100MHz).  Which
+1.4(original, 150MHz) or 2.7(unrolled, 100MHz).  Which
 accelerator would you choose for the highest throughput?</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -593,7 +600,7 @@ How many copies of the each design can you fit in the resources available in Ult
 </li>
 <li><p><strong>HLS Kernel Optimization: Pipelining</strong></p>
 <ol class="arabic">
-<li><p>Remove the unroll pragma, and pipeline the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
+<li><p>Remove the unroll and partition pragma, and pipeline the <code class="docutils literal notranslate"><span class="pre">Main_loop_j</span></code>
 loop with the minimal initiation
 interval (II) of 1 using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> pragma. Restore the clock to <em><strong>150MHz</strong></em>.
 Synthesize the design again.  Report the
@@ -612,22 +619,15 @@ variables that are mapped onto memories in the <em><strong>Storage Report</stron
 <li><p>Assuming a continuous flow of input data, how many data
 does the pipelined loop need per clock cycle from <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code>?
 (1 line)</p></li>
-<li><p>Considering what you found in the two previous questions, why does
+<li><p>Considering what you found in the previous questions, why does
 the tool not achieve an initiation interval of 1? (3 lines)</p></li>
-<li><p>We can partition <code class="docutils literal notranslate"><span class="pre">Buffer_1</span></code> and <code class="docutils literal notranslate"><span class="pre">Buffer_2</span></code> to
-achieve a better performance.  Illustrate the best way to partition
-each of the arrays with a picture that shows how the elements of
-these arrays are accessed by one iteration of the pipelined loop.</p></li>
-<li><p>Partition the buffers according to your description in the
-previous question with the <code class="docutils literal notranslate"><span class="pre">array_partition</span></code> pragma. (See <em><strong>Partitioning Arrays to Improve Pipelining</strong></em> <a class="reference external" href="https://docs.xilinx.com/r/2024.1-English/ug1399-vitis-hls/pragma-HLS-array_partition">Section of the Vitis HLS User Guide</a>
-for examples of array partitioning pragma).
-Also, pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop.
+<li><p>Based on your analysis, propose a solution to achieve an initiation interval of 1 for the pipelined loops.
+Also pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop.
 Synthesize the design and report the expected latency in ms. Provide the modified <code class="docutils literal notranslate"><span class="pre">mmult</span></code> code in your report.</p></li>
 <li><p>How many resources of each type (BlockRAM, DSP unit, flip-flop,
 and LUT) does this implementation consume? (4 lines)</p></li>
-<li><p>Pipeline the <code class="docutils literal notranslate"><span class="pre">Init_loop_j</span></code> loop also with an II of
-1 and synthesize your design. Before exporting the synthesized design, you can run C/RTL co-simulation to verify
-that the RTL is functionally identical to the C code.</p></li>
+<li><p>Before exporting the synthesized design, you can run C/RTL co-simulation to verify
+that the RTL is functionally identical to the C code. Include a screenshot of the co-simulation result in your report.</p></li>
 <li><p>Export your synthesized design by right-clicking on <em><strong>solution1</strong></em> and then selecting <em><strong>Export RTL</strong></em>. Choose <em><strong>Vitis Kernel (.xo)</strong></em> as the
 <em><strong>Format</strong></em>. Select output location to be your
 <code class="docutils literal notranslate"><span class="pre">ese532_code/hw5</span></code> directory and select OK.
