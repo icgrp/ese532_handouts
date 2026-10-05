@@ -105,6 +105,10 @@ cd ese532_code/
 git pull origin master
 ```
 
+```{note}
+This year we are using a new verion of Vitis (2024.1) and we have updated the code to work with this version. We will keep updating the code to fix any issues we find. So make sure you pull in the latest changes before you start working on the homework.
+```
+
 The code you will use for [homework submission](homework_submission)
 is in the `hw5` directory. The directory structure looks like this:
 ```
@@ -274,7 +278,7 @@ This step packages your design and define various files required for booting/con
   If you are working on lab machine, make sure that you have enough space in your user directory so that the image file does not exceed the quota.
     ```{note}
     In `u96_v2.cfg`, we commented out the profiling block.
-    As mentioned in [here](https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/profile-Options),
+    As mentioned in [here](https://docs.xilinx.com/r/2024.1-English/ug1393-vitis-application-acceleration/profile-Options),
     we can monitor data ports with Vitis Analyzer when the profiling is enabled. But it costs additional resources on the FPGA that makes
     the compilation longer, and we commented out for this assignment.
     ```
@@ -283,7 +287,7 @@ This step packages your design and define various files required for booting/con
     And you need to include a flag like `--clock.defaultFreqHz 200000000` when you do linking (`v++ --link`).
     Without the flag, the tool uses the default clock frequency for Ultra96, which is 150MHz.
 
-    If you go through [Vitis User Guide](https://docs.xilinx.com/r/2020.2-English/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis) 
+    If you go through [Vitis User Guide](https://docs.xilinx.com/r/2024.1-English/ug1393-vitis-application-acceleration/Getting-Started-with-Vitis) 
     for useful flags/options, please make sure that they are applicable to the embedded platform.
     As mentioned earlier, there are datacenter platform and embedded platform; Ultra96 belongs to the embedded platform.
     ```
