@@ -40,8 +40,9 @@ Your writeup should include your answers to the following questions:
         - Right-click on ***solution1*** in ***Explorer*** and select
             ***Solution Settings***.
         - In the ***General*** tab, select ***config_compile*** command and set
-            ***pipeline_loops*** to ***0***. Vitis HLS automatically does loop pipelining. For the purpose of this homework, we will turn it off,
-            since we are going to do it ourselves.
+            ***pipeline_loops*** to ***0***. Also, select ***config_array_partition*** command and set
+            ***throughput_driven*** to ***off***.  Vitis HLS automatically does loop pipelining and array partitioning.
+            For the purpose of this homework, we will turn them off, since we are going to do them ourselves.
         - ***Run C simulation*** by right-clicking on the project on the ***Explorer*** view, and verify that the test
             passes in the console.  Include the console output in your
             report.
