@@ -58,7 +58,7 @@ specific things to experiment with, but you should do some reading from:
 
 
 The following resources can be helpful for programming HLS and OpenCL host code:
-- [Vitis Accel Examples](https://github.com/Xilinx/Vitis_Accel_Examples/tree/2020.2) and [Vitis Tutorials](https://github.com/Xilinx/Vitis-Tutorials/tree/2020.2)
+- [Vitis Accel Examples](https://github.com/Xilinx/Vitis_Accel_Examples/tree/2024.1) and [Vitis Tutorials](https://github.com/Xilinx/Vitis-Tutorials/tree/2024.1)
 - [OpenCL 1.2 reference card](https://www.khronos.org/files/opencl-1-2-quick-reference-card.pdf)
 - [OpenCL Northeastern slides](https://ece.northeastern.edu/groups/nucar/Analogic/)
 
@@ -67,7 +67,7 @@ Note that we are running on Linux. If you want to gain a deeper understanding of
 manages DMA, refer to the following resources:
 - [Mastering DMA and IOMMU APIs](https://elinux.org/images/4/49/20140429-dma.pdf)
 - [Contiguous Memory Allocator](https://events.static.linuxfound.org/images/stories/pdf/lceu2012_nazarwicz.pdf)
-- [XRT Execution](https://xilinx.github.io/XRT/2020.2/html/execution-model.html)
+- [XRT Execution](https://xilinx.github.io/XRT/2024.1/html/execution-model.html)
 
 ## Building HW6
 - Like we did in HW5, `source sourceMe.sh` first. Note that

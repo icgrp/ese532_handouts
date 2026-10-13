@@ -124,7 +124,7 @@ for the sake of easy grading.
     1. We will now modify the kernel code.
         - In terminal, make sure you correctly sourced the settings, and open Vitis HLS, with:
             ```
-            vitis_hls
+            vitis_hls -classic
             ```
         - Click on ***open project*** and browse to the your build generated directory: `hw6/apps/mmult/_x/kernel/mmult_fpga/mmult_fpga`
         and click open.
@@ -197,21 +197,21 @@ for the sake of easy grading.
     
 1. **Analyze Implementation**
 
-    In this question, we will investigate what the FPGA implementation
-        of the matrix multiplication (Part 1.11) look like using Vivado (not
-        Vivado HLS).  Vivado is part of the Vitis installation.
+    In this question, we will investigate what the FPGA implementation of the matrix multiplication (Part 1.11) look like using Vivado (not Vivado HLS).  Vivado is part of the Vitis installation.
+
+    Launch Vivado using the following commands and open the
+    project you saved/moved from the location `hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.xpr`. 
     
+    - In terminal, make sure you correctly sourced the settings, and open Vivado with:
+        ```
+        vivado
+        ```
+
     1. Report how many resources and utilization percentage of each type (BlockRAM, DSP unit,
     flip-flop, and LUT) the implementation (Part 1.11)
     consumes. You can find this information in the ***Implementation*** tab on the
-    left hand side. Click ***Report Utilization*** under ***Open Implemented Design***.
-    Launch Vivado using the following commands and open the
-    project you saved/moved from the location `hw6/apps/mmult/_x/link/vivado/vpl/prj/prj.xpr`. (4 lines)
-        - In terminal, make sure you correctly sourced the settings, and open Vivado, with:
-            ```
-            vivado
-            ```
-    1. Report the expected power consumption of this design by clicking ***Report Power*** of the ***Implementation*** tab. (1 line)
+    left hand side. Click ***Report Utilization*** under ***Open Implemented Design***.  (4 lines)
+    1. Report the expected power consumption of this design by clicking ***Report Power*** under ***Open Implemented Design*** in the ***Implementation*** tab. (1 line)
     1. On the left top corner, you will see ***IP Integrator***. Click ***Open Block Design*** under
     ***IP Integrator***.  Open the ***Address Editor*** by choosing the corresponding
             tab above the block design.  In which memory region is the control interface of the
@@ -220,7 +220,7 @@ for the sake of easy grading.
             querying its status.  Writes and reads by the ARM processor are to
             this region are sent over an AXI4-Lite bus to the accelerator
             wrapper, which handles them and controls the accelerator. (1 line)
-    1. Open the timing report by going to the ***Implementation*** tab and pressing ***Design Timing Summary*** from the ***Timing*** tab.  Click on
+    1. Open the timing report by going to the bottom panel and pressing ***Design Timing Summary*** from the ***Timing*** tab. (You can also regenerate this tab by clicking ***Report Timing Summary*** under ***Open Implemented Design***.) Click on
             the number next to [Worst Negative Slack](http://www.vlsi-expert.com/2011/03/static-timing-analysis-sta-basic-timing.html).
   Look at the
             `Path Properties`.  Report in which of the hardware modules that we
