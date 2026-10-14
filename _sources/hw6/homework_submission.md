@@ -2,7 +2,7 @@
 
 Your writeup should follow [the writeup guidelines](../writeup_guidelines).
 Your writeup should include your answers to the questions below. Even if a certain
-question(like 1-(c) or 1-(f)) is just a "step", please include it in your report and leave the bullet blank
+question(like 1.2 or 1.3) is just a "step", please include it in your report and leave the bullet blank
 for the sake of easy grading.
 
 <style type="text/css">
